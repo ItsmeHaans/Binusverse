@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #0F0825, #1C1040);
+    color: white;
+    image-rendering: pixelated;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    z-index: 10;
+}
+
+.logo-left,
+.logo-right {
+    position: absolute;
+}
+
+.logo-left { left: 30px; }
+.logo-right { right: 30px; }
+
+.logo-left img,
+.logo-right img {
+    height: 60px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-shadow:
+        2px 0 #1e90ff,
+       -2px 0 #1e90ff,
+        0 2px #1e90ff,
+        0 -2px #1e90ff,
+        2px 2px #1e90ff,
+       -2px -2px #1e90ff,
+        2px -2px #1e90ff,
+       -2px 2px #1e90ff;
+}
+
+.journey-header {
+    position: relative;
+    height: 60vh;       
+    display: flex;
+    justify-content: center;  
+    align-items: center;       
+    overflow: hidden;
+}
+
+.header-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+}
+
+.header-content {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    color: #FEE783;
+    letter-spacing: 3px;
+    text-shadow:
+        5px 0 #220F55,
+       -5px 0 #220F55,
+        0 5px #220F55,
+        0 -5px #220F55,
+        5px 5px #220F55,
+       -5px -5px #220F55,
+        5px -5px #220F55,
+       -5px 5px #220F55;
+        
+}
+
+.header-content p {
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: 2px;
+
+    text-shadow:
+        2px 0 #220F55,
+       -2px 0 #220F55,
+        0 2px #220F55,
+        0 -2px #220F55,
+        2px 2px #220F55,
+       -2px -2px #220F55,
+        2px -2px #220F55,
+       -2px 2px #220F55;
+}
+
+.journey-content {
+    padding: 40px 60px 100px;
+}
+
+.welcome {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 22px;
+}
+
+.profile-desc {
+    margin-top: 4px;
+    opacity: 0.8;
+}
+
+.profile-row {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.profile-card {
+    background: linear-gradient(135deg, #1a0f40, #24135c);
+    border: 4px solid #2e8fff;
+    border-radius: 30px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.binusian-badge {
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: #6c63ff;
+    color: white;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.profile-img {
+    width: 180px;
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.mini-card {
+    background: #140a30;
+    border: 3px solid #FEE783;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.mini-card img {
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 3fr 1.2fr;
+    gap: 50px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title span {
+    color: #1e90ff;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.mission-card {
+    position: relative;
+    height: 170px;
+    border-radius: 25px;
+    border: 4px solid #FEE783;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+}
+
+.mission1,
+.mission2,
+.mission3 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mission-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.mission-card span {
+    position: relative;
+    z-index: 2;
+}
+
+.mission1 { background-image: url("assets/images/ruangkelas.png"); }
+.mission2 { background-image: url("assets/images/labkom.png"); }
+.mission3 { background-image: url("assets/images/mejabelajar.png"); }
+
+.learning-box {
+    border: 4px solid #2e8fff;
+    border-radius: 30px;
+    padding: 40px;
+    background: #1a0f40;
+}
+
+.line-chart {
+    position: relative;
+    height: 200px;
+}
+
+.line-chart svg {
+    width: 100%;
+    height: 100%;
+}
+
+.dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #FEE783;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.status-card {
+    background: linear-gradient(180deg, #1a0f40, #24135c);
+    border: 4px solid #2e8fff;
+    border-radius: 30px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 6px solid #FEE783;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin: 20px auto 0;
+}
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.bottom-card {
+    background: linear-gradient(135deg, #1a0f40, #24135c);
+    border: 4px solid #2e8fff;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.class-tags span {
+    display: inline-block;
+    background: #FEE783;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.armory-icons {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.armory-icons img {
+    width: 50px;
+    transition: 0.3s;
+}
+
+.armory-icons img:hover {
+    transform: scale(1.15);
+}
