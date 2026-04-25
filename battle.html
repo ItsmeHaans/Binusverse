@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battle Arena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo-left">
+        <img src="assets/images/SaturBum.png">
+    </div>
+
+ <ul class="nav-links">
+        <li><a href="journey.html">Journey</a></li>
+        <li><a href="learn.html"">Learn</a></li>
+        <li><a href="forum.html">Forum</a></li>
+        <li><a href="battle.html">Battle</a></li>
+        <li><a href="news.html">News</a></li>
+    </ul>
+
+    <div class="logo-right">
+        <img src="assets/images/BinusLogo.png">
+    </div>
+</nav>
+
+<section class="battle-header">
+    <img src="assets/images/battlebg.jpg" class="header-bg">
+    <div class="header-overlay"></div>
+
+    <div class="header-content">
+        <h1>Battle Arena</h1>
+        <p>Test your knowledge against fellow explorers.</p>
+    </div>
+</section>
+
+<section class="battle-container">
+
+    <h2 class="section-title">PvP Mode</h2>
+
+    <div class="pvp-container">
+
+        <div class="player-card">
+            <img src="assets/images/profile.jpg" class="avatar">
+            <h3>Andrew</h3>
+            <div class="level">Level 11</div>
+        </div>
+
+        <div class="versus">VS</div>
+
+        <div class="search-card">
+            <button id="searchBtn" class="pixel-btn">Search Opponent</button>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h2 class="section-title">Daily Mission</h2>
+
+    <div class="daily-quiz">
+        <h3>DAILY QUIZ</h3>
+        <button id="dailyBtn" class="pixel-btn">Start</button>
+    </div>
+
+    <hr>
+    
+    <h2 class="section-title">Raid</h2>
+
+    <div class="raid-container">
+        <div class="raid-card easy">Easy</div>
+        <div class="raid-card normal">Normal</div>
+        <div class="raid-card hard">Hard</div>
+    </div>
+
+</section>
+
+<script src="battle.js"></script>
+</body>
+</html>

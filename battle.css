@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #0F0825, #1C1040);
+    color: white;
+    image-rendering: pixelated;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    z-index: 10;
+}
+
+.logo-left,
+.logo-right {
+    position: absolute;
+}
+
+.logo-left { left: 30px; }
+.logo-right { right: 30px; }
+
+.logo-left img,
+.logo-right img {
+    height: 60px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-shadow:
+        2px 0 #1e90ff,
+       -2px 0 #1e90ff,
+        0 2px #1e90ff,
+        0 -2px #1e90ff,
+        2px 2px #1e90ff,
+       -2px -2px #1e90ff,
+        2px -2px #1e90ff,
+       -2px 2px #1e90ff;
+}
+
+.battle-header {
+    position: relative;
+    height: 60vh;        
+    display: flex;
+    justify-content: center;   
+    align-items: center;      
+    overflow: hidden;
+}
+
+.header-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+}
+
+.header-content {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    color: #FEE783;
+    letter-spacing: 3px;
+    text-shadow:
+        5px 0 #220F55,
+       -5px 0 #220F55,
+        0 5px #220F55,
+        0 -5px #220F55,
+        5px 5px #220F55,
+       -5px -5px #220F55,
+        5px -5px #220F55,
+       -5px 5px #220F55;
+        
+}
+
+.header-content p {
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: 2px;
+
+    text-shadow:
+        2px 0 #220F55,
+       -2px 0 #220F55,
+        0 2px #220F55,
+        0 -2px #220F55,
+        2px 2px #220F55,
+       -2px -2px #220F55,
+        2px -2px #220F55,
+       -2px 2px #220F55;
+}
+
+.battle-container {
+    width: 100%;
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.section-title {
+    width: 1600px;
+    margin: 60px auto 20px auto;
+    color: #5bc0ff;
+    font-size: 20px;
+}
+
+.pvp-container {
+    width: 1600px;
+    margin: 0 auto 80px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-card,
+.search-card {
+    width: 700px;
+    height: 420px;
+    border-radius: 25px;
+    border: 3px solid #00c3ff;
+
+    background-image: url("assets/images/backgroundpvp.png");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.avatar {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.versus {
+    font-size: 50px;
+    color: #00c3ff;
+}
+
+
+#searchBtn {
+    padding: 1rem 2rem;
+    background: #1e90ff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#searchBtn:hover {
+    background: #00bfff;
+}
+
+.daily-quiz {
+    width: 1600px;
+    height: 479px;
+
+    margin: 0 auto 80px auto;
+
+    border-radius: 25px;
+    border: 3px solid #00c3ff;
+
+    background-image: url("assets/images/backgrounddaily.png");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.daily-quiz h3 {
+    font-size: 40px;
+    letter-spacing: 4px;
+}
+
+#dailyBtn {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 20px;
+}
+
+.pixel-btn {
+    margin-top: 30px;
+    padding: 14px 50px;
+    font-size: 20px;
+    background: #FEE783;
+    color: #1C1040;
+    border: 4px solid #220F55;
+    cursor: pointer;
+    letter-spacing: 2px;
+
+    box-shadow:
+        4px 4px 0px #220F55;
+
+    transition: 0.15s ease;
+}
+
+.pixel-btn:hover {
+    transform: translateY(3px);
+    box-shadow:
+        2px 2px 0px #220F55;
+}
+
+.raid-container {
+    width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.raid-card {
+    width: 420px;
+    height: 350px;
+    border-radius: 25px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    background-size: cover;
+    background-position: center;
+}
+
+.easy {
+    background-image: url("assets/images/ez.png");
+    border: 3px solid #00ff88;
+}
+
+.normal {
+    background-image: url("assets/images/mid.png");
+    border: 3px solid #ffd000;
+}
+
+.hard {
+    background-image: url("assets/images/angel.png");
+    border: 3px solid #ff2a2a;
+}
+
+.raid-card:hover {
+    transform: scale(1.05);
+}
+
+hr {
+    width: 1600px;
+    margin: 60px auto;
+    border: none;
+    height: 2px;
+    background: #00c3ff;
+}
