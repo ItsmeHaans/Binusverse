@@ -1,353 +1,396 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Pixelify Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pixelify Sans", sans-serif;
 }
 
 body {
-    background: linear-gradient(180deg, #0F0825, #1C1040);
-    color: white;
-    image-rendering: pixelated;
+  background: linear-gradient(180deg, #0f0825, #1c1040);
+  color: white;
+  image-rendering: pixelated;
 }
 
 .navbar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding: 1.5rem 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #11111d;
+  z-index: 10;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .logo-left,
 .logo-right {
-    position: absolute;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
 }
 
-.logo-left { left: 30px; }
-.logo-right { right: 30px; }
+.logo-left {
+  left: 30px;
+}
+
+.logo-right {
+  right: 30px;
+}
 
 .logo-left img,
+a {
+  height: 60px;
+  image-rendering: pixelated;
+}
+
 .logo-right img {
-    height: 60px;
+  height: 55px;
 }
 
 .nav-links {
-    display: flex;
-    gap: 4rem;
-    list-style: none;
+  display: flex;
+  gap: 4rem;
+  list-style: none;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    text-shadow:
-        2px 0 #1e90ff,
-       -2px 0 #1e90ff,
-        0 2px #1e90ff,
-        0 -2px #1e90ff,
-        2px 2px #1e90ff,
-       -2px -2px #1e90ff,
-        2px -2px #1e90ff,
-       -2px 2px #1e90ff;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
 .battle-header {
-    position: relative;
-    height: 60vh;       
-    display: flex;
-    justify-content: center;   
-    align-items: center;     
-    overflow: hidden;
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .header-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
 }
 
 .header-content {
-    position: absolute;
-    left: 60px;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes floatText {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4.4px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .header-content h1 {
-    font-size: 2.5rem;
-    color: #FEE783;
-    letter-spacing: 3px;
-    text-shadow:
-        5px 0 #220F55,
-       -5px 0 #220F55,
-        0 5px #220F55,
-        0 -5px #220F55,
-        5px 5px #220F55,
-       -5px -5px #220F55,
-        5px -5px #220F55,
-       -5px 5px #220F55;
-        
+  font-size: 2.5rem;
+  color: white;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
+  animation: floatText 4s ease-in-out infinite;
 }
 
 .header-content p {
-    font-size: 1.5rem;
-    color: white;
-    letter-spacing: 2px;
-
-    text-shadow:
-        2px 0 #220F55,
-       -2px 0 #220F55,
-        0 2px #220F55,
-        0 -2px #220F55,
-        2px 2px #220F55,
-       -2px -2px #220F55,
-        2px -2px #220F55,
-       -2px 2px #220F55;
+  /* Gunakan sans-serif biasa, bukan Pixelify */
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400; /* Normal, jangan di-bold */
+  color: white;
+  letter-spacing: normal; /* Hilangkan letter-spacing lebar kalau sebelumnya ada */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Shadow tipis biar tetap kebaca di background */
 }
 
+.score-row p,
+.raid-stats p,
+.leaderboard th,
+.leaderboard td {
+  font-family: "Inter", sans-serif !important;
+  font-weight: 500;
+}
+
+/* Samakan spasi antar section */
 .section {
-    padding: 100px 0;
-    border-bottom: 2px solid #00c3ff;
+  padding: 40px 0 60px;
 }
 
+/* Samakan padding container agar sejajar dengan navbar */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* Samakan style judul h2 */
 .section h2 {
-    font-size: 22px;
-    margin-bottom: 30px;
+  font-size: 1.9rem;
+  margin-bottom: 30px;
+  margin-top: 0;
 }
 
 /* ===== RAID ===== */
 .raid-wrapper {
-    display: flex;
-    gap: 30px;
-    align-items: stretch;
-    margin-top: 40px;
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+  margin-top: 40px;
 }
 
 /* box utama */
 .raid-box {
-    flex: 2;
-    position: relative;
-    padding: 60px 40px;
-    border-radius: 25px;
-    border: 3px solid #2ecc71;
-    background-image: url("assets/images/backgroundraidez.png");
-    background-size: cover;
-    background-position: center;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  flex: 2;
+  position: relative;
+  padding: 60px 40px;
+  border-radius: 25px;
+  border: 3px solid #2ecc71;
+  background-image: url("assets/images/backgroundraidez.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
 .raid-side {
-    flex: 1;
-    min-height: 300px;  
-    border-radius: 25px;
+  flex: 1;
+  min-height: 300px;
+  border-radius: 25px;
 }
 
 .raid-side.yellow {
-    border: 3px solid #f1c40f;
+  border: 3px solid #f1c40f;
 }
 
 .raid-side.red {
-    border: 3px solid #e74c3c;
+  border: 3px solid #e74c3c;
 }
 
 .result-wrapper {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 .player-card {
-    width: 892px;
-    height: 479px;
-    border-radius: 25px;
-    border: 3px solid #00c3ff;
+  width: 100%;
+  min-height: 400px;
+  border-radius: 25px;
+  border: 3px solid #00c3ff;
 
-    background-image: url("assets/images/backgroundpvp.png"); 
-    background-size: cover;
-    background-position: center;
+  background-image: url("assets/images/backgroundpvp.png");
+  background-size: cover;
+  background-position: center;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .avatar {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  width: 120px;
+  margin-bottom: 20px;
 }
 
-.player-info h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
+.player-info h3, .player-info p {
+  font-size: 18px;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .result-panel {
-    width: 892px;
-    height: 479px;
-    border-radius: 25px;
-    border: 3px solid #00c3ff;
+  width: 100%;
+  min-height: 400px;
+  border-radius: 25px;
+  border: 3px solid #00c3ff;
 
-    background-image: url("assets/images/backgroundpvp.png");
-    background-size: cover;
-    background-position: center;
+  background-image: url("assets/images/backgroundpvp.png");
+  background-size: cover;
+  background-position: center;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .result-panel h1 {
-    font-size: 40px;
-    color: #00ffcc;
-    text-shadow:
-        3px 0 #002244,
-       -3px 0 #002244,
-        0 3px #002244,
-        0 -3px #002244;
+  font-size: 40px;
+  color: #00ffcc;
+  text-shadow:
+    3px 0 #002244,
+    -3px 0 #002244,
+    0 3px #002244,
+    0 -3px #002244;
 }
 
 .score-row {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 40px;
 }
 
 .score-row p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .score-row span {
-    font-size: 40px;
-    font-weight: bold;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .correct span {
-    color: #00ff6a;
+  color: #00ff6a;
 }
 
 .wrong span {
-    color: #ff3b3b;
+  color: #ff3b3b;
 }
 
 .daily-result {
-    width: 1650px;
-    height: 479px;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 400px;
 
-    margin: 40px auto;
+  margin: 0 auto;
 
-    border-radius: 25px;
-    border: 3px solid #00c3ff;
+  border-radius: 25px;
+  border: 3px solid #00c3ff;
 
-    background-image: url("assets/images/backgrounddaily.png");
-    background-size: cover;
-    background-position: center;
+  background-image: url("assets/images/backgrounddaily.png");
+  background-size: cover;
+  background-position: center;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .daily-result h1 {
-    font-size: 40px;
-    letter-spacing: 4px;
+  font-size: 40px;
+  letter-spacing: 4px;
 }
 
 .daily-result h2 {
-    font-size: 35px;
-    color: #00ff6a;
+  font-size: 35px;
+  color: #00ff6a;
 }
 
 .raid-result-wrapper {
-    display: flex;
-    gap: 30px;
-    margin-top: 40px;
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+  margin-top: 0;
 }
 
 .raid-result-box {
-    flex: 2;
-    padding: 50px;
-    border-radius: 25px;
-    border: 3px solid #2ecc71;
-    background-image: url("assets/images/backgroundraidez.png");
-    background-size: cover;
-    background-position: center;
+  flex: 2;
+  padding: 50px;
+  border-radius: 25px;
+  border: 3px solid #2ecc71;
+  background-image: url("assets/images/backgroundraidez.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .raid-result-box h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2ecc71;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2ecc71;
 }
 
 .raid-stats {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
 }
 
 .raid-stats span {
-    font-size: 32px;
-    font-weight: bold;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .raid-stats .green span {
-    color: #00ff6a;
+  color: #00ff6a;
 }
 
 .raid-stats .red span {
-    color: #ff3b3b;
+  color: #ff3b3b;
 }
 
 .top-global-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
 }
 
 .leaderboard {
-    width: 1200px;
-    border-collapse: collapse;
-    text-align: center;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 3px solid #00c3ff;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid #00c3ff;
 }
 
 .leaderboard th {
-    background: #0a1a5e;
-    padding: 20px;
-    font-size: 18px;
+  background: #0a1a5e;
+  padding: 20px;
+  font-size: 18px;
 }
 
 .leaderboard td {
-    padding: 20px;
-    background: #111a4a;
-    border-top: 1px solid #00c3ff;
+  padding: 20px;
+  background: #111a4a;
+  border-top: 1px solid #00c3ff;
+}
+
+.footer-hero {
+  width: 100%;
+  background: #11111d;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 10% 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-left img {
+  height: 200px;
+}
+
+.footer-right p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
 }

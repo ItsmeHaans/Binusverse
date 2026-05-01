@@ -1,251 +1,349 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Pixelify Sans', sans-serif;
-    background: #0f0f1f;
-    color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  background: #0f0f1f;
+  color: white;
 }
 
 .navbar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding: 1.5rem 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #11111d;
+  z-index: 10;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .logo-left,
 .logo-right {
-    position: absolute;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
 }
 
-.logo-left { left: 30px; }
-.logo-right { right: 30px; }
+.logo-left {
+  left: 30px;
+}
+
+.logo-right {
+  right: 30px;
+}
 
 .logo-left img,
+a {
+  height: 60px;
+  image-rendering: pixelated;
+}
+
 .logo-right img {
-    height: 60px;
+  height: 55px;
 }
 
 .nav-links {
-    display: flex;
-    gap: 4rem;
-    list-style: none;
+  display: flex;
+  gap: 4rem;
+  list-style: none;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    text-shadow:
-        2px 0 #1e90ff,
-       -2px 0 #1e90ff,
-        0 2px #1e90ff,
-        0 -2px #1e90ff,
-        2px 2px #1e90ff,
-       -2px -2px #1e90ff,
-        2px -2px #1e90ff,
-       -2px 2px #1e90ff;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .forum-header {
-    position: relative;
-    height: 60vh;      
-    display: flex;
-    justify-content: center; 
-    align-items: center;      
-    overflow: hidden;
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .header-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 45%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
 }
 
 .header-content {
-    position: absolute;
-    left: 60px;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes floatText {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4.4px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .header-content h1 {
-    font-size: 2.5rem;
-    color: #FEE783;
-    letter-spacing: 3px;
-    text-shadow:
-        5px 0 #220F55,
-       -5px 0 #220F55,
-        0 5px #220F55,
-        0 -5px #220F55,
-        5px 5px #220F55,
-       -5px -5px #220F55,
-        5px -5px #220F55,
-       -5px 5px #220F55;
-        
+  font-size: 2.5rem;
+  color: white;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
+  animation: floatText 4s ease-in-out infinite;
 }
 
 .header-content p {
-    font-size: 1.5rem;
-    color: white;
-    letter-spacing: 2px;
-
-    text-shadow:
-        2px 0 #220F55,
-       -2px 0 #220F55,
-        0 2px #220F55,
-        0 -2px #220F55,
-        2px 2px #220F55,
-       -2px -2px #220F55,
-        2px -2px #220F55,
-       -2px 2px #220F55;
+  /* Gunakan sans-serif biasa, bukan Pixelify */
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400; /* Normal, jangan di-bold */
+  color: white;
+  letter-spacing: normal; /* Hilangkan letter-spacing lebar kalau sebelumnya ada */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Shadow tipis biar tetap kebaca di background */
 }
 
 .forum-container {
-    padding: 2rem 5%;
+  padding: 40px 60px 100px;
 }
 
-.forum-container h2 {
-    margin: 2rem 0 1rem;
+.main-forum {
+  margin-bottom: 70px;
+}
+
+.main-forum h2 {
+  margin-bottom: 30px;
+  font-size: 1.9rem;
+}
+
+.other-forum h2 {
+  margin-bottom: 30px;
+  font-size: 1.9rem;
 }
 
 .forum-card {
-    width: 90%;
-    width: 1736px;
-    height: 258px;
+  width: 100%;
+  height: 120px;
 
-    margin: 0 auto 25px auto; 
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin: 0 auto 25px auto;
 
-    padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    border-radius: 25px;
+  padding: 0 60px;
 
-    text-decoration: none;
-    color: white;
+  border-radius: 18px;
 
-    font-size: 2rem;
-    font-weight: bold;
+  text-decoration: none;
+  color: white;
 
-    position: relative;
-    overflow: hidden;
+  font-size: 1.9rem;
+  font-weight: bolder;
 
-    border: 4px solid var(--main-color);
+  position: relative;
+  overflow: hidden;
 
-    transition: 0.2s ease;
+  border: 4px solid var(--main-color);
 
-    background-size: cover;
-    background-position: center;
+  transition: 0.2s ease;
+
+  background-size: cover;
+  background-position: center;
 }
 
 .forum-card span {
-    position: relative;
-    z-index: 2;
-    text-shadow:
-        3px 0 var(--main-color),
-       -3px 0 var(--main-color),
-        0 3px var(--main-color),
-        0 -3px var(--main-color);
+  position: relative;
+  z-index: 2;
 }
 
 .forum-card img {
-    position: relative;
-    height: 50px;
-    z-index: 2;
+  position: relative;
+  height: 50px;
+  z-index: 2;
 }
 
 .forum-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45); 
-    z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
 }
 
 .forum-card:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .gray {
-    --main-color: #ccc;
-    background: linear-gradient(
-        90deg,
-        #1a1a1a 0%,
-        #2e2e2e 40%,
-        #444 100%
-    );
+  --main-color: #dcdcdc;
+  background: linear-gradient(135deg, #9a9a9a, #5f5f6b);
+  border-color: #dcdcdc;
 }
 
 .gray img {
-    position: absolute;
-    right: 60px;
-    bottom: 0;
-    height: 220px;
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: unset;
+  height: 200px;
 }
 
 .blue {
-    --main-color: #1e90ff;
-    background-image: url("assets/images/kucinggaming.png");
-    background-position: center 40%;
+  --main-color: #1e90ff;
+  background-image: url("assets/images/kucinggaming.png");
+  background-position: center 40%;
 }
 
 .orange {
-    --main-color: #ff9f43;
-    background-image: url("assets/images/beruang\ S.T.png");
-    background-position: center 20%;
+  --main-color: #ff9f43;
+  background-image: url("assets/images/beruang\ S.T.png");
+  background-position: center 20%;
 }
 
 .purple {
-    --main-color: #c084fc;
-    background-image: url("assets/images/burunghantu.png");
-    background-position: center 55%;
+  --main-color: #c084fc;
+  background-image: url("assets/images/burunghantu.png");
+  background-position: center 55%;
 }
 
 .green {
-    --main-color: #55efc4;
-    background-image: url("assets/images/rubahkoruptor.png");
-    background-position: center 20%;
+  --main-color: #55efc4;
+  background-image: url("assets/images/rubahkoruptor.png");
+  background-position: center 20%;
 }
 
 .yellow {
-    --main-color: #ffe66d;
-    background-image: url("assets/images/singsingamaraja.png");
-    background-position: center 30%;
+  --main-color: #ffe66d;
+  background-image: url("assets/images/singsingamaraja.png");
+  background-position: center 30%;
 }
 
 .pink {
-    --main-color: #ff4dff;
-    background-image: url("assets/images/bunglonganteng.png");
+  --main-color: #ff4dff;
+  background-image: url("assets/images/bunglonganteng.png");
 }
 
 .dark {
-    --main-color: #00cec9;
-    background-image: url("assets/images/guritahacker.png");
-    background-position: center 75%;
+  --main-color: #00cec9;
+  background-image: url("assets/images/guritahacker.png");
+  background-position: center 75%;
 }
 
 .orange2 {
-    --main-color: #ffb142;
-    background-image: url("assets/images/burungdemo.png");
+  --main-color: #ffb142;
+  background-image: url("assets/images/burungdemo.png");
 }
 
 .beige {
-    --main-color: #eccc68;
-    background-image: url("assets/images/joanna.png");
-    background-position: center 55%;
+  --main-color: #eccc68;
+  background-image: url("assets/images/joanna.png");
+  background-position: center 55%;
+}
+
+.footer-hero {
+  width: 100%;
+  background: #11111d;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 10% 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-left img {
+  height: 200px;
+}
+
+.footer-right p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Tablet & Mobile (di bawah 992px) */
+@media (max-width: 992px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-right {
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .forum-header {
+    height: 40vh;
+  }
+
+  .header-content {
+    left: 20px;
+    text-align: center;
+    width: calc(100% - 40px);
+  }
+
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .forum-container {
+    padding: 1rem 4%;
+  }
+
+  .forum-card {
+    width: 100%; /* Lepas fixed width 1736px */
+    height: 180px;
+    font-size: 1.5rem;
+    padding: 0 30px;
+  }
+}
+
+/* Mobile Kecil (di bawah 480px) */
+@media (max-width: 480px) {
+  .forum-card {
+    height: 140px;
+    font-size: 1.2rem;
+    padding: 0 20px;
+    border-radius: 14px;
+  }
+
+  .forum-card img {
+    height: 35px;
+  }
+
+  .gray img {
+    height: 130px;
+    right: 20px;
+  }
+
+  .forum-container {
+    padding: 1rem 3%;
+  }
 }

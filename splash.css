@@ -1,0 +1,236 @@
+body.splash-body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.splash-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("assets/images/Tamanboy.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#black-overlay {
+  position: absolute;
+  inset: 0;
+  background: black;
+  z-index: 10;
+  animation: pixelDissolve 1s steps(18) 0.9s forwards;
+}
+
+#splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.welcome-text {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 2rem;
+  color: #fee783;
+  text-shadow: 3px 3px 0px #000;
+  margin-bottom: 5px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.welcome-text::after {
+  content: "";
+  animation: typingWelcomeContent 1.5s steps(1) 2.5s forwards;
+}
+
+.binusverse-logo-css {
+  font-size: clamp(3rem, 12vw, 6rem);
+  color: #ffffff;
+  text-transform: uppercase;
+  min-height: 1.2em;
+  position: relative;
+  display: inline-block;
+  z-index: 20;
+
+  text-shadow:
+    -4px -4px 0 #1e90ff,
+    4px -4px 0 #1e90ff,
+    -4px 4px 0 #1e90ff,
+    4px 4px 0 #1e90ff,
+    0px 8px 0 #125699;
+}
+
+.binusverse-logo-css::after {
+  content: "";
+  visibility: visible;
+  animation: typoLogic 4s steps(1) 4.0s forwards;
+}
+
+#start-btn {
+  display: block;
+  margin-top: 30px;
+  padding: 12px 40px;
+
+  background-color: #fee783;
+  color: #1a1a2e;
+  border: 4px solid #1a1a2e;
+  box-shadow: 0px 0px 0px #1a1a2e;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  transition:
+    transform 0.15s steps(3),
+    box-shadow 0.15s steps(3),
+    background-color 0.15s steps(3);
+
+  opacity: 0;
+  transform: scale(0.5);
+  visibility: hidden;
+
+  animation: btnAppear 0.6s steps(11) 8.7s forwards;
+}
+
+#start-btn:hover {
+  transform: translate(-2px, -2px) scale(1);
+  box-shadow: 7.5px 7.5px 0px #1a1a2e;
+}
+
+#start-btn:active {
+  transform: translate(2px, 2px) scale(1);
+  box-shadow: 0px 0px 0px #1a1a2e;
+}
+
+@keyframes pixelDissolve {
+  0% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@keyframes typingWelcomeContent {
+  0% {
+    content: "";
+  }
+  10% {
+    content: "W";
+  }
+  20% {
+    content: "We";
+  }
+  30% {
+    content: "Wel";
+  }
+  40% {
+    content: "Welc";
+  }
+  50% {
+    content: "Welco";
+  }
+  60% {
+    content: "Welcom";
+  }
+  70% {
+    content: "Welcome";
+  }
+  80% {
+    content: "Welcome ";
+  }
+  90% {
+    content: "Welcome t";
+  }
+  100% {
+    content: "Welcome to";
+  }
+}
+
+@keyframes typoLogic {
+  0% {
+    content: "";
+  }
+  5% {
+    content: "M";
+  }
+  10% {
+    content: "ME";
+  }
+  15% {
+    content: "MET";
+  }
+  20% {
+    content: "META";
+  }
+  40% {
+    content: "META";
+  }
+  45% {
+    content: "MET";
+  }
+  50% {
+    content: "ME";
+  }
+  55% {
+    content: "M";
+  }
+  60% {
+    content: "";
+  }
+  65% {
+    content: "B";
+  }
+  70% {
+    content: "BI";
+  }
+  75% {
+    content: "BIN";
+  }
+  80% {
+    content: "BINU";
+  }
+  85% {
+    content: "BINUS";
+  }
+  90% {
+    content: "BINUSV";
+  }
+  92.5% {
+    content: "BINUSVE";
+  }
+  95% {
+    content: "BINUSVER";
+  }
+  97.5% {
+    content: "BINUSVERS";
+  }
+  100% {
+    content: "BINUSVERSE";
+  }
+}
+
+@keyframes btnAppear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+}
