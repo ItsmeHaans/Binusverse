@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINUSVERSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+
+    <!-- ======================== NAVBAR (always on top) ======================== -->
+    <nav class="navbar">
+      <div class="logo-left">
+        <a href="#home"><img src="assets/images/SaturBum.png" alt="Logo" /></a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="journey.html">Journey</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="forum.html">Forum</a></li>
+        <li><a href="battle.html">Battle</a></li>
+        <li><a href="news.html">News</a></li>
+      </ul>
+      <div class="logo-right">
+        <img src="assets/images/BinusLogo.png" alt="Logo" />
+      </div>
+    </nav>
+
+    <!-- ======================== SPLASH SCREEN ======================== -->
+    <section id="splash">
+      <!-- Background video -->
+      <video autoplay muted loop playsinline id="splash-video">
+        <source src="assets/videos/Tamanboy.mp4" type="video/mp4" />
+      </video>
+
+      <div id="black-overlay"></div>
+
+      <div id="splash-content" class="hidden">
+        <div class="welcome-wrapper">
+          <h2 class="welcome-text"></h2>
+        </div>
+        <div class="logo-wrapper">
+          <h1 class="binusverse-logo-css"></h1>
+        </div>
+        <button id="start-btn">Start</button>
+      </div>
+
+      <div class="scroll-hint">
+        <span>SCROLL DOWN</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ======================== HOME PAGE ======================== -->
+    <div id="home">
+    <!-- Floating pixel background decoration -->
+    <div class="pixel-bg-layer" aria-hidden="true">
+      <!-- SQUARES -->
+      <div class="pixel-float shape-square"  style="left:4%;  top:110%;width:10px;height:10px;background:#00c3ff;  animation:floatPixel      18s linear 0s   infinite;"></div>
+      <div class="pixel-float shape-square"  style="left:18%; top:110%;width:6px; height:6px; background:#fee783;  animation:floatPixel      24s linear 4s   infinite;"></div>
+      <div class="pixel-float shape-square"  style="left:36%; top:110%;width:14px;height:14px;background:#a855f7;  animation:floatPixel      20s linear 8s   infinite;"></div>
+      <div class="pixel-float shape-square"  style="left:55%; top:110%;width:8px; height:8px; background:#00ff88;  animation:floatPixel      22s linear 2s   infinite;"></div>
+      <div class="pixel-float shape-square"  style="left:73%; top:110%;width:12px;height:12px;background:#ff6b6b;  animation:floatPixel      16s linear 11s  infinite;"></div>
+      <div class="pixel-float shape-square"  style="left:91%; top:110%;width:7px; height:7px; background:#00c3ff;  animation:floatPixel      26s linear 6s   infinite;"></div>
+      <!-- DIAMONDS -->
+      <div class="pixel-float shape-diamond" style="left:9%;  top:110%;width:14px;height:14px;background:#fee783;  animation:floatPixelSpin  21s linear 1s   infinite;"></div>
+      <div class="pixel-float shape-diamond" style="left:28%; top:110%;width:10px;height:10px;background:#00c3ff;  animation:floatPixelSpin  17s linear 7s   infinite;"></div>
+      <div class="pixel-float shape-diamond" style="left:48%; top:110%;width:16px;height:16px;background:#a855f7;  animation:floatPixelSpin  25s linear 13s  infinite;"></div>
+      <div class="pixel-float shape-diamond" style="left:66%; top:110%;width:8px; height:8px; background:#ff6b6b;  animation:floatPixelSpin  19s linear 3s   infinite;"></div>
+      <div class="pixel-float shape-diamond" style="left:84%; top:110%;width:12px;height:12px;background:#00ff88;  animation:floatPixelSpin  23s linear 9s   infinite;"></div>
+      <!-- CROSSES -->
+      <div class="pixel-float shape-cross"   style="left:13%; top:110%;width:16px;height:16px;background:#00c3ff;  animation:floatPixelDrift 28s linear 5s   infinite;"></div>
+      <div class="pixel-float shape-cross"   style="left:43%; top:110%;width:12px;height:12px;background:#fee783;  animation:floatPixelDrift 22s linear 14s  infinite;"></div>
+      <div class="pixel-float shape-cross"   style="left:78%; top:110%;width:18px;height:18px;background:#a855f7;  animation:floatPixelDrift 30s linear 2s   infinite;"></div>
+      <!-- TRIANGLES -->
+      <div class="pixel-float shape-tri"     style="left:22%; top:110%;width:14px;height:14px;background:#ff6b6b;  animation:floatPixel      20s linear 10s  infinite;"></div>
+      <div class="pixel-float shape-tri"     style="left:60%; top:110%;width:10px;height:10px;background:#00c3ff;  animation:floatPixel      18s linear 16s  infinite;"></div>
+      <div class="pixel-float shape-tri"     style="left:88%; top:110%;width:16px;height:16px;background:#fee783;  animation:floatPixelSpin  24s linear 4s   infinite;"></div>
+      <!-- HEXAGONS -->
+      <div class="pixel-float shape-hex"     style="left:7%;  top:110%;width:18px;height:18px;background:#00ff88;  animation:floatPixelDrift 26s linear 8s   infinite;"></div>
+      <div class="pixel-float shape-hex"     style="left:38%; top:110%;width:12px;height:12px;background:#a855f7;  animation:floatPixelDrift 21s linear 15s  infinite;"></div>
+      <div class="pixel-float shape-hex"     style="left:70%; top:110%;width:14px;height:14px;background:#00c3ff;  animation:floatPixelDrift 19s linear 1s   infinite;"></div>
+      <!-- STARS -->
+      <div class="pixel-float shape-star"    style="left:16%; top:110%;width:18px;height:18px;background:#fee783;  animation:floatPixelSpin  22s linear 12s  infinite;"></div>
+      <div class="pixel-float shape-star"    style="left:52%; top:110%;width:14px;height:14px;background:#ff6b6b;  animation:floatPixelSpin  27s linear 6s   infinite;"></div>
+      <div class="pixel-float shape-star"    style="left:82%; top:110%;width:20px;height:20px;background:#a855f7;  animation:floatPixelSpin  23s linear 18s  infinite;"></div>
+      <!-- PLUS -->
+      <div class="pixel-float shape-plus"    style="left:32%; top:110%;width:16px;height:16px;background:#00c3ff;  animation:floatPixel      25s linear 7s   infinite;"></div>
+      <div class="pixel-float shape-plus"    style="left:63%; top:110%;width:12px;height:12px;background:#00ff88;  animation:floatPixel      20s linear 17s  infinite;"></div>
+      <div class="pixel-float shape-plus"    style="left:95%; top:110%;width:14px;height:14px;background:#fee783;  animation:floatPixel      18s linear 3s   infinite;"></div>
+      <!-- ARROWS -->
+      <div class="pixel-float shape-arrow"   style="left:25%; top:110%;width:20px;height:14px;background:#ff6b6b;  animation:floatPixelDrift 24s linear 11s  infinite;"></div>
+      <div class="pixel-float shape-arrow"   style="left:58%; top:110%;width:16px;height:11px;background:#a855f7;  animation:floatPixelDrift 19s linear 5s   infinite;"></div>
+    </div>
+      <div class="pixel-float" style="left:15%;top:110%;width:8px;height:8px;background:#fee783;animation-duration:22s;animation-delay:3s;"></div>
+      <div class="pixel-float" style="left:25%;top:110%;width:16px;height:16px;background:#a855f7;animation-duration:15s;animation-delay:6s;"></div>
+      <div class="pixel-float" style="left:38%;top:110%;width:10px;height:10px;background:#00c3ff;animation-duration:20s;animation-delay:1s;"></div>
+      <div class="pixel-float" style="left:50%;top:110%;width:6px;height:6px;background:#ff6b6b;animation-duration:25s;animation-delay:8s;"></div>
+      <div class="pixel-float" style="left:62%;top:110%;width:14px;height:14px;background:#fee783;animation-duration:17s;animation-delay:4s;"></div>
+      <div class="pixel-float" style="left:74%;top:110%;width:8px;height:8px;background:#00ff88;animation-duration:21s;animation-delay:2s;"></div>
+      <div class="pixel-float" style="left:83%;top:110%;width:12px;height:12px;background:#a855f7;animation-duration:19s;animation-delay:7s;"></div>
+      <div class="pixel-float" style="left:92%;top:110%;width:10px;height:10px;background:#00c3ff;animation-duration:23s;animation-delay:5s;"></div>
+      <div class="pixel-float" style="left:8%;top:110%;width:6px;height:6px;background:#ff6b6b;animation-duration:16s;animation-delay:9s;"></div>
+      <div class="pixel-float" style="left:45%;top:110%;width:18px;height:18px;background:#fee783;animation-duration:28s;animation-delay:11s;"></div>
+      <div class="pixel-float" style="left:70%;top:110%;width:6px;height:6px;background:#00ff88;animation-duration:14s;animation-delay:13s;"></div>
+    </div>
+
+      <section class="home-section mission-section">
+        <h2 class="section-title">Mission Status</h2>
+        <p class="section-sub">Every semester is a new expedition.</p>
+        <div class="mission-container">
+          <div class="profile-card">
+            <img src="assets/images/profile.jpg" alt="Profile" />
+          </div>
+          <div class="stats-card">
+            <div><span>GPA</span><b>4</b></div>
+            <div><span>RANK</span><b>MYTHIC</b></div>
+            <div><span>LEVEL</span><b>19</b></div>
+            <div><span>STREAK</span><b>20x</b></div>
+            <div><span>FACULTY</span><b>SOCS</b></div>
+          </div>
+          <div class="badge-column">
+            <div class="badge-box"><div class="badge-box-inner"><img src="assets/images/bintangkejora.png" class="badge-icon" /></div></div>
+            <div class="badge-box"><div class="badge-box-inner"><img src="assets/images/apimembahana.png" class="badge-icon" /></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section challenge-section">
+        <h2 class="section-title">Challenge Yourself!</h2>
+        <p class="section-sub">Test your knowledge. Earn rewards. Climb the ranks.</p>
+        <div class="challenge-grid">
+          <a href="battle.html#pvp-mode" class="challenge-card" style="text-decoration:none;color:inherit;">
+            <div class="challenge-card-inner">
+              <div class="card-image"><img src="assets/images/PvP.png" /></div>
+              <div class="card-body">
+                <span class="card-label">Battle Mode</span>
+                <div class="card-title">PvP</div>
+                <p class="card-desc">Challenge fellow explorers in real-time knowledge battles.</p>
+                <span class="card-badge">All Levels</span>
+              </div>
+            </div>
+          </a>
+          <a href="battle.html#daily-mission" class="challenge-card" style="text-decoration:none;color:inherit;">
+            <div class="challenge-card-inner">
+              <div class="card-image"><img src="assets/images/DailyQuiz.png" /></div>
+              <div class="card-body">
+                <span class="card-label">Daily Mission</span>
+                <div class="card-title">Daily Quiz</div>
+                <p class="card-desc">Complete today's quiz to earn streak rewards and bonus XP.</p>
+                <span class="card-badge">Beginner</span>
+              </div>
+            </div>
+          </a>
+          <a href="battle.html#raid" class="challenge-card" style="text-decoration:none;color:inherit;">
+            <div class="challenge-card-inner">
+              <div class="card-image"><img src="assets/images/Raid.png" /></div>
+              <div class="card-body">
+                <span class="card-label">Co-op Mode</span>
+                <div class="card-title">Raid</div>
+                <p class="card-desc">Team up and take on powerful boss-level challenges together.</p>
+                <span class="card-badge">Intermediate</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <a href="battle.html" class="wide-btn">Explore All Challenges</a>
+      </section>
+
+      <section class="home-section armory-section">
+        <h2 class="section-title">Armory Crate</h2>
+        <p class="section-sub">Essential tools for your expedition.</p>
+        <div class="armory-grid">
+          <div class="armory-box"><div class="armory-box-inner"></div></div>
+          <div class="armory-box"><div class="armory-box-inner"></div></div>
+          <div class="armory-box"><div class="armory-box-inner"></div></div>
+          <div class="armory-box"><div class="armory-box-inner"></div></div>
+          <div class="armory-box"><div class="armory-box-inner"></div></div>
+        </div>
+        <a class="wide-btn">Expand All</a>
+      </section>
+
+      <section class="home-section skill-section">
+        <h2 class="section-title">Suggested Skill Upgrades</h2>
+        <p class="section-sub">Strengthen your weak zones. Unlock new abilities.</p>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-image"></div>
+            <div class="skill-info">
+              <h3>AI-Machine Learning</h3>
+              <p>Boost problem-solving ability through intelligent systems.</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-image"></div>
+            <div class="skill-info">
+              <h3>Cyber Security</h3>
+              <p>Enhance your digital defense and system protection skills.</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-image"></div>
+            <div class="skill-info">
+              <h3>Data Science</h3>
+              <p>Master analytics and turn raw data into insights.</p>
+            </div>
+          </div>
+        </div>
+        <a href="learn.html#suggested-skills" class="wide-btn">Strengthen Yourself!</a>
+      </section>
+
+      <section class="home-section news-section">
+        <h2 class="section-title">Hot News</h2>
+        <p class="section-sub">Signals from the Universe</p>
+        <div class="news-container">
+          <div class="news-left">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+              <h3>Forum Preview</h3>
+              <a href="forum.html" class="wide-btn forum-btn">See More</a>
+            </div>
+            <a href="forum-chat.html" class="forum-card gray">
+              <span>GLOBAL</span>
+              <img src="assets/images/BinusverseText.png" alt="" />
+            </a>
+            <a href="cs.html" class="forum-card blue">
+              <span>Computer Science</span>
+            </a>
+          </div>
+          <div class="news-right">
+            <div class="news-box"></div>
+            <a class="danger-btn" href="news.html">Check All News</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer-hero">
+        <div class="footer-left">
+          <img src="assets/images/BinusverseText.png" alt="Logo" />
+        </div>
+        <div class="footer-right">
+          <p>© 2026 Binusverse. All rights reserved.</p>
+        </div>
+      </section>
+
+    </div><!-- end #home -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
