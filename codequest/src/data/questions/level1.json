@@ -1,0 +1,280 @@
+{
+  "level": 1,
+  "sub_levels": {
+    "1.1": {
+      "topic": "print()",
+      "questions": [
+        {
+          "id": "L1_11_001",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does print('Hello') do in Python?",
+          "options": [
+            "Displays 'Hello' on the screen",
+            "Saves 'Hello' to a file",
+            "Deletes 'Hello' from memory",
+            "Nothing happens"
+          ],
+          "correct_answer": 0,
+          "hint": "Think about what 'print' means — it shows something on screen!",
+          "explanation": "print('Hello') displays the text Hello on the screen. print() is the most basic output function in Python."
+        },
+        {
+          "id": "L1_11_002",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "Which code correctly displays the message: I am Byte",
+          "options": [
+            "print('I am Byte')",
+            "Print('I am Byte')",
+            "print[I am Byte]",
+            "display('I am Byte')"
+          ],
+          "correct_answer": 0,
+          "hint": "Python is case-sensitive and uses parentheses ( ) for functions.",
+          "explanation": "print() uses lowercase 'p' and the text goes inside parentheses with quotes. Python is case-sensitive, so 'Print' is not the same as 'print'."
+        },
+        {
+          "id": "L1_11_003",
+          "type": "drag_and_drop",
+          "difficulty": "easy",
+          "question": "Arrange these lines so 'Hello' is displayed before 'World':",
+          "blocks": [
+            "print('World')",
+            "print('Hello')"
+          ],
+          "correct_order": [1, 0],
+          "hint": "Python runs code from top to bottom, one line at a time.",
+          "explanation": "Python executes code line by line from top to bottom. To print 'Hello' first, it must be on the first line."
+        },
+        {
+          "id": "L1_11_004",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What will print(42) display?",
+          "options": [
+            "42",
+            "\"42\"",
+            "forty-two",
+            "Error"
+          ],
+          "correct_answer": 0,
+          "hint": "print() can display numbers too, not just text!",
+          "explanation": "print(42) displays the number 42. You don't need quotes for numbers — Python shows them directly on screen."
+        }
+      ]
+    },
+    "1.2": {
+      "topic": "input()",
+      "questions": [
+        {
+          "id": "L1_12_001",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does input() do in Python?",
+          "options": [
+            "Gets text typed by the user",
+            "Displays text on screen",
+            "Saves data to a file",
+            "Counts numbers automatically"
+          ],
+          "correct_answer": 0,
+          "hint": "input() is the opposite of print() — instead of sending out, it brings in!",
+          "explanation": "input() pauses the program and waits for the user to type something. Whatever they type is returned as text."
+        },
+        {
+          "id": "L1_12_002",
+          "type": "drag_and_drop",
+          "difficulty": "easy",
+          "question": "Arrange these lines to ask the user's name and greet them:",
+          "blocks": [
+            "name = input('What is your name? ')",
+            "print('Hello, ' + name)",
+            "# Ask the user their name"
+          ],
+          "correct_order": [2, 0, 1],
+          "hint": "Comments come first, then get input, then show the result.",
+          "explanation": "First write the comment, then get the user's name with input(), then greet them using print(). Python runs these in order."
+        },
+        {
+          "id": "L1_12_003",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What message will the user see when this runs: input('Enter a number: ')",
+          "options": [
+            "Enter a number:",
+            "A random number",
+            "Nothing — the screen stays blank",
+            "An error message"
+          ],
+          "correct_answer": 0,
+          "hint": "The text inside input() is shown as a prompt to the user.",
+          "explanation": "The string inside input() is called a prompt. It is displayed to the user so they know what to type."
+        },
+        {
+          "id": "L1_12_004",
+          "type": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Which code saves what the user types into a variable called 'age'?",
+          "options": [
+            "age = input('How old are you? ')",
+            "input('How old are you? ') = age",
+            "age == input('How old are you? ')",
+            "store age from input('How old are you? ')"
+          ],
+          "correct_answer": 0,
+          "hint": "In Python, = means 'store this value'. The variable name goes on the left.",
+          "explanation": "age = input('How old are you? ') calls input() and stores whatever the user types into the variable named age."
+        }
+      ]
+    },
+    "1.3": {
+      "topic": "strings_and_comments",
+      "questions": [
+        {
+          "id": "L1_13_001",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does the # symbol do in Python?",
+          "options": [
+            "Makes a comment — Python ignores that line",
+            "Multiplies two numbers",
+            "Prints text to the screen",
+            "Creates a new variable"
+          ],
+          "correct_answer": 0,
+          "hint": "Lines starting with # are notes for the programmer, not instructions for Python.",
+          "explanation": "# starts a comment. Python completely ignores everything after # on that line. Comments are notes to help humans read the code."
+        },
+        {
+          "id": "L1_13_002",
+          "type": "multiple_choice",
+          "difficulty": "easy",
+          "question": "How do you join two strings together in Python?",
+          "options": [
+            "Using the + operator",
+            "Using the * operator",
+            "Using the & operator",
+            "Using the , operator"
+          ],
+          "correct_answer": 0,
+          "hint": "The same symbol used to add numbers can also join text!",
+          "explanation": "The + operator joins (concatenates) strings. 'Hello' + ' World' produces 'Hello World'."
+        },
+        {
+          "id": "L1_13_003",
+          "type": "drag_and_drop",
+          "difficulty": "easy",
+          "question": "Arrange these lines to greet a user by name:",
+          "blocks": [
+            "# This program greets the user",
+            "name = input('Your name: ')",
+            "print('Welcome, ' + name + '!')"
+          ],
+          "correct_order": [0, 1, 2],
+          "hint": "Comment first, then get input, then show the greeting.",
+          "explanation": "Good programs start with a comment explaining what they do, then gather input, then produce output."
+        },
+        {
+          "id": "L1_13_004",
+          "type": "multiple_choice",
+          "difficulty": "medium",
+          "question": "What does print('Hello' + ' ' + 'World') display?",
+          "options": [
+            "Hello World",
+            "Hello+World",
+            "HelloWorld",
+            "Error"
+          ],
+          "correct_answer": 0,
+          "hint": "The + joins strings together including the space in the middle.",
+          "explanation": "'Hello' + ' ' + 'World' joins the three strings into one. The space string ' ' adds the gap, giving Hello World."
+        }
+      ]
+    },
+    "boss": {
+      "topic": "mixed_input_output",
+      "questions": [
+        {
+          "id": "L1_BOSS_001",
+          "type": "multiple_choice",
+          "difficulty": "medium",
+          "question": "What will this code display?\n\nname = 'Byte'\nprint('Hello, ' + name + '!')",
+          "options": [
+            "Hello, Byte!",
+            "Hello, name!",
+            "'Hello, ' + name + '!'",
+            "Error"
+          ],
+          "correct_answer": 0,
+          "hint": "When you use + with a variable, Python uses the variable's value, not its name.",
+          "explanation": "name holds the value 'Byte'. print('Hello, ' + name + '!') joins the strings, giving Hello, Byte!"
+        },
+        {
+          "id": "L1_BOSS_002",
+          "type": "drag_and_drop",
+          "difficulty": "medium",
+          "question": "Arrange these four lines to make a complete greeting program:",
+          "blocks": [
+            "# Greeting program",
+            "name = input('Enter your name: ')",
+            "greeting = 'Hello, ' + name",
+            "print(greeting)"
+          ],
+          "correct_order": [0, 1, 2, 3],
+          "hint": "Comment → get input → build the greeting → display it.",
+          "explanation": "A well-structured program: comment first, then input, then process, then output. Each line builds on the one before."
+        },
+        {
+          "id": "L1_BOSS_003",
+          "type": "fill_in_blank",
+          "difficulty": "medium",
+          "question": "Complete the code to display 'Ready for battle!':",
+          "code_template": "___('Ready for battle!')",
+          "correct_answer": "print",
+          "hint": "Which function shows text on the screen?",
+          "explanation": "print() is the function used to display text output in Python."
+        },
+        {
+          "id": "L1_BOSS_004",
+          "type": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Which line asks the user for their age and saves the answer?",
+          "options": [
+            "age = input('How old are you? ')",
+            "print(age = 'How old are you? ')",
+            "input = age('How old are you? ')",
+            "age + input('How old are you? ')"
+          ],
+          "correct_answer": 0,
+          "hint": "Use = to store a value, and input() to get it from the user.",
+          "explanation": "age = input('How old are you? ') calls input() and assigns the user's response to the variable age."
+        },
+        {
+          "id": "L1_BOSS_005",
+          "type": "drag_and_drop",
+          "difficulty": "medium",
+          "question": "Arrange these lines to print two messages after a comment:",
+          "blocks": [
+            "# Display two messages",
+            "print('Code is magic!')",
+            "print('I am Knight Byte.')"
+          ],
+          "correct_order": [0, 1, 2],
+          "hint": "The comment describes what the program does, then the two print lines follow.",
+          "explanation": "Comments come before the code they describe. Both print() calls then run in order from top to bottom."
+        },
+        {
+          "id": "L1_BOSS_006",
+          "type": "fill_in_blank",
+          "difficulty": "medium",
+          "question": "Complete the code so the user can type their answer:",
+          "code_template": "answer = ___('What is 2 + 2? ')",
+          "correct_answer": "input",
+          "hint": "Which function pauses the program and waits for the user to type?",
+          "explanation": "input() pauses the program and returns whatever the user types as a string. It is stored in the variable answer."
+        }
+      ]
+    }
+  }
+}
