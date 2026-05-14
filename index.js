@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // =============================================
   // SPLASH — reveal content after overlay dissolve
   // =============================================
@@ -8,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     splashContent.classList.remove("hidden");
   }, 500);
-
 
   // =============================================
   // SPLASH — Start button scrolls to home
@@ -19,17 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("home").scrollIntoView({ behavior: "smooth" });
   });
 
-
   // =============================================
   // HOME — Hamburger menu toggle
   // =============================================
   const hamburger = document.getElementById("hamburger");
-  const navLinks  = document.getElementById("navLinks");
+  const navLinks = document.getElementById("navLinks");
 
   if (hamburger) {
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
     });
   }
-
 });

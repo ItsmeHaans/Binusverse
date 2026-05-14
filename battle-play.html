@@ -2,127 +2,157 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Battle - Binusverse</title>
+    <title>Battle — BINUSVERSE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="battle-play.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="logo-left">
-        <a href="index.html"><img src="assets/images/SaturBum.png" /></a>
+        <a href="index.html"
+          ><img src="assets/images/SaturBum.png" alt="Home"
+        /></a>
       </div>
-      <ul class="nav-links">
-        <li><a href="journey.html">Journey</a></li>
-        <li><a href="learn.html">Learn</a></li>
-        <li><a href="forum.html">Forum</a></li>
-        <li><a href="battle.html">Battle</a></li>
-        <li><a href="news.html">News</a></li>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span><span class="bar"></span
+        ><span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="grimoire.html">Grimoire</a></li>
+        <li><a href="battle.html" class="active">Battle</a></li>
+        <li><a href="the_commons.html">The Commons</a></li>
       </ul>
-      <div class="logo-right">
-        <img src="assets/images/BinusLogo.png" />
-      </div>
     </nav>
 
     <section class="battle-header">
-      <img src="assets/images/battlebg.jpg" class="header-bg" />
+      <img src="assets/images/battlebg.jpg" class="header-bg" alt="" />
       <div class="header-content">
         <h1>Battle Arena</h1>
         <p>Test your knowledge against fellow explorers.</p>
       </div>
     </section>
 
-    <!-- ===========================
-         PvP MODE
-    =========================== -->
-    <section class="section">
+    <!-- PvP MODE -->
+    <section class="section" id="pvp-section">
       <div class="container">
         <h2 class="section-label">PvP Mode</h2>
-
         <div class="pvp-layout">
-
-          <!-- Left answer options (Player 1) -->
           <div class="option-col left">
             <div class="option-btn blue" data-side="left" data-key="A">A</div>
             <div class="option-btn blue" data-side="left" data-key="B">B</div>
             <div class="option-btn blue" data-side="left" data-key="C">C</div>
             <div class="option-btn blue" data-side="left" data-key="D">D</div>
           </div>
-
-          <!-- Question panel -->
           <div class="question-panel pvp-panel">
+            <!-- Coming Soon overlay -->
+            <div class="coming-soon-overlay">
+              <p class="coming-soon-badge">Coming Soon...</p>
+              <p class="coming-soon-sub">PvP Mode is under development</p>
+            </div>
             <h3 class="q-number">Question #1</h3>
             <p class="q-text">Who was your favorite teacher and why?</p>
             <div class="answer-row">
-              <button class="ans-btn" data-ans="A">(A) Iw</button>
-              <button class="ans-btn" data-ans="B">(B) An</button>
-              <button class="ans-btn" data-ans="C">(C) Rew</button>
-              <button class="ans-btn" data-ans="D">(D) And</button>
+              <button class="ans-btn">(A) Iw</button>
+              <button class="ans-btn">(B) An</button>
+              <button class="ans-btn">(C) Rew</button>
+              <button class="ans-btn">(D) And</button>
             </div>
           </div>
-
-          <!-- Right answer options (Player 2) -->
           <div class="option-col right">
             <div class="option-btn red" data-side="right" data-key="A">A</div>
             <div class="option-btn red" data-side="right" data-key="B">B</div>
             <div class="option-btn red" data-side="right" data-key="C">C</div>
             <div class="option-btn red" data-side="right" data-key="D">D</div>
           </div>
-
         </div>
       </div>
     </section>
 
     <hr class="divider" />
 
-    <!-- ===========================
-         DAILY MISSION
-    =========================== -->
-    <section class="section">
+    <!-- DAILY MISSION -->
+    <section class="section" id="daily-section">
       <div class="container">
         <h2 class="section-label">Daily Mission</h2>
-
         <div class="question-panel daily-panel">
-          <h3 class="q-number">Question #1</h3>
-          <p class="q-text">Who was your favorite teacher and why?</p>
-          <div class="answer-row">
-            <button class="ans-btn">Iw</button>
-            <button class="ans-btn">An</button>
-            <button class="ans-btn">And</button>
-            <button class="ans-btn">Rew</button>
+          <div class="timer-bar-panel">
+            <div class="timer-fill" id="daily-timer"></div>
+          </div>
+          <h3 class="q-number" id="daily-q-number">Question #1</h3>
+          <p class="q-text" id="daily-q-text">Loading...</p>
+          <div class="answer-row" id="daily-answers">
+            <button class="ans-btn" data-key="A">A</button>
+            <button class="ans-btn" data-key="B">B</button>
+            <button class="ans-btn" data-key="C">C</button>
+            <button class="ans-btn" data-key="D">D</button>
           </div>
         </div>
-
       </div>
     </section>
 
     <hr class="divider" />
 
-    <!-- ===========================
-         RAID
-    =========================== -->
-    <section class="section">
+    <!-- RAID -->
+    <section class="section" id="raid-section">
       <div class="container">
         <h2 class="section-label">Raid</h2>
-
         <div class="raid-layout">
           <div class="question-panel raid-panel">
-            <span class="raid-difficulty easy-text">Easy</span>
-            <h3 class="q-number raid-q-number">Question #1</h3>
-            <p class="q-text">Who was your favorite teacher and why?</p>
-            <div class="answer-row">
-              <button class="ans-btn">Iw</button>
-              <button class="ans-btn">An</button>
-              <button class="ans-btn">And</button>
-              <button class="ans-btn">Rew</button>
+            <div class="timer-bar-panel">
+              <div class="timer-fill" id="raid-timer"></div>
+            </div>
+            <span class="raid-difficulty easy-text" id="raid-diff-label"
+              >Easy</span
+            >
+            <h3 class="q-number raid-q-number" id="raid-q-number">
+              Question #1
+            </h3>
+            <p class="q-text" id="raid-q-text">Loading...</p>
+            <div class="answer-row" id="raid-answers">
+              <button class="ans-btn" data-key="A">A</button>
+              <button class="ans-btn" data-key="B">B</button>
+              <button class="ans-btn" data-key="C">C</button>
+              <button class="ans-btn" data-key="D">D</button>
             </div>
           </div>
-          <div class="raid-side-box yellow"></div>
-          <div class="raid-side-box red"></div>
         </div>
-
       </div>
     </section>
+
+    <!-- RESULT OVERLAY -->
+    <div class="result-overlay hidden" id="result-overlay">
+      <div class="result-card">
+        <h2 class="result-title" id="result-title">COMPLETED!</h2>
+        <div class="result-stats-grid">
+          <div class="result-stat">
+            <span class="result-stat-val correct-col" id="res-correct">0</span>
+            <span class="result-stat-lbl">Correct</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat-val wrong-col" id="res-wrong">0</span>
+            <span class="result-stat-lbl">Wrong</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat-val" id="res-time">0s</span>
+            <span class="result-stat-lbl">Avg Time</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat-val xp-col" id="res-xp">+0 XP</span>
+            <span class="result-stat-lbl">XP Earned</span>
+          </div>
+        </div>
+        <div class="result-actions">
+          <a href="battle.html" class="res-btn res-btn--back">Back to Battle</a>
+          <a href="the_commons.html" class="res-btn res-btn--forum"
+            >Discuss on The Commons</a
+          >
+        </div>
+      </div>
+    </div>
 
     <section class="footer-hero">
       <div class="footer-left">
@@ -134,5 +164,15 @@
     </section>
 
     <script src="battle-play.js"></script>
+    <div class="exit-modal hidden" id="exit-modal">
+      <div class="exit-modal-card">
+        <h3>Abandon Battle?</h3>
+        <p>Your progress will be lost.</p>
+        <div class="exit-modal-btns">
+          <button id="btn-keep">Continue</button>
+          <button id="btn-leave">Leave</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

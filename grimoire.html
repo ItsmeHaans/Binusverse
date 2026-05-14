@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Grimoire - BINUSVERSE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="grimoire.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo-left">
+        <a href="index.html"
+          ><img src="assets/images/SaturBum.png" alt="Home"
+        /></a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span><span class="bar"></span
+        ><span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="grimoire.html" class="active">Grimoire</a></li>
+        <li><a href="battle.html">Battle</a></li>
+        <li><a href="the_commons.html">The Commons</a></li>
+      </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <section class="grimoire-header">
+      <img src="assets/images/JourneyBg.jpg" class="header-bg" alt="" />
+      <div class="header-content">
+        <h1>Mission Control</h1>
+        <p>Monitor your academic expedition.</p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="grimoire-content">
+      <h2 class="welcome">Welcome back, Andrew</h2>
+
+      <!-- ── PROFILE ROW ── -->
+      <div class="profile-row">
+        <div class="profile-card">
+          <div class="profile-info">
+            <span class="rank-badge" id="rank-badge"></span>
+            <h2 class="profile-name">Andrew</h2>
+            <p class="profile-desc">
+              Lorem ipsum is simply dummy text of the printing industry.
+            </p>
+          </div>
+          <img
+            src="assets/images/Kucingtanpabg.png"
+            class="profile-img"
+            alt="Mascot"
+          />
+        </div>
+
+        <div class="mini-grid">
+          <div class="mini-card">
+            <img src="assets/images/apimembahana.png" alt="Rank" />
+            <span>Rank</span>
+          </div>
+          <div class="mini-card">
+            <h4 id="level-display">18</h4>
+            <span>Level</span>
+          </div>
+          <div class="mini-card">
+            <h4>7x</h4>
+            <span>Streak</span>
+          </div>
+          <div class="mini-card">
+            <h4>74%</h4>
+            <span>Win Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BATTLE STATS ROW ── -->
+      <div class="battle-stats-row">
+        <div class="stat-card">
+          <span class="stat-label">Total Battles</span>
+          <span class="stat-value">38</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Battle Record</span>
+          <span class="stat-value">
+            <span class="rec-w">28W</span>
+            <span class="rec-sep"> / </span>
+            <span class="rec-l">10L</span>
+          </span>
+        </div>
+        <div class="stat-card stat-card--green">
+          <span class="stat-label">Strongest Topic</span>
+          <span class="stat-value stat-value--topic">Algorithms</span>
+        </div>
+        <div class="stat-card stat-card--red">
+          <span class="stat-label">Weakest Topic</span>
+          <span class="stat-value stat-value--topic">Data Structures</span>
+        </div>
+      </div>
+
+      <!-- ── XP TRACK ── -->
+      <div class="section-title">
+        <h3>XP Track</h3>
+        <span>See More</span>
+      </div>
+      <div class="learning-box">
+        <p class="chart-label">XP gained per week</p>
+        <div class="line-chart">
+          <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+            <polyline
+              points="20,120 120,60 220,140 320,40 420,80"
+              fill="none"
+              stroke="#FEE783"
+              stroke-width="4"
+            />
+          </svg>
+          <div class="dot" style="left: 4%; top: 60%"></div>
+          <div class="dot" style="left: 24%; top: 30%"></div>
+          <div class="dot" style="left: 44%; top: 70%"></div>
+          <div class="dot" style="left: 64%; top: 20%"></div>
+          <div class="dot" style="left: 84%; top: 40%"></div>
+        </div>
+      </div>
+
+      <!-- ── BATTLE PERFORMANCE ── -->
+      <div class="section-title">
+        <h3>Battle Performance</h3>
+        <span>See More</span>
+      </div>
+      <div class="learning-box">
+        <p class="chart-label">Win rate per week (%)</p>
+        <div class="line-chart">
+          <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+            <polyline
+              points="20,120 120,60 220,140 320,40 420,80"
+              fill="none"
+              stroke="#FEE783"
+              stroke-width="4"
+            />
+          </svg>
+          <div class="dot" style="left: 4%; top: 60%"></div>
+          <div class="dot" style="left: 24%; top: 30%"></div>
+          <div class="dot" style="left: 44%; top: 70%"></div>
+          <div class="dot" style="left: 64%; top: 20%"></div>
+          <div class="dot" style="left: 84%; top: 40%"></div>
+        </div>
+      </div>
+
+      <!-- ── SUMMARY ── -->
+      <h2 class="pixel-title">Summary</h2>
+      <p class="summary-sub">Based on your battle results — analyzed by AI</p>
+      <div class="summary-grid">
+        <div class="summary-card strength">
+          <h3>Strength</h3>
+          <ul>
+            <li>
+              <img
+                src="assets/images/sword.png"
+                class="summary-icon"
+                alt=""
+              /><span>Algorithms</span>
+            </li>
+            <li>
+              <img
+                src="assets/images/sword.png"
+                class="summary-icon"
+                alt=""
+              /><span>Object-Oriented Programming</span>
+            </li>
+            <li>
+              <img
+                src="assets/images/sword.png"
+                class="summary-icon"
+                alt=""
+              /><span>AI Fundamentals</span>
+            </li>
+          </ul>
+        </div>
+        <div class="summary-card weakness">
+          <h3>Weakness</h3>
+          <ul>
+            <li>
+              <img
+                src="assets/images/shield.png"
+                class="summary-icon"
+                alt=""
+              /><span>Dynamic Programming</span>
+            </li>
+            <li>
+              <img
+                src="assets/images/shield.png"
+                class="summary-icon"
+                alt=""
+              /><span>Graph Theory</span>
+            </li>
+            <li>
+              <img
+                src="assets/images/shield.png"
+                class="summary-icon"
+                alt=""
+              /><span>Recursion & Backtracking</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── SUGGESTED SKILL UPGRADES ── -->
+      <h2 class="pixel-title">Suggested Skill Upgrades</h2>
+      <p class="summary-sub">Recommended based on your weaknesses</p>
+      <div id="suggested-skills" class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-image"></div>
+          <div class="skill-info">
+            <h4>Dynamic Programming</h4>
+            <p>
+              Master DP patterns to solve complex optimization problems faster.
+            </p>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-image"></div>
+          <div class="skill-info">
+            <h4>Graph Theory</h4>
+            <p>Learn BFS, DFS, Dijkstra and common graph traversal patterns.</p>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-image"></div>
+          <div class="skill-info">
+            <h4>Recursion & Backtracking</h4>
+            <p>
+              Build intuition for recursive thinking and backtracking
+              strategies.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BOTTOM GRID ── -->
+      <div class="bottom-grid">
+        <div class="bottom-card">
+          <h3>Topics Mastered</h3>
+          <div class="class-tags">
+            <span>Algorithms</span>
+            <span>OOP</span>
+            <span>AI Basics</span>
+          </div>
+        </div>
+        <div class="bottom-card">
+          <h3>Battle Items</h3>
+          <p class="items-sub">Earned from the battles</p>
+          <div class="armory-icons">
+            <div class="item-slot-empty"></div>
+            <div class="item-slot-empty"></div>
+            <div class="item-slot-empty"></div>
+            <div class="item-slot-empty"></div>
+            <div class="item-slot-empty"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer-hero">
+      <div class="footer-left">
+        <img src="assets/images/BinusverseText.png" alt="Binusverse" />
+      </div>
+      <div class="footer-right">
+        <p>© 2026 Binusverse. All rights reserved.</p>
+      </div>
+    </section>
+
+    <script src="assets/js/rank.js"></script>
+    <script>
+      // Hamburger
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("navLinks").classList.toggle("active");
+      });
+
+      // Rank badge
+      const rankPoints = 120;
+      const rank = getRankStyle(rankPoints);
+      const badge = document.getElementById("rank-badge");
+      badge.textContent = rank.label;
+      badge.classList.add(rank.cls);
+
+      // Battle Items popup
+      const fiModal = document.getElementById("fi-modal");
+      document
+        .getElementById("fi-modal-close")
+        .addEventListener("click", () => {
+          fiModal.classList.add("hidden");
+        });
+      fiModal.addEventListener("click", (e) => {
+        if (e.target === fiModal) fiModal.classList.add("hidden");
+      });
+      document
+        .querySelectorAll(".armory-icons img, .item-slot-empty")
+        .forEach((el) => {
+          el.style.cursor = "pointer";
+          el.addEventListener("click", () =>
+            fiModal.classList.remove("hidden"),
+          );
+        });
+    </script>
+  </body>
+</html>
