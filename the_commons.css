@@ -93,6 +93,7 @@ a {
   background-color: rgba(255, 255, 255, 0.12);
   border-bottom: 3px solid #fee783;
 }
+/* ── HERO compact ── */
 .forum-header {
   position: relative;
   height: 60vh;
@@ -101,14 +102,12 @@ a {
   align-items: center;
   overflow: hidden;
 }
-
 .header-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 50%;
 }
-
 .header-content {
   position: absolute;
   left: 60px;
@@ -117,17 +116,14 @@ a {
 }
 
 @keyframes floatText {
-  0% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
     transform: translateY(-4.4px);
   }
-  100% {
-    transform: translateY(0px);
-  }
 }
-
 .header-content h1 {
   font-size: 2.5rem;
   color: white;
@@ -135,115 +131,250 @@ a {
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
   animation: floatText 4s ease-in-out infinite;
 }
-
 .header-content p {
-  /* Gunakan sans-serif biasa, bukan Pixelify */
   font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 1.1rem;
-  font-weight: 400; /* Normal, jangan di-bold */
+  font-weight: 400;
   color: white;
-  letter-spacing: normal; /* Hilangkan letter-spacing lebar kalau sebelumnya ada */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Shadow tipis biar tetap kebaca di background */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
-
+/* ── CONTAINER ── */
 .forum-container {
-  padding: 40px 60px 100px;
+  padding: 36px 60px 100px;
 }
 
-.main-forum {
-  margin-bottom: 70px;
+/* section divider */
+.fc-divider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.fc-divider-line { flex:1; height:1px; background:rgba(255,255,255,.1); }
+.fc-divider-text {
+  font-family:'Press Start 2P',monospace;
+  font-size:.35rem;
+  color:rgba(255,255,255,.28);
+  letter-spacing:1px;
+  white-space:nowrap;
 }
 
-.main-forum h2 {
-  margin-bottom: 30px;
-  font-size: 1.9rem;
-}
-
-.other-forum h2 {
-  margin-bottom: 30px;
-  font-size: 1.9rem;
-}
-
+/* ── FORUM CARD ── */
 .forum-card {
   width: 100%;
-  height: 160px; /* lebih tinggi, tidak gepeng */
-
-  margin: 0 auto 28px auto;
-
+  height: 140px;
+  margin: 0 0 20px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-
-  padding: 0 50px;
-
-  border-radius: 20px;
-
+  padding: 0 36px;
+  gap: 28px;
   text-decoration: none;
   color: white;
-
-  font-size: 1.9rem;
-  font-weight: bolder;
-
   position: relative;
   overflow: hidden;
-
-  border: 4px solid var(--main-color);
-
-  /* 3D pixel shadow */
+  border: 3px solid var(--main-color);
   box-shadow:
-    5px 5px 0 0 color-mix(in srgb, var(--main-color) 40%, black),
-    10px 10px 0 0 rgba(0, 0, 0, 0.35);
-
-  transition:
-    transform 0.15s steps(2),
-    box-shadow 0.15s steps(2);
-
+    5px 5px 0 0 color-mix(in srgb, var(--main-color) 35%, black),
+    10px 10px 0 0 rgba(0,0,0,.3);
+  transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
   background-size: cover;
   background-position: center;
-}
-
-.forum-card span {
-  position: relative;
-  z-index: 2;
-  text-shadow:
-    2px 2px 0 rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.forum-card img {
-  position: relative;
-  height: 50px;
-  z-index: 2;
 }
 
 .forum-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(0,0,0,.45);
   z-index: 1;
 }
 
-/* Gradient overlay dari kiri agar teks lebih terbaca */
+/* Left-to-right dark gradient so text stays readable */
 .forum-card::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.2) 40%,
-    transparent 70%
+    rgba(0,0,0,.75) 0%,
+    rgba(0,0,0,.55) 35%,
+    rgba(0,0,0,.2)  60%,
+    transparent     80%
   );
   z-index: 1;
 }
 
 .forum-card:hover {
-  transform: translate(-3px, -3px);
+  transform: translate(-3px,-3px);
   box-shadow:
-    8px 8px 0 0 color-mix(in srgb, var(--main-color) 40%, black),
-    16px 16px 0 0 rgba(0, 0, 0, 0.35);
+    8px 8px 0 0 color-mix(in srgb, var(--main-color) 35%, black),
+    16px 16px 0 0 rgba(0,0,0,.35);
 }
+
+/* pixel corner deco */
+.fc-corner {
+  position: absolute;
+  width: 14px; height: 14px;
+  border-color: var(--main-color) !important;
+  pointer-events: none;
+  z-index: 3;
+}
+.fc-corner.tl { top:-3px;left:-3px;   border-top:3px solid;border-left:3px solid; }
+.fc-corner.tr { top:-3px;right:-3px;  border-top:3px solid;border-right:3px solid; }
+.fc-corner.bl { bottom:-3px;left:-3px;  border-bottom:3px solid;border-left:3px solid; }
+.fc-corner.br { bottom:-3px;right:-3px; border-bottom:3px solid;border-right:3px solid; }
+
+/* OLD span — hide it if present */
+.forum-card > span:not(.fc-online):not(.fc-members):not(.fc-sep):not(.fc-dot-green) {
+  display: none;
+}
+
+/* info block */
+.fc-info {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.fc-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.3rem;
+  color: #fee783;
+  letter-spacing: 0.5px;
+}
+
+.fc-info > span {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.8);
+  display: block !important;
+}
+
+.fc-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,.55);
+  max-width: 520px;
+}
+
+/* meta row */
+.fc-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+.fc-dot-green {
+  width: 6px; height: 6px;
+  background: #00ff88;
+  border-radius: 50%;
+  animation: fc-dot-pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes fc-dot-pulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.5)}
+  50%{box-shadow:0 0 0 5px transparent}
+}
+.fc-online {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.26rem;
+  color: #00ff88;
+}
+.fc-members {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.26rem;
+  color: rgba(255,255,255,.3);
+}
+.fc-sep { color: rgba(255,255,255,.2); font-size: 0.8rem; }
+
+.fc-badge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.22rem;
+  padding: 2px 7px;
+  border: 1px solid;
+  letter-spacing: 0.2px;
+}
+
+/* char + arrow wrapper di kanan */
+.fc-char-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.fc-char-wrap svg {
+  image-rendering: pixelated;
+  animation: fc-char-idle 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+.fc-char-wrap .fc-arrow {
+  animation: fc-arrow-bounce 1s steps(2) infinite;
+}
+/* char and arrow bounce in sync */
+@keyframes fc-char-idle {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+/* background deco layer */
+.fc-deco-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.fc-deco {
+  position: absolute;
+  animation: fc-deco-float 3s ease-in-out infinite;
+}
+@keyframes fc-deco-float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-6px) scale(1.1); }
+}
+.fc-deco-txt {
+  position: absolute;
+  pointer-events: none;
+  animation: fc-deco-float 4s ease-in-out infinite;
+  user-select: none;
+  line-height: 1;
+}
+.fc-deco-line {
+  position: absolute;
+  height: 1px;
+  pointer-events: none;
+}
+
+@keyframes fc-arrow-bounce {
+  0%,100%{transform:translateX(0)} 50%{transform:translateX(5px)}
+}
+
+/* global card img */
+.forum-card.gray img {
+  position: relative;
+  z-index: 2;
+  height: 42px;
+  flex-shrink: 0;
+  right: unset;
+  top: unset;
+  transform: none;
+  bottom: unset;
+}
+
+/* Main/Other section spacing */
+.main-forum   { margin-bottom: 0; }
+.other-forum  { margin-bottom: 0; }
+.main-forum h2,
+.other-forum h2 { display: none; }
 
 .gray {
   --main-color: #dcdcdc;

@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>CS Guild — BINUSVERSE</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="forum-chat.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo-left">
+    <a href="index.html"><img src="assets/images/SaturBum.png" alt="Logo"/></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="grimoire.html">Grimoire</a></li>
+    <li><a href="battle.html">Battle</a></li>
+    <li><a href="the_commons.html" class="active">The Commons</a></li>
+  </ul>
+  <div class="logo-right">
+    <img src="assets/images/BinusLogo.png" alt="Binus"/>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="chat-breadcrumb">
+  <a href="the_commons.html" class="bc-link">The Commons</a>
+  <span class="bc-sep">›</span>
+  <a href="the_commons.html" class="bc-link">CS Guild</a>
+  <span class="bc-sep">›</span>
+  <span class="bc-cur" style="color:#00e5ff;">💻 #general</span>
+  <div class="bc-online">
+    <div class="bc-dot"></div>
+    <span>342 online</span>
+  </div>
+</div>
+
+<!-- 3-COL LAYOUT -->
+<div class="chat-layout">
+
+  <!-- ════════ LEFT SIDEBAR ════════ -->
+  <div class="chat-sidebar">
+    <div class="sidebar-guild">
+      <div class="sg-name" style="color:#00e5ff;">CS GUILD</div>
+      <div class="sg-tag" style="color:#00e5ff;">💻 COMPUTER SCIENCE</div>
+      <div class="sg-stats">
+        <div class="sg-stat">
+          <div class="sg-stat-v">12.4K</div>
+          <div class="sg-stat-l">MEMBERS</div>
+        </div>
+        <div class="sg-stat">
+          <div class="sg-stat-v" style="color:#00ff88;">342</div>
+          <div class="sg-stat-l">ONLINE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-channels">
+      <div class="ch-label">TEXT CHANNELS</div>
+      <div class="ch-item active" style="border-color:#00e5ff;">
+        <span class="ch-hash" style="color:#00e5ff;">#</span>general
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>algorithms
+        <span class="ch-bdg">5</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>ai-ml
+        <span class="ch-bdg">11</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>data-structures
+        <span class="ch-bdg">3</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>web-dev
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>item-trading
+        <span class="ch-bdg">4</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>battle-lobby
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>resources
+      </div>
+
+      <div class="ch-label" style="margin-top:6px;">VOICE / GROUP</div>
+      <div class="ch-item">
+        <span class="ch-hash">🔊</span>Study Room 1
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">🔊</span>Study Room 2
+        <span class="ch-bdg" style="background:#00e5ff;color:#001a22;">3</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">🔊</span>Battle Prep
+      </div>
+    </div>
+
+    <div class="sidebar-online">
+      <div class="online-lbl">— ONLINE NOW —</div>
+
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(0,229,255,.15);color:#00e5ff;">RY</div>
+        <div class="mem-nm">Raynald</div>
+        <div class="mem-lv">LV18</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
+        <div class="mem-nm">Alice</div>
+        <div class="mem-lv">LV24</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(254,231,131,.15);color:#fee783;">KV</div>
+        <div class="mem-nm">Kevin</div>
+        <div class="mem-lv">LV29</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av away" style="background:rgba(255,149,0,.15);color:#ff9500;">ZK</div>
+        <div class="mem-nm">Zaki</div>
+        <div class="mem-lv">LV16</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(192,132,252,.15);color:#c084fc;">ND</div>
+        <div class="mem-nm">Nadia</div>
+        <div class="mem-lv">LV33</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(0,229,255,.12);color:#00e5ff;">FZ</div>
+        <div class="mem-nm">Faiz</div>
+        <div class="mem-lv">LV22</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av offline" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.25);">RI</div>
+        <div class="mem-nm" style="opacity:.35;">Rio</div>
+        <div class="mem-lv">LV9</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CENTER CHAT ════════ -->
+  <div class="chat-center">
+    <div class="chat-topbar">
+      <span class="ctb-hash" style="color:#00e5ff;">#</span>
+      <span class="ctb-name">general</span>
+      <div class="ctb-div"></div>
+      <span class="ctb-desc">CS Guild main lounge — code, battle, chill 💻</span>
+      <div class="ctb-btns">
+        <button class="ctb-btn" style="border-color:rgba(0,229,255,.2);color:rgba(0,229,255,.5);">🔔 Notif</button>
+        <button class="ctb-btn" style="border-color:rgba(0,229,255,.2);color:rgba(0,229,255,.5);">🔍 Search</button>
+        <button class="ctb-btn" style="border-color:rgba(0,229,255,.2);color:rgba(0,229,255,.5);">📌 Pinned</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+
+      <!-- DATE -->
+      <div class="msg-date-sep">
+        <div class="msg-date-sep-line"></div>
+        <span class="msg-date-sep-txt">TODAY — 15 MAY 2026</span>
+        <div class="msg-date-sep-line"></div>
+      </div>
+
+      <!-- SYSTEM -->
+      <div class="msg sys">
+        <div class="msg-sys-txt">💻 Selamat datang di CS Guild! Battle together, grind harder.</div>
+      </div>
+
+      <!-- MSG 1: Nadia -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(192,132,252,.15);color:#c084fc;">ND</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#c084fc;">Nadia</span>
+            <span class="msg-lv2" style="border-color:rgba(192,132,252,.35);color:#c084fc;">LV33</span>
+            <span class="msg-ts">08:45</span>
+          </div>
+          <div class="msg-txt">Morning CS squad! Ada yang udah coba soal Recursion di battle tadi? Susah banget 😭</div>
+          <div class="msg-reacts">
+            <div class="react on"><em>😭</em> 7</div>
+            <div class="react"><em>💀</em> 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MSG 2: Kevin -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(254,231,131,.15);color:#fee783;">KV</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#fee783;">Kevin</span>
+            <span class="msg-lv2" style="border-color:rgba(254,231,131,.35);color:#fee783;">LV29</span>
+            <span class="msg-ts">08:47</span>
+          </div>
+          <div class="msg-txt">Iya gilak, soal nomor 3 tuh yang bikin gue mati 3 kali 😂 ada yang bisa explain Memoization?</div>
+          <div class="msg-reacts">
+            <div class="react"><em>😂</em> 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILL UPGRADE GROUP CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00ff88;">Alice</span>
+            <span class="msg-lv2" style="border-color:rgba(0,255,136,.35);color:#00ff88;">LV24</span>
+            <span class="msg-ts">08:50</span>
+          </div>
+          <div class="msg-txt">Yuk kita bikin group skill upgrade! Gue mau grind Dynamic Programming.</div>
+          <div class="msg-card c-study">
+            <div class="msg-card-ttl">⚡ GROUP SKILL UPGRADE</div>
+            <div class="msg-card-body">
+              Alice mengajak grind bersama! Topic: <strong style="color:#00e5ff;">Dynamic Programming</strong>. Bonus <strong style="color:#fee783;">+20% XP</strong> jika selesai bareng. 2/5 slot terisi.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">⚡ Join Grind</button>
+              <button class="mcb view">📋 Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MSG 3: Faiz -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,229,255,.12);color:#00e5ff;">FZ</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00e5ff;">Faiz</span>
+            <span class="msg-lv2" style="border-color:rgba(0,229,255,.35);color:#00e5ff;">LV22</span>
+            <span class="msg-ts">08:52</span>
+          </div>
+          <div class="msg-txt">Memoization basically caching hasil rekursi biar ga recompute. Tinggal pake HashMap / array 1D buat nyimpen intermediate results.</div>
+          <div class="msg-reacts">
+            <div class="react on"><em>🧠</em> 8</div>
+            <div class="react on"><em>👍</em> 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM TRADE CARD: CS specific -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(254,231,131,.15);color:#fee783;">KV</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#fee783;">Kevin</span>
+            <span class="msg-lv2" style="border-color:rgba(254,231,131,.35);color:#fee783;">LV29</span>
+            <span class="msg-ts">08:55</span>
+          </div>
+          <div class="msg-txt">Makasih Faiz! btw gue punya Hint Crystal excess nih, ada yang mau trade?</div>
+          <div class="msg-card c-trade">
+            <div class="msg-card-ttl">⚔ ITEM TRADE REQUEST</div>
+            <div class="msg-card-body">
+              Kevin menawarkan <strong style="color:#00ff88;">Hint Crystal ×3</strong> → ditukar dengan <strong style="color:#fee783;">XP Magnet ×2</strong>. Berlaku 10 menit.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">✓ Accept Trade</button>
+              <button class="mcb no">✗ Decline</button>
+              <button class="mcb view">👁 View Items</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BATTLE CHALLENGE: CS 1v1 -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(192,132,252,.15);color:#c084fc;">ND</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#c084fc;">Nadia</span>
+            <span class="msg-lv2" style="border-color:rgba(192,132,252,.35);color:#c084fc;">LV33</span>
+            <span class="msg-ts">09:01</span>
+          </div>
+          <div class="msg-txt">Siapa mau 1v1 Algorithms? Gue udah warm up nih 🔥</div>
+          <div class="msg-card c-battle">
+            <div class="msg-card-ttl">⚔ 1v1 BATTLE CHALLENGE</div>
+            <div class="msg-card-body">
+              <strong style="color:#c084fc;">Nadia</strong> (LV33 · 88% WR) menantang duel! Topic: <strong>Algorithms</strong>. Taruhan: 800 XP + 1 Phantom Eraser.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">⚔ Accept Duel</button>
+              <button class="mcb no">✗ Decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MSG: Zaki -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(255,149,0,.15);color:#ff9500;">ZK</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#ff9500;">Zaki</span>
+            <span class="msg-lv2" style="border-color:rgba(255,149,0,.35);color:#ff9500;">LV16</span>
+            <span class="msg-ts">09:03</span>
+          </div>
+          <div class="msg-txt">Ada resource buat belajar Graph Theory yang bagus gak? BFS DFS gue masih bingung 🥲</div>
+        </div>
+      </div>
+
+      <!-- RESOURCE SHARE CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,229,255,.12);color:#00e5ff;">FZ</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00e5ff;">Faiz</span>
+            <span class="msg-lv2" style="border-color:rgba(0,229,255,.35);color:#00e5ff;">LV22</span>
+            <span class="msg-ts">09:04</span>
+          </div>
+          <div class="msg-txt">Nih, gue pin resource yang bagus 📌</div>
+          <div class="msg-card c-study">
+            <div class="msg-card-ttl">📎 RESOURCE SHARE</div>
+            <div class="msg-card-body">
+              <strong style="color:#00e5ff;">Graph Theory Starter Pack</strong><br/>
+              • BFS & DFS visualizer + soal latihan<br/>
+              • Dijkstra step-by-step guide<br/>
+              • 20 contoh soal dari battle archive
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">📥 Download</button>
+              <button class="mcb view">👁 Preview</button>
+            </div>
+          </div>
+          <div class="msg-reacts">
+            <div class="react on"><em>🙏</em> 9</div>
+            <div class="react on"><em>⭐</em> 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ME -->
+      <div class="msg me">
+        <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00e5ff;">You</span>
+            <span class="msg-lv2" style="border-color:rgba(0,229,255,.35);color:#00e5ff;">LV18</span>
+            <span class="msg-ts">09:06</span>
+          </div>
+          <div class="msg-txt">Makasih Faiz! Gue join grind Alice juga ya, DP emang harus digebuk bareng 💪</div>
+          <div class="msg-reacts">
+            <div class="react on"><em>💪</em> 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SYSTEM: grind started -->
+      <div class="msg sys">
+        <div class="msg-sys-txt">⚡ Group Skill Grind "Dynamic Programming" dimulai! 3/5 member bergabung.</div>
+      </div>
+
+    </div><!-- end chat-messages -->
+
+    <!-- INPUT AREA -->
+    <div class="chat-input-area">
+      <div class="chat-quick">
+        <button class="cq-btn" onclick="insertQuickAction('trade')">
+          <span class="cq-ic">⚔</span> Trade Item
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('battle')">
+          <span class="cq-ic">💀</span> Challenge
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('study')">
+          <span class="cq-ic">📚</span> Study Group
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('skill')">
+          <span class="cq-ic">⚡</span> Group Grind
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('resource')">
+          <span class="cq-ic">📎</span> Share Resource
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('friend')">
+          <span class="cq-ic">✦</span> Add Friend
+        </button>
+      </div>
+      <div class="chat-input-row">
+        <div class="chat-extras">
+          <button class="cex-btn" title="Attach file">📎</button>
+          <button class="cex-btn" title="Emoji">😊</button>
+        </div>
+        <textarea
+          class="chat-textarea"
+          id="chatInput"
+          placeholder="Type a message in #general..."
+          rows="1"
+          onkeydown="handleKey(event)"
+          style="border-color:rgba(0,229,255,.18);"
+        ></textarea>
+        <button class="chat-send" onclick="sendMessage()">▶ SEND</button>
+      </div>
+    </div>
+
+  </div><!-- end chat-center -->
+
+  <!-- ════════ RIGHT PANEL ════════ -->
+  <div class="chat-right">
+
+    <!-- CS GUILD FEATURES -->
+    <div class="rp-sec">
+      <div class="rp-ttl" style="color:rgba(0,229,255,.45);">💻 CS GUILD FEATURES</div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">⚡</span>
+          <span class="feat-nm">Group Skill Grind</span>
+          <span class="feat-bdg" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">ACTIVE</span>
+        </div>
+        <div class="feat-dsc">Grind topik bareng, dapat bonus XP +20% per member.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">⚔</span>
+          <span class="feat-nm">CS Battle Arena</span>
+          <span class="feat-bdg" style="border-color:rgba(255,77,77,.3);color:#ff4d4d;">LIVE</span>
+        </div>
+        <div class="feat-dsc">1v1 duel khusus CS topic — Algorithms, DP, Graph Theory.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">📎</span>
+          <span class="feat-nm">Resource Library</span>
+        </div>
+        <div class="feat-dsc">Pin &amp; share cheatsheets, soal latihan, video tutorial.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">🏆</span>
+          <span class="feat-nm">CS Guild Ranking</span>
+        </div>
+        <div class="feat-dsc">Top 10 CS members leaderboard update mingguan.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">⚔</span>
+          <span class="feat-nm">Item Trading</span>
+        </div>
+        <div class="feat-dsc">Tukar battle items antar member CS Guild.</div>
+      </div>
+    </div>
+
+    <!-- ACTIVE EVENTS -->
+    <div class="rp-sec">
+      <div class="rp-ttl">🔥 ACTIVE EVENTS</div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#00e5ff;"></div>
+        <div class="ev-body">
+          <strong style="color:#00e5ff;">DP Grind Session</strong> — Alice's group, 3/5 joined
+          <span class="ev-t">Starting now</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#ff4d4d;"></div>
+        <div class="ev-body">
+          <strong style="color:#ff4d4d;">CS Guild Battle Cup</strong> — Top 3 get Epic items!
+          <span class="ev-t">Ends in 1h 42m</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#fee783;"></div>
+        <div class="ev-body">
+          <strong style="color:#fee783;">Algorithm Sprint</strong> — 2× XP on Algorithms battles
+          <span class="ev-t">Until tonight</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRIEND REQUESTS -->
+    <div class="rp-sec">
+      <div class="rp-ttl">✦ FRIEND REQUESTS</div>
+      <div class="fr">
+        <div class="fr-av" style="background:rgba(0,229,255,.15);color:#00e5ff;">FZ</div>
+        <div class="fr-info">
+          <div class="fr-nm">Faiz</div>
+          <div class="fr-mt">LV22 · CS · 3 mutual</div>
+        </div>
+        <div class="fr-btns">
+          <button class="fr-b add">+</button>
+          <button class="fr-b skip">✗</button>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fr-av" style="background:rgba(255,149,0,.15);color:#ff9500;">ZK</div>
+        <div class="fr-info">
+          <div class="fr-nm">Zaki</div>
+          <div class="fr-mt">LV16 · CS · 1 mutual</div>
+        </div>
+        <div class="fr-btns">
+          <button class="fr-b add">+</button>
+          <button class="fr-b skip">✗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS LEADERBOARD -->
+    <div class="rp-sec">
+      <div class="rp-ttl">🏆 CS GUILD TOP</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:#fee783;width:14px;">1</span>
+          <div class="fr-av" style="background:rgba(192,132,252,.15);color:#c084fc;width:24px;height:24px;font-size:.22rem;">ND</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Nadia</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:#fee783;">6,120 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.4);width:14px;">2</span>
+          <div class="fr-av" style="background:rgba(254,231,131,.15);color:#fee783;width:24px;height:24px;font-size:.22rem;">KV</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Kevin</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.4);">4,830 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.3);width:14px;">3</span>
+          <div class="fr-av" style="background:rgba(0,229,255,.12);color:#00e5ff;width:24px;height:24px;font-size:.22rem;">FZ</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Faiz</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.3);">3,950 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.2);width:14px;">4</span>
+          <div class="fr-av" style="background:rgba(0,255,136,.15);color:#00ff88;width:24px;height:24px;font-size:.22rem;">AL</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Alice</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.2);">3,210 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;opacity:.7;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(0,229,255,.6);width:14px;">→</span>
+          <div class="fr-av" style="background:rgba(0,229,255,.12);color:#00e5ff;width:24px;height:24px;font-size:.22rem;">ME</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;color:#00e5ff;">You (#12)</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:#00e5ff;">1,820 XP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PINNED RESOURCES -->
+    <div class="rp-sec">
+      <div class="rp-ttl">📌 PINNED RESOURCES</div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">📄</span>
+          <span class="feat-nm">DP Cheatsheet</span>
+        </div>
+        <div class="feat-dsc">Memoization, tabulation, common patterns.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">📊</span>
+          <span class="feat-nm">Graph Visualizer</span>
+        </div>
+        <div class="feat-dsc">BFS, DFS, Dijkstra step-by-step.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">📝</span>
+          <span class="feat-nm">Battle Archive</span>
+        </div>
+        <div class="feat-dsc">100 soal + pembahasan dari past battles.</div>
+      </div>
+    </div>
+
+  </div><!-- end chat-right -->
+
+</div><!-- end chat-layout -->
+
+<script>
+// Auto scroll
+const msgs = document.getElementById('chatMessages');
+msgs.scrollTop = msgs.scrollHeight;
+
+function sendMessage() {
+  const ta = document.getElementById('chatInput');
+  const text = ta.value.trim();
+  if (!text) return;
+
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+
+  const row = document.createElement('div');
+  row.className = 'msg me';
+  row.innerHTML = `
+    <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
+    <div class="msg-body">
+      <div class="msg-meta">
+        <span class="msg-nm" style="color:#00e5ff;">You</span>
+        <span class="msg-lv2" style="border-color:rgba(0,229,255,.35);color:#00e5ff;">LV18</span>
+        <span class="msg-ts">${time}</span>
+      </div>
+      <div class="msg-txt">${escapeHtml(text)}</div>
+    </div>`;
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+  ta.value = '';
+  ta.style.height = 'auto';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  const ta = e.target;
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+}
+
+function insertQuickAction(type) {
+  const ta = document.getElementById('chatInput');
+  const t = {
+    trade:    '[Trade Request] Mau tukar [nama item] ×[n] dengan [nama item] ×[n]',
+    battle:   '[Battle Challenge] Gue tantang 1v1! Topic: [topik] · Taruhan: [XP] XP',
+    study:    '[Study Group] Join study [topik] jam [waktu]? Max [n] orang.',
+    skill:    '[Group Grind] Yuk grind [topik] bareng! Bonus XP +20% per member.',
+    resource: '[Resource Share] Nih resource bagus buat [topik]: [link/deskripsi]',
+    friend:   '[Friend Request] Halo! Boleh add friend? LV[n] · CS Guild.'
+  };
+  ta.value = t[type] || '';
+  ta.focus();
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+}
+
+function escapeHtml(t) {
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// reaction toggle
+document.addEventListener('click', e => {
+  if (e.target.closest('.react')) e.target.closest('.react').classList.toggle('on');
+});
+</script>
+</body>
+</html>

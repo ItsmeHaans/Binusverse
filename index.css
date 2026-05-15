@@ -1079,169 +1079,406 @@ body {
 /* =============================================
    ARMORY
 ============================================= */
+
+.armory-section {
+  position: relative;
+  overflow: visible;
+}
+
 .armory-grid {
   display: flex;
   justify-content: center;
   gap: 24px;
   margin-bottom: 40px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* tetap 4 jejer */
+  position: relative;
+  z-index: 1;
 }
+
+/* === WRAPPER — border octagon pakai teknik padding === */
 .armory-box {
   width: 130px;
   height: 130px;
   padding: 3px;
+  /* border warna default, di-override per rarity */
   background: #87cefa;
   clip-path: polygon(
-    0px 10px,
-    4px 6px,
-    6px 4px,
-    10px 0px,
-    calc(100% - 10px) 0px,
-    calc(100% - 6px) 4px,
-    calc(100% - 4px) 6px,
-    100% 10px,
-    100% calc(100% - 10px),
-    calc(100% - 4px) calc(100% - 6px),
-    calc(100% - 6px) calc(100% - 4px),
-    calc(100% - 10px) 100%,
-    10px 100%,
-    6px calc(100% - 4px),
-    4px calc(100% - 6px),
-    0px calc(100% - 10px)
+    0px 10px, 4px 6px, 6px 4px, 10px 0px,
+    calc(100% - 10px) 0px, calc(100% - 6px) 4px, calc(100% - 4px) 6px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 4px) calc(100% - 6px),
+    calc(100% - 6px) calc(100% - 4px), calc(100% - 10px) 100%,
+    10px 100%, 6px calc(100% - 4px), 4px calc(100% - 6px), 0px calc(100% - 10px)
   );
-  filter: drop-shadow(0 5px 0 rgba(0, 0, 0, 0.5));
-  transition:
-    transform 0.15s steps(2),
-    filter 0.15s ease;
+  filter: drop-shadow(0 5px 0 rgba(0,0,0,0.5));
+  transition: transform 0.15s steps(2), filter 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  cursor: pointer;
+  animation: armory-idle 2.5s ease-in-out infinite;
 }
+.armory-box:nth-child(2) { animation-delay: 0.3s; }
+.armory-box:nth-child(3) { animation-delay: 0.6s; }
+.armory-box:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes armory-idle {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* Rarity border colors */
+.armory-box.r-legendary { background: linear-gradient(135deg, #ff9500, #ffd000); }
+.armory-box.r-epic      { background: linear-gradient(135deg, #c084fc, #7c3aed); }
+.armory-box.r-rare      { background: linear-gradient(135deg, #00e5ff, #0ea5e9); }
+.armory-box.r-uncommon  { background: linear-gradient(135deg, #00ff88, #059669); }
+
+/* Hover states */
 .armory-box:hover {
-  transform: translateY(-4px);
-  background: #00e5ff;
-  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.5))
-    drop-shadow(0 0 14px rgba(0, 195, 255, 0.4));
+  transform: translateY(-6px) scale(1.07) !important;
+  animation: none;
 }
+.armory-box.r-legendary:hover { filter: drop-shadow(0 8px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 16px rgba(255,149,0,0.5)); }
+.armory-box.r-epic:hover      { filter: drop-shadow(0 8px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 16px rgba(192,132,252,0.5)); }
+.armory-box.r-rare:hover      { filter: drop-shadow(0 8px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 16px rgba(0,229,255,0.5)); }
+.armory-box.r-uncommon:hover  { filter: drop-shadow(0 8px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 16px rgba(0,255,136,0.5)); }
+
+/* Show tooltip on hover */
+.armory-box:hover .armory-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.armory-box:hover .armory-item-svg { animation: item-float 0.5s ease-in-out infinite alternate; }
+@keyframes item-float { from { transform: translate(-50%,-50%); } to { transform: translate(-50%,-58%); } }
+
+/* === INNER background === */
 .armory-box-inner {
   width: 100%;
   height: 100%;
   background: #0d0f20;
   clip-path: polygon(
-    0px 10px,
-    4px 6px,
-    6px 4px,
-    10px 0px,
-    calc(100% - 10px) 0px,
-    calc(100% - 6px) 4px,
-    calc(100% - 4px) 6px,
-    100% 10px,
-    100% calc(100% - 10px),
-    calc(100% - 4px) calc(100% - 6px),
-    calc(100% - 6px) calc(100% - 4px),
-    calc(100% - 10px) 100%,
-    10px 100%,
-    6px calc(100% - 4px),
-    4px calc(100% - 6px),
-    0px calc(100% - 10px)
+    0px 10px, 4px 6px, 6px 4px, 10px 0px,
+    calc(100% - 10px) 0px, calc(100% - 6px) 4px, calc(100% - 4px) 6px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 4px) calc(100% - 6px),
+    calc(100% - 6px) calc(100% - 4px), calc(100% - 10px) 100%,
+    10px 100%, 6px calc(100% - 4px), 4px calc(100% - 6px), 0px calc(100% - 10px)
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* === PIXEL ITEM SVG === */
+.armory-item-svg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  image-rendering: pixelated;
+  z-index: 2;
+  transition: transform 0.1s;
+}
+
+/* === ITEM NAME label bawah === */
+.armory-item-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.28rem;
+  padding: 4px 3px;
+  text-align: center;
+  z-index: 3;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+.r-legendary .armory-item-label { background: rgba(255,149,0,0.88); color: #1a0800; }
+.r-epic      .armory-item-label { background: rgba(124,58,237,0.9);  color: #f0e6ff; }
+.r-rare      .armory-item-label { background: rgba(0,180,216,0.88);  color: #001a22; }
+.r-uncommon  .armory-item-label { background: rgba(0,160,80,0.88);   color: #001a0a; }
+
+/* === RARITY TAG top-right === */
+.armory-rarity-tag {
+  position: absolute;
+  top: 5px; right: 5px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.24rem;
+  padding: 2px 4px;
+  z-index: 4;
+  clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
+  letter-spacing: 0.2px;
+}
+.r-legendary .armory-rarity-tag { background: #ff9500; color: #1a0800; }
+.r-epic      .armory-rarity-tag { background: #7c3aed; color: #f0e6ff; }
+.r-rare      .armory-rarity-tag { background: #00e5ff; color: #001a22; }
+.r-uncommon  .armory-rarity-tag { background: #00c060; color: #001a0a; }
+
+/* === TOOLTIP === */
+/* =============================================
+   ARMORY GLOBAL TOOLTIP
+   position:fixed supaya tidak kena clip-path
+============================================= */
+#armory-global-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  width: 210px;
+  background: #0d0f20;
+  padding: 11px 11px 9px;
+  text-align: left;
+  pointer-events: none;
+  clip-path: polygon(
+    0 4px,4px 0,calc(100% - 4px) 0,100% 4px,
+    100% calc(100% - 4px),calc(100% - 4px) 100%,
+    4px 100%,0 calc(100% - 4px)
   );
 }
 
-/* =============================================
-   SKILLS
-============================================= */
+.tip-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.42rem; color: #fff;
+  margin-bottom: 4px; line-height: 1.7;
+}
+.tip-type {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.28rem; color: #a0a8d0; margin-bottom: 6px;
+}
+.tip-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 5px 0; }
+.tip-stat {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 4px;
+}
+.tip-stat-name { font-family: 'Pixelify Sans', sans-serif; font-size: 0.7rem; color: #cbd5e1; }
+.tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.32rem; }
+.tip-ability {
+  margin-top: 6px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 0.7rem; color: #fef08a;
+  line-height: 1.45;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 6px;
+}
+.tip-ability b {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.28rem; display: block;
+  margin-bottom: 3px; color: #fee783;
+  letter-spacing: 0.4px;
+}
+.tip-arrow {
+  position: absolute;
+  bottom: -14px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border: 7px solid transparent;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .armory-grid { flex-wrap: wrap; gap: 18px; }
+  .armory-box  { width: 120px; height: 120px; }
+}
+
+
 .skill-grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 28px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-.skill-card {
-  width: 300px;
-  background: #2c2f48;
-  border-radius: 12px;
-  border: 3px solid #fee783;
-  overflow: hidden;
-  transition: 0.3s;
-}
-.skill-card:hover {
-  transform: translateY(-8px);
-}
-.skill-image {
-  height: 150px;
-  background: #d9d9d9;
-}
-.skill-info {
-  background: #fee783;
-  padding: 15px;
-  text-align: left;
-}
-.skill-info h3 {
-  font-size: 1rem;
-  color: #1a1a2e;
-  margin: 0;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-}
-.skill-info p {
-  font-size: 0.8rem;
-  margin-top: 5px;
-  color: #1a1a2e;
-  font-weight: 400;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  margin-bottom: 48px;
 }
 
-.forum-card {
-  width: 350px;
-  height: 80px;
-  padding: 0 30px 0 25px;
-  margin: 0 0 20px 0;
-  border-radius: 12px;
-  border: 4px solid var(--main-color);
+/* === CARD BASE === */
+.skill-card {
+  width: 240px;
+  background: #0d0f2a;
+  border: 3px solid #fee783;
+  position: relative;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: transform 0.1s steps(2);
+  animation: skill-idle-bob 2s ease-in-out infinite;
+}
+.skill-card:nth-child(2) { animation-delay: 0.4s; }
+.skill-card:nth-child(3) { animation-delay: 0.8s; }
+
+@keyframes skill-idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+.skill-card:hover {
+  transform: translateY(-8px) scale(1.04) !important;
+  animation: none;
+}
+.skill-card:hover .skill-card-glow { opacity: 1; }
+
+/* === MARCHING ANTS BORDER (per-card) === */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 3px solid transparent;
+  animation: skill-march 0.5s steps(1) infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+.skill-card.ai-card::before    { border-color: #00e5ff; }
+.skill-card.cyber-card::before { border-color: #ff3bff; }
+.skill-card.data-card::before  { border-color: #00ff88; }
+
+@keyframes skill-march {
+  0%   { clip-path: polygon(0 0, 8px 0, 8px 3px, 0 3px); }
+  12%  { clip-path: polygon(8px 0, 16px 0, 16px 3px, 8px 3px); }
+  25%  { clip-path: polygon(16px 0, 100% 0, 100% 3px, 16px 3px); }
+  37%  { clip-path: polygon(100% 0, 100% 8px, calc(100% - 3px) 8px, calc(100% - 3px) 0); }
+  50%  { clip-path: polygon(100% 8px, 100% 100%, calc(100% - 3px) 100%, calc(100% - 3px) 8px); }
+  62%  { clip-path: polygon(0 100%, 100% 100%, 100% calc(100% - 3px), 0 calc(100% - 3px)); }
+  75%  { clip-path: polygon(0 8px, 3px 8px, 3px 100%, 0 100%); }
+  87%  { clip-path: polygon(0 0, 3px 0, 3px 8px, 0 8px); }
+  100% { clip-path: polygon(0 0, 8px 0, 8px 3px, 0 3px); }
+}
+
+/* === CORNER DECORATIONS === */
+.skill-corner { position: absolute; width: 12px; height: 12px; pointer-events: none; }
+.skill-corner.tl { top: -3px; left: -3px; border-top: 3px solid; border-left: 3px solid; }
+.skill-corner.tr { top: -3px; right: -3px; border-top: 3px solid; border-right: 3px solid; }
+.skill-corner.bl { bottom: -3px; left: -3px; border-bottom: 3px solid; border-left: 3px solid; }
+.skill-corner.br { bottom: -3px; right: -3px; border-bottom: 3px solid; border-right: 3px solid; }
+.ai-card    .skill-corner { border-color: #00e5ff !important; }
+.cyber-card .skill-corner { border-color: #ff3bff !important; }
+.data-card  .skill-corner { border-color: #00ff88 !important; }
+
+/* === GLOW EFFECT ON HOVER === */
+.skill-card-glow {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 0;
+}
+.ai-card    .skill-card-glow { background: radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.18) 0%, transparent 70%); }
+.cyber-card .skill-card-glow { background: radial-gradient(ellipse at 50% 50%, rgba(255,59,255,0.18) 0%, transparent 70%); }
+.data-card  .skill-card-glow { background: radial-gradient(ellipse at 50% 50%, rgba(0,255,136,0.18) 0%, transparent 70%); }
+
+/* === PIXEL CHARACTER AREA === */
+.skill-pixel-area {
+  height: 160px;
+  background: #12162e;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  font-size: 1.2rem;
-  font-weight: bolder;
-  color: white;
-  text-decoration: none;
-  background-size: cover;
-  background-position: center;
-  transition: 0.2s ease;
 }
-.forum-card::before {
-  content: "";
+
+.skill-pixel-char {
+  image-rendering: pixelated;
+  animation: skill-char-idle 0.8s steps(2) infinite;
+}
+@keyframes skill-char-idle {
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(0.96) translateY(1px); }
+}
+
+/* === SPARKLE PARTICLES === */
+.skill-sparkles { position: absolute; inset: 0; pointer-events: none; }
+.skill-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  animation: skill-spark-pop 1.5s steps(3) infinite;
+  opacity: 0;
+}
+.skill-spark::after { content: ''; display: block; width: 100%; height: 100%; background: currentColor; }
+@keyframes skill-spark-pop {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  33%      { opacity: 1; transform: scale(1); }
+  66%      { opacity: 0.5; transform: scale(0.5); }
+}
+
+/* === INFO BOX (kuning) === */
+.skill-info {
+  background: #fee783;
+  padding: 16px 14px 14px;
+  clip-path: polygon(
+    0 4px, 4px 0, calc(100% - 4px) 0, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 0 calc(100% - 4px)
+  );
+}
+
+.skill-info h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #1a1a2e;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+.skill-info p {
+  font-size: 0.78rem;
+  color: #2d2d40;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 400;
+}
+
+/* === XP PROGRESS BAR === */
+.skill-xp-wrap { margin-top: 6px; }
+.skill-xp-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.skill-xp-track {
+  height: 10px;
+  background: #b8a200;
+  clip-path: polygon(
+    0 2px, 2px 0, calc(100% - 2px) 0, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) 100%,
+    2px 100%, 0 calc(100% - 2px)
+  );
+  overflow: hidden;
+  position: relative;
+}
+.skill-xp-fill {
+  height: 100%;
+  position: relative;
+  transition: width 1s steps(10);
+}
+.skill-xp-fill::after {
+  content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent, transparent 8px,
+    rgba(255,255,255,0.2) 8px, rgba(255,255,255,0.2) 10px
+  );
 }
-.forum-card span {
-  position: relative;
-  z-index: 2;
+.ai-card    .skill-xp-fill { background: #00e5ff; }
+.cyber-card .skill-xp-fill { background: #ff3bff; }
+.data-card  .skill-xp-fill { background: #00ff88; }
+
+/* === RARITY BADGE === */
+.skill-rarity {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  padding: 3px 8px;
+  clip-path: polygon(
+    0 2px, 2px 0, calc(100% - 2px) 0, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) 100%,
+    2px 100%, 0 calc(100% - 2px)
+  );
 }
-.forum-card img {
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 120px;
-  z-index: 2;
-}
-.forum-card:hover {
-  transform: scale(1.02);
-}
-.forum-card.gray {
-  --main-color: #dcdcdc;
-  background: linear-gradient(135deg, #9a9a9a, #5f5f6b);
-}
-.forum-card.blue {
-  --main-color: #0084ff;
-  background-image: url("assets/images/kucinggaming.png");
-  background-position: center 40%;
-}
+.ai-card    .skill-rarity { background: #001a2e; color: #00e5ff; }
+.cyber-card .skill-rarity { background: #1a002e; color: #ff3bff; }
+.data-card  .skill-rarity { background: #002e10; color: #00ff88; }
 
 /* =============================================
    BUTTONS
@@ -1327,21 +1564,69 @@ body {
 ============================================= */
 .footer-hero {
   width: 100%;
-  background: #11111d;
-  border-top: 2px solid rgba(255, 255, 255, 0.15);
-  padding: 5px 10% 20px;
+  min-height: 420px;
+
+  /* background footer pemandangan */
+  background-image: url("assets/images/meteor.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
+
+  border-top: 3px solid rgba(106, 190, 255, 0.35);
+}
+
+/* overlay supaya teks lebih readable */
+.footer-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 10, 35, 0.2),
+    rgba(0, 0, 0, 0.55)
+  );
+  z-index: 1;
+}
+
+.footer-overlay {
+  position: relative;
+  z-index: 2;
+
+  min-height: 420px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
-.footer-left img {
-  height: 200px;
+
+.footer-logo {
+  width: 550px;
+  max-width: 90%;
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(0 0 12px rgba(69, 185, 255, 0.6))
+    drop-shadow(0 0 25px rgba(69, 185, 255, 0.3));
 }
-.footer-right p {
+
+.footer-copyright {
+  margin-top: auto;
+
   font-family: "Inter", sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.footer-logo {
+  animation: floatLogo 3s ease-in-out infinite;
 }
 
 /* =============================================

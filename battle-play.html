@@ -4,22 +4,18 @@
     <meta charset="UTF-8" />
     <title>Battle — BINUSVERSE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="battle-play.css" />
   </head>
   <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
       <div class="logo-left">
-        <a href="index.html"
-          ><img src="assets/images/SaturBum.png" alt="Home"
-        /></a>
+        <a href="index.html"><img src="assets/images/SaturBum.png" alt="Home"/></a>
       </div>
       <div class="hamburger" id="hamburger">
-        <span class="bar"></span><span class="bar"></span
-        ><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="grimoire.html">Grimoire</a></li>
@@ -28,96 +24,228 @@
       </ul>
     </nav>
 
-    <section class="battle-header">
-      <img src="assets/images/battlebg.jpg" class="header-bg" alt="" />
-      <div class="header-content">
-        <h1>Battle Arena</h1>
-        <p>Test your knowledge against fellow explorers.</p>
-      </div>
-    </section>
+    <!-- ══════════════ BATTLE SCREEN ══════════════ -->
+    <div class="battle-screen hidden" id="battle-screen">
 
-    <!-- PvP MODE -->
-    <section class="section" id="pvp-section">
+      <!-- TOP HUD -->
+      <div class="battle-hud">
+        <!-- Left: mode badge + progress -->
+        <div class="hud-left">
+          <div class="hud-mode-badge" id="hud-mode-badge">DAILY MISSION</div>
+          <div class="hud-progress-wrap">
+            <div class="hud-progress-dots" id="hud-progress-dots"></div>
+          </div>
+        </div>
+
+        <!-- Center: timer big display -->
+        <div class="hud-center">
+          <div class="hud-timer-ring" id="hud-timer-ring">
+            <svg viewBox="0 0 80 80" class="timer-ring-svg">
+              <circle cx="40" cy="40" r="34" class="timer-ring-bg"/>
+              <circle cx="40" cy="40" r="34" class="timer-ring-fill" id="timer-ring-circle"/>
+            </svg>
+            <div class="hud-timer-num" id="hud-timer-num">15</div>
+          </div>
+        </div>
+
+        <!-- Right: score + streak -->
+        <div class="hud-right">
+          <div class="hud-score-wrap">
+            <div class="hud-score-item">
+              <span class="hud-score-val correct-val" id="hud-correct">0</span>
+              <span class="hud-score-lbl">✓</span>
+            </div>
+            <div class="hud-score-item">
+              <span class="hud-score-val wrong-val" id="hud-wrong">0</span>
+              <span class="hud-score-lbl">✗</span>
+            </div>
+          </div>
+          <div class="hud-streak-wrap">
+            <div class="hud-streak-badge" id="hud-streak">
+              <span class="streak-fire">🔥</span>
+              <span id="streak-count">0</span>x
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMER BAR (slim, below HUD) -->
+      <div class="battle-timer-bar">
+        <div class="battle-timer-fill" id="battle-timer-fill"></div>
+      </div>
+
+      <!-- MAIN BATTLE AREA -->
+      <div class="battle-arena" id="battle-arena">
+
+        <!-- BG PARTICLES (canvas) -->
+        <canvas class="arena-particles" id="arenaParticles"></canvas>
+
+        <!-- QUESTION CARD -->
+        <div class="battle-card" id="battle-card">
+          <!-- Corner decorations -->
+          <div class="bc-corner tl"></div>
+          <div class="bc-corner tr"></div>
+          <div class="bc-corner bl"></div>
+          <div class="bc-corner br"></div>
+
+          <!-- Difficulty badge (raid) -->
+          <div class="bc-diff-badge hidden" id="bc-diff-badge"></div>
+
+          <!-- Question number -->
+          <div class="bc-q-num" id="bc-q-num">QUESTION 1 / 10</div>
+
+          <!-- Question text -->
+          <div class="bc-q-text" id="bc-q-text">Loading...</div>
+
+          <!-- Answer buttons -->
+          <div class="bc-answers" id="bc-answers">
+            <button class="bc-ans" data-key="A"><span class="bc-ans-key">A</span><span class="bc-ans-txt" id="ans-A"></span></button>
+            <button class="bc-ans" data-key="B"><span class="bc-ans-key">B</span><span class="bc-ans-txt" id="ans-B"></span></button>
+            <button class="bc-ans" data-key="C"><span class="bc-ans-key">C</span><span class="bc-ans-txt" id="ans-C"></span></button>
+            <button class="bc-ans" data-key="D"><span class="bc-ans-key">D</span><span class="bc-ans-txt" id="ans-D"></span></button>
+          </div>
+
+          <!-- Feedback flash -->
+          <div class="bc-feedback hidden" id="bc-feedback"></div>
+        </div>
+
+        <!-- ITEMS BAR -->
+        <div class="battle-items-bar">
+          <div class="items-bar-label">BATTLE ITEMS</div>
+          <div class="items-bar-slots" id="items-bar-slots">
+
+            <!-- Phantom Eraser -->
+            <div class="item-slot" id="item-eraser" data-item="eraser" data-uses="1" title="Phantom Eraser">
+              <div class="item-slot-inner">
+                <svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+                  <rect x="1" y="5" width="14" height="7" fill="#ff9500"/>
+                  <rect x="1" y="5" width="14" height="3" fill="#ffb700"/>
+                  <rect x="1" y="8" width="14" height="1" fill="#cc7700"/>
+                  <rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>
+                  <rect x="3" y="2" width="1" height="1" fill="#ff4444"/>
+                  <rect x="4" y="3" width="1" height="1" fill="#ff4444"/>
+                  <rect x="5" y="2" width="1" height="1" fill="#ff4444"/>
+                  <rect x="9" y="2" width="1" height="1" fill="#ff4444"/>
+                  <rect x="10" y="3" width="1" height="1" fill="#ff4444"/>
+                  <rect x="11" y="2" width="1" height="1" fill="#ff4444"/>
+                </svg>
+              </div>
+              <div class="item-slot-name">ERASER</div>
+              <div class="item-slot-count" id="eraser-count">×1</div>
+              <div class="item-tooltip-box">
+                <div class="itb-name">Phantom Eraser</div>
+                <div class="itb-desc">Hapus 2 pilihan jawaban yang salah</div>
+              </div>
+            </div>
+
+            <!-- Time Freeze -->
+            <div class="item-slot" id="item-freeze" data-item="freeze" data-uses="1" title="Time Freeze">
+              <div class="item-slot-inner">
+                <svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+                  <rect x="3" y="1" width="10" height="2" fill="#7c3aed"/>
+                  <rect x="2" y="2" width="12" height="10" fill="#6d28d9"/>
+                  <rect x="1" y="4" width="14" height="6" fill="#7c3aed"/>
+                  <rect x="3" y="12" width="10" height="2" fill="#6d28d9"/>
+                  <rect x="5" y="4" width="6" height="6" fill="#1a0a2e"/>
+                  <rect x="6" y="3" width="4" height="1" fill="#c084fc"/>
+                  <rect x="4" y="5" width="1" height="4" fill="#c084fc"/>
+                  <rect x="11" y="5" width="1" height="4" fill="#c084fc"/>
+                  <rect x="6" y="10" width="4" height="1" fill="#c084fc"/>
+                  <rect x="7" y="5" width="1" height="3" fill="#fff"/>
+                  <rect x="7" y="7" width="3" height="1" fill="#fff"/>
+                  <rect x="7" y="7" width="1" height="1" fill="#fee783"/>
+                </svg>
+              </div>
+              <div class="item-slot-name">FREEZE</div>
+              <div class="item-slot-count" id="freeze-count">×1</div>
+              <div class="item-tooltip-box">
+                <div class="itb-name">Time Freeze Orb</div>
+                <div class="itb-desc">Tambah +10 detik ke timer</div>
+              </div>
+            </div>
+
+            <!-- 2nd Chance -->
+            <div class="item-slot" id="item-retry" data-item="retry" data-uses="2" title="2nd Chance Scroll">
+              <div class="item-slot-inner">
+                <svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+                  <rect x="2" y="0" width="12" height="2" fill="#b87333"/>
+                  <rect x="1" y="1" width="14" height="2" fill="#d4a96a"/>
+                  <rect x="2" y="2" width="12" height="1" fill="#b87333"/>
+                  <rect x="1" y="3" width="14" height="9" fill="#fdf3dc"/>
+                  <rect x="3" y="4" width="10" height="1" fill="#a0a8d0"/>
+                  <rect x="3" y="6" width="8" height="1" fill="#a0a8d0"/>
+                  <rect x="5" y="5" width="6" height="1" fill="#00e5ff"/>
+                  <rect x="10" y="5" width="1" height="3" fill="#00e5ff"/>
+                  <rect x="9" y="7" width="2" height="1" fill="#00e5ff"/>
+                  <rect x="5" y="4" width="3" height="1" fill="#00e5ff"/>
+                  <rect x="2" y="12" width="12" height="1" fill="#b87333"/>
+                  <rect x="1" y="13" width="14" height="2" fill="#d4a96a"/>
+                </svg>
+              </div>
+              <div class="item-slot-name">RETRY</div>
+              <div class="item-slot-count" id="retry-count">×2</div>
+              <div class="item-tooltip-box">
+                <div class="itb-name">2nd Chance Scroll</div>
+                <div class="itb-desc">Ulangi soal yang salah, tanpa penalty</div>
+              </div>
+            </div>
+
+            <!-- XP Magnet -->
+            <div class="item-slot" id="item-xp" data-item="xp" data-uses="1" title="XP Magnet">
+              <div class="item-slot-inner">
+                <svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+                  <rect x="2" y="2" width="4" height="10" fill="#94a3b8"/>
+                  <rect x="10" y="2" width="4" height="10" fill="#94a3b8"/>
+                  <rect x="2" y="2" width="12" height="3" fill="#64748b"/>
+                  <rect x="3" y="5" width="2" height="7" fill="#0d0f20"/>
+                  <rect x="11" y="5" width="2" height="7" fill="#0d0f20"/>
+                  <rect x="2" y="12" width="4" height="3" fill="#ef4444"/>
+                  <rect x="10" y="12" width="4" height="3" fill="#3b82f6"/>
+                  <rect x="6" y="5" width="1" height="1" fill="#fee783"/>
+                  <rect x="7" y="4" width="2" height="1" fill="#fee783"/>
+                  <rect x="9" y="5" width="1" height="1" fill="#fee783"/>
+                </svg>
+              </div>
+              <div class="item-slot-name">XP×1.5</div>
+              <div class="item-slot-count" id="xp-count">×1</div>
+              <div class="item-tooltip-box">
+                <div class="itb-name">XP Magnet</div>
+                <div class="itb-desc">XP ×1.5 untuk soal ini</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- end battle-arena -->
+
+      <!-- ITEM USE FLASH -->
+      <div class="item-use-flash hidden" id="item-use-flash"></div>
+
+    </div><!-- end battle-screen -->
+
+    <!-- PvP SECTION (non-battle pages) -->
+    <section class="section" id="pvp-section" style="display:none;">
       <div class="container">
         <h2 class="section-label">PvP Mode</h2>
         <div class="pvp-layout">
           <div class="option-col left">
-            <div class="option-btn blue" data-side="left" data-key="A">A</div>
-            <div class="option-btn blue" data-side="left" data-key="B">B</div>
-            <div class="option-btn blue" data-side="left" data-key="C">C</div>
-            <div class="option-btn blue" data-side="left" data-key="D">D</div>
+            <div class="option-btn blue">A</div>
+            <div class="option-btn blue">B</div>
+            <div class="option-btn blue">C</div>
+            <div class="option-btn blue">D</div>
           </div>
           <div class="question-panel pvp-panel">
-            <!-- Coming Soon overlay -->
             <div class="coming-soon-overlay">
               <p class="coming-soon-badge">Coming Soon...</p>
               <p class="coming-soon-sub">PvP Mode is under development</p>
             </div>
-            <h3 class="q-number">Question #1</h3>
-            <p class="q-text">Who was your favorite teacher and why?</p>
-            <div class="answer-row">
-              <button class="ans-btn">(A) Iw</button>
-              <button class="ans-btn">(B) An</button>
-              <button class="ans-btn">(C) Rew</button>
-              <button class="ans-btn">(D) And</button>
-            </div>
           </div>
           <div class="option-col right">
-            <div class="option-btn red" data-side="right" data-key="A">A</div>
-            <div class="option-btn red" data-side="right" data-key="B">B</div>
-            <div class="option-btn red" data-side="right" data-key="C">C</div>
-            <div class="option-btn red" data-side="right" data-key="D">D</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- DAILY MISSION -->
-    <section class="section" id="daily-section">
-      <div class="container">
-        <h2 class="section-label">Daily Mission</h2>
-        <div class="question-panel daily-panel">
-          <div class="timer-bar-panel">
-            <div class="timer-fill" id="daily-timer"></div>
-          </div>
-          <h3 class="q-number" id="daily-q-number">Question #1</h3>
-          <p class="q-text" id="daily-q-text">Loading...</p>
-          <div class="answer-row" id="daily-answers">
-            <button class="ans-btn" data-key="A">A</button>
-            <button class="ans-btn" data-key="B">B</button>
-            <button class="ans-btn" data-key="C">C</button>
-            <button class="ans-btn" data-key="D">D</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- RAID -->
-    <section class="section" id="raid-section">
-      <div class="container">
-        <h2 class="section-label">Raid</h2>
-        <div class="raid-layout">
-          <div class="question-panel raid-panel">
-            <div class="timer-bar-panel">
-              <div class="timer-fill" id="raid-timer"></div>
-            </div>
-            <span class="raid-difficulty easy-text" id="raid-diff-label"
-              >Easy</span
-            >
-            <h3 class="q-number raid-q-number" id="raid-q-number">
-              Question #1
-            </h3>
-            <p class="q-text" id="raid-q-text">Loading...</p>
-            <div class="answer-row" id="raid-answers">
-              <button class="ans-btn" data-key="A">A</button>
-              <button class="ans-btn" data-key="B">B</button>
-              <button class="ans-btn" data-key="C">C</button>
-              <button class="ans-btn" data-key="D">D</button>
-            </div>
+            <div class="option-btn red">A</div>
+            <div class="option-btn red">B</div>
+            <div class="option-btn red">C</div>
+            <div class="option-btn red">D</div>
           </div>
         </div>
       </div>
@@ -126,7 +254,10 @@
     <!-- RESULT OVERLAY -->
     <div class="result-overlay hidden" id="result-overlay">
       <div class="result-card">
+        <!-- Stars animation -->
+        <div class="result-stars" id="result-stars"></div>
         <h2 class="result-title" id="result-title">COMPLETED!</h2>
+        <div class="result-rank-badge" id="result-rank-badge">★ S RANK</div>
         <div class="result-stats-grid">
           <div class="result-stat">
             <span class="result-stat-val correct-col" id="res-correct">0</span>
@@ -147,23 +278,12 @@
         </div>
         <div class="result-actions">
           <a href="battle.html" class="res-btn res-btn--back">Back to Battle</a>
-          <a href="the_commons.html" class="res-btn res-btn--forum"
-            >Discuss on The Commons</a
-          >
+          <a href="the_commons.html" class="res-btn res-btn--forum">Discuss on The Commons</a>
         </div>
       </div>
     </div>
 
-    <section class="footer-hero">
-      <div class="footer-left">
-        <img src="assets/images/BinusverseText.png" alt="Logo" />
-      </div>
-      <div class="footer-right">
-        <p>© 2026 Binusverse. All rights reserved.</p>
-      </div>
-    </section>
-
-    <script src="battle-play.js"></script>
+    <!-- EXIT MODAL -->
     <div class="exit-modal hidden" id="exit-modal">
       <div class="exit-modal-card">
         <h3>Abandon Battle?</h3>
@@ -174,5 +294,7 @@
         </div>
       </div>
     </div>
+
+    <script src="battle-play.js"></script>
   </body>
 </html>

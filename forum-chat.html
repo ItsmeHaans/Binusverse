@@ -1,92 +1,523 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Forum Chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="forum-chat.css" />
-  </head>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Global Channel — BINUSVERSE</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="forum-chat.css"/>
+</head>
+<body>
 
-  <body>
-    <nav class="navbar">
-      <div class="logo-left">
-        <img src="assets/images/SaturBum.png" alt="Logo" />
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo-left">
+    <a href="index.html"><img src="assets/images/SaturBum.png" alt="Logo"/></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="grimoire.html">Grimoire</a></li>
+    <li><a href="battle.html">Battle</a></li>
+    <li><a href="the_commons.html" class="active">The Commons</a></li>
+  </ul>
+  <div class="logo-right">
+    <img src="assets/images/BinusLogo.png" alt="Binus"/>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="chat-breadcrumb">
+  <a href="the_commons.html" class="bc-link">The Commons</a>
+  <span class="bc-sep">›</span>
+  <span class="bc-cur">🌐 Global Channel</span>
+  <div class="bc-online">
+    <div class="bc-dot"></div>
+    <span>1,248 online</span>
+  </div>
+</div>
+
+<!-- 3-COL LAYOUT -->
+<div class="chat-layout">
+
+  <!-- ════════════════ LEFT SIDEBAR ════════════════ -->
+  <div class="chat-sidebar">
+    <div class="sidebar-guild">
+      <div class="sg-name">THE COMMONS</div>
+      <div class="sg-tag" style="color:#fee783;">🌐 GLOBAL GUILD</div>
+      <div class="sg-stats">
+        <div class="sg-stat"><div class="sg-stat-v">84K</div><div class="sg-stat-l">MEMBERS</div></div>
+        <div class="sg-stat"><div class="sg-stat-v" style="color:#00ff88;">1,248</div><div class="sg-stat-l">ONLINE</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-channels">
+      <div class="ch-label">TEXT CHANNELS</div>
+      <div class="ch-item active">
+        <span class="ch-hash">#</span>general
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>announcements
+        <span class="ch-bdg">3</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>item-trading
+        <span class="ch-bdg">7</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>battle-lobby
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>study-groups
+        <span class="ch-bdg">2</span>
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>off-topic
+      </div>
+      <div class="ch-label" style="margin-top:6px;">GUILD HALLS</div>
+      <div class="ch-item">
+        <span class="ch-hash">⚔</span>cs-guild
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">⚙</span>engineering
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">🎨</span>design
+      </div>
+    </div>
+
+    <div class="sidebar-online">
+      <div class="online-lbl">— ONLINE NOW —</div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(0,229,255,.15);color:#00e5ff;">RY</div>
+        <div class="mem-nm">Raynald</div>
+        <div class="mem-lv">LV18</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
+        <div class="mem-nm">Alice</div>
+        <div class="mem-lv">LV24</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
+        <div class="mem-nm">Benny</div>
+        <div class="mem-lv">LV11</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av away" style="background:rgba(254,231,131,.15);color:#fee783;">SY</div>
+        <div class="mem-nm">Sya</div>
+        <div class="mem-lv">LV31</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av" style="background:rgba(192,132,252,.15);color:#c084fc;">DV</div>
+        <div class="mem-nm">Diva</div>
+        <div class="mem-lv">LV7</div>
+      </div>
+      <div class="mem-row">
+        <div class="mem-av offline" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);">JK</div>
+        <div class="mem-nm" style="opacity:.4;">Joko</div>
+        <div class="mem-lv">LV15</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ CENTER CHAT ════════════════ -->
+  <div class="chat-center">
+    <div class="chat-topbar">
+      <span class="ctb-hash">#</span>
+      <span class="ctb-name">general</span>
+      <div class="ctb-div"></div>
+      <span class="ctb-desc">Global student lounge — keep it friendly!</span>
+      <div class="ctb-btns">
+        <button class="ctb-btn">🔔 Notif</button>
+        <button class="ctb-btn">🔍 Search</button>
+        <button class="ctb-btn">📌 Pinned</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- DATE -->
+      <div class="msg-date-sep">
+        <div class="msg-date-sep-line"></div>
+        <span class="msg-date-sep-txt">TODAY — 15 MAY 2026</span>
+        <div class="msg-date-sep-line"></div>
       </div>
 
-      <ul class="nav-links">
-        <li><a href="journey.html">Journey</a></li>
-        <li><a href="learn.html">Learn</a></li>
-        <li><a href="forum.html" >Forum</a></li>
-        <li><a href="battle.html">Battle</a></li>
-        <li><a href="news.html">News</a></li>
-      </ul>
-
-      <div class="logo-right">
-        <img src="assets/images/BinusLogo.png" alt="Binus" />
+      <!-- SYSTEM -->
+      <div class="msg sys">
+        <div class="msg-sys-txt">✦ Raynald joined the Global Channel</div>
       </div>
-    </nav>
 
-    <section class="forum-header">
-      <img src="assets/images/BackgroundForum.jpg" class="header-bg" />
-
-      <div class="header-content">
-        <h1>Communication Hub</h1>
-        <p>Connect with fellow explorers.</p>
-      </div>
-    </section>
-
-    <section class="forum-panel">
-      <div class="forum-header-bar">
-        <div class="global-title">GLOBAL</div>
-
-        <div class="binusverse-logo">
-          <img src="assets/images/BinusverseText.png" alt="BINUSVERSE" />
+      <!-- MSG 1 -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00ff88;">Alice</span>
+            <span class="msg-lv2" style="border-color:rgba(0,255,136,.3);color:#00ff88;">LV24</span>
+            <span class="msg-ts">09:12</span>
+          </div>
+          <div class="msg-txt">Selamat pagi semua! Ada yang mau join study group Data Structures bareng gak? 📚</div>
+          <div class="msg-reacts">
+            <div class="react on"><em>🙌</em> 5</div>
+            <div class="react"><em>📚</em> 3</div>
+          </div>
         </div>
       </div>
 
-      <div class="thread-list">
-        <div class="thread-card">
-          <h3>Raynald</h3>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
-          </p>
-        </div>
-
-        <div class="thread-card">
-          <h3>Raynald</h3>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
-          </p>
-        </div>
-
-        <div class="thread-card">
-          <h3>Raynald</h3>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
-          </p>
+      <!-- MSG 2 -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#ff9500;">Benny</span>
+            <span class="msg-lv2" style="border-color:rgba(255,149,0,.3);color:#ff9500;">LV11</span>
+            <span class="msg-ts">09:14</span>
+          </div>
+          <div class="msg-txt">Gue mau! Jam berapa? Gue lagi nyiapin battle juga nih buat nanti sore 😤</div>
         </div>
       </div>
-    </section>
 
-    <script src="forum-chat.js"></script>
+      <!-- TRADE CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(254,231,131,.15);color:#fee783;">SY</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#fee783;">Sya</span>
+            <span class="msg-lv2" style="border-color:rgba(254,231,131,.3);color:#fee783;">LV31</span>
+            <span class="msg-ts">09:15</span>
+          </div>
+          <div class="msg-txt">btw ada yang mau trade item gak?</div>
+          <div class="msg-card c-trade">
+            <div class="msg-card-ttl">⚔ ITEM TRADE REQUEST</div>
+            <div class="msg-card-body">
+              Sya ingin menukar <strong style="color:#fee783;">2nd Chance Scroll ×2</strong> dengan <strong style="color:#00e5ff;">Time Freeze Orb ×1</strong>. Level 31, win rate 88%.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">✓ Accept</button>
+              <button class="mcb no">✗ Decline</button>
+              <button class="mcb view">👁 View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <section class="footer-hero">
-      <div class="footer-left">
-        <img src="assets/images/BinusverseText.png" alt="Logo" />
+      <!-- MSG 3 -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(192,132,252,.15);color:#c084fc;">DV</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#c084fc;">Diva</span>
+            <span class="msg-lv2" style="border-color:rgba(192,132,252,.3);color:#c084fc;">LV7</span>
+            <span class="msg-ts">09:17</span>
+          </div>
+          <div class="msg-txt">Study group sip! Zoom atau Discord? Gue bisa dari jam 2 siang 🙋</div>
+          <div class="msg-reacts">
+            <div class="react"><em>👍</em> 2</div>
+          </div>
+        </div>
       </div>
-      <div class="footer-right">
-        <p>© 2026 Binusverse. All rights reserved.</p>
+
+      <!-- BATTLE CHALLENGE CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(255,77,77,.15);color:#ff4d4d;">AN</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#ff4d4d;">Andre</span>
+            <span class="msg-lv2" style="border-color:rgba(255,77,77,.3);color:#ff4d4d;">LV20</span>
+            <span class="msg-ts">09:19</span>
+          </div>
+          <div class="msg-txt">Siapa mau gue tantang 1v1 battle? Topic: Algorithms 💀</div>
+          <div class="msg-card c-battle">
+            <div class="msg-card-ttl">⚔ BATTLE CHALLENGE</div>
+            <div class="msg-card-body">
+              <strong style="color:#ff4d4d;">Andre</strong> menantang duel! Topic: <strong>Algorithms</strong>. Taruhan: 500 XP. Win rate 74%.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">⚔ Accept Duel</button>
+              <button class="mcb no">✗ Decline</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-  </body>
+
+      <!-- FRIEND REQUEST CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">RY</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00e5ff;">Raynald</span>
+            <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
+            <span class="msg-ts">09:22</span>
+          </div>
+          <div class="msg-txt">Halo semua! Baru join nih 👋</div>
+          <div class="msg-card c-friend">
+            <div class="msg-card-ttl">✦ FRIEND REQUEST</div>
+            <div class="msg-card-body">
+              <strong style="color:#00ff88;">Raynald</strong> ingin berteman! LV18 · CS Guild · 7x streak.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">+ Add Friend</button>
+              <button class="mcb view">👁 Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDY GROUP CARD -->
+      <div class="msg">
+        <div class="msg-av2" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00ff88;">Alice</span>
+            <span class="msg-lv2" style="border-color:rgba(0,255,136,.3);color:#00ff88;">LV24</span>
+            <span class="msg-ts">09:23</span>
+          </div>
+          <div class="msg-txt">Kita Discord aja, gue bikin room sekarang!</div>
+          <div class="msg-card c-study">
+            <div class="msg-card-ttl">📚 STUDY GROUP SESSION</div>
+            <div class="msg-card-body">
+              <strong style="color:#00e5ff;">Data Structures</strong> study session dimulai jam 14:00. Max 8 orang. 3 sudah join.
+            </div>
+            <div class="msg-card-btns">
+              <button class="mcb yes">+ Join Session</button>
+              <button class="mcb view">📋 Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ME -->
+      <div class="msg me">
+        <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
+        <div class="msg-body">
+          <div class="msg-meta">
+            <span class="msg-nm" style="color:#00e5ff;">You</span>
+            <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
+            <span class="msg-ts">09:24</span>
+          </div>
+          <div class="msg-txt">Wah gue ikut study group dong! Data Structures gue lemah banget 😭</div>
+          <div class="msg-reacts">
+            <div class="react on"><em>😭</em> 3</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end chat-messages -->
+
+    <!-- INPUT AREA -->
+    <div class="chat-input-area">
+      <div class="chat-quick">
+        <button class="cq-btn" onclick="insertQuickAction('trade')"><span class="cq-ic">⚔</span> Trade Item</button>
+        <button class="cq-btn" onclick="insertQuickAction('battle')"><span class="cq-ic">💀</span> Challenge Battle</button>
+        <button class="cq-btn" onclick="insertQuickAction('study')"><span class="cq-ic">📚</span> Study Group</button>
+        <button class="cq-btn" onclick="insertQuickAction('friend')"><span class="cq-ic">✦</span> Add Friend</button>
+        <button class="cq-btn" onclick="insertQuickAction('skill')"><span class="cq-ic">⚡</span> Skill Upgrade</button>
+      </div>
+      <div class="chat-input-row">
+        <div class="chat-extras">
+          <button class="cex-btn" title="Attach">📎</button>
+          <button class="cex-btn" title="Emoji">😊</button>
+        </div>
+        <textarea class="chat-textarea" id="chatInput"
+          placeholder="Type a message in #general..." rows="1"
+          onkeydown="handleKey(event)"></textarea>
+        <button class="chat-send" onclick="sendMessage()">
+          ▶ SEND
+        </button>
+      </div>
+    </div>
+
+  </div><!-- end chat-center -->
+
+  <!-- ════════════════ RIGHT PANEL ════════════════ -->
+  <div class="chat-right">
+
+    <!-- FEATURES -->
+    <div class="rp-sec">
+      <div class="rp-ttl">✦ GUILD FEATURES</div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">⚔</span>
+          <span class="feat-nm">Item Trading</span>
+          <span class="feat-bdg" style="border-color:rgba(254,231,131,.3);color:#fee783;">NEW</span>
+        </div>
+        <div class="feat-dsc">Swap battle items with other guild members.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">💀</span>
+          <span class="feat-nm">Battle Arena</span>
+          <span class="feat-bdg" style="border-color:rgba(255,77,77,.3);color:#ff4d4d;">LIVE</span>
+        </div>
+        <div class="feat-dsc">Challenge anyone to a quiz duel for XP.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">📚</span>
+          <span class="feat-nm">Study Groups</span>
+        </div>
+        <div class="feat-dsc">Create or join topic-based study sessions.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">⚡</span>
+          <span class="feat-nm">Skill Upgrade</span>
+        </div>
+        <div class="feat-dsc">Group skill grind — earn bonus XP together.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-hd">
+          <span class="feat-ic">✦</span>
+          <span class="feat-nm">Friend List</span>
+        </div>
+        <div class="feat-dsc">Add friends &amp; see their battle stats.</div>
+      </div>
+    </div>
+
+    <!-- ACTIVE EVENTS -->
+    <div class="rp-sec">
+      <div class="rp-ttl">🔥 ACTIVE EVENTS</div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#ff4d4d;"></div>
+        <div class="ev-body">
+          <strong style="color:#ff4d4d;">Battle Royale</strong> — Top 3 players get Legendary items!
+          <span class="ev-t">Ends in 2h 14m</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#fee783;"></div>
+        <div class="ev-body">
+          <strong style="color:#fee783;">XP Weekend</strong> — 2× XP on all correct answers
+          <span class="ev-t">Until Sunday</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot" style="background:#00e5ff;"></div>
+        <div class="ev-body">
+          <strong style="color:#00e5ff;">Data Structures Study</strong> — Alice's group
+          <span class="ev-t">Today 14:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRIEND REQUESTS -->
+    <div class="rp-sec">
+      <div class="rp-ttl">✦ FRIEND REQUESTS</div>
+      <div class="fr">
+        <div class="fr-av" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
+        <div class="fr-info">
+          <div class="fr-nm">Benny</div>
+          <div class="fr-mt">LV11 · 2 mutual</div>
+        </div>
+        <div class="fr-btns">
+          <button class="fr-b add">+</button>
+          <button class="fr-b skip">✗</button>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fr-av" style="background:rgba(192,132,252,.15);color:#c084fc;">DV</div>
+        <div class="fr-info">
+          <div class="fr-nm">Diva</div>
+          <div class="fr-mt">LV7 · 1 mutual</div>
+        </div>
+        <div class="fr-btns">
+          <button class="fr-b add">+</button>
+          <button class="fr-b skip">✗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="rp-sec">
+      <div class="rp-ttl">🏆 TOP THIS WEEK</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:#fee783;width:14px;">1</span>
+          <div class="fr-av" style="background:rgba(254,231,131,.15);color:#fee783;width:24px;height:24px;font-size:.22rem;">SY</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Sya</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:#fee783;">4,820 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.4);width:14px;">2</span>
+          <div class="fr-av" style="background:rgba(0,255,136,.15);color:#00ff88;width:24px;height:24px;font-size:.22rem;">AL</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Alice</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.4);">3,210 XP</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.3);width:14px;">3</span>
+          <div class="fr-av" style="background:rgba(255,77,77,.15);color:#ff4d4d;width:24px;height:24px;font-size:.22rem;">AN</div>
+          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.78rem;flex:1;">Andre</span>
+          <span style="font-family:'Press Start 2P',monospace;font-size:.22rem;color:rgba(255,255,255,.3);">2,890 XP</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end chat-right -->
+
+</div><!-- end chat-layout -->
+
+<script>
+// Auto-scroll to bottom
+const msgs = document.getElementById('chatMessages');
+msgs.scrollTop = msgs.scrollHeight;
+
+// Send message
+function sendMessage() {
+  const ta = document.getElementById('chatInput');
+  const text = ta.value.trim();
+  if (!text) return;
+
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+
+  const row = document.createElement('div');
+  row.className = 'msg me';
+  row.innerHTML = `
+    <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
+    <div class="msg-body">
+      <div class="msg-meta">
+        <span class="msg-nm" style="color:#00e5ff;">You</span>
+        <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
+        <span class="msg-ts">${time}</span>
+      </div>
+      <div class="msg-txt">${escapeHtml(text)}</div>
+    </div>`;
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+  ta.value = '';
+  ta.style.height = 'auto';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  // auto-resize
+  const ta = e.target;
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+}
+
+function insertQuickAction(type) {
+  const ta = document.getElementById('chatInput');
+  const templates = {
+    trade:  '[Trade Request] Mau tukar item: [nama item] ×[jumlah] dengan [nama item] ×[jumlah]',
+    battle: '[Battle Challenge] Gue tantang duel! Topic: [topik] - Taruhan: [XP] XP',
+    study:  '[Study Group] Ada yang mau join study [topik] jam [waktu]? Max [n] orang.',
+    friend: '[Friend Request] Halo! Boleh add friend? LV[n], main di [jurusan] guild.',
+    skill:  '[Skill Upgrade] Mau grind [topik] bareng gak? Bisa dapet bonus XP!'
+  };
+  ta.value = templates[type] || '';
+  ta.focus();
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+}
+
+function escapeHtml(t) {
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// reaction click toggle
+document.addEventListener('click', e => {
+  if (e.target.closest('.react')) e.target.closest('.react').classList.toggle('on');
+});
+</script>
+</body>
 </html>

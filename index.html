@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BINUSVERSE</title>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -159,59 +160,338 @@
         <a href="battle.html" class="wide-btn">Explore All Challenges</a>
       </section>
 
-      <section class="home-section armory-section">
-        <h2 class="section-title">Battle Items</h2>
-        <p class="section-sub">Collect items from your battles.</p>
-        <div class="armory-grid">
-          <div class="armory-box"><div class="armory-box-inner"></div></div>
-          <div class="armory-box"><div class="armory-box-inner"></div></div>
-          <div class="armory-box"><div class="armory-box-inner"></div></div>
-          <div class="armory-box"><div class="armory-box-inner"></div></div>
-          <div class="armory-box"><div class="armory-box-inner"></div></div>
-        </div>
-        <a class="wide-btn">Expand All</a>
-      </section>
+<!-- =============================================
+     BATTLE ITEMS SECTION
+     Ganti <section class="home-section armory-section"> yang lama
+     di index.html dengan kode ini
+============================================= -->
 
-      <section class="home-section skill-section">
-        <h2 class="section-title">Suggested Skill Upgrades</h2>
-        <p class="section-sub">Strengthen your weak zones. Unlock new abilities.</p>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-image"></div>
-            <div class="skill-info">
-              <h3>AI-Machine Learning</h3>
-              <p>Boost problem-solving ability through intelligent systems.</p>
-            </div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-image"></div>
-            <div class="skill-info">
-              <h3>Cyber Security</h3>
-              <p>Enhance your digital defense and system protection skills.</p>
-            </div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-image"></div>
-            <div class="skill-info">
-              <h3>Data Science</h3>
-              <p>Master analytics and turn raw data into insights.</p>
-            </div>
-          </div>
-        </div>
-        <a href="grimoire.html#suggested-skills" class="wide-btn">Strengthen Yourself!</a>
-      </section>
+<!-- Pastikan ada di <head> sebelum pakai: -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" /> -->
 
-      <section class="footer-hero">
-        <div class="footer-left">
-          <img src="assets/images/BinusverseText.png" alt="Logo" />
+<section class="home-section armory-section">
+  <h2 class="section-title">Battle Items</h2>
+  <p class="section-sub">Collect items from your battles.</p>
+
+  <div class="armory-grid">
+
+    <!-- ① Phantom Eraser — LEGENDARY -->
+    <div class="armory-box r-legendary"
+         data-tip-rarity="r-legendary"
+         data-tip-name="PHANTOM ERASER"
+         data-tip-type="⚡ Battle Item · Instant"
+         data-tip-s1="❌ Removes"  data-tip-v1="2 wrong"
+         data-tip-s2="🎯 Accuracy" data-tip-v2="+60%"
+         data-tip-s3="📦 Stock"    data-tip-v3="1×"
+         data-tip-ability="Instantly wipes 2 wrong answer choices off the screen — only correct ones remain.">
+      <div class="armory-rarity-tag">LEGENDARY</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="1" y="5" width="14" height="7" fill="#ff9500"/>
+          <rect x="1" y="5" width="14" height="3" fill="#ffb700"/>
+          <rect x="1" y="8" width="14" height="1" fill="#cc7700"/>
+          <rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>
+          <rect x="3" y="2" width="1" height="1" fill="#ff4444"/>
+          <rect x="4" y="3" width="1" height="1" fill="#ff4444"/>
+          <rect x="5" y="2" width="1" height="1" fill="#ff4444"/>
+          <rect x="9" y="2" width="1" height="1" fill="#ff4444"/>
+          <rect x="10" y="3" width="1" height="1" fill="#ff4444"/>
+          <rect x="11" y="2" width="1" height="1" fill="#ff4444"/>
+          <rect x="2"  y="12" width="1" height="1" fill="#f0d0a0" opacity="0.6"/>
+          <rect x="5"  y="13" width="2" height="1" fill="#f0d0a0" opacity="0.5"/>
+          <rect x="10" y="12" width="1" height="1" fill="#f0d0a0" opacity="0.6"/>
+          <rect x="2"  y="5"  width="3" height="1" fill="#fff"    opacity="0.3"/>
+        </svg>
+        <div class="armory-item-label">PHANTOM ERASER</div>
+      </div>
+    </div>
+
+    <!-- ② Time Freeze Orb — EPIC -->
+    <div class="armory-box r-epic"
+         data-tip-rarity="r-epic"
+         data-tip-name="TIME FREEZE ORB"
+         data-tip-type="⏱ Battle Item · Instant"
+         data-tip-s1="⏸ Pause Timer" data-tip-v1="10 sec"
+         data-tip-s2="🧊 Effect"      data-tip-v2="Freeze"
+         data-tip-s3="📦 Stock"       data-tip-v3="1×"
+         data-tip-ability="Freezes the question timer for 10 seconds — think calmly while time stands still for you only.">
+      <div class="armory-rarity-tag">EPIC</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="3" y="1"  width="10" height="2"  fill="#7c3aed"/>
+          <rect x="2" y="2"  width="12" height="10" fill="#6d28d9"/>
+          <rect x="1" y="4"  width="14" height="6"  fill="#7c3aed"/>
+          <rect x="3" y="12" width="10" height="2"  fill="#6d28d9"/>
+          <rect x="4" y="13" width="8"  height="1"  fill="#5b21b6"/>
+          <rect x="5" y="4"  width="6"  height="6"  fill="#1a0a2e"/>
+          <rect x="6" y="3"  width="4"  height="1"  fill="#c084fc"/>
+          <rect x="4" y="5"  width="1"  height="4"  fill="#c084fc"/>
+          <rect x="11" y="5" width="1"  height="4"  fill="#c084fc"/>
+          <rect x="6" y="10" width="4"  height="1"  fill="#c084fc"/>
+          <rect x="7" y="5"  width="1"  height="3"  fill="#fff"/>
+          <rect x="7" y="7"  width="3"  height="1"  fill="#fff"/>
+          <rect x="7" y="7"  width="1"  height="1"  fill="#fee783"/>
+          <rect x="1"  y="1"  width="1" height="1" fill="#c084fc" opacity="0.7"/>
+          <rect x="14" y="2"  width="1" height="1" fill="#c084fc" opacity="0.5"/>
+          <rect x="3"  y="3"  width="2" height="2" fill="#fff"    opacity="0.2"/>
+        </svg>
+        <div class="armory-item-label">TIME FREEZE ORB</div>
+      </div>
+    </div>
+
+    <!-- ③ 2nd Chance Scroll — RARE -->
+    <div class="armory-box r-rare"
+         data-tip-rarity="r-rare"
+         data-tip-name="2ND CHANCE SCROLL"
+         data-tip-type="🔄 Battle Item · Instant"
+         data-tip-s1="🔁 Retries"  data-tip-v1="+1"
+         data-tip-s2="📉 Penalty"  data-tip-v2="None"
+         data-tip-s3="📦 Stock"    data-tip-v3="2×"
+         data-tip-ability="Got it wrong? Retry the same question once with no score penalty. Fresh attempt, same timer.">
+      <div class="armory-rarity-tag">RARE</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="2" y="0"  width="12" height="2" fill="#b87333"/>
+          <rect x="1" y="1"  width="14" height="2" fill="#d4a96a"/>
+          <rect x="2" y="2"  width="12" height="1" fill="#b87333"/>
+          <rect x="1" y="3"  width="14" height="9" fill="#fdf3dc"/>
+          <rect x="3" y="4"  width="10" height="1" fill="#a0a8d0"/>
+          <rect x="3" y="6"  width="8"  height="1" fill="#a0a8d0"/>
+          <rect x="3" y="8"  width="10" height="1" fill="#a0a8d0"/>
+          <rect x="5"  y="5"  width="6" height="1" fill="#00e5ff"/>
+          <rect x="10" y="5"  width="1" height="3" fill="#00e5ff"/>
+          <rect x="9"  y="7"  width="2" height="1" fill="#00e5ff"/>
+          <rect x="8"  y="8"  width="1" height="1" fill="#00e5ff"/>
+          <rect x="5"  y="4"  width="1" height="2" fill="#00e5ff"/>
+          <rect x="5"  y="4"  width="3" height="1" fill="#00e5ff"/>
+          <rect x="2"  y="12" width="12" height="1" fill="#b87333"/>
+          <rect x="1"  y="13" width="14" height="2" fill="#d4a96a"/>
+          <rect x="2"  y="14" width="12" height="2" fill="#b87333"/>
+          <rect x="2"  y="3"  width="2"  height="2" fill="#fff" opacity="0.25"/>
+        </svg>
+        <div class="armory-item-label">2ND CHANCE SCROLL</div>
+      </div>
+    </div>
+
+    <!-- ④ XP Magnet — UNCOMMON -->
+    <div class="armory-box r-uncommon"
+         data-tip-rarity="r-uncommon"
+         data-tip-name="XP MAGNET"
+         data-tip-type="⭐ Battle Item · Passive"
+         data-tip-s1="⭐ XP Multiplier" data-tip-v1="×1.5"
+         data-tip-s2="⏱ Duration"       data-tip-v2="1 round"
+         data-tip-s3="📦 Stock"          data-tip-v3="5×"
+         data-tip-ability="Boosts XP from every correct answer by 1.5× for this round. Stack with streaks for max gain.">
+      <div class="armory-rarity-tag">UNCOMMON</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="2"  y="2"  width="4"  height="10" fill="#94a3b8"/>
+          <rect x="10" y="2"  width="4"  height="10" fill="#94a3b8"/>
+          <rect x="2"  y="2"  width="12" height="3"  fill="#64748b"/>
+          <rect x="3"  y="5"  width="2"  height="7"  fill="#0d0f20"/>
+          <rect x="11" y="5"  width="2"  height="7"  fill="#0d0f20"/>
+          <rect x="2"  y="12" width="4"  height="3"  fill="#ef4444"/>
+          <rect x="10" y="12" width="4"  height="3"  fill="#3b82f6"/>
+          <rect x="6"  y="5"  width="1"  height="1"  fill="#fee783"/>
+          <rect x="7"  y="4"  width="2"  height="1"  fill="#fee783"/>
+          <rect x="9"  y="5"  width="1"  height="1"  fill="#fee783"/>
+          <rect x="6"  y="8"  width="4"  height="1"  fill="#fee783" opacity="0.6"/>
+          <rect x="7"  y="7"  width="1"  height="3"  fill="#fee783" opacity="0.4"/>
+          <rect x="5"  y="0"  width="1"  height="1"  fill="#fee783" opacity="0.8"/>
+          <rect x="10" y="0"  width="1"  height="1"  fill="#fee783" opacity="0.6"/>
+          <rect x="3"  y="2"  width="2"  height="1"  fill="#fff"    opacity="0.3"/>
+        </svg>
+        <div class="armory-item-label">XP MAGNET</div>
+      </div>
+    </div>
+
+  </div><!-- end .armory-grid -->
+
+  <a class="wide-btn" href="battle.html">Expand All</a>
+</section>
+
+<section class="home-section skill-section">
+  <h2 class="section-title">Suggested Skill Upgrades</h2>
+  <p class="section-sub">Strengthen your weak zones. Unlock new abilities.</p>
+
+  <div class="skill-grid">
+
+    <!-- AI Card -->
+    <div class="skill-card ai-card">
+      <div class="skill-card-glow"></div>
+      <div class="skill-corner tl"></div>
+      <div class="skill-corner tr"></div>
+      <div class="skill-corner bl"></div>
+      <div class="skill-corner br"></div>
+      <div class="skill-pixel-area">
+        <div class="skill-sparkles" id="sparks-ai"></div>
+        <!-- Robot AI pixel character -->
+        <svg class="skill-pixel-char" width="80" height="100" viewBox="0 0 20 25" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="6" y="0" width="8" height="2" fill="#00e5ff"/>
+          <rect x="7" y="1" width="6" height="1" fill="#00b8d4"/>
+          <rect x="4" y="2" width="12" height="8" fill="#1a3a4a"/>
+          <rect x="5" y="3" width="10" height="6" fill="#002233"/>
+          <rect x="6" y="4" width="3" height="2" fill="#00e5ff" opacity="0.9"/>
+          <rect x="11" y="4" width="3" height="2" fill="#00e5ff" opacity="0.9"/>
+          <rect x="6" y="4" width="1" height="1" fill="#ffffff"/>
+          <rect x="11" y="4" width="1" height="1" fill="#ffffff"/>
+          <rect x="7" y="7" width="6" height="1" fill="#00e5ff" opacity="0.6"/>
+          <rect x="9" y="0" width="2" height="2" fill="#fee783"/>
+          <rect x="9" y="0" width="1" height="1" fill="#fff"/>
+          <rect x="3" y="10" width="14" height="9" fill="#1a3a4a"/>
+          <rect x="4" y="11" width="12" height="7" fill="#0d2233"/>
+          <rect x="5" y="12" width="4" height="3" fill="#00e5ff" opacity="0.3"/>
+          <rect x="11" y="12" width="4" height="3" fill="#00e5ff" opacity="0.3"/>
+          <rect x="7" y="14" width="6" height="1" fill="#fee783"/>
+          <rect x="0" y="10" width="3" height="7" fill="#1a3a4a"/>
+          <rect x="17" y="10" width="3" height="7" fill="#1a3a4a"/>
+          <rect x="0" y="16" width="4" height="2" fill="#00e5ff"/>
+          <rect x="16" y="16" width="4" height="2" fill="#00e5ff"/>
+          <rect x="5" y="19" width="4" height="5" fill="#1a3a4a"/>
+          <rect x="11" y="19" width="4" height="5" fill="#1a3a4a"/>
+          <rect x="4" y="23" width="5" height="2" fill="#0d2233"/>
+          <rect x="11" y="23" width="5" height="2" fill="#0d2233"/>
+        </svg>
+      </div>
+      <div class="skill-info">
+        <h3>AI &amp; MACHINE<br>LEARNING</h3>
+        <p>Boost problem-solving ability through intelligent systems.</p>
+        <div class="skill-xp-wrap">
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span>72%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:72%"></div></div>
         </div>
-        <div class="footer-right">
-          <p>© 2026 Binusverse. All rights reserved.</p>
+        <div class="skill-rarity">◆ EPIC SKILL</div>
+      </div>
+    </div>
+
+    <!-- Cyber Card -->
+    <div class="skill-card cyber-card">
+      <div class="skill-card-glow"></div>
+      <div class="skill-corner tl"></div>
+      <div class="skill-corner tr"></div>
+      <div class="skill-corner bl"></div>
+      <div class="skill-corner br"></div>
+      <div class="skill-pixel-area">
+        <div class="skill-sparkles" id="sparks-cyber"></div>
+        <!-- Hacker/Ninja pixel character -->
+        <svg class="skill-pixel-char" width="80" height="100" viewBox="0 0 20 25" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="5" y="1" width="10" height="8" fill="#2a0a3a"/>
+          <rect x="6" y="2" width="8" height="6" fill="#1a0226"/>
+          <rect x="6" y="4" width="8" height="4" fill="#3a0a4a"/>
+          <rect x="7" y="5" width="2" height="2" fill="#ff3bff"/>
+          <rect x="11" y="5" width="2" height="2" fill="#ff3bff"/>
+          <rect x="7" y="5" width="1" height="1" fill="#ffaaff"/>
+          <rect x="11" y="5" width="1" height="1" fill="#ffaaff"/>
+          <rect x="4" y="1" width="12" height="3" fill="#1a0226"/>
+          <rect x="3" y="3" width="14" height="2" fill="#2a0a3a"/>
+          <rect x="4" y="9" width="12" height="10" fill="#2a0a3a"/>
+          <rect x="5" y="10" width="10" height="8" fill="#1a0226"/>
+          <rect x="8" y="11" width="4" height="5" fill="#ff3bff" opacity="0.2"/>
+          <rect x="9" y="12" width="2" height="3" fill="#ff3bff" opacity="0.5"/>
+          <rect x="6" y="12" width="2" height="1" fill="#ff3bff" opacity="0.8"/>
+          <rect x="12" y="12" width="2" height="1" fill="#ff3bff" opacity="0.8"/>
+          <rect x="6" y="14" width="4" height="1" fill="#ff3bff" opacity="0.4"/>
+          <rect x="6" y="16" width="6" height="1" fill="#ff3bff" opacity="0.3"/>
+          <rect x="1" y="9" width="3" height="8" fill="#2a0a3a"/>
+          <rect x="16" y="9" width="3" height="8" fill="#2a0a3a"/>
+          <rect x="0" y="14" width="2" height="4" fill="#555"/>
+          <rect x="18" y="14" width="2" height="4" fill="#555"/>
+          <rect x="0" y="13" width="3" height="1" fill="#ff3bff" opacity="0.7"/>
+          <rect x="17" y="13" width="3" height="1" fill="#ff3bff" opacity="0.7"/>
+          <rect x="5" y="19" width="4" height="5" fill="#2a0a3a"/>
+          <rect x="11" y="19" width="4" height="5" fill="#2a0a3a"/>
+          <rect x="4" y="23" width="5" height="2" fill="#1a0226"/>
+          <rect x="11" y="23" width="5" height="2" fill="#1a0226"/>
+        </svg>
+      </div>
+      <div class="skill-info">
+        <h3>CYBER<br>SECURITY</h3>
+        <p>Enhance your digital defense and system protection skills.</p>
+        <div class="skill-xp-wrap">
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span>55%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:55%"></div></div>
         </div>
-      </section>
+        <div class="skill-rarity">★ RARE SKILL</div>
+      </div>
+    </div>
+
+    <!-- Data Card -->
+    <div class="skill-card data-card">
+      <div class="skill-card-glow"></div>
+      <div class="skill-corner tl"></div>
+      <div class="skill-corner tr"></div>
+      <div class="skill-corner bl"></div>
+      <div class="skill-corner br"></div>
+      <div class="skill-pixel-area">
+        <div class="skill-sparkles" id="sparks-data"></div>
+        <!-- Wizard/Data analyst pixel character -->
+        <svg class="skill-pixel-char" width="80" height="100" viewBox="0 0 20 25" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="8" y="0" width="4" height="1" fill="#00ff88"/>
+          <rect x="7" y="1" width="6" height="1" fill="#00cc6a"/>
+          <rect x="6" y="2" width="8" height="2" fill="#00ff88"/>
+          <rect x="4" y="4" width="12" height="2" fill="#00cc6a"/>
+          <rect x="5" y="5" width="10" height="7" fill="#f5c09a"/>
+          <rect x="6" y="6" width="8" height="5" fill="#f5c09a"/>
+          <rect x="7" y="7" width="2" height="2" fill="#2a1a00"/>
+          <rect x="11" y="7" width="2" height="2" fill="#2a1a00"/>
+          <rect x="7" y="10" width="6" height="1" fill="#2a1a00"/>
+          <rect x="6" y="7" width="4" height="3" fill="#00ff88" opacity="0.15"/>
+          <rect x="10" y="7" width="4" height="3" fill="#00ff88" opacity="0.15"/>
+          <rect x="9" y="8" width="2" height="1" fill="#00ff88" opacity="0.5"/>
+          <rect x="3" y="12" width="14" height="9" fill="#0a2e1a"/>
+          <rect x="4" y="13" width="12" height="7" fill="#071f12"/>
+          <rect x="6" y="15" width="2" height="4" fill="#00ff88" opacity="0.6"/>
+          <rect x="9" y="14" width="2" height="5" fill="#00ff88" opacity="0.8"/>
+          <rect x="12" y="16" width="2" height="3" fill="#00ff88" opacity="0.5"/>
+          <rect x="17" y="8" width="2" height="13" fill="#3a2800"/>
+          <rect x="17" y="7" width="2" height="2" fill="#00ff88"/>
+          <rect x="16" y="7" width="1" height="1" fill="#00ff88" opacity="0.5"/>
+          <rect x="19" y="7" width="1" height="1" fill="#00ff88" opacity="0.5"/>
+          <rect x="1" y="12" width="3" height="7" fill="#0a2e1a"/>
+          <rect x="5" y="21" width="4" height="4" fill="#071f12"/>
+          <rect x="11" y="21" width="4" height="4" fill="#071f12"/>
+          <rect x="4" y="24" width="5" height="1" fill="#00ff88" opacity="0.3"/>
+          <rect x="11" y="24" width="5" height="1" fill="#00ff88" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="skill-info">
+        <h3>DATA<br>SCIENCE</h3>
+        <p>Master analytics and turn raw data into insights.</p>
+        <div class="skill-xp-wrap">
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span>88%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-rarity">▲ LEGENDARY</div>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="grimoire.html#suggested-skills" class="wide-btn">Strengthen Yourself!</a>
+</section>
+
+
+<section class="footer-hero">
+  <div class="footer-overlay">
+    <img
+      src="assets/images/BinusverseText.png"
+      alt="Binusverse"
+      class="footer-logo"
+    />
+
+    <p class="footer-copyright">
+      © 2026 Binusverse. All rights reserved.
+    </p>
+  </div>
+</section>
 
     </div><!-- end #home -->
 
+    <div id="armory-global-tooltip"></div>
     <script src="index.js"></script>
   </body>
 </html>

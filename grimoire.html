@@ -43,237 +43,873 @@
       <h2 class="welcome">Welcome back, Andrew</h2>
 
       <!-- ── PROFILE ROW ── -->
-      <div class="profile-row">
-        <div class="profile-card">
-          <div class="profile-info">
-            <span class="rank-badge" id="rank-badge"></span>
-            <h2 class="profile-name">Andrew</h2>
-            <p class="profile-desc">
-              Lorem ipsum is simply dummy text of the printing industry.
-            </p>
-          </div>
-          <img
-            src="assets/images/Kucingtanpabg.png"
-            class="profile-img"
-            alt="Mascot"
-          />
-        </div>
+<div class="prf-row">
 
-        <div class="mini-grid">
-          <div class="mini-card">
-            <img src="assets/images/apimembahana.png" alt="Rank" />
-            <span>Rank</span>
-          </div>
-          <div class="mini-card">
-            <h4 id="level-display">18</h4>
-            <span>Level</span>
-          </div>
-          <div class="mini-card">
-            <h4>7x</h4>
-            <span>Streak</span>
-          </div>
-          <div class="mini-card">
-            <h4>74%</h4>
-            <span>Win Rate</span>
-          </div>
-        </div>
-      </div>
+  <!-- ══ MAIN PROFILE CARD ══ -->
+  <div class="prf-main-card">
 
-      <!-- ── BATTLE STATS ROW ── -->
-      <div class="battle-stats-row">
-        <div class="stat-card">
-          <span class="stat-label">Total Battles</span>
-          <span class="stat-value">38</span>
+    <!-- Scanlines overlay -->
+    <div class="prf-scanlines"></div>
+
+    <!-- Bg pixel stars -->
+    <div class="prf-stars" id="prfStars"></div>
+
+    <!-- Glow blobs -->
+    <div class="prf-blob" style="width:300px;height:220px;top:-60px;left:-40px;background:radial-gradient(ellipse,rgba(30,144,255,0.12) 0%,transparent 70%);"></div>
+    <div class="prf-blob" style="width:200px;height:160px;bottom:-30px;right:60px;background:radial-gradient(ellipse,rgba(254,231,131,0.08) 0%,transparent 70%);"></div>
+
+    <!-- Corner deco -->
+    <div class="prf-corner tl"></div>
+    <div class="prf-corner tr"></div>
+    <div class="prf-corner bl"></div>
+    <div class="prf-corner br"></div>
+
+    <!-- Left: info -->
+    <div class="prf-info-col">
+      <!-- Rank badge -->
+      <span class="prf-rank-badge" id="rank-badge"></span>
+
+      <!-- Name with pixel underline -->
+      <h2 class="prf-name">Andrew</h2>
+      <div class="prf-name-underline"></div>
+
+      <!-- Desc -->
+      <p class="prf-desc">Lorem ipsum is simply dummy text of the printing industry.</p>
+
+      <!-- Level bar -->
+      <div class="prf-level-wrap">
+        <div class="prf-level-top">
+          <span class="prf-level-lbl">LV.18</span>
+          <span class="prf-level-xp">2840 / 4000 XP</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">Battle Record</span>
-          <span class="stat-value">
-            <span class="rec-w">28W</span>
-            <span class="rec-sep"> / </span>
-            <span class="rec-l">10L</span>
-          </span>
-        </div>
-        <div class="stat-card stat-card--green">
-          <span class="stat-label">Strongest Topic</span>
-          <span class="stat-value stat-value--topic">Algorithms</span>
-        </div>
-        <div class="stat-card stat-card--red">
-          <span class="stat-label">Weakest Topic</span>
-          <span class="stat-value stat-value--topic">Data Structures</span>
+        <div class="prf-level-track">
+          <div class="prf-level-fill" style="width:71%"></div>
         </div>
       </div>
 
-      <!-- ── XP TRACK ── -->
-      <div class="section-title">
-        <h3>XP Track</h3>
-        <span>See More</span>
+      <!-- Status tags -->
+      <div class="prf-status-tags">
+        <div class="prf-status-tag tag-green">🟢 ONLINE</div>
+        <div class="prf-status-tag tag-yellow">⚡ ON STREAK</div>
+        <div class="prf-status-tag tag-blue">🏆 RANKED</div>
       </div>
-      <div class="learning-box">
-        <p class="chart-label">XP gained per week</p>
-        <div class="line-chart">
-          <svg viewBox="0 0 500 200" preserveAspectRatio="none">
-            <polyline
-              points="20,120 120,60 220,140 320,40 420,80"
-              fill="none"
-              stroke="#FEE783"
-              stroke-width="4"
-            />
-          </svg>
-          <div class="dot" style="left: 4%; top: 60%"></div>
-          <div class="dot" style="left: 24%; top: 30%"></div>
-          <div class="dot" style="left: 44%; top: 70%"></div>
-          <div class="dot" style="left: 64%; top: 20%"></div>
-          <div class="dot" style="left: 84%; top: 40%"></div>
-        </div>
-      </div>
+    </div>
 
-      <!-- ── BATTLE PERFORMANCE ── -->
-      <div class="section-title">
-        <h3>Battle Performance</h3>
-        <span>See More</span>
-      </div>
-      <div class="learning-box">
-        <p class="chart-label">Win rate per week (%)</p>
-        <div class="line-chart">
-          <svg viewBox="0 0 500 200" preserveAspectRatio="none">
-            <polyline
-              points="20,120 120,60 220,140 320,40 420,80"
-              fill="none"
-              stroke="#FEE783"
-              stroke-width="4"
-            />
-          </svg>
-          <div class="dot" style="left: 4%; top: 60%"></div>
-          <div class="dot" style="left: 24%; top: 30%"></div>
-          <div class="dot" style="left: 44%; top: 70%"></div>
-          <div class="dot" style="left: 64%; top: 20%"></div>
-          <div class="dot" style="left: 84%; top: 40%"></div>
-        </div>
-      </div>
+    <!-- Right: mascot + floating stats -->
+    <div class="prf-mascot-col">
+      <!-- Floating pixel decorations around mascot -->
+      <div class="prf-pixel-deco deco1"></div>
+      <div class="prf-pixel-deco deco2"></div>
+      <div class="prf-pixel-deco deco3"></div>
+      <div class="prf-pixel-deco deco4"></div>
+      <img src="assets/images/Kucingtanpabg.png" class="prf-mascot" alt="Mascot" />
+    </div>
 
-      <!-- ── SUMMARY ── -->
-      <h2 class="pixel-title">Summary</h2>
-      <p class="summary-sub">Based on your battle results — analyzed by AI</p>
-      <div class="summary-grid">
-        <div class="summary-card strength">
-          <h3>Strength</h3>
-          <ul>
-            <li>
-              <img
-                src="assets/images/sword.png"
-                class="summary-icon"
-                alt=""
-              /><span>Algorithms</span>
-            </li>
-            <li>
-              <img
-                src="assets/images/sword.png"
-                class="summary-icon"
-                alt=""
-              /><span>Object-Oriented Programming</span>
-            </li>
-            <li>
-              <img
-                src="assets/images/sword.png"
-                class="summary-icon"
-                alt=""
-              /><span>AI Fundamentals</span>
-            </li>
-          </ul>
-        </div>
-        <div class="summary-card weakness">
-          <h3>Weakness</h3>
-          <ul>
-            <li>
-              <img
-                src="assets/images/shield.png"
-                class="summary-icon"
-                alt=""
-              /><span>Dynamic Programming</span>
-            </li>
-            <li>
-              <img
-                src="assets/images/shield.png"
-                class="summary-icon"
-                alt=""
-              /><span>Graph Theory</span>
-            </li>
-            <li>
-              <img
-                src="assets/images/shield.png"
-                class="summary-icon"
-                alt=""
-              /><span>Recursion & Backtracking</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+  </div>
 
-      <!-- ── SUGGESTED SKILL UPGRADES ── -->
-      <h2 class="pixel-title">Suggested Skill Upgrades</h2>
-      <p class="summary-sub">Recommended based on your weaknesses</p>
-      <div id="suggested-skills" class="skill-grid">
-        <div class="skill-card">
-          <div class="skill-image"></div>
-          <div class="skill-info">
-            <h4>Dynamic Programming</h4>
-            <p>
-              Master DP patterns to solve complex optimization problems faster.
-            </p>
-          </div>
-        </div>
-        <div class="skill-card">
-          <div class="skill-image"></div>
-          <div class="skill-info">
-            <h4>Graph Theory</h4>
-            <p>Learn BFS, DFS, Dijkstra and common graph traversal patterns.</p>
-          </div>
-        </div>
-        <div class="skill-card">
-          <div class="skill-image"></div>
-          <div class="skill-info">
-            <h4>Recursion & Backtracking</h4>
-            <p>
-              Build intuition for recursive thinking and backtracking
-              strategies.
-            </p>
-          </div>
+  <!-- ══ MINI STAT CARDS (2x2) ══ -->
+  <div class="prf-mini-grid">
+
+    <!-- Rank -->
+    <div class="prf-mini-card mini-rank">
+      <div class="prf-mini-corner tl"></div>
+      <div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div>
+      <div class="prf-mini-corner br"></div>
+      <div class="prf-mini-icon-wrap">
+        <img src="assets/images/apimembahana.png" alt="Rank" class="prf-mini-img" />
+      </div>
+      <span class="prf-mini-label">Rank</span>
+      <div class="prf-mini-pulse"></div>
+    </div>
+
+    <!-- Level -->
+    <div class="prf-mini-card mini-level">
+      <div class="prf-mini-corner tl"></div>
+      <div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div>
+      <div class="prf-mini-corner br"></div>
+      <div class="prf-mini-big-num" id="level-display">18</div>
+      <span class="prf-mini-label">Level</span>
+      <!-- Tiny pixel bar -->
+      <div class="prf-mini-bar-track"><div class="prf-mini-bar-fill" style="width:71%"></div></div>
+    </div>
+
+    <!-- Streak -->
+    <div class="prf-mini-card mini-streak">
+      <div class="prf-mini-corner tl"></div>
+      <div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div>
+      <div class="prf-mini-corner br"></div>
+      <!-- pixel flame SVG -->
+      <svg width="32" height="36" viewBox="0 0 8 9" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:2px;">
+        <rect x="3" y="0" width="2" height="1" fill="#ff9500"/>
+        <rect x="2" y="1" width="4" height="1" fill="#ff6600"/>
+        <rect x="1" y="2" width="6" height="2" fill="#ff4400"/>
+        <rect x="0" y="4" width="8" height="3" fill="#ff3300"/>
+        <rect x="1" y="6" width="6" height="1" fill="#ff6600"/>
+        <rect x="2" y="7" width="4" height="1" fill="#ff9500"/>
+        <rect x="3" y="5" width="2" height="2" fill="#fee783" opacity="0.7"/>
+        <rect x="3" y="3" width="1" height="1" fill="#fee783" opacity="0.5"/>
+      </svg>
+      <div class="prf-mini-big-num" style="color:#ff9500;">7x</div>
+      <span class="prf-mini-label">Streak</span>
+    </div>
+
+    <!-- Win Rate -->
+    <div class="prf-mini-card mini-winrate">
+      <div class="prf-mini-corner tl"></div>
+      <div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div>
+      <div class="prf-mini-corner br"></div>
+      <!-- donut-like pixel display -->
+      <div class="prf-winrate-circle">
+        <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="5"/>
+          <circle cx="26" cy="26" r="20" fill="none" stroke="#00ff88" stroke-width="5"
+                  stroke-dasharray="94 126" stroke-dashoffset="31.4"
+                  stroke-linecap="square"/>
+          <text x="26" y="30" text-anchor="middle" font-family="'Press Start 2P',monospace"
+                font-size="8" fill="#00ff88">74%</text>
+        </svg>
+      </div>
+      <span class="prf-mini-label">Win Rate</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ── BATTLE STATS ROW ── -->
+<div class="bst-row">
+
+  <!-- Total Battles -->
+  <div class="bst-card bst-battles">
+    <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
+    <div class="bst-corner bl"></div><div class="bst-corner br"></div>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(254,231,131,0.1) 0%,transparent 70%);"></div>
+    <!-- pixel sword crossed -->
+    <svg width="32" height="32" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
+      <rect x="8" y="0" width="2" height="2" fill="#fee783"/>
+      <rect x="6" y="2" width="2" height="2" fill="#fee783"/>
+      <rect x="4" y="4" width="2" height="2" fill="#fee783"/>
+      <rect x="2" y="6" width="2" height="2" fill="#fee783"/>
+      <rect x="0" y="8" width="2" height="2" fill="#b8a200"/>
+      <rect x="4" y="3" width="3" height="1" fill="#fee783"/>
+      <rect x="3" y="4" width="1" height="3" fill="#fee783"/>
+      <rect x="0" y="0" width="2" height="2" fill="#fee783"/>
+      <rect x="2" y="2" width="2" height="2" fill="#fee783"/>
+    </svg>
+    <div class="bst-label">TOTAL BATTLES</div>
+    <div class="bst-value" style="color:#fee783;">38</div>
+    <div class="bst-sub">All time</div>
+  </div>
+
+  <!-- Battle Record -->
+  <div class="bst-card bst-record">
+    <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
+    <div class="bst-corner bl"></div><div class="bst-corner br"></div>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.08) 0%,transparent 70%);"></div>
+    <div class="bst-label">BATTLE RECORD</div>
+    <div class="bst-record-wrap">
+      <div class="bst-record-block win">
+        <div class="bst-record-num">28</div>
+        <div class="bst-record-tag">WIN</div>
+      </div>
+      <div class="bst-record-vs">VS</div>
+      <div class="bst-record-block lose">
+        <div class="bst-record-num">10</div>
+        <div class="bst-record-tag">LOSE</div>
+      </div>
+    </div>
+    <!-- win rate mini bar -->
+    <div class="bst-record-bar-track">
+      <div class="bst-record-bar-win" style="width:73.7%"></div>
+      <div class="bst-record-bar-lose" style="width:26.3%"></div>
+    </div>
+  </div>
+
+  <!-- Strongest Topic -->
+  <div class="bst-card bst-strong">
+    <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
+    <div class="bst-corner bl"></div><div class="bst-corner br"></div>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.1) 0%,transparent 70%);"></div>
+    <!-- pixel star -->
+    <svg width="28" height="28" viewBox="0 0 7 7" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
+      <rect x="3" y="0" width="1" height="2" fill="#00ff88"/>
+      <rect x="0" y="3" width="2" height="1" fill="#00ff88"/>
+      <rect x="5" y="3" width="2" height="1" fill="#00ff88"/>
+      <rect x="3" y="5" width="1" height="2" fill="#00ff88"/>
+      <rect x="1" y="1" width="2" height="2" fill="#00ff88" opacity=".6"/>
+      <rect x="4" y="1" width="2" height="2" fill="#00ff88" opacity=".6"/>
+      <rect x="1" y="4" width="2" height="2" fill="#00ff88" opacity=".6"/>
+      <rect x="4" y="4" width="2" height="2" fill="#00ff88" opacity=".6"/>
+      <rect x="2" y="2" width="3" height="3" fill="#00ff88"/>
+      <rect x="3" y="2" width="1" height="1" fill="#fff" opacity=".5"/>
+    </svg>
+    <div class="bst-label">STRONGEST TOPIC</div>
+    <div class="bst-topic-val strong">Algorithms</div>
+    <div class="bst-topic-bar"><div style="width:92%;background:#00ff88;height:100%;"></div></div>
+    <div class="bst-sub" style="color:#00ff88;">92% mastery</div>
+  </div>
+
+  <!-- Weakest Topic -->
+  <div class="bst-card bst-weak">
+    <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
+    <div class="bst-corner bl"></div><div class="bst-corner br"></div>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(255,77,77,0.1) 0%,transparent 70%);"></div>
+    <!-- pixel skull -->
+    <svg width="28" height="28" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
+      <rect x="1" y="1" width="6" height="4" fill="#ff4d4d"/>
+      <rect x="2" y="0" width="4" height="1" fill="#ff4d4d"/>
+      <rect x="0" y="2" width="1" height="2" fill="#ff4d4d"/>
+      <rect x="7" y="2" width="1" height="2" fill="#ff4d4d"/>
+      <rect x="2" y="2" width="1" height="2" fill="#0d0f2a"/>
+      <rect x="5" y="2" width="1" height="2" fill="#0d0f2a"/>
+      <rect x="3" y="4" width="2" height="1" fill="#ff4d4d"/>
+      <rect x="2" y="5" width="4" height="2" fill="#cc3333"/>
+      <rect x="3" y="5" width="1" height="2" fill="#0d0f2a"/>
+      <rect x="5" y="5" width="1" height="2" fill="#0d0f2a"/>
+    </svg>
+    <div class="bst-label">WEAKEST TOPIC</div>
+    <div class="bst-topic-val weak">Data Structures</div>
+    <div class="bst-topic-bar"><div style="width:38%;background:#ff4d4d;height:100%;"></div></div>
+    <div class="bst-sub" style="color:#ff4d4d;">38% mastery</div>
+  </div>
+
+</div>
+
+
+
+<!-- ── XP TRACK — ORION ── -->
+<div class="section-title">
+  <h3>XP Track</h3>
+</div>
+<div class="constellation-box" id="box-xp">
+  <div class="nebula" style="width:320px;height:220px;top:-80px;left:-60px;background:rgba(254,231,131,0.08);"></div>
+  <div class="nebula" style="width:160px;height:130px;bottom:-20px;right:30px;background:rgba(0,229,255,0.06);"></div>
+  <div class="chart-label-px">XP gained per week</div>
+  <div class="const-badge" style="background:#fee783;color:#1a1200;">✦ ORION</div>
+  <canvas id="cvs-xp"></canvas>
+  <div class="week-labels-px">
+    <span>WK1</span><span>WK2</span><span>WK3</span>
+    <span>WK4</span><span>WK5</span><span>WK6</span>
+  </div>
+  <div class="star-tooltip" id="tip-xp" style="border-color:#fee783;">
+    <div class="tt-week"></div>
+    <div class="tt-val" style="color:#fee783;"></div>
+  </div>
+</div>
+
+<!-- ── BATTLE PERFORMANCE — SCORPIUS ── -->
+<div class="section-title">
+  <h3>Battle Performance</h3>
+</div>
+<div class="constellation-box" id="box-bp">
+  <div class="nebula" style="width:280px;height:200px;top:-50px;right:-40px;background:rgba(255,59,255,0.08);"></div>
+  <div class="nebula" style="width:180px;height:140px;bottom:-30px;left:50px;background:rgba(0,255,136,0.05);"></div>
+  <div class="chart-label-px">Win rate per week (%)</div>
+  <div class="const-badge" style="background:#ff3bff;color:#1a001a;">✦ SCORPIUS</div>
+  <canvas id="cvs-bp"></canvas>
+  <div class="week-labels-px">
+    <span>WK1</span><span>WK2</span><span>WK3</span>
+    <span>WK4</span><span>WK5</span><span>WK6</span>
+  </div>
+  <div class="star-tooltip" id="tip-bp" style="border-color:#ff3bff;">
+    <div class="tt-week"></div>
+    <div class="tt-val" style="color:#ff3bff;"></div>
+  </div>
+</div>
+
+
+
+<!-- ── SUMMARY ── -->
+<h2 class="pixel-title">Summary</h2>
+<p class="summary-sub">Based on your battle results — analyzed by AI</p>
+
+<!-- AI Badge -->
+<div class="ai-analysis-badge">
+  <div class="ai-badge-pill">✦ AI ANALYSIS COMPLETE · ACCURACY 94%</div>
+</div>
+
+<!-- Overall Mastery Bar -->
+<div class="mastery-bar-wrap">
+  <div class="mastery-top">
+    <span class="mastery-label">OVERALL MASTERY</span>
+    <span class="mastery-score">74 / 100</span>
+  </div>
+  <div class="mastery-track">
+    <div class="mastery-fill"></div>
+  </div>
+  <div class="mastery-ticks">
+    <span class="mastery-tick">0</span>
+    <span class="mastery-tick">25</span>
+    <span class="mastery-tick">50</span>
+    <span class="mastery-tick">75</span>
+    <span class="mastery-tick">100</span>
+  </div>
+</div>
+
+<!-- Strength & Weakness Cards -->
+<div class="summary-grid">
+
+  <!-- STRENGTH -->
+  <div class="summary-card strength">
+    <div class="sum-card-glow"></div>
+    <div class="sum-card-corner tl"></div>
+    <div class="sum-card-corner tr"></div>
+    <div class="sum-card-corner bl"></div>
+    <div class="sum-card-corner br"></div>
+
+    <div class="sum-card-header">
+      <!-- Pixel sword icon -->
+      <svg class="sum-card-icon" width="32" height="32" viewBox="0 0 8 8"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="5" y="0" width="2" height="2" fill="#00ff88"/>
+        <rect x="4" y="1" width="2" height="2" fill="#00ff88"/>
+        <rect x="3" y="2" width="2" height="2" fill="#00dd77"/>
+        <rect x="2" y="3" width="2" height="2" fill="#00dd77"/>
+        <rect x="1" y="4" width="2" height="2" fill="#00ff88"/>
+        <rect x="0" y="5" width="2" height="2" fill="#00cc66"/>
+        <rect x="3" y="3" width="2" height="1" fill="#00ff88"/>
+        <rect x="2" y="4" width="2" height="1" fill="#00ff88"/>
+      </svg>
+      <div>
+        <div class="sum-card-title">STRENGTH</div>
+        <div class="sum-card-count">3 TOPICS MASTERED</div>
+      </div>
+    </div>
+    <div class="sum-card-divider"></div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">Algorithms</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:92%"></div>
         </div>
       </div>
+      <div class="sum-item-pct">92%</div>
+    </div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">Object-Oriented Programming</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:86%;animation-delay:.15s"></div>
+        </div>
+      </div>
+      <div class="sum-item-pct">86%</div>
+    </div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">AI Fundamentals</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:81%;animation-delay:.3s"></div>
+        </div>
+      </div>
+      <div class="sum-item-pct">81%</div>
+    </div>
+  </div>
+
+  <!-- WEAKNESS -->
+  <div class="summary-card weakness">
+    <div class="sum-card-glow"></div>
+    <div class="sum-card-corner tl"></div>
+    <div class="sum-card-corner tr"></div>
+    <div class="sum-card-corner bl"></div>
+    <div class="sum-card-corner br"></div>
+
+    <div class="sum-card-header">
+      <!-- Pixel cracked shield icon -->
+      <svg class="sum-card-icon" width="32" height="32" viewBox="0 0 8 8"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="1" y="0" width="6" height="2" fill="#ff4d4d"/>
+        <rect x="0" y="1" width="8" height="4" fill="#cc3333"/>
+        <rect x="1" y="5" width="6" height="1" fill="#ff4d4d"/>
+        <rect x="2" y="6" width="4" height="1" fill="#cc3333"/>
+        <rect x="3" y="7" width="2" height="1" fill="#ff4d4d"/>
+        <rect x="3" y="2" width="1" height="2" fill="#ff6666" opacity="0.6"/>
+        <rect x="4" y="3" width="1" height="2" fill="#ff6666" opacity="0.4"/>
+        <rect x="2" y="1" width="1" height="1" fill="#ff8888" opacity="0.5"/>
+      </svg>
+      <div>
+        <div class="sum-card-title">WEAKNESS</div>
+        <div class="sum-card-count">3 TOPICS TO IMPROVE</div>
+      </div>
+    </div>
+    <div class="sum-card-divider"></div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">Dynamic Programming</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:38%"></div>
+        </div>
+      </div>
+      <div class="sum-item-pct">38%</div>
+    </div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">Graph Theory</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:45%;animation-delay:.15s"></div>
+        </div>
+      </div>
+      <div class="sum-item-pct">45%</div>
+    </div>
+
+    <div class="sum-item-row">
+      <div class="sum-item-dot"></div>
+      <div class="sum-item-info">
+        <div class="sum-item-name">Recursion &amp; Backtracking</div>
+        <div class="sum-item-track">
+          <div class="sum-item-fill" style="--w:41%;animation-delay:.3s"></div>
+        </div>
+      </div>
+      <div class="sum-item-pct">41%</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom stat row -->
+<div class="sum-stats-row">
+  <div class="sum-stat-box">
+    <div class="sum-stat-val">74%</div>
+    <div class="sum-stat-lbl">WIN RATE</div>
+  </div>
+  <div class="sum-stat-box">
+    <div class="sum-stat-val">7x</div>
+    <div class="sum-stat-lbl">STREAK</div>
+  </div>
+  <div class="sum-stat-box">
+    <div class="sum-stat-val">38</div>
+    <div class="sum-stat-lbl">BATTLES</div>
+  </div>
+  <div class="sum-stat-box">
+    <div class="sum-stat-val positive">+14%</div>
+    <div class="sum-stat-lbl">GROWTH</div>
+  </div>
+</div>
+
+<!-- ── SUGGESTED SKILL UPGRADES ── -->
+<h2 class="pixel-title">Suggested Skill Upgrades</h2>
+<p class="summary-sub">Recommended based on your weaknesses</p>
+
+<div id="suggested-skills" class="gs-skill-grid">
+
+  <!-- Card 1: Dynamic Programming -->
+  <div class="gs-skill-card c-dp">
+    <div class="gs-glow"></div>
+    <div class="gs-corner tl"></div><div class="gs-corner tr"></div>
+    <div class="gs-corner bl"></div><div class="gs-corner br"></div>
+
+    <div class="gs-pixel-area">
+      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-diff diff-hard">HARD</div>
+
+      <!-- Wizard DP pixel character -->
+      <svg class="gs-char" width="76" height="90" viewBox="0 0 20 25"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="8" y="0" width="4" height="1" fill="#ff3bff"/>
+        <rect x="7" y="1" width="6" height="1" fill="#cc00cc"/>
+        <rect x="6" y="2" width="8" height="2" fill="#ff3bff"/>
+        <rect x="4" y="4" width="12" height="2" fill="#cc00cc"/>
+        <rect x="5" y="5" width="10" height="7" fill="#f5c09a"/>
+        <rect x="7" y="7" width="2" height="2" fill="#2a1a00"/>
+        <rect x="11" y="7" width="2" height="2" fill="#2a1a00"/>
+        <rect x="7" y="7" width="1" height="1" fill="#fff"/>
+        <rect x="11" y="7" width="1" height="1" fill="#fff"/>
+        <rect x="8" y="10" width="4" height="1" fill="#c97840"/>
+        <rect x="3" y="12" width="14" height="9" fill="#1a002e"/>
+        <rect x="4" y="13" width="12" height="7" fill="#110020"/>
+        <rect x="6" y="14" width="8" height="5" fill="#ff3bff" opacity="0.15"/>
+        <rect x="7" y="14" width="1" height="5" fill="#ff3bff" opacity="0.3"/>
+        <rect x="9" y="14" width="1" height="5" fill="#ff3bff" opacity="0.3"/>
+        <rect x="11" y="14" width="1" height="5" fill="#ff3bff" opacity="0.3"/>
+        <rect x="6" y="15" width="8" height="1" fill="#ff3bff" opacity="0.3"/>
+        <rect x="6" y="17" width="8" height="1" fill="#ff3bff" opacity="0.3"/>
+        <rect x="0" y="8" width="2" height="13" fill="#3a2800"/>
+        <rect x="0" y="7" width="2" height="2" fill="#ff3bff"/>
+        <rect x="1" y="12" width="3" height="7" fill="#1a002e"/>
+        <rect x="17" y="12" width="3" height="7" fill="#1a002e"/>
+        <rect x="5" y="21" width="4" height="4" fill="#110020"/>
+        <rect x="11" y="21" width="4" height="4" fill="#110020"/>
+        <rect x="4" y="24" width="5" height="1" fill="#ff3bff" opacity="0.3"/>
+        <rect x="11" y="24" width="5" height="1" fill="#ff3bff" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <div class="gs-info">
+      <div class="gs-name">DYNAMIC<br>PROGRAMMING</div>
+      <div class="gs-desc">Master DP patterns to solve complex optimization problems faster.</div>
+      <div class="gs-xp-wrap">
+        <div class="gs-xp-top">
+          <span class="gs-xp-lbl">MASTERY</span>
+          <span class="gs-xp-lbl">38%</span>
+        </div>
+        <div class="gs-xp-track">
+          <div class="gs-xp-fill" style="width:38%"></div>
+        </div>
+      </div>
+      <button class="gs-btn">&#9654; START LEARNING</button>
+    </div>
+  </div>
+
+  <!-- Card 2: Graph Theory -->
+  <div class="gs-skill-card c-graph">
+    <div class="gs-glow"></div>
+    <div class="gs-corner tl"></div><div class="gs-corner tr"></div>
+    <div class="gs-corner bl"></div><div class="gs-corner br"></div>
+
+    <div class="gs-pixel-area">
+      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-diff diff-hard">HARD</div>
+
+      <!-- Explorer Graph pixel character -->
+      <svg class="gs-char" width="76" height="90" viewBox="0 0 20 25"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="3" y="1" width="14" height="2" fill="#b87333"/>
+        <rect x="2" y="2" width="16" height="2" fill="#d4a96a"/>
+        <rect x="4" y="3" width="12" height="1" fill="#b87333"/>
+        <rect x="5" y="4" width="10" height="7" fill="#f5c09a"/>
+        <rect x="7" y="6" width="2" height="2" fill="#2a1a00"/>
+        <rect x="11" y="6" width="2" height="2" fill="#2a1a00"/>
+        <rect x="7" y="6" width="1" height="1" fill="#fff"/>
+        <rect x="11" y="6" width="1" height="1" fill="#fff"/>
+        <rect x="6"  y="6" width="4" height="3" fill="#00e5ff" opacity="0.2"/>
+        <rect x="10" y="6" width="4" height="3" fill="#00e5ff" opacity="0.2"/>
+        <rect x="9"  y="7" width="2" height="1" fill="#00e5ff" opacity="0.4"/>
+        <rect x="3"  y="11" width="14" height="10" fill="#1a3a4a"/>
+        <rect x="4"  y="12" width="12" height="8"  fill="#0d2233"/>
+        <rect x="6"  y="13" width="2" height="2" fill="#00e5ff" opacity="0.8"/>
+        <rect x="12" y="13" width="2" height="2" fill="#00e5ff" opacity="0.8"/>
+        <rect x="9"  y="16" width="2" height="2" fill="#00e5ff" opacity="0.8"/>
+        <rect x="8"  y="14" width="4" height="1" fill="#00e5ff" opacity="0.4"/>
+        <rect x="7"  y="15" width="2" height="2" fill="#00e5ff" opacity="0.3"/>
+        <rect x="11" y="15" width="2" height="2" fill="#00e5ff" opacity="0.3"/>
+        <rect x="0"  y="11" width="3" height="8" fill="#1a3a4a"/>
+        <rect x="17" y="11" width="3" height="8" fill="#1a3a4a"/>
+        <rect x="17" y="13" width="4" height="4" fill="#fdf3dc"/>
+        <rect x="18" y="14" width="2" height="1" fill="#a0a8d0"/>
+        <rect x="18" y="15" width="2" height="1" fill="#a0a8d0"/>
+        <rect x="5"  y="21" width="4" height="4" fill="#0d2233"/>
+        <rect x="11" y="21" width="4" height="4" fill="#0d2233"/>
+        <rect x="4"  y="24" width="5" height="1" fill="#00e5ff" opacity="0.2"/>
+        <rect x="11" y="24" width="5" height="1" fill="#00e5ff" opacity="0.2"/>
+      </svg>
+    </div>
+
+    <div class="gs-info">
+      <div class="gs-name">GRAPH<br>THEORY</div>
+      <div class="gs-desc">Learn BFS, DFS, Dijkstra and common graph traversal patterns.</div>
+      <div class="gs-xp-wrap">
+        <div class="gs-xp-top">
+          <span class="gs-xp-lbl">MASTERY</span>
+          <span class="gs-xp-lbl">45%</span>
+        </div>
+        <div class="gs-xp-track">
+          <div class="gs-xp-fill" style="width:45%;animation-delay:.15s"></div>
+        </div>
+      </div>
+      <button class="gs-btn">&#9654; START LEARNING</button>
+    </div>
+  </div>
+
+  <!-- Card 3: Recursion & Backtracking -->
+  <div class="gs-skill-card c-rec">
+    <div class="gs-glow"></div>
+    <div class="gs-corner tl"></div><div class="gs-corner tr"></div>
+    <div class="gs-corner bl"></div><div class="gs-corner br"></div>
+
+    <div class="gs-pixel-area">
+      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-diff diff-med">MEDIUM</div>
+
+      <!-- Robot Recursion pixel character -->
+      <svg class="gs-char" width="76" height="90" viewBox="0 0 20 25"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="9" y="0" width="2" height="2" fill="#ff9500"/>
+        <rect x="9" y="0" width="1" height="1" fill="#fff"/>
+        <rect x="4" y="2" width="12" height="8" fill="#2a1a00"/>
+        <rect x="5" y="3" width="10" height="6" fill="#1a0e00"/>
+        <rect x="6" y="4" width="3" height="2" fill="#ff9500" opacity="0.9"/>
+        <rect x="11" y="4" width="3" height="2" fill="#ff9500" opacity="0.9"/>
+        <rect x="6" y="4" width="1" height="1" fill="#fff"/>
+        <rect x="11" y="4" width="1" height="1" fill="#fff"/>
+        <rect x="7" y="7" width="6" height="1" fill="#ff9500" opacity="0.6"/>
+        <rect x="3" y="10" width="14" height="9" fill="#2a1a00"/>
+        <rect x="4" y="11" width="12" height="7" fill="#1a0e00"/>
+        <rect x="6" y="12" width="4" height="1" fill="#ff9500"/>
+        <rect x="9" y="12" width="1" height="3" fill="#ff9500"/>
+        <rect x="6" y="14" width="4" height="1" fill="#ff9500"/>
+        <rect x="6" y="12" width="1" height="3" fill="#ff9500"/>
+        <rect x="5" y="13" width="2" height="1" fill="#ff9500"/>
+        <rect x="10" y="13" width="2" height="1" fill="#ff9500"/>
+        <rect x="6" y="16" width="8" height="1" fill="#ff9500" opacity="0.4"/>
+        <rect x="0" y="10" width="3" height="7" fill="#2a1a00"/>
+        <rect x="17" y="10" width="3" height="7" fill="#2a1a00"/>
+        <rect x="0" y="16" width="4" height="2" fill="#ff9500"/>
+        <rect x="16" y="16" width="4" height="2" fill="#ff9500"/>
+        <rect x="5" y="19" width="4" height="5" fill="#2a1a00"/>
+        <rect x="11" y="19" width="4" height="5" fill="#2a1a00"/>
+        <rect x="4" y="23" width="5" height="2" fill="#1a0e00"/>
+        <rect x="11" y="23" width="5" height="2" fill="#1a0e00"/>
+      </svg>
+    </div>
+
+    <div class="gs-info">
+      <div class="gs-name">RECURSION &amp;<br>BACKTRACK</div>
+      <div class="gs-desc">Build intuition for recursive thinking and backtracking strategies.</div>
+      <div class="gs-xp-wrap">
+        <div class="gs-xp-top">
+          <span class="gs-xp-lbl">MASTERY</span>
+          <span class="gs-xp-lbl">41%</span>
+        </div>
+        <div class="gs-xp-track">
+          <div class="gs-xp-fill" style="width:41%;animation-delay:.3s"></div>
+        </div>
+      </div>
+      <button class="gs-btn">&#9654; START LEARNING</button>
+    </div>
+  </div>
+
+</div>
 
       <!-- ── BOTTOM GRID ── -->
-      <div class="bottom-grid">
-        <div class="bottom-card">
-          <h3>Topics Mastered</h3>
-          <div class="class-tags">
-            <span>Algorithms</span>
-            <span>OOP</span>
-            <span>AI Basics</span>
-          </div>
+<div class="btm-unified-card">
+
+  <!-- Corner decorations -->
+  <div class="btm-corner tl"></div>
+  <div class="btm-corner tr"></div>
+  <div class="btm-corner bl"></div>
+  <div class="btm-corner br"></div>
+
+  <!-- Glow bg -->
+  <div class="btm-glow-left"></div>
+  <div class="btm-glow-right"></div>
+
+  <!-- ── LEFT: Topics Mastered ── -->
+  <div class="btm-left">
+    <div class="btm-section-header">
+      <!-- Pixel trophy icon -->
+      <svg width="28" height="28" viewBox="0 0 14 14"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
+        <rect x="1"  y="0"  width="12" height="2"  fill="#fee783"/>
+        <rect x="0"  y="1"  width="2"  height="4"  fill="#fee783"/>
+        <rect x="12" y="1"  width="2"  height="4"  fill="#fee783"/>
+        <rect x="1"  y="2"  width="12" height="5"  fill="#fee783"/>
+        <rect x="2"  y="3"  width="10" height="4"  fill="#ffd700"/>
+        <rect x="5"  y="7"  width="4"  height="3"  fill="#fee783"/>
+        <rect x="4"  y="10" width="6"  height="2"  fill="#fee783"/>
+        <rect x="3"  y="12" width="8"  height="2"  fill="#b8a200"/>
+        <rect x="5"  y="4"  width="2"  height="1"  fill="#fff" opacity="0.4"/>
+      </svg>
+      <div>
+        <h3 class="btm-section-title">Topics Mastered</h3>
+        <p class="btm-section-sub">3 topics unlocked</p>
+      </div>
+    </div>
+
+    <div class="btm-tags-wrap">
+      <div class="btm-tag">
+        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
+          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
+        </svg>
+        <span>Algorithms</span>
+      </div>
+      <div class="btm-tag">
+        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
+          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
+        </svg>
+        <span>OOP</span>
+      </div>
+      <div class="btm-tag">
+        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
+          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
+          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
+        </svg>
+        <span>AI Basics</span>
+      </div>
+    </div>
+
+    <!-- Mastery progress bar -->
+    <div class="btm-mastery-row">
+      <span class="btm-mastery-label">MASTERY RATE</span>
+      <span class="btm-mastery-val">3 / 12</span>
+    </div>
+    <div class="btm-mastery-track">
+      <div class="btm-mastery-fill" style="width:25%"></div>
+    </div>
+  </div>
+
+  <!-- Vertical divider -->
+  <div class="btm-divider"></div>
+
+  <!-- ── RIGHT: Battle Items ── -->
+  <div class="btm-right">
+    <div class="btm-section-header">
+      <!-- Pixel chest icon -->
+      <svg width="28" height="28" viewBox="0 0 14 14"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
+        <rect x="0"  y="3"  width="14" height="9"  fill="#b87333"/>
+        <rect x="0"  y="3"  width="14" height="3"  fill="#d4a96a"/>
+        <rect x="0"  y="6"  width="14" height="1"  fill="#7a4f1a"/>
+        <rect x="5"  y="5"  width="4"  height="3"  fill="#7a4f1a"/>
+        <rect x="6"  y="6"  width="2"  height="1"  fill="#fee783"/>
+        <rect x="1"  y="4"  width="2"  height="1"  fill="#fff" opacity="0.2"/>
+        <rect x="0"  y="0"  width="14" height="3"  fill="#7a4f1a"/>
+        <rect x="0"  y="0"  width="14" height="1"  fill="#b87333"/>
+      </svg>
+      <div>
+        <h3 class="btm-section-title">Battle Items</h3>
+        <p class="btm-section-sub">Earned from your battles</p>
+      </div>
+    </div>
+
+    <div class="btm-items-row">
+
+      <!-- Item 1: Phantom Eraser (Legendary) -->
+      <div class="btm-item-slot r-legendary">
+        <div class="btm-item-inner">
+          <svg width="38" height="38" viewBox="0 0 16 16"
+               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+            <rect x="1" y="5" width="14" height="7" fill="#ff9500"/>
+            <rect x="1" y="5" width="14" height="3" fill="#ffb700"/>
+            <rect x="1" y="8" width="14" height="1" fill="#cc7700"/>
+            <rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>
+            <rect x="3" y="2" width="1" height="1" fill="#ff4444"/>
+            <rect x="4" y="3" width="1" height="1" fill="#ff4444"/>
+            <rect x="5" y="2" width="1" height="1" fill="#ff4444"/>
+            <rect x="9" y="2" width="1" height="1" fill="#ff4444"/>
+            <rect x="10" y="3" width="1" height="1" fill="#ff4444"/>
+            <rect x="11" y="2" width="1" height="1" fill="#ff4444"/>
+            <rect x="2"  y="12" width="1" height="1" fill="#f0d0a0" opacity="0.6"/>
+            <rect x="5"  y="13" width="2" height="1" fill="#f0d0a0" opacity="0.5"/>
+            <rect x="2"  y="5"  width="3" height="1" fill="#fff"    opacity="0.3"/>
+          </svg>
         </div>
-        <div class="bottom-card">
-          <h3>Battle Items</h3>
-          <p class="items-sub">Earned from the battles</p>
-          <div class="armory-icons">
-            <div class="item-slot-empty"></div>
-            <div class="item-slot-empty"></div>
-            <div class="item-slot-empty"></div>
-            <div class="item-slot-empty"></div>
-            <div class="item-slot-empty"></div>
-          </div>
+        <div class="btm-item-dot" style="background:#ff9500"></div>
+      </div>
+
+      <!-- Item 2: Time Freeze Orb (Epic) -->
+      <div class="btm-item-slot r-epic">
+        <div class="btm-item-inner">
+          <svg width="38" height="38" viewBox="0 0 16 16"
+               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+            <rect x="3"  y="1"  width="10" height="2"  fill="#7c3aed"/>
+            <rect x="2"  y="2"  width="12" height="10" fill="#6d28d9"/>
+            <rect x="1"  y="4"  width="14" height="6"  fill="#7c3aed"/>
+            <rect x="3"  y="12" width="10" height="2"  fill="#6d28d9"/>
+            <rect x="5"  y="4"  width="6"  height="6"  fill="#1a0a2e"/>
+            <rect x="6"  y="3"  width="4"  height="1"  fill="#c084fc"/>
+            <rect x="4"  y="5"  width="1"  height="4"  fill="#c084fc"/>
+            <rect x="11" y="5"  width="1"  height="4"  fill="#c084fc"/>
+            <rect x="6"  y="10" width="4"  height="1"  fill="#c084fc"/>
+            <rect x="7"  y="5"  width="1"  height="3"  fill="#fff"/>
+            <rect x="7"  y="7"  width="3"  height="1"  fill="#fff"/>
+            <rect x="7"  y="7"  width="1"  height="1"  fill="#fee783"/>
+            <rect x="3"  y="3"  width="2"  height="2"  fill="#fff" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="btm-item-dot" style="background:#c084fc"></div>
+      </div>
+
+      <!-- Item 3: 2nd Chance Scroll (Rare) -->
+      <div class="btm-item-slot r-rare">
+        <div class="btm-item-inner">
+          <svg width="38" height="38" viewBox="0 0 16 16"
+               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+            <rect x="2" y="0"  width="12" height="2" fill="#b87333"/>
+            <rect x="1" y="1"  width="14" height="2" fill="#d4a96a"/>
+            <rect x="1" y="3"  width="14" height="9" fill="#fdf3dc"/>
+            <rect x="3" y="4"  width="10" height="1" fill="#a0a8d0"/>
+            <rect x="3" y="6"  width="8"  height="1" fill="#a0a8d0"/>
+            <rect x="5"  y="5"  width="6" height="1" fill="#00e5ff"/>
+            <rect x="10" y="5"  width="1" height="3" fill="#00e5ff"/>
+            <rect x="9"  y="7"  width="2" height="1" fill="#00e5ff"/>
+            <rect x="5"  y="4"  width="3" height="1" fill="#00e5ff"/>
+            <rect x="1"  y="13" width="14" height="2" fill="#d4a96a"/>
+            <rect x="2"  y="14" width="12" height="2" fill="#b87333"/>
+          </svg>
+        </div>
+        <div class="btm-item-dot" style="background:#00e5ff"></div>
+      </div>
+
+      <!-- Item 4: XP Magnet (Uncommon) -->
+      <div class="btm-item-slot r-uncommon">
+        <div class="btm-item-inner">
+          <svg width="38" height="38" viewBox="0 0 16 16"
+               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+            <rect x="2"  y="2"  width="4"  height="10" fill="#94a3b8"/>
+            <rect x="10" y="2"  width="4"  height="10" fill="#94a3b8"/>
+            <rect x="2"  y="2"  width="12" height="3"  fill="#64748b"/>
+            <rect x="3"  y="5"  width="2"  height="7"  fill="#0d0f20"/>
+            <rect x="11" y="5"  width="2"  height="7"  fill="#0d0f20"/>
+            <rect x="2"  y="12" width="4"  height="3"  fill="#ef4444"/>
+            <rect x="10" y="12" width="4"  height="3"  fill="#3b82f6"/>
+            <rect x="6"  y="5"  width="1"  height="1"  fill="#fee783"/>
+            <rect x="7"  y="4"  width="2"  height="1"  fill="#fee783"/>
+            <rect x="9"  y="5"  width="1"  height="1"  fill="#fee783"/>
+            <rect x="3"  y="2"  width="2"  height="1"  fill="#fff" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="btm-item-dot" style="background:#00ff88"></div>
+      </div>
+
+      <!-- Item 5: Empty slot -->
+      <div class="btm-item-slot btm-slot-empty">
+        <div class="btm-item-inner">
+          <svg width="24" height="24" viewBox="0 0 8 8"
+               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;opacity:.3">
+            <rect x="3" y="1" width="2" height="6" fill="#fff"/>
+            <rect x="1" y="3" width="6" height="2" fill="#fff"/>
+          </svg>
         </div>
       </div>
+
+    </div>
+
+    <!-- Items count -->
+    <div class="btm-items-count">
+      <span class="btm-items-lbl">ITEMS COLLECTED</span>
+      <span class="btm-items-num">4 / 20</span>
+    </div>
+
+  </div>
+
+</div>
     </section>
 
     <!-- FOOTER -->
-    <section class="footer-hero">
-      <div class="footer-left">
-        <img src="assets/images/BinusverseText.png" alt="Binusverse" />
-      </div>
-      <div class="footer-right">
-        <p>© 2026 Binusverse. All rights reserved.</p>
-      </div>
-    </section>
+<section class="footer-hero">
+  <div class="footer-overlay">
+    <img
+      src="assets/images/BinusverseText.png"
+      alt="Binusverse"
+      class="footer-logo"
+    />
+
+    <p class="footer-copyright">
+      © 2026 Binusverse. All rights reserved.
+    </p>
+  </div>
+</section>
 
     <script src="assets/js/rank.js"></script>
     <script>
@@ -308,5 +944,6 @@
           );
         });
     </script>
+    <script src="grimoire-charts.js"></script>
   </body>
 </html>
