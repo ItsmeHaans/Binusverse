@@ -96,14 +96,98 @@
 
     <script src="battle.js"></script>
 
-    <section class="footer-hero">
-      <div class="footer-left">
-        <img src="assets/images/BinusverseText.png" alt="Logo" />
-      </div>
-      <div class="footer-right">
-        <p>© 2026 Binusverse. All rights reserved.</p>
-      </div>
-    </section>
+     <!-- ════════ FOOTER ════════ -->
+      <footer class="site-footer">
+
+        <!-- pixel stars bg layer -->
+        <canvas class="footer-stars-cvs" id="footerStars"></canvas>
+
+        <!-- top divider pixel dashes -->
+        <div class="footer-top-line"></div>
+
+        <div class="footer-inner">
+
+          <!-- LEFT: Brand -->
+          <div class="footer-brand">
+            <div class="footer-logo-txt">BINUSVERSE</div>
+            <p class="footer-tagline">Train. Battle. Ascend.</p>
+            <div class="footer-social-row">
+              <a class="footer-social-btn" href="#" title="Discord">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+                  <rect x="3" y="5" width="18" height="14" rx="3" fill="currentColor" opacity=".15"/>
+                  <path d="M9 12C9 13.1 8.4 14 7.5 14S6 13.1 6 12 6.6 10 7.5 10 9 10.9 9 12ZM18 12C18 13.1 17.4 14 16.5 14S15 13.1 15 12 15.6 10 16.5 10 18 10.9 18 12Z" fill="currentColor"/>
+                  <path d="M8 6C8 6 6 7 5 9M16 6C16 6 18 7 19 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M9 17C9 17 9.5 17.5 12 17.5S15 17 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <a class="footer-social-btn" href="#" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="17" cy="7" r="1" fill="currentColor"/>
+                </svg>
+              </a>
+              <a class="footer-social-btn" href="#" title="Twitter/X">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4L10.5 12.5M4 4H7.5L20 20H16.5M4 4L20 20M20 20L13.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- CENTER: Links grid -->
+          <div class="footer-links-grid">
+            <div class="footer-links-col">
+              <div class="footer-links-title">EXPLORE</div>
+              <a href="grimoire.html" class="footer-link">Grimoire</a>
+              <a href="battle.html"   class="footer-link">Battle Arena</a>
+              <a href="the_commons.html" class="footer-link">The Commons</a>
+            </div>
+            <div class="footer-links-col">
+              <div class="footer-links-title">PLAY</div>
+              <a href="battle-play.html?mode=daily" class="footer-link">Daily Mission</a>
+              <a href="battle-play.html?mode=raid"  class="footer-link">Raid Mode</a>
+              <a href="battle.html" class="footer-link">Battle Lobby</a>
+            </div>
+            <div class="footer-links-col">
+              <div class="footer-links-title">INFO</div>
+              <a href="#" class="footer-link">About Binus</a>
+              <a href="#" class="footer-link">Help Center</a>
+              <a href="#" class="footer-link">Privacy Policy</a>
+            </div>
+          </div>
+
+          <!-- RIGHT: Stats counters -->
+          <div class="footer-stats">
+            <div class="footer-stat-item">
+              <div class="footer-stat-val">84K+</div>
+              <div class="footer-stat-lbl">Students</div>
+            </div>
+            <div class="footer-stat-item">
+              <div class="footer-stat-val">10</div>
+              <div class="footer-stat-lbl">Guilds</div>
+            </div>
+            <div class="footer-stat-item">
+              <div class="footer-stat-val">500+</div>
+              <div class="footer-stat-lbl">Battles today</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- bottom copyright bar -->
+        <div class="footer-bottom-bar">
+          <span>© 2026 Binusverse · BINUS University · All rights reserved.</span>
+          <div class="footer-bottom-dots">
+            <span class="fbd fbd-on"></span>
+            <span class="fbd fbd-on"></span>
+            <span class="fbd"></span>
+            <span class="fbd fbd-on"></span>
+          </div>
+        </div>
+
+      </footer>
+      <!-- ════════ END FOOTER ════════ -->
     <script src="assets/js/rank.js"></script>
     <script src="battle.js"></script>
     <script>
@@ -119,6 +203,43 @@
         tag.style.borderColor = rank.color;
         tag.style.background = rank.bg;
       }
+    </script>
+        <script>
+    /* ── footer pixel stars ── */
+    (function(){
+      const cvs = document.getElementById('footerStars');
+      if (!cvs) return;
+      const ctx = cvs.getContext('2d');
+      function resize() {
+        cvs.width  = cvs.offsetWidth;
+        cvs.height = cvs.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      const stars = [];
+      for (let i = 0; i < 60; i++) {
+        stars.push({
+          x: Math.random(), y: Math.random(),
+          r: Math.random() > .85 ? 2 : 1,
+          a: .06 + Math.random() * .22,
+          speed: .3 + Math.random() * .5,
+          t: Math.random() * Math.PI * 2,
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        stars.forEach(s => {
+          s.t += .015;
+          const alpha = s.a * (.7 + .3 * Math.sin(s.t * s.speed));
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(~~(s.x * cvs.width), ~~(s.y * cvs.height), s.r, s.r);
+        });
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
     </script>
   </body>
 </html>

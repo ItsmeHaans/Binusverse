@@ -107,73 +107,69 @@
 
   </div>
 
-  <!-- ══ MINI STAT CARDS (2x2) ══ -->
+  <!-- ══ MINI STAT CARDS ══ -->
   <div class="prf-mini-grid">
 
-    <!-- Rank -->
+    <!-- RANK — hexagon badge + stars -->
     <div class="prf-mini-card mini-rank">
-      <div class="prf-mini-corner tl"></div>
-      <div class="prf-mini-corner tr"></div>
-      <div class="prf-mini-corner bl"></div>
-      <div class="prf-mini-corner br"></div>
-      <div class="prf-mini-icon-wrap">
-        <img src="assets/images/apimembahana.png" alt="Rank" class="prf-mini-img" />
-      </div>
-      <span class="prf-mini-label">Rank</span>
-      <div class="prf-mini-pulse"></div>
-    </div>
-
-    <!-- Level -->
-    <div class="prf-mini-card mini-level">
-      <div class="prf-mini-corner tl"></div>
-      <div class="prf-mini-corner tr"></div>
-      <div class="prf-mini-corner bl"></div>
-      <div class="prf-mini-corner br"></div>
-      <div class="prf-mini-big-num" id="level-display">18</div>
-      <span class="prf-mini-label">Level</span>
-      <!-- Tiny pixel bar -->
-      <div class="prf-mini-bar-track"><div class="prf-mini-bar-fill" style="width:71%"></div></div>
-    </div>
-
-    <!-- Streak -->
-    <div class="prf-mini-card mini-streak">
-      <div class="prf-mini-corner tl"></div>
-      <div class="prf-mini-corner tr"></div>
-      <div class="prf-mini-corner bl"></div>
-      <div class="prf-mini-corner br"></div>
-      <!-- pixel flame SVG -->
-      <svg width="32" height="36" viewBox="0 0 8 9" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:2px;">
-        <rect x="3" y="0" width="2" height="1" fill="#ff9500"/>
-        <rect x="2" y="1" width="4" height="1" fill="#ff6600"/>
-        <rect x="1" y="2" width="6" height="2" fill="#ff4400"/>
-        <rect x="0" y="4" width="8" height="3" fill="#ff3300"/>
-        <rect x="1" y="6" width="6" height="1" fill="#ff6600"/>
-        <rect x="2" y="7" width="4" height="1" fill="#ff9500"/>
-        <rect x="3" y="5" width="2" height="2" fill="#fee783" opacity="0.7"/>
-        <rect x="3" y="3" width="1" height="1" fill="#fee783" opacity="0.5"/>
-      </svg>
-      <div class="prf-mini-big-num" style="color:#ff9500;">7x</div>
-      <span class="prf-mini-label">Streak</span>
-    </div>
-
-    <!-- Win Rate -->
-    <div class="prf-mini-card mini-winrate">
-      <div class="prf-mini-corner tl"></div>
-      <div class="prf-mini-corner tr"></div>
-      <div class="prf-mini-corner bl"></div>
-      <div class="prf-mini-corner br"></div>
-      <!-- donut-like pixel display -->
-      <div class="prf-winrate-circle">
-        <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="5"/>
-          <circle cx="26" cy="26" r="20" fill="none" stroke="#00ff88" stroke-width="5"
-                  stroke-dasharray="94 126" stroke-dashoffset="31.4"
-                  stroke-linecap="square"/>
-          <text x="26" y="30" text-anchor="middle" font-family="'Press Start 2P',monospace"
-                font-size="8" fill="#00ff88">74%</text>
+      <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
+      <div class="mc-rank-wrap">
+        <svg class="mc-rank-hex-svg" viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg">
+          <!-- hex border glow -->
+          <polygon points="40,4 76,24 76,68 40,88 4,68 4,24"
+            fill="rgba(254,231,131,0.06)" stroke="#fee783" stroke-width="2"/>
+          <polygon points="40,10 70,27 70,65 40,82 10,65 10,27"
+            fill="rgba(254,231,131,0.04)" stroke="rgba(254,231,131,0.3)" stroke-width="1"/>
         </svg>
+        <img src="assets/images/apimembahana.png" alt="Rank" class="prf-mini-img mc-rank-img" />
       </div>
-      <span class="prf-mini-label">Win Rate</span>
+      <span class="mc-stat-label">Rank</span>
+      <div class="mc-rank-badge-row">
+        <span class="mc-rank-badge-txt">🥉 Bronze III</span>
+      </div>
+    </div>
+
+    <!-- LEVEL — pixel blocks XP bar -->
+    <div class="prf-mini-card mini-level">
+      <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
+      <div class="mc-level-wrap">
+        <div class="mc-level-badge" id="level-display">18</div>
+        <div class="mc-level-xp-label">2,840 <span style="color:rgba(30,144,255,.4);font-size:.5em;">/ 4,000 XP</span></div>
+      </div>
+      <span class="mc-stat-label">Level</span>
+      <!-- pixel block bar — 10 blocks, 7 filled -->
+      <div class="mc-pixel-blocks">
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb mc-pb-on"></div>
+        <div class="mc-pb"></div>
+        <div class="mc-pb"></div>
+        <div class="mc-pb"></div>
+      </div>
+    </div>
+
+    <!-- STREAK — pixel flame canvas -->
+    <div class="prf-mini-card mini-streak">
+      <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
+      <canvas id="mcFlameCanvas" width="40" height="48" style="image-rendering:pixelated;"></canvas>
+      <span class="mc-stat-val" style="color:#ff9500;">7×</span>
+      <span class="mc-stat-label">Streak</span>
+      <span class="mc-stat-sub" style="color:rgba(255,149,0,.5);">+1.5× XP</span>
+    </div>
+
+    <!-- WIN RATE — pixel heart 74% filled -->
+    <div class="prf-mini-card mini-winrate">
+      <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
+      <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
+      <canvas id="mcHeartCanvas" width="90" height="82" style="image-rendering:pixelated;"></canvas>
+      <span class="mc-stat-label">Win Rate</span>
     </div>
 
   </div>
@@ -187,45 +183,51 @@
   <div class="bst-card bst-battles">
     <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
     <div class="bst-corner bl"></div><div class="bst-corner br"></div>
-    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(254,231,131,0.1) 0%,transparent 70%);"></div>
-    <!-- pixel sword crossed -->
-    <svg width="32" height="32" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
-      <rect x="8" y="0" width="2" height="2" fill="#fee783"/>
-      <rect x="6" y="2" width="2" height="2" fill="#fee783"/>
-      <rect x="4" y="4" width="2" height="2" fill="#fee783"/>
-      <rect x="2" y="6" width="2" height="2" fill="#fee783"/>
-      <rect x="0" y="8" width="2" height="2" fill="#b8a200"/>
-      <rect x="4" y="3" width="3" height="1" fill="#fee783"/>
-      <rect x="3" y="4" width="1" height="3" fill="#fee783"/>
-      <rect x="0" y="0" width="2" height="2" fill="#fee783"/>
-      <rect x="2" y="2" width="2" height="2" fill="#fee783"/>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(254,231,131,0.08) 0%,transparent 70%);"></div>
+    <!-- sword pixel icon -->
+    <svg width="28" height="28" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;position:relative;z-index:1;opacity:.7">
+      <rect x="6" y="0" width="2" height="2" fill="#fee783"/>
+      <rect x="4" y="2" width="2" height="2" fill="#fee783"/>
+      <rect x="2" y="4" width="2" height="2" fill="#fee783"/>
+      <rect x="0" y="6" width="2" height="2" fill="#b8a200"/>
+      <rect x="3" y="2" width="3" height="1" fill="#fee783"/>
+      <rect x="2" y="3" width="1" height="3" fill="#fee783"/>
     </svg>
-    <div class="bst-label">TOTAL BATTLES</div>
-    <div class="bst-value" style="color:#fee783;">38</div>
-    <div class="bst-sub">All time</div>
+    <span class="bst-label">Total Battles</span>
+    <span class="bst-value bst-counter" data-target="38" style="color:#fee783;">0</span>
+    <span class="bst-sub">All time</span>
+    <!-- mini bar showing progress vs goal -->
+    <div class="bst-mini-bar-wrap">
+      <div class="bst-mini-bar" style="--bc:#fee783;--bw:76%;"></div>
+    </div>
+    <span class="bst-sub" style="color:rgba(254,231,131,.3);">Goal: 50</span>
   </div>
 
   <!-- Battle Record -->
   <div class="bst-card bst-record">
     <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
     <div class="bst-corner bl"></div><div class="bst-corner br"></div>
-    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.08) 0%,transparent 70%);"></div>
-    <div class="bst-label">BATTLE RECORD</div>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.06) 0%,transparent 70%);"></div>
+    <span class="bst-label">Battle Record</span>
     <div class="bst-record-wrap">
       <div class="bst-record-block win">
-        <div class="bst-record-num">28</div>
+        <div class="bst-record-num bst-counter" data-target="28">0</div>
         <div class="bst-record-tag">WIN</div>
       </div>
-      <div class="bst-record-vs">VS</div>
+      <div class="bst-record-vs">:</div>
       <div class="bst-record-block lose">
-        <div class="bst-record-num">10</div>
+        <div class="bst-record-num bst-counter" data-target="10">0</div>
         <div class="bst-record-tag">LOSE</div>
       </div>
     </div>
-    <!-- win rate mini bar -->
-    <div class="bst-record-bar-track">
-      <div class="bst-record-bar-win" style="width:73.7%"></div>
-      <div class="bst-record-bar-lose" style="width:26.3%"></div>
+    <!-- split bar -->
+    <div class="bst-split-bar">
+      <div class="bst-split-w"></div>
+      <div class="bst-split-l"></div>
+    </div>
+    <div class="bst-split-labels">
+      <span style="color:rgba(0,255,136,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">73.7%</span>
+      <span style="color:rgba(255,77,77,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">26.3%</span>
     </div>
   </div>
 
@@ -233,48 +235,51 @@
   <div class="bst-card bst-strong">
     <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
     <div class="bst-corner bl"></div><div class="bst-corner br"></div>
-    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.1) 0%,transparent 70%);"></div>
-    <!-- pixel star -->
-    <svg width="28" height="28" viewBox="0 0 7 7" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
-      <rect x="3" y="0" width="1" height="2" fill="#00ff88"/>
-      <rect x="0" y="3" width="2" height="1" fill="#00ff88"/>
-      <rect x="5" y="3" width="2" height="1" fill="#00ff88"/>
-      <rect x="3" y="5" width="1" height="2" fill="#00ff88"/>
-      <rect x="1" y="1" width="2" height="2" fill="#00ff88" opacity=".6"/>
-      <rect x="4" y="1" width="2" height="2" fill="#00ff88" opacity=".6"/>
-      <rect x="1" y="4" width="2" height="2" fill="#00ff88" opacity=".6"/>
-      <rect x="4" y="4" width="2" height="2" fill="#00ff88" opacity=".6"/>
-      <rect x="2" y="2" width="3" height="3" fill="#00ff88"/>
-      <rect x="3" y="2" width="1" height="1" fill="#fff" opacity=".5"/>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(0,255,136,0.08) 0%,transparent 65%);"></div>
+    <!-- trophy pixel -->
+    <svg width="24" height="24" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;position:relative;z-index:1;opacity:.7">
+      <rect x="1" y="0" width="6" height="1" fill="#00ff88"/>
+      <rect x="0" y="0" width="1" height="3" fill="#00ff88"/>
+      <rect x="7" y="0" width="1" height="3" fill="#00ff88"/>
+      <rect x="1" y="1" width="6" height="3" fill="#00ff88"/>
+      <rect x="3" y="4" width="2" height="2" fill="#00ff88"/>
+      <rect x="2" y="6" width="4" height="1" fill="#00cc6a"/>
+      <rect x="2" y="2" width="4" height="1" fill="#fff" opacity=".3"/>
     </svg>
-    <div class="bst-label">STRONGEST TOPIC</div>
-    <div class="bst-topic-val strong">Algorithms</div>
-    <div class="bst-topic-bar"><div style="width:92%;background:#00ff88;height:100%;"></div></div>
-    <div class="bst-sub" style="color:#00ff88;">92% mastery</div>
+    <span class="bst-label">Strongest</span>
+    <span class="bst-topic-name" style="color:#00ff88;">Algorithms</span>
+    <div class="bst-topic-bar-wrap">
+      <div class="bst-topic-track">
+        <div class="bst-topic-fill" style="--tc:#00ff88;--tw:92%;width:0;"></div>
+      </div>
+      <span class="bst-topic-pct" style="color:rgba(0,255,136,.55);">92%</span>
+    </div>
+    <span class="bst-sub" style="color:rgba(0,255,136,.3);">mastery</span>
   </div>
 
   <!-- Weakest Topic -->
   <div class="bst-card bst-weak">
     <div class="bst-corner tl"></div><div class="bst-corner tr"></div>
     <div class="bst-corner bl"></div><div class="bst-corner br"></div>
-    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(255,77,77,0.1) 0%,transparent 70%);"></div>
-    <!-- pixel skull -->
-    <svg width="28" height="28" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;margin-bottom:4px;">
-      <rect x="1" y="1" width="6" height="4" fill="#ff4d4d"/>
-      <rect x="2" y="0" width="4" height="1" fill="#ff4d4d"/>
-      <rect x="0" y="2" width="1" height="2" fill="#ff4d4d"/>
-      <rect x="7" y="2" width="1" height="2" fill="#ff4d4d"/>
-      <rect x="2" y="2" width="1" height="2" fill="#0d0f2a"/>
-      <rect x="5" y="2" width="1" height="2" fill="#0d0f2a"/>
-      <rect x="3" y="4" width="2" height="1" fill="#ff4d4d"/>
-      <rect x="2" y="5" width="4" height="2" fill="#cc3333"/>
-      <rect x="3" y="5" width="1" height="2" fill="#0d0f2a"/>
-      <rect x="5" y="5" width="1" height="2" fill="#0d0f2a"/>
+    <div class="bst-glow" style="background:radial-gradient(ellipse,rgba(255,77,77,0.08) 0%,transparent 65%);"></div>
+    <!-- warning pixel -->
+    <svg width="24" height="24" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;position:relative;z-index:1;opacity:.7">
+      <rect x="3" y="0" width="2" height="1" fill="#ff4d4d"/>
+      <rect x="2" y="1" width="4" height="1" fill="#ff4d4d"/>
+      <rect x="1" y="2" width="6" height="4" fill="#ff4d4d"/>
+      <rect x="0" y="6" width="8" height="2" fill="#ff4d4d"/>
+      <rect x="3" y="3" width="2" height="2" fill="#06081a"/>
+      <rect x="3" y="6" width="2" height="1" fill="#06081a"/>
     </svg>
-    <div class="bst-label">WEAKEST TOPIC</div>
-    <div class="bst-topic-val weak">Data Structures</div>
-    <div class="bst-topic-bar"><div style="width:38%;background:#ff4d4d;height:100%;"></div></div>
-    <div class="bst-sub" style="color:#ff4d4d;">38% mastery</div>
+    <span class="bst-label">Weakest</span>
+    <span class="bst-topic-name" style="color:#ff4d4d;">Data Structures</span>
+    <div class="bst-topic-bar-wrap">
+      <div class="bst-topic-track">
+        <div class="bst-topic-fill" style="--tc:#ff4d4d;--tw:38%;width:0;"></div>
+      </div>
+      <span class="bst-topic-pct" style="color:rgba(255,77,77,.55);">38%</span>
+    </div>
+    <span class="bst-sub" style="color:rgba(255,77,77,.3);">needs work</span>
   </div>
 
 </div>
@@ -896,20 +901,196 @@
 </div>
     </section>
 
-    <!-- FOOTER -->
-<section class="footer-hero">
-  <div class="footer-overlay">
-    <img
-      src="assets/images/BinusverseText.png"
-      alt="Binusverse"
-      class="footer-logo"
-    />
+    <!-- ════════ FOOTER ════════ -->
+    <footer class="site-footer">
+      <canvas class="footer-stars-cvs" id="footerStars"></canvas>
+      <div class="footer-top-line"></div>
+      <div class="footer-inner">
 
-    <p class="footer-copyright">
-      © 2026 Binusverse. All rights reserved.
-    </p>
-  </div>
-</section>
+        <div class="footer-brand">
+          <div class="footer-logo-txt">BINUSVERSE</div>
+          <p class="footer-tagline">Train. Battle. Ascend.</p>
+          <div class="footer-social-row">
+            <a class="footer-social-btn" href="#" title="Discord">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="3" fill="currentColor" opacity=".15"/>
+                <path d="M9 12C9 13.1 8.4 14 7.5 14S6 13.1 6 12 6.6 10 7.5 10 9 10.9 9 12ZM18 12C18 13.1 17.4 14 16.5 14S15 13.1 15 12 15.6 10 16.5 10 18 10.9 18 12Z" fill="currentColor"/>
+                <path d="M8 6C8 6 6 7 5 9M16 6C16 6 18 7 19 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M9 17C9 17 9.5 17.5 12 17.5S15 17 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a class="footer-social-btn" href="#" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="17" cy="7" r="1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a class="footer-social-btn" href="#" title="Twitter/X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4L10.5 12.5M4 4H7.5L20 20H16.5M4 4L20 20M20 20L13.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-links-col">
+            <div class="footer-links-title">EXPLORE</div>
+            <a href="grimoire.html" class="footer-link">Grimoire</a>
+            <a href="battle.html" class="footer-link">Battle Arena</a>
+            <a href="the_commons.html" class="footer-link">The Commons</a>
+          </div>
+          <div class="footer-links-col">
+            <div class="footer-links-title">PLAY</div>
+            <a href="battle-play.html?mode=daily" class="footer-link">Daily Mission</a>
+            <a href="battle-play.html?mode=raid" class="footer-link">Raid Mode</a>
+            <a href="battle.html" class="footer-link">Battle Lobby</a>
+          </div>
+          <div class="footer-links-col">
+            <div class="footer-links-title">INFO</div>
+            <a href="#" class="footer-link">About Binus</a>
+            <a href="#" class="footer-link">Help Center</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+          </div>
+        </div>
+
+        <div class="footer-stats">
+          <div class="footer-stat-item">
+            <div class="footer-stat-val">84K+</div>
+            <div class="footer-stat-lbl">Students</div>
+          </div>
+          <div class="footer-stat-item">
+            <div class="footer-stat-val">10</div>
+            <div class="footer-stat-lbl">Guilds</div>
+          </div>
+          <div class="footer-stat-item">
+            <div class="footer-stat-val">500+</div>
+            <div class="footer-stat-lbl">Battles today</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="footer-bottom-bar">
+        <span>© 2026 Binusverse · BINUS University · All rights reserved.</span>
+        <div class="footer-bottom-dots">
+          <span class="fbd fbd-on"></span>
+          <span class="fbd fbd-on"></span>
+          <span class="fbd"></span>
+          <span class="fbd fbd-on"></span>
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+    /* ── PIXEL FLAME (Streak) ── */
+    (function(){
+      const fc=document.getElementById('mcFlameCanvas');
+      if(!fc)return;
+      const ctx=fc.getContext('2d'),PX=7;
+      const F=[
+        [[0,1,2,1,0,0],[0,2,3,2,1,0],[1,2,3,3,2,1],[0,2,3,4,2,1],[0,1,2,3,2,0],[0,0,1,2,1,0]],
+        [[0,0,1,2,1,0],[0,1,2,3,2,0],[0,2,3,3,2,0],[1,2,4,3,2,1],[0,1,3,4,2,0],[0,0,2,3,1,0]],
+        [[0,1,1,2,0,0],[0,2,3,2,1,0],[0,2,3,3,2,1],[1,3,3,4,2,0],[0,2,3,3,2,0],[0,1,2,2,1,0]],
+      ];
+      const C=['transparent','#ff6600','#ff9500','#ffcc00','#fffacd'];
+      let frame=0,tick=0;
+      (function draw(){
+        ctx.clearRect(0,0,40,48);
+        tick++;if(tick%7===0)frame=(frame+1)%3;
+        F[frame].forEach((row,ry)=>row.forEach((v,rx)=>{
+          if(v){ctx.fillStyle=C[v];ctx.fillRect(rx*PX,ry*PX,PX,PX);}
+        }));
+        requestAnimationFrame(draw);
+      })();
+    })();
+
+    /* ── PIXEL HEART Win Rate ── */
+    (function(){
+      const cvs = document.getElementById('mcHeartCanvas');
+      if (!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const W = 90, H = 82, PX = 6;
+      const WIN_RATE = 0.74;
+
+      // heart shape: pixel grid 13×11
+      // 1 = heart pixel, 0 = empty
+      const HEART = [
+        [0,0,1,1,0,0,0,1,1,0,0,0,0],
+        [0,1,1,1,1,0,1,1,1,1,0,0,0],
+        [1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [0,1,1,1,1,1,1,1,1,1,0,0,0],
+        [0,0,1,1,1,1,1,1,1,0,0,0,0],
+        [0,0,0,1,1,1,1,1,0,0,0,0,0],
+        [0,0,0,0,1,1,1,0,0,0,0,0,0],
+        [0,0,0,0,0,1,0,0,0,0,0,0,0],
+      ];
+
+      const ROWS = HEART.length;
+      const COLS = HEART[0].length;
+      const totalPixels = HEART.flat().filter(v => v === 1).length;
+      const fillCount = Math.round(totalPixels * WIN_RATE);
+
+      // collect all heart pixels bottom-to-top for fill order
+      const pixels = [];
+      for (let r = ROWS - 1; r >= 0; r--) {
+        for (let c = 0; c < COLS; c++) {
+          if (HEART[r][c]) pixels.push([r, c]);
+        }
+      }
+
+      // offset to center
+      const offX = Math.floor((W - COLS * PX) / 2);
+      const offY = Math.floor((H - ROWS * PX - 14) / 2); // leave room for text
+
+      // draw once (static)
+      ctx.clearRect(0, 0, W, H);
+
+      const filled = new Set(pixels.slice(0, fillCount).map(([r,c]) => `${r},${c}`));
+
+      pixels.forEach(([r, c]) => {
+        const x = offX + c * PX;
+        const y = offY + r * PX;
+        const isFilled = filled.has(`${r},${c}`);
+        if (isFilled) {
+          ctx.fillStyle = '#ff4d6d';
+          ctx.shadowColor = '#ff4d6d';
+          ctx.shadowBlur = 6;
+        } else {
+          ctx.fillStyle = 'rgba(255,77,109,0.12)';
+          ctx.shadowBlur = 0;
+        }
+        ctx.fillRect(x, y, PX - 1, PX - 1);
+      });
+      ctx.shadowBlur = 0;
+
+      // percentage text centered below heart
+      ctx.font = '500 10px "Press Start 2P", monospace';
+      ctx.fillStyle = '#ff4d6d';
+      ctx.textAlign = 'center';
+      ctx.fillText('74%', W / 2, offY + ROWS * PX + 14);
+
+      ctx.font = '500 6px "Press Start 2P", monospace';
+      ctx.fillStyle = 'rgba(255,77,109,.4)';
+      ctx.fillText('28W / 10L', W / 2, offY + ROWS * PX + 24);
+    })();
+
+    /* ── COUNT-UP ── */
+    (function(){
+      document.querySelectorAll('.bst-counter').forEach(el=>{
+        const target=parseInt(el.dataset.target||el.textContent)||0;
+        let cur=0;const step=Math.max(1,Math.ceil(target/40));
+        const iv=setInterval(()=>{
+          cur=Math.min(cur+step,target);
+          el.textContent=cur;
+          if(cur>=target)clearInterval(iv);
+        },30);
+      });
+    })();
+    </script>
 
     <script src="assets/js/rank.js"></script>
     <script>
@@ -945,5 +1126,21 @@
         });
     </script>
     <script src="grimoire-charts.js"></script>
+    <script>
+    (function(){
+      const cvs=document.getElementById('footerStars');
+      if(!cvs)return;
+      const ctx=cvs.getContext('2d');
+      function resize(){cvs.width=cvs.offsetWidth;cvs.height=cvs.offsetHeight;}
+      resize();window.addEventListener('resize',resize);
+      const stars=[];
+      for(let i=0;i<60;i++) stars.push({x:Math.random(),y:Math.random(),r:Math.random()>.85?2:1,a:.06+Math.random()*.22,t:Math.random()*Math.PI*2,s:.3+Math.random()*.5});
+      (function draw(){
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        stars.forEach(s=>{s.t+=.015;ctx.globalAlpha=s.a*(.7+.3*Math.sin(s.t*s.s));ctx.fillStyle='#fff';ctx.fillRect(~~(s.x*cvs.width),~~(s.y*cvs.height),s.r,s.r);});
+        ctx.globalAlpha=1;requestAnimationFrame(draw);
+      })();
+    })();
+    </script>
   </body>
 </html>

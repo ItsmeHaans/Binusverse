@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // =============================================
   const startBtn = document.getElementById("start-btn");
   startBtn.addEventListener("click", () => {
-    document.getElementById("home").scrollIntoView({ behavior: "smooth" });
+    const splashH = document.getElementById("splash")
+                        .offsetHeight;
+window.scrollTo({ top: splashH, behavior: "smooth" });
   });
 
   // =============================================
