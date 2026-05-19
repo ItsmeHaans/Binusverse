@@ -1229,21 +1229,44 @@ body {
 .r-uncommon  .armory-rarity-tag { background: #00c060; color: #001a0a; }
 
 /* === TOOLTIP === */
-.armory-tooltip {
-  position: absolute;
-  bottom: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  width: 200px;
+/* ── ARMORY GLOBAL TOOLTIP ── */
+.armory-tooltip-global {
+  position: fixed;
+  z-index: 99999;
+  width: 210px;
   background: #0d0f20;
-  padding: 10px 10px 8px;
-  opacity: 0;
+  padding: 11px 11px 9px;
   pointer-events: none;
-  transition: opacity 0.18s, transform 0.18s;
-  z-index: 9999;
-  text-align: left;
   clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+  transition: opacity 0.15s;
 }
+.armory-tooltip-global .tip-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem; color: #fff; letter-spacing: 0.5px; line-height: 1.6; margin-bottom: 4px;
+}
+.armory-tooltip-global .tip-type {
+  font-family: 'Pixelify Sans', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,.45); margin-bottom: 2px;
+}
+.armory-tooltip-global .tip-divider { height: 1px; background: rgba(255,255,255,.12); margin: 6px 0; }
+.armory-tooltip-global .tip-stat {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
+}
+.armory-tooltip-global .tip-stat-name { font-family: 'Pixelify Sans', sans-serif; font-size: 0.74rem; color: #cbd5e1; }
+.armory-tooltip-global .tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.3rem; }
+.armory-tooltip-global .tip-ability {
+  font-family: 'Pixelify Sans', sans-serif; font-size: 0.72rem;
+  color: rgba(255,255,255,.45); line-height: 1.45; margin-top: 6px;
+}
+.armory-tooltip-global .tip-ability b { display: block; color: rgba(255,255,255,.7); margin-bottom: 2px; }
+/* arrow bawah */
+.armory-tooltip-global::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 7px solid transparent; border-top-width: 6px;
+}
+
+/* hide old inline tooltip if any remain */
+.armory-tooltip { display: none !important; }
+
 
 /* outline border tooltip */
 .r-legendary .armory-tooltip { outline: 2px solid #ff9500; }
@@ -1590,9 +1613,6 @@ body {
     0 0 0 4px #ff3b3b inset;
 }
 
-/* =============================================
-   FOOTER
-============================================= */
 /* =============================================
    FOOTER REDESIGN
 ============================================= */

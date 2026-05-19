@@ -30,8 +30,7 @@ window.scrollTo({ top: splashH, behavior: "smooth" });
   }
 
   // =============================================
-  // ARMORY TOOLTIP — global fixed tooltip
-  // Tidak kena clip-path karena position:fixed
+  // ARMORY TOOLTIP — position:fixed, bebas clip-path
   // =============================================
   const RARITY_COLORS = {
     'r-legendary': '#ff9500',
@@ -41,62 +40,59 @@ window.scrollTo({ top: splashH, behavior: "smooth" });
     'r-common':    '#94a3b8'
   };
 
-  const armoryTip = document.getElementById('armory-global-tooltip');
+  const tip = document.getElementById('armory-global-tooltip');
+  if (!tip) return;
 
-  if (armoryTip) {
-    document.querySelectorAll('.armory-box').forEach(box => {
+  document.querySelectorAll('.armory-box').forEach(box => {
+    box.addEventListener('mouseenter', function(e) {
+      const r = this.dataset.tipRarity || 'r-common';
+      const c = RARITY_COLORS[r] || '#94a3b8';
 
-      box.addEventListener('mouseenter', function (e) {
-        const r = this.dataset.tipRarity || 'r-common';
-        const c = RARITY_COLORS[r] || '#94a3b8';
+      tip.innerHTML = `
+        <div class="tip-name">${this.dataset.tipName || ''}</div>
+        <div class="tip-type">${this.dataset.tipType || ''}</div>
+        <div class="tip-divider"></div>
+        <div class="tip-stat">
+          <span class="tip-stat-name">${this.dataset.tipS1 || ''}</span>
+          <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV1 || ''}</span>
+        </div>
+        <div class="tip-stat">
+          <span class="tip-stat-name">${this.dataset.tipS2 || ''}</span>
+          <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV2 || ''}</span>
+        </div>
+        <div class="tip-stat">
+          <span class="tip-stat-name">${this.dataset.tipS3 || ''}</span>
+          <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV3 || ''}</span>
+        </div>
+        <div class="tip-ability"><b>✦ QUIZ ABILITY</b>${this.dataset.tipAbility || ''}</div>
+      `;
+      tip.style.outline = `2px solid ${c}`;
+      tip.style.setProperty('--tip-arrow-color', c);
+      tip.style.display = 'block';
 
-        armoryTip.innerHTML = `
-          <div class="tip-name">${this.dataset.tipName || ''}</div>
-          <div class="tip-type">${this.dataset.tipType || ''}</div>
-          <div class="tip-divider"></div>
-          <div class="tip-stat">
-            <span class="tip-stat-name">${this.dataset.tipS1}</span>
-            <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV1}</span>
-          </div>
-          <div class="tip-stat">
-            <span class="tip-stat-name">${this.dataset.tipS2}</span>
-            <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV2}</span>
-          </div>
-          <div class="tip-stat">
-            <span class="tip-stat-name">${this.dataset.tipS3}</span>
-            <span class="tip-stat-val" style="color:${c}">${this.dataset.tipV3}</span>
-          </div>
-          <div class="tip-ability">
-            <b>✦ QUIZ ABILITY</b>${this.dataset.tipAbility}
-          </div>
-          <div class="tip-arrow" style="border-top-color:${c}"></div>
-        `;
-
-        armoryTip.style.outline = `2px solid ${c}`;
-        armoryTip.style.display = 'block';
-        positionArmoryTip(e);
-      });
-
-      box.addEventListener('mousemove', positionArmoryTip);
-
-      box.addEventListener('mouseleave', () => {
-        armoryTip.style.display = 'none';
-      });
+      // arrow color
+      tip.style.cssText += `; --ac:${c}`;
+      positionTip(e);
     });
-  }
 
-  function positionArmoryTip(e) {
-    if (!armoryTip) return;
-    const tw = armoryTip.offsetWidth;
-    const th = armoryTip.offsetHeight;
+    box.addEventListener('mousemove', positionTip);
+    box.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+  });
+
+  function positionTip(e) {
+    if (!tip) return;
+    const tw = tip.offsetWidth  || 210;
+    const th = tip.offsetHeight || 150;
     let x = e.clientX - tw / 2;
-    let y = e.clientY - th - 20;
+    let y = e.clientY - th - 18;
     if (x < 8) x = 8;
     if (x + tw > window.innerWidth - 8) x = window.innerWidth - tw - 8;
-    if (y < 8) y = e.clientY + 20;
-    armoryTip.style.left = x + 'px';
-    armoryTip.style.top  = y + 'px';
+    if (y < 8) y = e.clientY + 18;
+    tip.style.left = x + 'px';
+    tip.style.top  = y + 'px';
   }
+
+
 
   // =============================================
   // SKILL CARDS — sparkle particles
