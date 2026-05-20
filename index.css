@@ -537,118 +537,9 @@ body {
 }
 
 /* =============================================
-   SPLASH SCREEN
+   UTIL
 ============================================= */
-#splash {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  padding-top: 90px;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-#splash-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-#splash-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 5;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-/* GANTI JADI: */
-.welcome-text {
-  font-size: 2rem;
-  color: #fee783;
-  text-shadow: 3px 3px 0px #000;
-  margin-bottom: 5px;
-  display: inline-block;
-  white-space: nowrap;
-  opacity: 1;
-  animation: floatLoop 3s steps(8) infinite;
-}
-
-.binusverse-logo-css {
-  font-size: clamp(3rem, 12vw, 6rem);
-  color: #fff;
-  text-transform: uppercase;
-  min-height: 1.2em;
-  position: relative;
-  display: inline-block;
-  z-index: 20;
-  text-shadow:
-    -4px -4px 0 #1e90ff,
-    4px -4px 0 #1e90ff,
-    -4px 4px 0 #1e90ff,
-    4px 4px 0 #1e90ff,
-    0px 8px 0 #125699;
-  opacity: 1;
-  animation: floatLoop 3s steps(8) infinite;
-}
-
-#start-btn {
-  display: block;
-  margin-top: 30px;
-  padding: 12px 40px;
-  background-color: #fee783;
-  color: #1a1a2e;
-  border: 4px solid #1a1a2e;
-  box-shadow: 0px 0px 0px #1a1a2e;
-  font-family: "Pixelify Sans", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition:
-    transform 0.15s steps(3),
-    box-shadow 0.15s steps(3);
-  animation: btnAppear 0.6s steps(6) 8.7s forwards;
-}
-#start-btn:hover {
-  transform: translate(-2px, -2px) scale(1);
-  box-shadow: 7.5px 7.5px 0px #1a1a2e;
-}
-#start-btn:active {
-  transform: translate(2px, 2px) scale(1);
-  box-shadow: 0px 0px 0px #1a1a2e;
-}
-
-/* ── GRASS DIVIDER ── */
-.grass-divider {
-  position: absolute;
-  bottom: 0;          /* nempel di bawah splash */
-  left: 0;
-  width: 100%;
-  z-index: 2;         /* di atas video, di bawah content */
-  pointer-events: none;
-  line-height: 0;     /* hilangkan gap bawah img */
-  transform: translateY(10%);
-}
-
-.grass-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+.hidden { opacity: 0; pointer-events: none; }
 
 /* =============================================
    NAVBAR
@@ -737,6 +628,54 @@ body {
 }
 
 /* =============================================
+   PIXEL AURA — blue/cyan pulsing border animation
+============================================= */
+@keyframes pixelAuraBlue {
+  0%  {
+    border-color: #1a6a9c;
+    outline-color: rgba(0, 195, 255, 0.25);
+    outline-width: 3px;
+  }
+  33% {
+    border-color: #87cefa;
+    outline-color: rgba(135, 206, 250, 0.60);
+    outline-width: 5px;
+  }
+  66% {
+    border-color: #4db8ff;
+    outline-color: rgba(0, 195, 255, 0.42);
+    outline-width: 4px;
+  }
+  100% {
+    border-color: #1a6a9c;
+    outline-color: rgba(0, 195, 255, 0.25);
+    outline-width: 3px;
+  }
+}
+
+/* =============================================
+   MISSION AURA PARTICLES — flying pixel bits
+============================================= */
+.mission-px-particle {
+  position: absolute;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes missionPxFloatL {
+  0%   { transform: translateY(15px)  translateX(0);     opacity: 0; }
+  12%  { opacity: 0.85; }
+  88%  { opacity: 0.85; }
+  100% { transform: translateY(-60px) translateX(-20px); opacity: 0; }
+}
+@keyframes missionPxFloatR {
+  0%   { transform: translateY(15px)  translateX(0);    opacity: 0; }
+  12%  { opacity: 0.85; }
+  88%  { opacity: 0.85; }
+  100% { transform: translateY(-60px) translateX(20px); opacity: 0; }
+}
+
+/* =============================================
    MISSION STATUS — 3D pixel box (NO clip-path, uses box-shadow)
 ============================================= */
 .mission-container {
@@ -747,13 +686,14 @@ body {
   gap: 28px;
   padding: 8px 24px 28px 8px; /* space for shadows to bleed */
   overflow: visible;
+  position: relative; /* anchor for aura particles */
 }
 
 .profile-card {
   display: flex;
   min-height: 260px;
   position: relative;
-  border: 4px solid #87cefa;
+  border: 4px solid #1a6a9c;
   border-radius: 0;
   overflow: hidden; /* clip image to card shape */
   user-select: none;
@@ -767,11 +707,11 @@ body {
     8px 8px 0 0 #083d6699,
     12px 12px 0 0 #06304f66,
     16px 16px 0 0 rgba(0, 0, 0, 0.35);
-  transition:
-    transform 0.1s steps(2),
-    box-shadow 0.1s steps(2);
-  /* Yellow corner pixels */
-  outline: none;
+  /* pixel aura */
+  outline: 3px solid rgba(0, 195, 255, 0.25);
+  outline-offset: 0px;
+  animation: pixelAuraBlue 2.4s steps(3) infinite;
+  transition: transform 0.1s steps(2);
 }
 .profile-card::before,
 .profile-card::after {
@@ -793,6 +733,8 @@ body {
 }
 .profile-card:hover {
   transform: translate(-5px, -5px);
+  outline-color: rgba(135, 206, 250, 0.75);
+  outline-width: 6px;
   box-shadow:
     4px 0px 0 0 #1a6a9c,
     8px 0px 0 0 #10608880,
@@ -819,7 +761,7 @@ body {
   gap: 14px;
   min-width: 260px;
   position: relative;
-  border: 4px solid #87cefa;
+  border: 4px solid #1a6a9c;
   border-radius: 0;
   overflow: visible;
   user-select: none;
@@ -833,9 +775,11 @@ body {
     8px 8px 0 0 #083d6699,
     12px 12px 0 0 #06304f66,
     16px 16px 0 0 rgba(0, 0, 0, 0.35);
-  transition:
-    transform 0.1s steps(2),
-    box-shadow 0.1s steps(2);
+  /* pixel aura — offset from profile card */
+  outline: 3px solid rgba(0, 195, 255, 0.25);
+  outline-offset: 0px;
+  animation: pixelAuraBlue 2.4s steps(3) 0.8s infinite;
+  transition: transform 0.1s steps(2);
   /* subtle scanline */
   background-image: repeating-linear-gradient(
     0deg,
@@ -865,6 +809,8 @@ body {
 }
 .stats-card:hover {
   transform: translate(-5px, -5px);
+  outline-color: rgba(135, 206, 250, 0.75);
+  outline-width: 6px;
   box-shadow:
     4px 0px 0 0 #1a6a9c,
     8px 0px 0 0 #10608880,
@@ -886,9 +832,17 @@ body {
 .stats-card div:last-child {
   border-bottom: none;
 }
-.stats-card span,
+.stats-card span {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.48rem;
+  letter-spacing: 0.5px;
+  color: rgba(254, 231, 131, 0.75);
+  user-select: none;
+}
 .stats-card b {
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.5px;
   user-select: none;
 }
 
@@ -902,18 +856,21 @@ body {
   width: 100px;
   height: 100px;
   position: relative;
-  border: 4px solid #87cefa;
+  border: 4px solid #1a6a9c;
   border-radius: 0;
   overflow: visible;
   box-shadow:
     4px 4px 0 0 #0a4a7c,
     8px 8px 0 0 rgba(0, 0, 0, 0.35);
-  transition:
-    transform 0.1s steps(2),
-    box-shadow 0.1s steps(2);
+  outline: 3px solid rgba(0, 195, 255, 0.25);
+  outline-offset: 0px;
+  animation: pixelAuraBlue 2.4s steps(3) 1.6s infinite;
+  transition: transform 0.1s steps(2);
 }
 .badge-box:hover {
   transform: translate(-3px, -3px);
+  outline-color: rgba(135, 206, 250, 0.75);
+  outline-width: 6px;
   box-shadow:
     6px 6px 0 0 #0a4a7c,
     12px 12px 0 0 rgba(0, 0, 0, 0.35);
@@ -991,6 +948,33 @@ body {
   filter: drop-shadow(8px 8px 0 #0a4a7c) drop-shadow(14px 14px 0 #062d4f)
     drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.5))
     drop-shadow(0 0 26px rgba(0, 225, 255, 0.65));
+}
+
+/* Daily done badge */
+.daily-done-badge {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  z-index: 10;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  color: #0d0f20;
+  background: #00ff88;
+  padding: 4px 10px;
+  border: 2px solid #00cc66;
+  box-shadow: 3px 3px 0 #004d22;
+  letter-spacing: 0.3px;
+  animation: done-badge-pop 0.25s steps(4) forwards, done-badge-glow 1.5s steps(3) 0.3s infinite alternate;
+  clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% 100%,0 100%);
+}
+.daily-done-badge.hidden { display: none; }
+@keyframes done-badge-pop {
+  from { transform: scale(0.5) translateY(-6px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+@keyframes done-badge-glow {
+  from { box-shadow: 3px 3px 0 #004d22; }
+  to   { box-shadow: 3px 3px 0 #004d22, 0 0 10px rgba(0,255,136,0.4); }
 }
 
 .challenge-card--locked {
@@ -1139,6 +1123,10 @@ body {
 .armory-box:nth-child(2) { animation-delay: 0.3s; }
 .armory-box:nth-child(3) { animation-delay: 0.6s; }
 .armory-box:nth-child(4) { animation-delay: 0.9s; }
+.armory-box:nth-child(5) { animation-delay: 1.2s; }
+.armory-box:nth-child(6) { animation-delay: 1.5s; }
+.armory-box:nth-child(7) { animation-delay: 1.8s; }
+.armory-box:nth-child(8) { animation-delay: 2.1s; }
 
 @keyframes armory-idle {
   0%,100% { transform: translateY(0); }
@@ -1252,7 +1240,7 @@ body {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
 }
 .armory-tooltip-global .tip-stat-name { font-family: 'Pixelify Sans', sans-serif; font-size: 0.74rem; color: #cbd5e1; }
-.armory-tooltip-global .tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.3rem; }
+.armory-tooltip-global .tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.52rem; }
 .armory-tooltip-global .tip-ability {
   font-family: 'Pixelify Sans', sans-serif; font-size: 0.72rem;
   color: rgba(255,255,255,.45); line-height: 1.45; margin-top: 6px;
@@ -1481,7 +1469,7 @@ body {
 .skill-xp-wrap { margin-top: 6px; }
 .skill-xp-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.4rem;
+  font-size: 0.52rem;
   color: #1a1a2e;
   margin-bottom: 4px;
   display: flex;
@@ -1841,20 +1829,218 @@ body {
   }
 }
 
-@keyframes floatLoop {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-12px);
-  }
+
+/* ═══════════════════════════════════════════
+   PIXEL MASCOT COMPANION
+═══════════════════════════════════════════ */
+.mascot-wrap {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
 }
 
-@keyframes btnAppear {
-  to {
-    opacity: 1;
-  }
+.mascot-svg {
+  image-rendering: pixelated;
+  display: block;
+  animation: mascotBob 1.4s steps(4) infinite;
+  filter: drop-shadow(0 0 8px rgba(124,58,237,0.5)) drop-shadow(4px 6px 0 rgba(0,0,0,0.5));
+  transition: filter 0.15s;
 }
+.mascot-wrap:hover .mascot-svg {
+  filter: drop-shadow(0 0 16px rgba(192,132,252,0.8)) drop-shadow(4px 6px 0 rgba(0,0,0,0.5));
+  animation: mascotWave 0.6s steps(6) infinite;
+}
+
+@keyframes mascotBob {
+  0%,100% { transform: translateY(0); }
+  25%      { transform: translateY(-4px); }
+  50%      { transform: translateY(-6px); }
+  75%      { transform: translateY(-3px); }
+}
+@keyframes mascotWave {
+  0%,100% { transform: translateY(-2px) rotate(-3deg); }
+  50%      { transform: translateY(-8px) rotate(3deg); }
+}
+
+/* Staff star sparkles */
+.mascot-spark { animation: mascotSparkle 1.2s steps(2) infinite; }
+.mascot-spark.s1 { animation-delay: 0s; }
+.mascot-spark.s2 { animation-delay: 0.3s; }
+.mascot-spark.s3 { animation-delay: 0.6s; }
+.mascot-spark.s4 { animation-delay: 0.9s; }
+@keyframes mascotSparkle {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Speech bubble */
+.mascot-bubble {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.34rem;
+  line-height: 1.7;
+  color: #e0f7ff;
+  background: #0d0f20;
+  border: 2px solid #7c3aed;
+  padding: 8px 11px;
+  max-width: 180px;
+  text-align: center;
+  box-shadow: 3px 3px 0 #2d0060;
+  clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px));
+  animation: bubblePop 0.2s steps(3) forwards;
+  position: relative;
+}
+.mascot-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #7c3aed;
+}
+.mascot-bubble.hidden { display: none; }
+@keyframes bubblePop {
+  from { opacity: 0; transform: scale(0.8) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* =============================================
+   ARMORY — LIVE STOCK STATES
+============================================= */
+
+/* Stocked: rarity-colored pulse glow */
+.armory-box.item-stocked {
+  animation: armory-idle 2.5s ease-in-out infinite, armory-stock-pulse 2s steps(4) infinite;
+}
+.armory-box.item-stocked.r-legendary { --stock-glow: rgba(255,149,0,0.55); }
+.armory-box.item-stocked.r-epic      { --stock-glow: rgba(192,132,252,0.55); }
+.armory-box.item-stocked.r-rare      { --stock-glow: rgba(0,229,255,0.55); }
+.armory-box.item-stocked.r-uncommon  { --stock-glow: rgba(0,255,136,0.55); }
+.armory-box.item-stocked.r-common    { --stock-glow: rgba(148,163,184,0.45); }
+
+@keyframes armory-stock-pulse {
+  0%,100% { filter: drop-shadow(0 4px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 6px var(--stock-glow, rgba(0,229,255,0.4))); }
+  50%      { filter: drop-shadow(0 4px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 18px var(--stock-glow, rgba(0,229,255,0.7))); }
+}
+
+/* Empty: desaturated + dimmed */
+.armory-box.item-empty {
+  filter: grayscale(0.7) brightness(0.55) !important;
+  animation: armory-idle 2.5s ease-in-out infinite !important;
+}
+.armory-box.item-empty:hover {
+  filter: grayscale(0.4) brightness(0.75) !important;
+}
+
+/* Stock badge — absolute bottom-left corner */
+.armory-stock-badge {
+  position: absolute;
+  bottom: 4px;
+  left: 5px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.44rem;
+  line-height: 1;
+  padding: 2px 4px;
+  background: rgba(10, 12, 28, 0.82);
+  border: 1px solid rgba(255,255,255,0.12);
+  pointer-events: none;
+  z-index: 4;
+  clip-path: polygon(0 2px,2px 0,100% 0,100% calc(100% - 2px),calc(100% - 2px) 100%,0 100%);
+}
+
+/* =============================================
+   SKILL CARDS — LEVEL BADGES
+============================================= */
+.skill-lv-badge {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.44rem;
+  padding: 2px 5px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background: rgba(10,12,28,0.75);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fee783;
+  clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,0 calc(100% - 2px));
+  animation: lv-badge-blink 3s steps(2) infinite;
+  cursor: help;
+}
+.ai-card    .skill-lv-badge { border-color: #00e5ff; color: #00e5ff; }
+.cyber-card .skill-lv-badge { border-color: #ff3bff; color: #ff3bff; }
+.data-card  .skill-lv-badge { border-color: #00ff88; color: #00ff88; }
+
+@keyframes lv-badge-blink {
+  0%,80%,100% { opacity: 1; }
+  85%         { opacity: 0.4; }
+}
+
+/* ═══════════════════════════════════
+   RANK ANIMATED PLATE
+═══════════════════════════════════ */
+@keyframes bvRankPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+@keyframes bvRankBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+#bv-rank-plate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 3px;
+  margin-top: 12px;
+  border: 1px solid var(--rp-color, #555);
+  background: var(--rp-bg, rgba(85,85,85,0.08));
+  position: relative;
+}
+/* corner pixel accents */
+#bv-rank-plate::before,
+#bv-rank-plate::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--rp-color, #555);
+}
+#bv-rank-plate::before { top: -1px; left: -1px; }
+#bv-rank-plate::after  { bottom: -1px; right: -1px; }
+
+#bv-rank-plate .rp-icon {
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+#bv-rank-plate .rp-info { display: flex; flex-direction: column; gap: 2px; }
+#bv-rank-plate .rp-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--rp-color, #555);
+  letter-spacing: 2px;
+}
+#bv-rank-plate .rp-xp {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  color: var(--rp-color, #555);
+  opacity: 0.6;
+}
+#bv-rank-plate .rp-max {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  color: var(--rp-color, #fee783);
+  letter-spacing: 1px;
+  animation: bvRankBlink 1.2s step-end infinite;
+}
+
+/* pulse class applied by JS */
+#bv-rank-plate.rp-pulse .rp-icon { animation: bvRankPulse var(--rp-speed, 2s) ease-in-out infinite; }
+#bv-rank-plate.rp-glow { box-shadow: 0 0 14px var(--rp-glow, transparent); }
