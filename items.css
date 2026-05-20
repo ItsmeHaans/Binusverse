@@ -1,0 +1,233 @@
+/* =====================================================
+   items.css — BINUSVERSE Item Collection Page
+===================================================== */
+
+/* ── Page base ── */
+body {
+  margin: 0;
+  background: #080c14;
+  color: #e0e8ff;
+  font-family: 'Pixelify Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── Hero header ── */
+.items-hero {
+  text-align: center;
+  padding: 80px 20px 24px;
+}
+.items-hero-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #fee783;
+  letter-spacing: 4px;
+  margin: 0 0 12px;
+}
+.items-hero-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #00c3ff;
+  letter-spacing: 2px;
+}
+.items-counter {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 14px;
+  border: 1px solid #00c3ff44;
+  border-radius: 2px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #00c3ff;
+  letter-spacing: 1px;
+}
+
+/* ── Filter tabs ── */
+.items-filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 20px;
+}
+.items-filter-btn {
+  padding: 6px 14px;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 2px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: #666;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.15s;
+}
+.items-filter-btn:hover { color: #aaa; border-color: #555; }
+.items-filter-btn.active { border-color: currentColor; }
+.items-filter-btn[data-rarity="all"].active    { color: #fff; border-color: #fff; }
+.items-filter-btn[data-rarity="legendary"].active { color: #ff9500; border-color: #ff9500; }
+.items-filter-btn[data-rarity="epic"].active   { color: #c084fc; border-color: #c084fc; }
+.items-filter-btn[data-rarity="rare"].active   { color: #00e5ff; border-color: #00e5ff; }
+.items-filter-btn[data-rarity="uncommon"].active { color: #00ff88; border-color: #00ff88; }
+.items-filter-btn[data-rarity="common"].active { color: #94a3b8; border-color: #94a3b8; }
+
+/* ── 2-column card grid ── */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+@media (max-width: 600px) {
+  .items-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Item card ── */
+.item-card {
+  background: #0d1117;
+  border: 1px solid #222;
+  border-radius: 4px;
+  padding: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.item-card:hover { border-color: var(--item-color, #444); box-shadow: 0 0 12px var(--item-glow, transparent); }
+
+/* rarity border colors */
+.item-card.r-legendary { --item-color:#ff9500; --item-glow:rgba(255,149,0,0.18); }
+.item-card.r-epic      { --item-color:#c084fc; --item-glow:rgba(192,132,252,0.18); }
+.item-card.r-rare      { --item-color:#00e5ff; --item-glow:rgba(0,229,255,0.15); }
+.item-card.r-uncommon  { --item-color:#00ff88; --item-glow:rgba(0,255,136,0.15); }
+.item-card.r-common    { --item-color:#94a3b8; --item-glow:rgba(148,163,184,0.12); }
+
+/* locked state */
+.item-card.locked { opacity: 0.35; filter: grayscale(0.8); }
+.item-card.locked:hover { border-color: #444; box-shadow: none; }
+
+/* hidden by filter */
+.item-card.filter-hidden { display: none; }
+
+/* ── Rarity tag (top-right corner) ── */
+.item-rarity-tag {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  letter-spacing: 1px;
+  color: var(--item-color, #666);
+  opacity: 0.8;
+}
+
+/* ── SVG icon container ── */
+.item-card-icon {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080c14;
+  border: 1px solid #1a1a2e;
+  border-radius: 3px;
+}
+.item-card-icon svg { image-rendering: pixelated; }
+
+/* locked icon overlay */
+.item-card.locked .item-card-icon::after {
+  content: '?';
+  position: absolute;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
+  color: #333;
+}
+.item-card.locked .item-card-icon svg { opacity: 0; }
+
+/* ── Card body ── */
+.item-card-body { flex: 1; min-width: 0; }
+.item-card-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: var(--item-color, #fff);
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+.item-card.locked .item-card-name { color: #444; }
+
+.item-card-type {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #555;
+  margin: 0 0 6px;
+}
+.item-card-ability {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #aaa;
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+.item-card.locked .item-card-ability { visibility: hidden; }
+
+/* ── Stock bar ── */
+.item-stock-wrap { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.item-stock-bar-track {
+  flex: 1;
+  height: 3px;
+  background: #1a1a2e;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.item-stock-bar-fill {
+  height: 100%;
+  background: var(--item-color, #444);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.item-stock-count {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--item-color, #666);
+  white-space: nowrap;
+}
+.item-stock-count.empty { color: #333; }
+.item-stock-label-owned { font-size: 0.38rem; color: var(--item-color); opacity: 0.7; }
+.item-stock-label-locked { font-size: 0.38rem; color: #333; }
+
+/* ── Global tooltip (reuse from index.html style) ── */
+.items-tooltip-global {
+  position: fixed;
+  z-index: 9999;
+  width: 210px;
+  background: #0d1117;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 12px;
+  pointer-events: none;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+.items-tooltip-global .tip-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.items-tooltip-global .tip-type { font-size: 0.75rem; color: #666; margin-bottom: 6px; }
+.items-tooltip-global .tip-divider { border: none; border-top: 1px solid #222; margin: 6px 0; }
+.items-tooltip-global .tip-stat { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 3px; }
+.items-tooltip-global .tip-stat-name { color: #888; }
+.items-tooltip-global .tip-ability { font-size: 0.75rem; color: #aaa; margin-top: 6px; border-top: 1px solid #1a1a2e; padding-top: 6px; line-height: 1.4; }
+.items-tooltip-global .tip-ability b { color: #fee783; display: block; margin-bottom: 4px; }
+
+/* keep navbar + content above bg layer */
+nav, main, header, footer, section, .navbar,
+.items-hero, .items-filter-bar, .items-grid, .items-tooltip-global {
+  position: relative;
+  z-index: 1;
+}
+.navbar { z-index: 100; }
