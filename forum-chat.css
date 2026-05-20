@@ -8,9 +8,9 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 :root {
-  --bg:   #0b0c1a;
-  --bg2:  #0f1020;
-  --bg3:  #13152a;
+  --bg:   #0f0825;
+  --bg2:  #0d0f20;
+  --bg3:  #13152e;
   --bd:   rgba(255,255,255,0.08);
   --acc:  #fee783;
   --acc2: #b8a200;
@@ -127,7 +127,7 @@ body {
 .sidebar-channels::-webkit-scrollbar-thumb { background:rgba(255,255,255,.08); }
 
 .ch-label {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   color:rgba(255,255,255,.2); letter-spacing:.5px; padding:7px 6px 3px;
 }
 .ch-item {
@@ -154,7 +154,7 @@ body {
 .sidebar-online::-webkit-scrollbar { width:2px; }
 .sidebar-online::-webkit-scrollbar-thumb { background:rgba(255,255,255,.08); }
 .online-lbl {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   color:rgba(255,255,255,.2); letter-spacing:.5px; padding:3px 5px 5px;
 }
 .mem-row { display:flex; align-items:center; gap:6px; padding:3px 5px; cursor:pointer; }
@@ -189,7 +189,7 @@ body {
 .ctb-desc { font-family:'Pixelify Sans',sans-serif; font-size:.78rem; color:rgba(255,255,255,.3); }
 .ctb-btns { margin-left:auto; display:flex; gap:5px; }
 .ctb-btn {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   padding:3px 8px; background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.09); color:rgba(255,255,255,.38); cursor:pointer; transition:all .12s;
 }
@@ -206,7 +206,7 @@ body {
 .msg-date-sep { display:flex; align-items:center; gap:10px; margin:10px 0 6px; }
 .msg-date-sep-line { flex:1; height:1px; background:rgba(255,255,255,.05); }
 .msg-date-sep-txt {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   color:rgba(255,255,255,.16); letter-spacing:.4px;
 }
 
@@ -269,7 +269,7 @@ body {
 }
 .msg-card-btns { display:flex; gap:5px; flex-wrap:wrap; }
 .mcb {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   padding:3px 8px; border:1px solid; cursor:pointer; background:transparent; transition:all .12s;
 }
 .mcb.yes  { border-color:#00ff88; color:#00ff88; }
@@ -300,7 +300,7 @@ body {
   display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;
 }
 .cq-btn {
-  font-family:'Press Start 2P',monospace; font-size:.22rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   padding:4px 9px; cursor:pointer;
   background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
   color:rgba(255,255,255,.4); transition:all .12s;
@@ -366,7 +366,7 @@ body {
 .feat-nm { font-family:'Press Start 2P',monospace; font-size:.28rem; color:#fff; }
 .feat-dsc { font-family:'Pixelify Sans',sans-serif; font-size:.72rem; color:rgba(255,255,255,.36); line-height:1.4; }
 .feat-bdg {
-  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:.19rem;
+  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:.5rem;
   padding:1px 5px; border:1px solid; letter-spacing:.2px;
 }
 
@@ -375,7 +375,7 @@ body {
 .ev:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
 .ev-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:4px; }
 .ev-body { font-family:'Pixelify Sans',sans-serif; font-size:.74rem; color:rgba(255,255,255,.52); line-height:1.4; }
-.ev-t { font-family:'Press Start 2P',monospace; font-size:.19rem; color:rgba(255,255,255,.2); display:block; margin-top:3px; }
+.ev-t { font-family:'Press Start 2P',monospace; font-size:.5rem; color:rgba(255,255,255,.2); display:block; margin-top:3px; }
 
 /* friend requests */
 .fr { display:flex; align-items:center; gap:7px; margin-bottom:7px; }
@@ -387,10 +387,10 @@ body {
 }
 .fr-info { flex:1; min-width:0; }
 .fr-nm { font-family:'Pixelify Sans',sans-serif; font-size:.8rem; color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.fr-mt { font-family:'Press Start 2P',monospace; font-size:.19rem; color:rgba(255,255,255,.26); }
+.fr-mt { font-family:'Press Start 2P',monospace; font-size:.5rem; color:rgba(255,255,255,.26); }
 .fr-btns { display:flex; gap:3px; flex-shrink:0; }
 .fr-b {
-  font-family:'Press Start 2P',monospace; font-size:.19rem;
+  font-family:'Press Start 2P',monospace; font-size:.5rem;
   padding:3px 5px; border:1px solid; cursor:pointer; background:transparent; transition:all .12s;
 }
 .fr-b.add  { border-color:#00ff88; color:#00ff88; }

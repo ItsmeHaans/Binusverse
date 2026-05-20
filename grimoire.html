@@ -67,11 +67,11 @@
       <span class="prf-rank-badge" id="rank-badge"></span>
 
       <!-- Name with pixel underline -->
-      <h2 class="prf-name">Andrew</h2>
+      <h2 class="prf-name" id="prf-name">Explorer</h2>
       <div class="prf-name-underline"></div>
 
       <!-- Desc -->
-      <p class="prf-desc">Lorem ipsum is simply dummy text of the printing industry.</p>
+      <p class="prf-desc" id="prf-desc">Complete battles to build your stats.</p>
 
       <!-- Level bar -->
       <div class="prf-level-wrap">
@@ -85,10 +85,8 @@
       </div>
 
       <!-- Status tags -->
-      <div class="prf-status-tags">
+      <div class="prf-status-tags" id="prf-status-tags">
         <div class="prf-status-tag tag-green">🟢 ONLINE</div>
-        <div class="prf-status-tag tag-yellow">⚡ ON STREAK</div>
-        <div class="prf-status-tag tag-blue">🏆 RANKED</div>
       </div>
     </div>
 
@@ -378,43 +376,12 @@
       </svg>
       <div>
         <div class="sum-card-title">STRENGTH</div>
-        <div class="sum-card-count">3 TOPICS MASTERED</div>
+        <div class="sum-card-count" id="strength-card-count">— TOPICS</div>
       </div>
     </div>
     <div class="sum-card-divider"></div>
 
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">Algorithms</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:92%"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">92%</div>
-    </div>
-
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">Object-Oriented Programming</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:86%;animation-delay:.15s"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">86%</div>
-    </div>
-
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">AI Fundamentals</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:81%;animation-delay:.3s"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">81%</div>
-    </div>
+    <div id="sum-strength-rows"></div>
   </div>
 
   <!-- WEAKNESS -->
@@ -440,43 +407,12 @@
       </svg>
       <div>
         <div class="sum-card-title">WEAKNESS</div>
-        <div class="sum-card-count">3 TOPICS TO IMPROVE</div>
+        <div class="sum-card-count" id="weakness-card-count">— TOPICS</div>
       </div>
     </div>
     <div class="sum-card-divider"></div>
 
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">Dynamic Programming</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:38%"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">38%</div>
-    </div>
-
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">Graph Theory</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:45%;animation-delay:.15s"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">45%</div>
-    </div>
-
-    <div class="sum-item-row">
-      <div class="sum-item-dot"></div>
-      <div class="sum-item-info">
-        <div class="sum-item-name">Recursion &amp; Backtracking</div>
-        <div class="sum-item-track">
-          <div class="sum-item-fill" style="--w:41%;animation-delay:.3s"></div>
-        </div>
-      </div>
-      <div class="sum-item-pct">41%</div>
-    </div>
+    <div id="sum-weakness-rows"></div>
   </div>
 
 </div>
@@ -720,35 +656,7 @@
       </div>
     </div>
 
-    <div class="btm-tags-wrap">
-      <div class="btm-tag">
-        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
-          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
-        </svg>
-        <span>Algorithms</span>
-      </div>
-      <div class="btm-tag">
-        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
-          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
-        </svg>
-        <span>OOP</span>
-      </div>
-      <div class="btm-tag">
-        <svg width="12" height="12" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;flex-shrink:0;">
-          <rect x="5" y="0" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="2" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="1" y="4" width="2" height="2" fill="#1a1a2e"/>
-          <rect x="3" y="3" width="2" height="1" fill="#1a1a2e"/>
-        </svg>
-        <span>AI Basics</span>
-      </div>
-    </div>
+    <div class="btm-tags-wrap" id="btm-topics-tags"></div>
 
     <!-- Mastery progress bar -->
     <div class="btm-mastery-row">
@@ -784,108 +692,7 @@
       </div>
     </div>
 
-    <div class="btm-items-row">
-
-      <!-- Item 1: Phantom Eraser (Legendary) -->
-      <div class="btm-item-slot r-legendary">
-        <div class="btm-item-inner">
-          <svg width="38" height="38" viewBox="0 0 16 16"
-               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-            <rect x="1" y="5" width="14" height="7" fill="#ff9500"/>
-            <rect x="1" y="5" width="14" height="3" fill="#ffb700"/>
-            <rect x="1" y="8" width="14" height="1" fill="#cc7700"/>
-            <rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>
-            <rect x="3" y="2" width="1" height="1" fill="#ff4444"/>
-            <rect x="4" y="3" width="1" height="1" fill="#ff4444"/>
-            <rect x="5" y="2" width="1" height="1" fill="#ff4444"/>
-            <rect x="9" y="2" width="1" height="1" fill="#ff4444"/>
-            <rect x="10" y="3" width="1" height="1" fill="#ff4444"/>
-            <rect x="11" y="2" width="1" height="1" fill="#ff4444"/>
-            <rect x="2"  y="12" width="1" height="1" fill="#f0d0a0" opacity="0.6"/>
-            <rect x="5"  y="13" width="2" height="1" fill="#f0d0a0" opacity="0.5"/>
-            <rect x="2"  y="5"  width="3" height="1" fill="#fff"    opacity="0.3"/>
-          </svg>
-        </div>
-        <div class="btm-item-dot" style="background:#ff9500"></div>
-      </div>
-
-      <!-- Item 2: Time Freeze Orb (Epic) -->
-      <div class="btm-item-slot r-epic">
-        <div class="btm-item-inner">
-          <svg width="38" height="38" viewBox="0 0 16 16"
-               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-            <rect x="3"  y="1"  width="10" height="2"  fill="#7c3aed"/>
-            <rect x="2"  y="2"  width="12" height="10" fill="#6d28d9"/>
-            <rect x="1"  y="4"  width="14" height="6"  fill="#7c3aed"/>
-            <rect x="3"  y="12" width="10" height="2"  fill="#6d28d9"/>
-            <rect x="5"  y="4"  width="6"  height="6"  fill="#1a0a2e"/>
-            <rect x="6"  y="3"  width="4"  height="1"  fill="#c084fc"/>
-            <rect x="4"  y="5"  width="1"  height="4"  fill="#c084fc"/>
-            <rect x="11" y="5"  width="1"  height="4"  fill="#c084fc"/>
-            <rect x="6"  y="10" width="4"  height="1"  fill="#c084fc"/>
-            <rect x="7"  y="5"  width="1"  height="3"  fill="#fff"/>
-            <rect x="7"  y="7"  width="3"  height="1"  fill="#fff"/>
-            <rect x="7"  y="7"  width="1"  height="1"  fill="#fee783"/>
-            <rect x="3"  y="3"  width="2"  height="2"  fill="#fff" opacity="0.2"/>
-          </svg>
-        </div>
-        <div class="btm-item-dot" style="background:#c084fc"></div>
-      </div>
-
-      <!-- Item 3: 2nd Chance Scroll (Rare) -->
-      <div class="btm-item-slot r-rare">
-        <div class="btm-item-inner">
-          <svg width="38" height="38" viewBox="0 0 16 16"
-               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-            <rect x="2" y="0"  width="12" height="2" fill="#b87333"/>
-            <rect x="1" y="1"  width="14" height="2" fill="#d4a96a"/>
-            <rect x="1" y="3"  width="14" height="9" fill="#fdf3dc"/>
-            <rect x="3" y="4"  width="10" height="1" fill="#a0a8d0"/>
-            <rect x="3" y="6"  width="8"  height="1" fill="#a0a8d0"/>
-            <rect x="5"  y="5"  width="6" height="1" fill="#00e5ff"/>
-            <rect x="10" y="5"  width="1" height="3" fill="#00e5ff"/>
-            <rect x="9"  y="7"  width="2" height="1" fill="#00e5ff"/>
-            <rect x="5"  y="4"  width="3" height="1" fill="#00e5ff"/>
-            <rect x="1"  y="13" width="14" height="2" fill="#d4a96a"/>
-            <rect x="2"  y="14" width="12" height="2" fill="#b87333"/>
-          </svg>
-        </div>
-        <div class="btm-item-dot" style="background:#00e5ff"></div>
-      </div>
-
-      <!-- Item 4: XP Magnet (Uncommon) -->
-      <div class="btm-item-slot r-uncommon">
-        <div class="btm-item-inner">
-          <svg width="38" height="38" viewBox="0 0 16 16"
-               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-            <rect x="2"  y="2"  width="4"  height="10" fill="#94a3b8"/>
-            <rect x="10" y="2"  width="4"  height="10" fill="#94a3b8"/>
-            <rect x="2"  y="2"  width="12" height="3"  fill="#64748b"/>
-            <rect x="3"  y="5"  width="2"  height="7"  fill="#0d0f20"/>
-            <rect x="11" y="5"  width="2"  height="7"  fill="#0d0f20"/>
-            <rect x="2"  y="12" width="4"  height="3"  fill="#ef4444"/>
-            <rect x="10" y="12" width="4"  height="3"  fill="#3b82f6"/>
-            <rect x="6"  y="5"  width="1"  height="1"  fill="#fee783"/>
-            <rect x="7"  y="4"  width="2"  height="1"  fill="#fee783"/>
-            <rect x="9"  y="5"  width="1"  height="1"  fill="#fee783"/>
-            <rect x="3"  y="2"  width="2"  height="1"  fill="#fff" opacity="0.3"/>
-          </svg>
-        </div>
-        <div class="btm-item-dot" style="background:#00ff88"></div>
-      </div>
-
-      <!-- Item 5: Empty slot -->
-      <div class="btm-item-slot btm-slot-empty">
-        <div class="btm-item-inner">
-          <svg width="24" height="24" viewBox="0 0 8 8"
-               xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;opacity:.3">
-            <rect x="3" y="1" width="2" height="6" fill="#fff"/>
-            <rect x="1" y="3" width="6" height="2" fill="#fff"/>
-          </svg>
-        </div>
-      </div>
-
-    </div>
+    <div class="btm-items-row" id="btm-items-row"></div>
 
     <!-- Items count -->
     <div class="btm-items-count">
@@ -1003,16 +810,13 @@
       })();
     })();
 
-    /* ── PIXEL HEART Win Rate ── */
-    (function(){
+    /* ── PIXEL HEART Win Rate — called after BVUser loads ── */
+    window._drawGrimHeart = function(winRate, wins, losses) {
       const cvs = document.getElementById('mcHeartCanvas');
       if (!cvs) return;
       const ctx = cvs.getContext('2d');
       const W = 90, H = 82, PX = 6;
-      const WIN_RATE = (typeof window._BV_WIN_RATE !== 'undefined') ? window._BV_WIN_RATE : 0;
-
-      // heart shape: pixel grid 13×11
-      // 1 = heart pixel, 0 = empty
+      const WIN_RATE = winRate || 0;
       const HEART = [
         [0,0,1,1,0,0,0,1,1,0,0,0,0],
         [0,1,1,1,1,0,1,1,1,1,0,0,0],
@@ -1025,57 +829,35 @@
         [0,0,0,0,1,1,1,0,0,0,0,0,0],
         [0,0,0,0,0,1,0,0,0,0,0,0,0],
       ];
-
-      const ROWS = HEART.length;
-      const COLS = HEART[0].length;
+      const ROWS = HEART.length, COLS = HEART[0].length;
       const totalPixels = HEART.flat().filter(v => v === 1).length;
       const fillCount = Math.round(totalPixels * WIN_RATE);
-
-      // collect all heart pixels bottom-to-top for fill order
       const pixels = [];
-      for (let r = ROWS - 1; r >= 0; r--) {
-        for (let c = 0; c < COLS; c++) {
+      for (let r = ROWS - 1; r >= 0; r--)
+        for (let c = 0; c < COLS; c++)
           if (HEART[r][c]) pixels.push([r, c]);
-        }
-      }
-
-      // offset to center
       const offX = Math.floor((W - COLS * PX) / 2);
-      const offY = Math.floor((H - ROWS * PX - 14) / 2); // leave room for text
-
-      // draw once (static)
+      const offY = Math.floor((H - ROWS * PX - 14) / 2);
       ctx.clearRect(0, 0, W, H);
-
       const filled = new Set(pixels.slice(0, fillCount).map(([r,c]) => `${r},${c}`));
-
       pixels.forEach(([r, c]) => {
-        const x = offX + c * PX;
-        const y = offY + r * PX;
+        const x = offX + c * PX, y = offY + r * PX;
         const isFilled = filled.has(`${r},${c}`);
-        if (isFilled) {
-          ctx.fillStyle = '#ff4d6d';
-          ctx.shadowColor = '#ff4d6d';
-          ctx.shadowBlur = 6;
-        } else {
-          ctx.fillStyle = 'rgba(255,77,109,0.12)';
-          ctx.shadowBlur = 0;
-        }
+        ctx.fillStyle = isFilled ? '#ff4d6d' : 'rgba(255,77,109,0.12)';
+        ctx.shadowColor = isFilled ? '#ff4d6d' : 'transparent';
+        ctx.shadowBlur  = isFilled ? 6 : 0;
         ctx.fillRect(x, y, PX - 1, PX - 1);
       });
       ctx.shadowBlur = 0;
-
-      // percentage text centered below heart
       ctx.font = '500 10px "Press Start 2P", monospace';
       ctx.fillStyle = '#ff4d6d';
       ctx.textAlign = 'center';
-      ctx.fillText(Math.round(WIN_RATE*100) + '%', W / 2, offY + ROWS * PX + 14);
-
+      ctx.fillText(Math.round(WIN_RATE * 100) + '%', W / 2, offY + ROWS * PX + 14);
       ctx.font = '500 6px "Press Start 2P", monospace';
       ctx.fillStyle = 'rgba(255,77,109,.4)';
-      var _w = (typeof window._BV_WINS !== 'undefined') ? window._BV_WINS : 0;
-      var _l = (typeof window._BV_LOSSES !== 'undefined') ? window._BV_LOSSES : 0;
-      ctx.fillText(_w + 'W / ' + _l + 'L', W / 2, offY + ROWS * PX + 24);
-    })();
+      ctx.fillText((wins || 0) + 'W / ' + (losses || 0) + 'L', W / 2, offY + ROWS * PX + 24);
+    };
+    window._drawGrimHeart(0, 0, 0); // placeholder until BVUser loads
 
     /* ── COUNT-UP ── */
     (function(){
@@ -1097,150 +879,223 @@
     <script>
       // ── Populate grimoire from localStorage ──
       (function() {
-        if (typeof BVUser === 'undefined') return;
-        var u = BVUser.load();
-        var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
-        var setW = function(id, w) { var el = document.getElementById(id); if (el) el.style.width = w + '%'; };
+  if (typeof BVUser === 'undefined') return;
+  var u = BVUser.load();
+  var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+  var setW = function(id, w) { var el = document.getElementById(id); if (el) el.style.width = w + '%'; };
 
-        // Profile header
-        set('grim-welcome',    'Welcome back, ' + u.name);
-        set('grim-level-lbl', 'LV.' + u.level);
-        set('grim-level-xp',  u.xpProgress + ' / 100 XP');
-        setW('grim-xp-fill', u.xpProgress);
+  var TOPIC_LABELS = {
+    algorithms: 'Algorithms', oop: 'OOP', aiFundamentals: 'AI Fundamentals',
+    dynamicProgramming: 'Dynamic Programming', graphTheory: 'Graph Theory', recursion: 'Recursion',
+  };
+  var RANK_COLORS = {
+    'Unranked':'#888','Bronze':'#cd7f32','Silver':'#a8a9ad',
+    'Gold':'#ffd700','Platinum':'#e5e4e2','Diamond':'#b9f2ff','Legend':'#fee783'
+  };
+  var BATTLE_ITEMS = ['eraser','freeze','retry','xp','shield','gem','warp','focus'];
 
-        // Mini stat cards
-        set('grim-rank-txt',   u.rank);
-        var rankIconSvg = document.getElementById('mc-rank-icon-svg');
-        if (rankIconSvg && typeof RANK_ICONS !== 'undefined') {
-          var ri = RANK_ICONS[u.rank] || RANK_ICONS['Unranked'];
-          rankIconSvg.innerHTML = ri.svg;
-          var hexPolys = document.querySelectorAll('.mc-rank-hex-svg polygon');
-          if (hexPolys[0]) { hexPolys[0].setAttribute('stroke', ri.color); hexPolys[0].setAttribute('fill', 'transparent'); }
-          if (hexPolys[1]) hexPolys[1].setAttribute('stroke', ri.color);
-        }
-        set('level-display',   u.level);
-        var miniXp = document.getElementById('grim-mini-xp');
-        if (miniXp) miniXp.innerHTML = u.xpProgress + ' <span style="color:rgba(30,144,255,.4);font-size:.5em;">/ 100 XP</span>';
-        set('grim-streak-val', u.streak + '×');
+  // Profile name + desc
+  set('prf-name', u.name || 'Explorer');
+  var desc = u.totalBattles > 0
+    ? u.totalBattles + ' battles · ' + u.winRate + '% win rate · Lv.' + u.level
+    : 'No battles yet. Start your journey!';
+  set('prf-desc', desc);
 
-        // XP pixel blocks (10 blocks representing 0-100%)
-        var blocks = document.querySelectorAll('.mc-pixel-blocks .mc-pb');
-        var filled = Math.round(u.xpProgress / 10);
-        blocks.forEach(function(b, i) {
-          b.className = 'mc-pb' + (i < filled ? ' mc-pb-on' : '');
-        });
+  // Status tags
+  var tagsEl = document.getElementById('prf-status-tags');
+  if (tagsEl) {
+    tagsEl.innerHTML = '<div class="prf-status-tag tag-green">🟢 ONLINE</div>';
+    if (u.streak > 0) tagsEl.innerHTML += '<div class="prf-status-tag tag-yellow">⚡ ' + u.streak + 'x STREAK</div>';
+    if (u.rank !== 'Unranked') {
+      var rc = RANK_COLORS[u.rank] || '#888';
+      tagsEl.innerHTML += '<div class="prf-status-tag tag-blue" style="border-color:' + rc + '44;color:' + rc + ';">✦ ' + u.rank.toUpperCase() + '</div>';
+    }
+  }
 
-        // Battle stats — update data-target for count-up animation
-        var setBst = function(id, val) { var el = document.getElementById(id); if (el) el.dataset.target = val; };
-        setBst('grim-battles', u.totalBattles);
-        setBst('grim-wins',    u.totalWins);
-        setBst('grim-losses',  u.totalLosses);
+  // Rank badge (use BVUser rank directly)
+  var badge = document.getElementById('rank-badge');
+  if (badge) {
+    badge.textContent = u.rank;
+    var rc2 = RANK_COLORS[u.rank] || '#888';
+    badge.style.color = rc2;
+    badge.style.borderColor = rc2 + '66';
+    badge.style.background = rc2 + '18';
+  }
 
-        // Win/loss percentages
-        var wp = u.totalBattles > 0 ? ((u.totalWins / u.totalBattles) * 100).toFixed(1) : '0.0';
-        var lp = u.totalBattles > 0 ? ((u.totalLosses / u.totalBattles) * 100).toFixed(1) : '0.0';
-        set('grim-win-pct',  wp + '%');
-        set('grim-loss-pct', lp + '%');
+  // Rank icon svg
+  var rankIconSvg = document.getElementById('mc-rank-icon-svg');
+  if (rankIconSvg && typeof RANK_ICONS !== 'undefined') {
+    var ri = RANK_ICONS[u.rank] || RANK_ICONS['Unranked'];
+    rankIconSvg.innerHTML = ri.svg;
+    var hexPolys = document.querySelectorAll('.mc-rank-hex-svg polygon');
+    if (hexPolys[0]) { hexPolys[0].setAttribute('stroke', ri.color); hexPolys[0].setAttribute('fill', 'transparent'); }
+    if (hexPolys[1]) hexPolys[1].setAttribute('stroke', ri.color);
+  }
 
-        // Split bar
-        var sw = document.querySelector('.bst-split-w');
-        var sl = document.querySelector('.bst-split-l');
-        if (sw) sw.style.width = wp + '%';
-        if (sl) sl.style.width = lp + '%';
+  // Profile card level bar
+  set('grim-level-lbl', 'LV.' + u.level);
+  set('grim-level-xp',  u.xpProgress + ' / 100 XP');
+  setW('grim-xp-fill', u.xpProgress);
 
-        // Strongest / Weakest topic
-        var strong = BVUser.getStrongestTopic(u);
-        var weak   = BVUser.getWeakestTopic(u);
-        if (strong) {
-          set('grim-strong-name', strong.name);
-          set('grim-strong-pct',  strong.value + '%');
-          setW('grim-strong-fill', strong.value);
-        }
-        if (weak) {
-          set('grim-weak-name', weak.name);
-          set('grim-weak-pct',  weak.value + '%');
-          setW('grim-weak-fill', weak.value);
-        }
+  // Mini stat cards
+  set('grim-rank-txt', u.rank);
+  set('level-display', u.level);
+  var miniXp = document.getElementById('grim-mini-xp');
+  if (miniXp) miniXp.innerHTML = u.xpProgress + ' <span style="color:rgba(30,144,255,.4);font-size:.7em;">/ 100 XP</span>';
+  set('grim-streak-val', u.streak + '×');
 
-        // Total Battles bar (goal: 50)
-        var battlePct = Math.min(100, Math.round(u.totalBattles / 50 * 100));
-        var bstBar = document.querySelector('.bst-mini-bar');
-        if (bstBar) bstBar.style.setProperty('--bw', battlePct + '%');
-        var bstGoal = document.querySelector('.bst-sub[style*="fee783"]');
-        // (keep "Goal: 50" text as-is)
+  // XP pixel blocks
+  var blocks = document.querySelectorAll('.mc-pixel-blocks .mc-pb');
+  var filled = Math.round(u.xpProgress / 10);
+  blocks.forEach(function(b, i) { b.className = 'mc-pb' + (i < filled ? ' mc-pb-on' : ''); });
 
-        // Overall mastery
-        var mastery = BVUser.getOverallMastery(u);
-        set('grim-mastery-score', mastery + ' / 100');
-        setW('grim-mastery-fill', mastery);
+  // Battle stats
+  var setBst = function(id, val) { var el = document.getElementById(id); if (el) el.dataset.target = val; };
+  setBst('grim-battles', u.totalBattles);
+  setBst('grim-wins',    u.totalWins);
+  setBst('grim-losses',  u.totalLosses);
 
-        // Summary stats row
-        set('grim-sum-winrate',  u.winRate + '%');
-        set('grim-sum-streak',   u.streak + 'x');
-        set('grim-sum-battles',  u.totalBattles);
-        set('grim-sum-mastery',  mastery + '%');
+  var wp = u.totalBattles > 0 ? ((u.totalWins / u.totalBattles) * 100).toFixed(1) : '0.0';
+  var lp = u.totalBattles > 0 ? ((u.totalLosses / u.totalBattles) * 100).toFixed(1) : '0.0';
+  set('grim-win-pct',  wp + '%');
+  set('grim-loss-pct', lp + '%');
+  var sw = document.querySelector('.bst-split-w');
+  var sl = document.querySelector('.bst-split-l');
+  if (sw) sw.style.width = wp + '%';
+  if (sl) sl.style.width = lp + '%';
 
-        // Suggested skills — DP, Graph, Recursion mastery from topics
-        var dp    = u.topics.dynamicProgramming || 0;
-        var graph = u.topics.graphTheory        || 0;
-        var rec   = u.topics.recursion          || 0;
-        set('gs-dp-pct',    dp    + '%'); setW('gs-dp-fill',    dp);
-        set('gs-graph-pct', graph + '%'); setW('gs-graph-fill', graph);
-        set('gs-rec-pct',   rec   + '%'); setW('gs-rec-fill',   rec);
+  // Strongest / Weakest topic
+  var strong = BVUser.getStrongestTopic(u);
+  var weak   = BVUser.getWeakestTopic(u);
+  if (strong) { set('grim-strong-name', strong.name); set('grim-strong-pct', strong.value + '%'); setW('grim-strong-fill', strong.value); }
+  if (weak)   { set('grim-weak-name',   weak.name);   set('grim-weak-pct',   weak.value + '%');   setW('grim-weak-fill',   weak.value); }
 
-        // Bottom card: items display — update btm-items-count
-        var totalItems = Object.keys(u.items).reduce(function(s, k){ return s + (u.items[k]||0); }, 0);
-        var itemCountEl = document.querySelector('.btm-items-num');
-        if (itemCountEl) itemCountEl.textContent = totalItems + ' items';
+  // Total Battles bar
+  var battlePct = Math.min(100, Math.round(u.totalBattles / 50 * 100));
+  var bstBar = document.querySelector('.bst-mini-bar');
+  if (bstBar) bstBar.style.setProperty('--bw', battlePct + '%');
 
-        // Bottom card: topics mastered (>= 50 = mastered)
-        var masteredTopics = Object.keys(u.topics).filter(function(k){ return u.topics[k] >= 50; });
-        var topicCountEl = document.querySelector('.btm-section-sub');
-        if (topicCountEl && topicCountEl.textContent.includes('unlocked')) {
-          topicCountEl.textContent = masteredTopics.length + ' topics unlocked';
-        }
-        // Update mastery rate bar
-        var masteryRateEl = document.querySelector('.btm-mastery-val');
-        if (masteryRateEl) masteryRateEl.textContent = masteredTopics.length + ' / 6';
-        var masteryFillEl = document.querySelector('.btm-mastery-fill');
-        if (masteryFillEl) masteryFillEl.style.width = Math.round(masteredTopics.length / 6 * 100) + '%';
+  // Overall mastery
+  var mastery = BVUser.getOverallMastery(u);
+  set('grim-mastery-score', mastery + ' / 100');
+  setW('grim-mastery-fill', mastery);
 
-        // Store win rate globally for heart canvas
-        window._BV_WIN_RATE = u.winRate / 100;
-        window._BV_WINS     = u.totalWins;
-        window._BV_LOSSES   = u.totalLosses;
-      })();
+  // Summary stats row
+  set('grim-sum-winrate', u.winRate + '%');
+  set('grim-sum-streak',  u.streak + 'x');
+  set('grim-sum-battles', u.totalBattles);
+  set('grim-sum-mastery', mastery + '%');
+
+  // Summary strength/weakness cards — sort topics
+  function buildTopicRow(name, value, delay) {
+    return '<div class="sum-item-row">' +
+      '<div class="sum-item-dot"></div>' +
+      '<div class="sum-item-info">' +
+        '<div class="sum-item-name">' + name + '</div>' +
+        '<div class="sum-item-track">' +
+          '<div class="sum-item-fill" style="--w:' + value + '%;animation-delay:' + delay + 's"></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sum-item-pct">' + value + '%</div>' +
+    '</div>';
+  }
+  var topicEntries = Object.keys(u.topics).map(function(k) {
+    return { key: k, name: TOPIC_LABELS[k] || k, value: u.topics[k] || 0 };
+  });
+  topicEntries.sort(function(a, b) { return b.value - a.value; });
+  var top3    = topicEntries.slice(0, 3);
+  var bottom3 = topicEntries.slice(-3).reverse();
+
+  var strRows = document.getElementById('sum-strength-rows');
+  if (strRows) strRows.innerHTML = top3.map(function(t, i) { return buildTopicRow(t.name, t.value, i * 0.15); }).join('');
+  set('strength-card-count', top3.filter(function(t){return t.value >= 50;}).length + ' MASTERED');
+
+  var wkRows = document.getElementById('sum-weakness-rows');
+  if (wkRows) wkRows.innerHTML = bottom3.map(function(t, i) { return buildTopicRow(t.name, t.value, i * 0.15); }).join('');
+  set('weakness-card-count', bottom3.filter(function(t){return t.value < 50;}).length + ' NEED WORK');
+
+  // Suggested skills mastery bars
+  var dp    = u.topics.dynamicProgramming || 0;
+  var graph = u.topics.graphTheory        || 0;
+  var rec   = u.topics.recursion          || 0;
+  set('gs-dp-pct',    dp    + '%'); setW('gs-dp-fill',    dp);
+  set('gs-graph-pct', graph + '%'); setW('gs-graph-fill', graph);
+  set('gs-rec-pct',   rec   + '%'); setW('gs-rec-fill',   rec);
+
+  // Bottom: topics mastered tags
+  var masteredTopics = topicEntries.filter(function(t){ return t.value >= 50; });
+  var tagsWrap = document.getElementById('btm-topics-tags');
+  if (tagsWrap) {
+    if (masteredTopics.length === 0) {
+      tagsWrap.innerHTML = '<span style="color:rgba(255,255,255,.3);font-size:.6rem;">No topics mastered yet</span>';
+    } else {
+      tagsWrap.innerHTML = masteredTopics.map(function(t) {
+        return '<div class="btm-tag"><span>' + t.name + '</span></div>';
+      }).join('');
+    }
+  }
+
+  // Update mastery count & bar
+  var topicCountEl = document.querySelector('.btm-section-sub');
+  if (topicCountEl && topicCountEl.textContent.includes('unlocked')) topicCountEl.textContent = masteredTopics.length + ' topics unlocked';
+  var masteryRateEl = document.querySelector('.btm-mastery-val');
+  if (masteryRateEl) masteryRateEl.textContent = masteredTopics.length + ' / 6';
+  var masteryFillEl = document.querySelector('.btm-mastery-fill');
+  if (masteryFillEl) masteryFillEl.style.width = Math.round(masteredTopics.length / 6 * 100) + '%';
+
+  // Bottom: items row — show owned battle items
+  var itemsRow = document.getElementById('btm-items-row');
+  if (itemsRow) {
+    var ITEM_COLORS = {eraser:'#ff9500',freeze:'#c084fc',retry:'#00e5ff',xp:'#fee783',shield:'#00ff88',gem:'#ff3bff',warp:'#fee783',focus:'#00e5ff'};
+    var ITEM_SVGS = {
+      eraser:'<rect x="1" y="5" width="14" height="7" fill="#ff9500"/><rect x="1" y="5" width="14" height="3" fill="#ffb700"/><rect x="1" y="8" width="14" height="1" fill="#cc7700"/><rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>',
+      freeze:'<rect x="3" y="1" width="10" height="2" fill="#7c3aed"/><rect x="2" y="2" width="12" height="10" fill="#6d28d9"/><rect x="1" y="4" width="14" height="6" fill="#7c3aed"/><rect x="5" y="4" width="6" height="6" fill="#1a0a2e"/>',
+      retry:'<rect x="2" y="0" width="12" height="2" fill="#b87333"/><rect x="1" y="1" width="14" height="2" fill="#d4a96a"/><rect x="1" y="3" width="14" height="9" fill="#fdf3dc"/>',
+      xp:'<rect x="2" y="2" width="4" height="10" fill="#94a3b8"/><rect x="10" y="2" width="4" height="10" fill="#94a3b8"/><rect x="2" y="2" width="12" height="3" fill="#64748b"/><rect x="6" y="5" width="1" height="1" fill="#fee783"/><rect x="7" y="4" width="2" height="1" fill="#fee783"/>',
+      shield:'<rect x="3" y="0" width="10" height="2" fill="#00cc66"/><rect x="1" y="2" width="14" height="2" fill="#00ff88"/><rect x="0" y="4" width="16" height="6" fill="#00cc66"/><rect x="1" y="10" width="14" height="2" fill="#00cc66"/>',
+      gem:'<rect x="5" y="0" width="6" height="2" fill="#ff3bff"/><rect x="3" y="2" width="10" height="2" fill="#cc00cc"/><rect x="1" y="4" width="14" height="7" fill="#ff3bff"/><rect x="4" y="6" width="8" height="3" fill="#ffaaff"/>',
+      warp:'<rect x="7" y="0" width="2" height="2" fill="#fee783"/><rect x="5" y="1" width="6" height="2" fill="#fee783"/><rect x="3" y="3" width="10" height="2" fill="#fee783"/><rect x="0" y="7" width="16" height="2" fill="#fee783"/>',
+      focus:'<rect x="6" y="0" width="4" height="2" fill="#94a3b8"/><rect x="3" y="4" width="10" height="8" fill="#0d2233"/><rect x="5" y="6" width="6" height="4" fill="#00e5ff" opacity="0.5"/><rect x="6" y="7" width="4" height="2" fill="#fff" opacity="0.65"/>',
+    };
+    var ownedItems = BATTLE_ITEMS.filter(function(k){ return (u.items[k] || 0) > 0; });
+    var html = '';
+    for (var si = 0; si < 4; si++) {
+      var k = ownedItems[si];
+      if (k) {
+        var c = ITEM_COLORS[k] || '#888';
+        var rarityClass = (k === 'eraser' || k === 'warp') ? 'r-legendary' : (k === 'freeze' || k === 'gem') ? 'r-epic' : (k === 'retry' || k === 'shield') ? 'r-rare' : 'r-uncommon';
+        html += '<div class="btm-item-slot ' + rarityClass + '">' +
+          '<div class="btm-item-inner">' +
+            '<svg width="38" height="38" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">' +
+              (ITEM_SVGS[k] || '') +
+            '</svg>' +
+            '<div style="font-family:\'Press Start 2P\',monospace;font-size:.35rem;color:' + c + ';margin-top:2px;">×' + u.items[k] + '</div>' +
+          '</div>' +
+          '<div class="btm-item-dot" style="background:' + c + '"></div>' +
+        '</div>';
+      } else {
+        html += '<div class="btm-item-slot btm-slot-empty"><div class="btm-item-inner"><svg width="24" height="24" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;opacity:.3"><rect x="3" y="1" width="2" height="6" fill="#fff"/><rect x="1" y="3" width="6" height="2" fill="#fff"/></svg></div></div>';
+      }
+    }
+    itemsRow.innerHTML = html;
+  }
+
+  // Items count
+  var totalItems = Object.keys(u.items).reduce(function(s, k){ return s + (u.items[k]||0); }, 0);
+  var itemCountEl = document.querySelector('.btm-items-num');
+  if (itemCountEl) itemCountEl.textContent = totalItems + ' items';
+
+  // Win rate for heart canvas
+  window._BV_WIN_RATE = u.winRate / 100;
+  window._BV_WINS     = u.totalWins;
+  window._BV_LOSSES   = u.totalLosses;
+})();
 
       // Hamburger
       document.getElementById("hamburger").addEventListener("click", () => {
         document.getElementById("navLinks").classList.toggle("active");
       });
 
-      // Rank badge
-      var _bvXP = (typeof BVUser !== 'undefined') ? BVUser.load().totalXP : 0;
-      const rank = getRankStyle(_bvXP);
-      const badge = document.getElementById("rank-badge");
-      badge.textContent = rank.label;
-      badge.classList.add(rank.cls);
-
-      // Battle Items popup
-      const fiModal = document.getElementById("fi-modal");
-      document
-        .getElementById("fi-modal-close")
-        .addEventListener("click", () => {
-          fiModal.classList.add("hidden");
-        });
-      fiModal.addEventListener("click", (e) => {
-        if (e.target === fiModal) fiModal.classList.add("hidden");
-      });
-      document
-        .querySelectorAll(".armory-icons img, .item-slot-empty")
-        .forEach((el) => {
-          el.style.cursor = "pointer";
-          el.addEventListener("click", () =>
-            fiModal.classList.remove("hidden"),
-          );
-        });
     </script>
     <script src="grimoire-charts.js"></script>
     <script>

@@ -9,11 +9,12 @@
 
   /* ── Rank thresholds ── */
   var RANKS = [
-    [300,      'Bronze'],
-    [800,      'Silver'],
-    [1800,     'Gold'],
-    [3500,     'Platinum'],
-    [6000,     'Diamond'],
+    [100,      'Bronze'],
+    [500,      'Silver'],
+    [1200,     'Gold'],
+    [2500,     'Platinum'],
+    [4500,     'Diamond'],
+    [7000,     'Legend'],
     [Infinity, 'Legend'],
   ];
 
@@ -193,14 +194,20 @@
      returns: updated user object
   ───────────────────────────────────────────────────── */
   function recordBattle(params) {
-    var correct    = params.correct    || 0;
-    var total      = params.total      || 1;
-    var won        = params.won        || false;
-    var earnedXP   = params.earnedXP   || 0;
-    var mode       = params.mode       || 'daily';
+    var correct     = params.correct     || 0;
+    var total       = params.total       || 1;
+    var won         = params.won         || false;
+    var earnedXP    = params.earnedXP    || 0;
+    var mode        = params.mode        || 'daily';
+    var difficulty  = params.difficulty  || null;
+    var battleRank  = params.rank        || 'D';
     var questionLog = params.questionLog || [];
 
     var u = load();
+
+    /* snapshot before changes for lastResult diff */
+    var levelBefore = u.level || 1;
+    var rankBefore  = u.rank  || 'Unranked';
 
     /* battles & record */
     u.totalBattles++;
@@ -215,6 +222,13 @@
       u.streak = (u.lastBattleDate === yesterday) ? (u.streak + 1) : 1;
       u.lastBattleDate = today;
     }
+
+    /* streak XP multiplier */
+    var streakMult = 1.0;
+    if (u.streak >= 14) streakMult = 1.3;
+    else if (u.streak >= 7) streakMult = 1.2;
+    else if (u.streak >= 3) streakMult = 1.1;
+    earnedXP = Math.round(earnedXP * streakMult);
 
     /* XP & level */
     u.totalXP    = (u.totalXP || 0) + earnedXP;
@@ -287,14 +301,20 @@
     u.weeklyXP[5]      = (u.weeklyXP[5] || 0) + earnedXP;
     u.weeklyWinRate[5] = u.winRate;
 
-    /* last result */
+    /* last result — full snapshot for battle-result.html */
     u.lastResult = {
-      correct:    correct,
-      total:      total,
-      won:        won,
-      earnedXP:   earnedXP,
-      mode:       mode,
-      earnedItem: earnedItem,
+      correct:     correct,
+      total:       total,
+      won:         won,
+      earnedXP:    earnedXP,
+      mode:        mode,
+      difficulty:  difficulty,
+      rank:        battleRank,
+      earnedItem:  earnedItem,
+      levelBefore: levelBefore,
+      levelAfter:  u.level,
+      rankBefore:  rankBefore,
+      rankAfter:   u.rank,
     };
 
     save(u);

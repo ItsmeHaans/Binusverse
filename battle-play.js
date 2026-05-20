@@ -3,32 +3,8 @@
    Mode: ?mode=daily | ?mode=raid&difficulty=easy|normal|hard
 ══════════════════════════════════════════ */
 
-// ─── QUESTION BANK (tagged by skill + topic) ───
-const QUESTIONS = [
-  // AI / Algorithms
-  { text:"Apa time complexity dari Binary Search?", opts:{A:"O(n)",B:"O(log n)",C:"O(n²)",D:"O(1)"}, correct:"B", skill:"ai", topic:"algorithms" },
-  { text:"Sorting algorithm mana yang memiliki worst-case O(n log n)?", opts:{A:"Bubble Sort",B:"Insertion Sort",C:"Quick Sort",D:"Merge Sort"}, correct:"D", skill:"ai", topic:"algorithms" },
-  { text:"Perbedaan BFS dan DFS pada graph?", opts:{A:"BFS pakai stack, DFS pakai queue",B:"BFS pakai queue, DFS pakai stack",C:"Keduanya pakai queue",D:"Keduanya pakai stack"}, correct:"B", skill:"ai", topic:"graphTheory" },
-  { text:"Fungsi validation set dalam machine learning?", opts:{A:"Melatih model",B:"Menguji performa final model",C:"Tune hyperparameter dan mencegah overfitting",D:"Normalisasi data input"}, correct:"C", skill:"ai", topic:"aiFundamentals" },
-  { text:"Apa itu Overfitting dalam machine learning?", opts:{A:"Model terlalu sederhana untuk data",B:"Model terlalu 'hafal' data training sehingga gagal generalize",C:"Model mencapai akurasi 100%",D:"Teknik regularisasi neural network"}, correct:"B", skill:"ai", topic:"aiFundamentals" },
-  { text:"Apa output dari fungsi berikut: f(n)=f(n-1)+f(n-2), f(0)=0, f(1)=1, f(5)?", opts:{A:"5",B:"6",C:"7",D:"8"}, correct:"A", skill:"ai", topic:"recursion" },
-  { text:"Apa yang terjadi jika rekursi tidak memiliki base case?", opts:{A:"Return null",B:"Stack Overflow",C:"Infinite loop di heap",D:"Compile error"}, correct:"B", skill:"ai", topic:"recursion" },
-
-  // Cyber / OOP
-  { text:"Dalam OOP, apa yang dimaksud dengan Encapsulation?", opts:{A:"Mewarisi sifat dari class lain",B:"Menyembunyikan detail internal dan hanya expose interface",C:"Mengizinkan satu fungsi bekerja di banyak tipe data",D:"Membuat banyak implementasi dari satu interface"}, correct:"B", skill:"cyber", topic:"oop" },
-  { text:"Apa itu polymorphism dalam OOP?", opts:{A:"Satu class memiliki banyak constructor",B:"Satu interface dapat memiliki banyak implementasi",C:"Class mewarisi seluruh property parent",D:"Object tidak bisa dimodifikasi setelah dibuat"}, correct:"B", skill:"cyber", topic:"oop" },
-  { text:"HTTP method yang digunakan untuk UPDATE data?", opts:{A:"GET",B:"POST",C:"DELETE",D:"PUT"}, correct:"D", skill:"cyber", topic:"algorithms" },
-  { text:"Apa yang dimaksud dengan SQL Injection?", opts:{A:"Query optimisasi database",B:"Serangan dengan menyisipkan perintah SQL berbahaya lewat input",C:"Teknik indexing tabel database",D:"Prosedur backup otomatis"}, correct:"B", skill:"cyber", topic:"aiFundamentals" },
-  { text:"Apa fungsi HTTPS dibanding HTTP?", opts:{A:"Lebih cepat karena compression",B:"Mengenkripsi komunikasi client-server dengan TLS",C:"Mengurangi latency dengan caching",D:"Mendukung file upload lebih besar"}, correct:"B", skill:"cyber", topic:"aiFundamentals" },
-
-  // Data / Systems
-  { text:"Struktur data mana yang menggunakan prinsip LIFO?", opts:{A:"Queue",B:"Linked List",C:"Stack",D:"Tree"}, correct:"C", skill:"data", topic:"algorithms" },
-  { text:"Fungsi Primary Key dalam database relasional?", opts:{A:"Mengenkripsi data",B:"Menghubungkan dua tabel",C:"Mengidentifikasi setiap row secara unik",D:"Menyimpan foreign key"}, correct:"C", skill:"data", topic:"algorithms" },
-  { text:"Apa yang dimaksud dengan Deadlock dalam OS?", opts:{A:"Program crash karena memory leak",B:"Dua proses saling menunggu resource yang dipegang satu sama lain",C:"CPU usage mencapai 100%",D:"Thread berjalan terlalu lambat"}, correct:"B", skill:"data", topic:"algorithms" },
-  { text:"Apa perbedaan proses dan thread?", opts:{A:"Proses lebih ringan dari thread",B:"Thread memiliki memory space tersendiri",C:"Proses dan thread identik",D:"Thread adalah unit eksekusi dalam proses, berbagi memory"}, correct:"D", skill:"data", topic:"algorithms" },
-  { text:"Dalam Dynamic Programming, apa prinsip utamanya?", opts:{A:"Divide and conquer tanpa memoization",B:"Memecah masalah ke submasalah yang saling overlap dan menyimpan hasilnya",C:"Selalu menggunakan rekursi tanpa cache",D:"Hanya berlaku untuk masalah sorting"}, correct:"B", skill:"data", topic:"dynamicProgramming" },
-  { text:"Apa itu Backtracking?", opts:{A:"Mengulangi semua langkah dari awal",B:"Teknik yang mencoba solusi dan mundur jika gagal",C:"Algoritma sorting terbalik",D:"Optimisasi database query"}, correct:"B", skill:"data", topic:"recursion" },
-];
+// ─── QUESTION BANK — loaded async from questions.json ───
+let ALL_QUESTIONS = [];
 
 const RAID_STYLE = {
   easy:   { border:"#00ff88", shadow:"#005c28", diffClass:"easy",   label:"EASY"   },
@@ -266,7 +242,12 @@ function init() {
   else if (state.mode === 'raid') state.cfg = CONFIG.raid[state.difficulty];
   else return;
 
-  state.questions = shuffle([...QUESTIONS]).slice(0, state.cfg.totalQ);
+  if (state.mode === 'daily') {
+    state.questions = dailyQuestions(state.cfg.totalQ);
+  } else {
+    const pool = ALL_QUESTIONS.filter(q => q.difficulty === state.difficulty);
+    state.questions = shuffle([...pool]).slice(0, state.cfg.totalQ);
+  }
   state.questionLog = [];
 
   $('battle-screen').classList.remove('hidden');
@@ -795,49 +776,23 @@ function showResult() {
   if (ratio===1 && state.passives.dataSRankBonus > 0) xp += state.passives.dataSRankBonus;
 
   // ── Save to localStorage ──
+  const rankLetter = ratio===1?'S':ratio>=.85?'A':ratio>=.7?'B':ratio>=.5?'C':'D';
   const won = state.mode==='daily' ? true : (state.correct >= state.cfg.passMark);
-  let updatedUser = null;
-  let prevLevel = 1, prevRank = 'Unranked';
   if (typeof BVUser !== 'undefined') {
-    const snapBefore = BVUser.load();
-    prevLevel = snapBefore.level;
-    prevRank  = snapBefore.rank;
-    updatedUser = BVUser.recordBattle({
+    BVUser.recordBattle({
       correct:     state.correct,
       total:       state.cfg.totalQ,
       won:         won,
       earnedXP:    xp,
       mode:        state.mode,
+      difficulty:  state.difficulty,
+      rank:        rankLetter,
       questionLog: state.questionLog,
     });
   }
 
-  const te=$('result-title'); te.textContent=title; te.className=`result-title ${titleClass}`;
-  const rb=$('result-rank-badge'); rb.textContent=rank; rb.className=`result-rank-badge ${rankCls}`;
-  $('res-correct').textContent=state.correct;
-  $('res-wrong').textContent=state.wrong;
-  $('res-time').textContent=`${(avgMs/1000).toFixed(1)}s`;
-  $('res-xp').textContent=`+${xp} XP`;
-  spawnStars();
-  $('result-overlay').classList.remove('hidden');
-
-  // ── Trigger RPG notifications ──
-  if (typeof BVNotify !== 'undefined' && updatedUser) {
-    const RANK_COLORS = { Bronze:'#cd7f32', Silver:'#c0c0c0', Gold:'#ffd700', Platinum:'#e5e4e2', Diamond:'#00e5ff', Legend:'#ff3bff' };
-    let delay = 800;
-    if (updatedUser.level > prevLevel) {
-      setTimeout(() => BVNotify.levelUp(prevLevel, updatedUser.level), delay);
-      delay += 3200;
-    }
-    if (updatedUser.rank !== prevRank && updatedUser.rank !== 'Unranked') {
-      setTimeout(() => BVNotify.rankUp(updatedUser.rank, RANK_COLORS[updatedUser.rank] || '#fee783'), delay);
-      delay += 3800;
-    }
-    if (updatedUser.lastResult && updatedUser.lastResult.earnedItem) {
-      setTimeout(() => BVNotify.itemEarned(updatedUser.lastResult.earnedItem), delay);
-    }
-    setTimeout(() => BVNotify.toast(`+${xp} XP earned!`, 'xp', '⭐'), 400);
-  }
+  // ── Redirect to result page ──
+  setTimeout(() => { window.location.href = 'battle-result.html'; }, 400);
 }
 
 function spawnStars() {
@@ -868,6 +823,27 @@ function bindExitModal() {
 function shuffle(arr) {
   for(let i=arr.length-1;i>0;i--){const j=0|Math.random()*(i+1);[arr[i],arr[j]]=[arr[j],arr[i]];}
   return arr;
+}
+
+function seededRng(seed) {
+  let s = seed >>> 0;
+  return function() {
+    s = Math.imul(s ^ (s >>> 15), s | 1);
+    s ^= s + Math.imul(s ^ (s >>> 7), s | 61);
+    return ((s ^ (s >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function dailyQuestions(n) {
+  const d = new Date();
+  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  const rng = seededRng(seed);
+  const pool = [...ALL_QUESTIONS];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
 }
 
 // inject result star animation
@@ -934,4 +910,13 @@ _sty.textContent=`
 `;
 document.head.appendChild(_sty);
 
-document.addEventListener('DOMContentLoaded', init);
+async function loadAndInit() {
+  try {
+    const res = await fetch('questions.json');
+    ALL_QUESTIONS = await res.json();
+  } catch(e) {
+    ALL_QUESTIONS = [];
+  }
+  init();
+}
+document.addEventListener('DOMContentLoaded', loadAndInit);

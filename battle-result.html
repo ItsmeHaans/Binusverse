@@ -1,161 +1,95 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Battle Result</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="battle-result.css" />
-  </head>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Battle Result — BINUSVERSE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="battle-result.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo-left">
+      <img src="assets/images/SaturBum.png" alt="Binusverse"/>
+    </div>
+    <ul class="nav-links">
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="learn.html">Learn</a></li>
+      <li><a href="forum-chat.html">Forum</a></li>
+      <li><a href="battle.html">Battle</a></li>
+      <li><a href="news.html">News</a></li>
+    </ul>
+    <div class="logo-right">
+      <img src="assets/images/BinusLogo.png" alt="BINUS"/>
+    </div>
+  </nav>
 
-  <body>
-    <nav class="navbar">
-      <div class="logo-left">
-        <img src="assets/images/SaturBum.png" />
-      </div>
+  <main class="result-page">
+    <canvas id="pixel-bg"></canvas>
 
-      <ul class="nav-links">
-        <li><a href="journey.html">Journey</a></li>
-        <li><a href="learn.html">Learn</a></li>
-        <li><a href="forum.html">Forum</a></li>
-        <li><a href="battle.html">Battle</a></li>
-        <li><a href="news.html">News</a></li>
-      </ul>
+    <div class="result-card" id="result-card">
+      <!-- Stars animation -->
+      <div class="result-stars" id="result-stars"></div>
 
-      <div class="logo-right">
-        <img src="assets/images/BinusLogo.png" />
-      </div>
-    </nav>
+      <!-- Mode label -->
+      <div class="mode-label" id="mode-label">DAILY MISSION</div>
 
-    <section class="battle-header">
-      <img src="assets/images/battlebg.jpg" class="header-bg" />
-      <div class="header-overlay"></div>
+      <!-- Title -->
+      <h1 class="result-title" id="result-title">COMPLETED!</h1>
 
-      <div class="header-content">
-        <h1>Battle Arena</h1>
-        <p>Test your knowledge against fellow explorers.</p>
-      </div>
-    </section>
+      <!-- Rank badge -->
+      <div class="rank-badge" id="rank-badge">★ S RANK</div>
 
-    <section class="section">
-      <div class="container">
-        <h2>PvP Mode</h2>
-
-        <div class="result-wrapper">
-          <div class="player-card">
-            <img src="assets/images/profile.jpg" class="avatar" />
-
-            <div class="player-info">
-              <h3>Andrew</h3>
-              <p>Score: 888</p>
-            </div>
-          </div>
-
-          <div class="result-panel">
-            <h1>YOU WIN!</h1>
-
-            <div class="score-row">
-              <div class="correct">
-                <p>Correct</p>
-                <span>8</span>
-              </div>
-
-              <div class="wrong">
-                <p>Wrong</p>
-                <span>2</span>
-              </div>
-            </div>
-          </div>
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val green" id="stat-correct">0</div>
+          <div class="stat-lbl">CORRECT</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val red" id="stat-wrong">0</div>
+          <div class="stat-lbl">WRONG</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val cyan" id="stat-xp">+0 XP</div>
+          <div class="stat-lbl">EARNED</div>
         </div>
       </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Daily Mission</h2>
-
-        <div class="daily-result">
-          <h1>DAILY QUIZ</h1>
-          <h2>COMPLETED</h2>
-        </div>
+      <!-- Level / Rank up banners (hidden by default) -->
+      <div class="up-banner" id="level-up-banner" style="display:none">
+        <span class="up-icon">▲</span>
+        <span id="level-up-text">LEVEL UP!</span>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2>Raid</h2>
-
-        <div class="raid-result-wrapper">
-          <div class="raid-result-box">
-            <h1>COMPLETED</h1>
-
-            <div class="raid-stats">
-              <div>
-                <p>Time</p>
-                <span>12:44</span>
-              </div>
-
-              <div class="green">
-                <p>Correct</p>
-                <span>8</span>
-              </div>
-
-              <div class="red">
-                <p>Wrong</p>
-                <span>2</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="raid-side yellow"></div>
-          <div class="raid-side red"></div>
-        </div>
+      <div class="up-banner rank-up" id="rank-up-banner" style="display:none">
+        <span class="up-icon">✦</span>
+        <span id="rank-up-text">RANK UP!</span>
       </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Top Global</h2>
-
-        <div class="top-global-wrapper">
-          <table class="leaderboard">
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Score</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Andrew</td>
-              <td>999</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Kevin</td>
-              <td>850</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Michelle</td>
-              <td>800</td>
-            </tr>
-          </table>
-        </div>
+      <!-- Item earned (hidden by default) -->
+      <div class="item-earned" id="item-earned" style="display:none">
+        <div class="item-label">ITEM EARNED</div>
+        <div class="item-name" id="item-name">—</div>
       </div>
-    </section>
 
-    <script src="pixel-bg.js"></script>
-    <script src="battle-result.js"></script>
+      <!-- Buttons -->
+      <div class="btn-row">
+        <button class="btn-pixel btn-again" id="btn-again">⚔ BATTLE AGAIN</button>
+        <button class="btn-pixel btn-home" id="btn-home">⌂ HOME</button>
+      </div>
+    </div>
+  </main>
 
-    <section class="footer-hero">
-      <div class="footer-left">
-        <img src="assets/images/BinusverseText.png" alt="Logo" />
-      </div>
-      <div class="footer-right">
-        <p>© 2026 Binusverse. All rights reserved.</p>
-      </div>
-    </section>
-  </body>
+  <footer class="footer-hero">
+    <div class="footer-left">
+      <img src="assets/images/BinusverseText.png" alt="Binusverse"/>
+    </div>
+    <div class="footer-right">
+      <p>© 2026 Binusverse. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="user-data.js"></script>
+  <script src="pixel-bg.js"></script>
+  <script src="battle-result.js"></script>
+</body>
 </html>

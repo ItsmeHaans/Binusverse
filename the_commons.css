@@ -6,7 +6,7 @@
 
 body {
   font-family: "Pixelify Sans", sans-serif;
-  background: #0f0f1f;
+  background: linear-gradient(180deg, #0f0825, #1c1040);
   color: white;
   overflow-x: hidden;
 }
@@ -132,7 +132,7 @@ a {
   animation: floatText 4s ease-in-out infinite;
 }
 .header-content p {
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Pixelify Sans', sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   color: white;
@@ -153,7 +153,7 @@ a {
 .fc-divider-line { flex:1; height:1px; background:rgba(255,255,255,.1); }
 .fc-divider-text {
   font-family:'Press Start 2P',monospace;
-  font-size:.35rem;
+  font-size:.55rem;
   color:rgba(255,255,255,.28);
   letter-spacing:1px;
   white-space:nowrap;
@@ -242,7 +242,7 @@ a {
 
 .fc-tag {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem;
+  font-size: 0.55rem;
   color: #fee783;
   letter-spacing: 0.5px;
 }
@@ -257,7 +257,7 @@ a {
 }
 
 .fc-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Pixelify Sans', sans-serif;
   font-size: 0.82rem;
   color: rgba(255,255,255,.55);
   max-width: 520px;
@@ -283,19 +283,19 @@ a {
 }
 .fc-online {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem;
+  font-size: 0.5rem;
   color: #00ff88;
 }
 .fc-members {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem;
+  font-size: 0.5rem;
   color: rgba(255,255,255,.3);
 }
 .fc-sep { color: rgba(255,255,255,.2); font-size: 0.8rem; }
 
 .fc-badge {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.22rem;
+  font-size: 0.5rem;
   padding: 2px 7px;
   border: 1px solid;
   letter-spacing: 0.2px;
@@ -500,7 +500,7 @@ a {
 }
 .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .3rem; color: rgba(254,231,131,.45);
+  font-size: .55rem; color: rgba(254,231,131,.45);
   letter-spacing: .5px;
 }
 .footer-social-row {
@@ -530,7 +530,7 @@ a {
 }
 .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .28rem; color: rgba(255,255,255,.25);
+  font-size: .55rem; color: rgba(255,255,255,.25);
   letter-spacing: .6px; margin-bottom: 4px;
 }
 .footer-link {
@@ -564,7 +564,7 @@ a {
 }
 .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .24rem; color: rgba(255,255,255,.28);
+  font-size: .5rem; color: rgba(255,255,255,.28);
   letter-spacing: .3px;
 }
 
@@ -576,7 +576,7 @@ a {
   padding: 12px 8%;
   border-top: 1px solid rgba(255,255,255,.06);
   font-family: 'Press Start 2P', monospace;
-  font-size: .26rem; color: rgba(255,255,255,.2);
+  font-size: .5rem; color: rgba(255,255,255,.2);
   letter-spacing: .3px;
 }
 .footer-bottom-dots { display: flex; gap: 5px; align-items: center; }

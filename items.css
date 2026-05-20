@@ -5,10 +5,10 @@
 /* ── Page base ── */
 body {
   margin: 0;
-  background: #080c14;
+  background: linear-gradient(180deg, #0f0825, #1c1040);
+  min-height: 100vh;
   color: #e0e8ff;
   font-family: 'Pixelify Sans', sans-serif;
-  min-height: 100vh;
 }
 
 /* ── Hero header ── */
@@ -36,7 +36,7 @@ body {
   border: 1px solid #00c3ff44;
   border-radius: 2px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   color: #00c3ff;
   letter-spacing: 1px;
 }
@@ -55,7 +55,7 @@ body {
   background: transparent;
   border-radius: 2px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.45rem;
+  font-size: 0.55rem;
   color: #666;
   cursor: pointer;
   letter-spacing: 1px;
@@ -85,7 +85,7 @@ body {
 
 /* ── Item card ── */
 .item-card {
-  background: #0d1117;
+  background: #0d0f1f;
   border: 1px solid #222;
   border-radius: 4px;
   padding: 14px;
@@ -144,7 +144,7 @@ body {
   top: 8px;
   right: 10px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.35rem;
+  font-size: 0.55rem;
   letter-spacing: 1px;
   color: var(--item-color, #666);
   opacity: 0.8;
@@ -164,21 +164,13 @@ body {
 }
 .item-card-icon svg { image-rendering: pixelated; }
 
-/* locked icon overlay */
-.item-card.locked .item-card-icon::after {
-  content: '?';
-  position: absolute;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1.2rem;
-  color: #333;
-}
-.item-card.locked .item-card-icon svg { opacity: 0; }
+/* locked — icon shows dimmed via parent opacity/filter */
 
 /* ── Card body ── */
 .item-card-body { flex: 1; min-width: 0; }
 .item-card-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   color: var(--item-color, #fff);
   margin: 0 0 4px;
   line-height: 1.4;
@@ -198,7 +190,7 @@ body {
   line-height: 1.4;
   margin: 0 0 10px;
 }
-.item-card.locked .item-card-ability { visibility: hidden; }
+/* locked ability visible — parent filter dims it */
 
 /* ── Stock bar ── */
 .item-stock-wrap { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
@@ -217,20 +209,20 @@ body {
 }
 .item-stock-count {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.4rem;
+  font-size: 0.55rem;
   color: var(--item-color, #666);
   white-space: nowrap;
 }
 .item-stock-count.empty { color: #333; }
-.item-stock-label-owned { font-size: 0.38rem; color: var(--item-color); opacity: 0.7; }
-.item-stock-label-locked { font-size: 0.38rem; color: #333; }
+.item-stock-label-owned { font-size: 0.55rem; color: var(--item-color); opacity: 0.7; }
+.item-stock-label-locked { font-size: 0.55rem; color: #333; }
 
 /* ── Global tooltip (reuse from index.html style) ── */
 .items-tooltip-global {
   position: fixed;
   z-index: 9999;
   width: 210px;
-  background: #0d1117;
+  background: #0d0f1f;
   border: 1px solid #333;
   border-radius: 4px;
   padding: 12px;
@@ -239,7 +231,7 @@ body {
 }
 .items-tooltip-global .tip-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   color: #fff;
   margin-bottom: 2px;
 }

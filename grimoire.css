@@ -16,40 +16,6 @@ body {
 }
 
 /* =============================================
-   SHARED FONT OVERRIDE
-============================================= */
-.profile-card,
-.profile-info p,
-.profile-info span,
-.profile-name,
-.profile-desc,
-.mini-card span,
-.mini-card h4,
-.stat-card,
-.stat-label,
-.stat-value,
-.chart-label,
-.section-title span,
-.bottom-card h3,
-.class-tags span,
-.items-sub,
-.passed-card h2,
-.passed-card p,
-.strength h3,
-.strength span,
-.weakness h3,
-.weakness span,
-.skill-info h4,
-.skill-info p,
-.record-w,
-.record-l,
-.rec-w,
-.rec-l,
-.footer-right p {
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-/* =============================================
    NAVBAR
 ============================================= */
 .navbar {
@@ -245,7 +211,7 @@ body {
 /* Rank badge */
 .rank-badge {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.32rem;
+  font-size: 0.55rem;
   padding: 4px 12px;
   align-self: flex-start;
   letter-spacing: 0.4px;
@@ -288,7 +254,7 @@ body {
 }
 .prf-level-xp {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem; color: rgba(255,255,255,0.3);
+  font-size: 0.55rem; color: rgba(255,255,255,0.3);
 }
 .prf-level-track {
   height: 8px; background: rgba(255,255,255,0.06);
@@ -309,7 +275,7 @@ body {
 .prf-status-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .prf-status-tag {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem; padding: 3px 8px; letter-spacing: 0.3px;
+  font-size: 0.5rem; padding: 3px 8px; letter-spacing: 0.3px;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
 }
 .tag-green  { background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); clip-path:none; border-radius:0; }
@@ -406,12 +372,12 @@ body {
 }
 .mc-stat-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem; color: rgba(255,255,255,.35);
+  font-size: 0.52rem; color: rgba(255,255,255,.35);
   letter-spacing: 0.5px;
 }
 .mc-stat-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.24rem; letter-spacing: 0.3px;
+  font-size: 0.5rem; letter-spacing: 0.3px;
 }
 .mc-stat-icon {
   font-size: 1.5rem; line-height: 1;
@@ -430,7 +396,7 @@ body {
 }
 .mc-level-xp-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: .26rem; color: #1e90ff; letter-spacing: .2px;
+  font-size: .5rem; color: #1e90ff; letter-spacing: .2px;
 }
 
 /* pixel block XP bar */
@@ -485,7 +451,7 @@ body {
 }
 .mc-arc-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: .19rem; color: rgba(0,255,136,.38);
+  font-size: .5rem; color: rgba(0,255,136,.38);
   margin-top: 3px; white-space: nowrap;
 }
 
@@ -610,7 +576,7 @@ body {
 
 .bst-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.27rem; color: rgba(255,255,255,.3);
+  font-size: 0.5rem; color: rgba(255,255,255,.3);
   letter-spacing: 0.4px; text-align: center;
   position: relative; z-index: 1;
 }
@@ -621,7 +587,7 @@ body {
 }
 .bst-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.23rem; color: rgba(255,255,255,.2);
+  font-size: 0.5rem; color: rgba(255,255,255,.2);
   position: relative; z-index: 1;
 }
 
@@ -642,7 +608,7 @@ body {
 .win .bst-record-num  { color: #00ff88; }
 .lose .bst-record-num { color: #ff4d4d; }
 .bst-record-tag {
-  font-family: 'Press Start 2P', monospace; font-size: 0.23rem; letter-spacing: 0.3px;
+  font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0.3px;
 }
 .win .bst-record-tag  { color: rgba(0,255,136,.5); }
 .lose .bst-record-tag { color: rgba(255,77,77,.5); }
@@ -684,7 +650,7 @@ body {
 }
 .bst-topic-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.23rem; text-align: right;
+  font-size: 0.5rem; text-align: right;
 }
 
 /* old classes still referenced elsewhere — keep */
@@ -737,7 +703,7 @@ body {
  
 .chart-label-px {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem;
+  font-size: 0.55rem;
   color: rgba(255, 255, 255, 0.28);
   position: absolute;
   top: 13px;
@@ -753,7 +719,7 @@ body {
   right: 12px;
   z-index: 10;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   padding: 3px 9px;
   letter-spacing: 0.3px;
   pointer-events: none;
@@ -777,7 +743,7 @@ body {
  
 .week-labels-px span {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.22);
   letter-spacing: 0.3px;
 }
@@ -802,7 +768,7 @@ body {
  
 .tt-week {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   color: #a0a8d0;
   margin-bottom: 3px;
 }
@@ -842,7 +808,7 @@ body {
 }
 .ai-badge-pill {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem;
+  font-size: 0.55rem;
   padding: 5px 14px;
   background: rgba(30, 144, 255, 0.12);
   border: 1px solid rgba(30, 144, 255, 0.35);
@@ -923,7 +889,7 @@ body {
 }
 .mastery-tick {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.24rem;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.2);
 }
 
@@ -1006,7 +972,7 @@ body {
 }
 .sum-card-count {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   color: rgba(255, 255, 255, 0.3);
   margin-top: 5px;
   letter-spacing: 0.3px;
@@ -1053,7 +1019,7 @@ body {
 @keyframes sum-bar-grow { to { width: var(--w); } }
 .sum-item-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem;
+  font-size: 0.55rem;
   flex-shrink: 0;
   min-width: 28px;
   text-align: right;
@@ -1088,7 +1054,7 @@ body {
 .sum-stat-val.positive { color: #00ff88; }
 .sum-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
@@ -1210,7 +1176,7 @@ body {
   position: absolute;
   top: 8px; left: 8px; z-index: 5;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.26rem;
+  font-size: 0.5rem;
   padding: 2px 7px;
   background: #ff4d4d; color: #1a0000;
   letter-spacing: 0.2px;
@@ -1222,7 +1188,7 @@ body {
   position: absolute;
   top: 8px; right: 8px; z-index: 5;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.24rem;
+  font-size: 0.5rem;
   padding: 2px 6px;
   letter-spacing: 0.2px;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
@@ -1255,7 +1221,7 @@ body {
 /* Mastery XP bar */
 .gs-xp-wrap { margin-bottom: 7px; }
 .gs-xp-top  { display:flex; justify-content:space-between; margin-bottom:3px; }
-.gs-xp-lbl  { font-family:'Press Start 2P',monospace; font-size:0.3rem; color:#1a1a2e; }
+.gs-xp-lbl  { font-family:'Press Start 2P',monospace; font-size:0.55rem; color:#1a1a2e; }
 .gs-xp-track {
   height: 8px; background: #b8a200; overflow: hidden;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
@@ -1277,7 +1243,7 @@ body {
 .gs-btn {
   display: block; width: 100%;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem; padding: 5px 0;
+  font-size: 0.55rem; padding: 5px 0;
   background: #1a1a2e; color: #fee783;
   border: none; cursor: pointer;
   letter-spacing: 0.3px;
@@ -1390,7 +1356,7 @@ body {
  
 .btm-section-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
@@ -1411,7 +1377,7 @@ body {
   color: #1a1a2e;
   padding: 5px 12px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.32rem;
+  font-size: 0.55rem;
   letter-spacing: 0.3px;
   clip-path: polygon(
     0 3px, 3px 0, calc(100% - 3px) 0, 100% 3px,
@@ -1436,13 +1402,13 @@ body {
 }
 .btm-mastery-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
 .btm-mastery-val {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.32rem;
+  font-size: 0.55rem;
   color: #fee783;
 }
 .btm-mastery-track {
@@ -1556,13 +1522,13 @@ body {
 }
 .btm-items-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.52rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
 .btm-items-num {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.32rem;
+  font-size: 0.55rem;
   color: #fee783;
 }
  
@@ -1618,7 +1584,7 @@ body {
 }
 .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .3rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
+  font-size: .55rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
 }
 .footer-social-row { display: flex; gap: 8px; margin-top: 4px; }
 .footer-social-btn {
@@ -1632,7 +1598,7 @@ body {
 .footer-links-col { display: flex; flex-direction: column; gap: 8px; }
 .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .28rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
+  font-size: .52rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
 }
 .footer-link {
   font-family: 'Pixelify Sans', sans-serif;
@@ -1652,7 +1618,7 @@ body {
 }
 .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .24rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
+  font-size: .5rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
 }
 .footer-bottom-bar {
   position: relative; z-index: 1;
@@ -1660,7 +1626,7 @@ body {
   padding: 12px 8%;
   border-top: 1px solid rgba(255,255,255,.06);
   font-family: 'Press Start 2P', monospace;
-  font-size: .26rem; color: rgba(255,255,255,.2); letter-spacing: .3px;
+  font-size: .5rem; color: rgba(255,255,255,.2); letter-spacing: .3px;
 }
 .footer-bottom-dots { display: flex; gap: 5px; align-items: center; }
 .fbd { width: 5px; height: 5px; background: rgba(255,255,255,.1); }

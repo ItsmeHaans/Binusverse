@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="battle.css" />
+    <script src="user-data.js"></script>
+    <style>
+      .pvp-coming { display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+      .pvp-lock-card {
+        flex:1; min-width:200px;
+        background:rgba(255,255,255,.03);
+        border:2px dashed rgba(255,255,255,.15);
+        border-radius:4px;
+        display:flex; flex-direction:column; align-items:center; gap:10px;
+        padding:32px 24px; text-align:center;
+      }
+      .pvp-lock-icon { font-size:2rem; opacity:.35; }
+      .pvp-lock-title {
+        font-family:'Press Start 2P',monospace;
+        font-size:.55rem; letter-spacing:3px;
+        color:rgba(255,255,255,.28);
+      }
+      .pvp-lock-desc { font-size:.75rem; color:rgba(255,255,255,.22); line-height:1.6; }
+    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -30,48 +49,26 @@
     <section class="battle-container">
       <!-- ===== PvP MODE ===== -->
       <h2 class="section-title">PvP Mode</h2>
-      <div id="pvp-mode" class="pvp-container">
-        <!-- Player Card -->
+      <div id="pvp-mode" class="pvp-coming">
         <a href="grimoire.html" class="player-card">
           <div class="player-card-top">
-            <!-- Avatar bulat -->
             <img src="assets/images/profile.jpg" class="avatar" />
             <div class="player-info">
-              <h3 class="player-name">Andrew</h3>
-              <!-- Tags B88 & SoCS -->
+              <h3 class="player-name" id="player-name">—</h3>
               <div class="player-tags">
-                <span class="tag tag-rank">Bronze</span>
+                <span class="tag tag-rank" id="player-rank">—</span>
                 <span class="tag tag-faculty">SoCS</span>
               </div>
-              <!-- Badges row: level box + badge icons -->
               <div class="player-badges">
-                <div class="level-box">11</div>
-                <img src="assets/images/apimembahana.png" class="badge-small" />
+                <div class="level-box" id="player-level">—</div>
               </div>
             </div>
           </div>
         </a>
-
-        <!-- VS Icon -->
-        <div class="versus-wrap">
-          <!--
-            =============================================
-            GANTI DI SINI — taruh file vector/SVG/PNG kapak VS kamu
-            Export dari teman → simpan sebagai: assets/images/vs-icon.svg atau .png
-            Lalu uncomment baris img di bawah:
-            =============================================
-          -->
-          <img
-            src="assets/images/axe.svg"
-            class="vs-icon"
-            onerror="this.style.display = 'none'"
-          />
-          <!-- fallback kalau file belum ada — hapus div ini kalau sudah ada gambar -->
-        </div>
-
-        <!-- Search Card -->
-        <div class="search-card">
-          <button id="searchBtn">Search Opponent</button>
+        <div class="pvp-lock-card">
+          <div class="pvp-lock-icon">🔒</div>
+          <div class="pvp-lock-title">COMING SOON</div>
+          <div class="pvp-lock-desc">Real-time PvP requires live servers.<br/>Train solo for now — PvP drops later.</div>
         </div>
       </div>
 
@@ -186,22 +183,6 @@
       </footer>
       <!-- ════════ END FOOTER ════════ -->
     <script src="pixel-bg.js"></script>
-    <script src="assets/js/rank.js"></script>
-    <script src="battle.js"></script>
-    <script>
-      document.getElementById("hamburger").addEventListener("click", () => {
-        document.getElementById("navLinks").classList.toggle("active");
-      });
-      const rankPoints = 120;
-      const rank = getRankStyle(rankPoints);
-      const tag = document.querySelector(".tag-rank");
-      if (tag) {
-        tag.textContent = rank.label;
-        tag.style.color = rank.color;
-        tag.style.borderColor = rank.color;
-        tag.style.background = rank.bg;
-      }
-    </script>
         <script>
     /* ── footer pixel stars ── */
     (function(){

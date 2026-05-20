@@ -104,7 +104,7 @@
   <a href="the_commons.html" class="bc-link">The Commons</a>
   <span class="bc-sep">›</span>
   <span class="bc-cur">🌐 Global Channel</span>
-  <div class="bc-online"><div class="bc-dot"></div><span>1,248 online</span></div>
+  <div class="bc-online"><div class="bc-dot"></div><span>Global Channel</span></div>
 </div>
 
 <!-- 3-COL LAYOUT -->
@@ -115,10 +115,6 @@
     <div class="sidebar-guild">
       <div class="sg-name">THE COMMONS</div>
       <div class="sg-tag" style="color:#fee783;">🌐 GLOBAL GUILD</div>
-      <div class="sg-stats">
-        <div class="sg-stat"><div class="sg-stat-v">84K</div><div class="sg-stat-l">MEMBERS</div></div>
-        <div class="sg-stat"><div class="sg-stat-v" style="color:#00ff88;">1,248</div><div class="sg-stat-l">ONLINE</div></div>
-      </div>
     </div>
 
     <div class="sidebar-channels">
@@ -149,30 +145,10 @@
 
     <div class="sidebar-online">
       <div class="online-lbl">— ONLINE —</div>
-      <div class="mem-row">
-        <div class="mem-av" style="background:rgba(0,229,255,.15);color:#00e5ff;">RY</div>
-        <div class="mem-nm">Raynald</div>
-        <div class="mem-lv">LV18</div>
-      </div>
-      <div class="mem-row">
-        <div class="mem-av" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
-        <div class="mem-nm">Alice</div>
-        <div class="mem-lv">LV24</div>
-      </div>
-      <div class="mem-row">
-        <div class="mem-av" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
-        <div class="mem-nm">Benny</div>
-        <div class="mem-lv">LV11</div>
-      </div>
-      <div class="mem-row">
-        <div class="mem-av away" style="background:rgba(254,231,131,.15);color:#fee783;">SY</div>
-        <div class="mem-nm">Sya</div>
-        <div class="mem-lv">LV31</div>
-      </div>
-      <div class="mem-row">
-        <div class="mem-av" style="background:rgba(192,132,252,.15);color:#c084fc;">DV</div>
-        <div class="mem-nm">Diva</div>
-        <div class="mem-lv">LV7</div>
+      <div class="mem-row" id="sidebar-me-row">
+        <div class="mem-av" style="background:rgba(0,229,255,.15);color:#00e5ff;" id="sidebar-me-av">ME</div>
+        <div class="mem-nm" id="sidebar-me-nm">You</div>
+        <div class="mem-lv" id="sidebar-me-lv">LV1</div>
       </div>
     </div>
   </div>
@@ -192,146 +168,8 @@
 
     <div class="chat-messages" id="chatMessages">
 
-      <div class="msg-date-sep">
-        <div class="msg-date-sep-line"></div>
-        <span class="msg-date-sep-txt">TODAY — 15 MAY 2026</span>
-        <div class="msg-date-sep-line"></div>
-      </div>
-
-      <!-- MSG Alice -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#00ff88;">Alice</span>
-            <span class="msg-lv2" style="border-color:rgba(0,255,136,.3);color:#00ff88;">LV24</span>
-            <span class="msg-ts">09:12</span>
-          </div>
-          <div class="msg-txt">Ada yang mau join study group Data Structures bareng gak? 📚</div>
-          <div class="msg-reacts">
-            <div class="react on"><em>🙌</em> 5</div>
-            <div class="react"><em>📚</em> 3</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MSG Benny -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#ff9500;">Benny</span>
-            <span class="msg-lv2" style="border-color:rgba(255,149,0,.3);color:#ff9500;">LV11</span>
-            <span class="msg-ts">09:14</span>
-          </div>
-          <div class="msg-txt">Gue mau! Jam berapa?</div>
-        </div>
-      </div>
-
-      <!-- TRADE CARD -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(254,231,131,.15);color:#fee783;">SY</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#fee783;">Sya</span>
-            <span class="msg-lv2" style="border-color:rgba(254,231,131,.3);color:#fee783;">LV31</span>
-            <span class="msg-ts">09:15</span>
-          </div>
-          <div class="msg-txt">Ada yang mau trade item?</div>
-          <div class="msg-card c-trade">
-            <div class="msg-card-ttl">⚔ ITEM TRADE REQUEST</div>
-            <div class="msg-card-body">
-              <strong style="color:#fee783;">2nd Chance Scroll ×2</strong> ↔ <strong style="color:#00e5ff;">Time Freeze Orb ×1</strong>. LV31, WR 88%.
-            </div>
-            <div class="msg-card-btns">
-              <button class="mcb yes">✓ Accept</button>
-              <button class="mcb no">✗ Decline</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BATTLE CARD -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(255,77,77,.15);color:#ff4d4d;">AN</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#ff4d4d;">Andre</span>
-            <span class="msg-lv2" style="border-color:rgba(255,77,77,.3);color:#ff4d4d;">LV20</span>
-            <span class="msg-ts">09:19</span>
-          </div>
-          <div class="msg-txt">Siapa mau 1v1? Topic: Algorithms 💀</div>
-          <div class="msg-card c-battle">
-            <div class="msg-card-ttl">⚔ BATTLE CHALLENGE</div>
-            <div class="msg-card-body">
-              Topic: <strong>Algorithms</strong> · Taruhan: 500 XP · WR 74%
-            </div>
-            <div class="msg-card-btns">
-              <button class="mcb yes">⚔ Accept</button>
-              <button class="mcb no">✗ Decline</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FRIEND REQUEST -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">RY</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#00e5ff;">Raynald</span>
-            <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
-            <span class="msg-ts">09:22</span>
-          </div>
-          <div class="msg-txt">Halo semua! Baru join nih 👋</div>
-          <div class="msg-card c-friend">
-            <div class="msg-card-ttl">✦ FRIEND REQUEST</div>
-            <div class="msg-card-body">LV18 · CS Guild · 7× streak</div>
-            <div class="msg-card-btns">
-              <button class="mcb yes">+ Add Friend</button>
-              <button class="mcb view">👁 Profile</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STUDY GROUP -->
-      <div class="msg">
-        <div class="msg-av2" style="background:rgba(0,255,136,.15);color:#00ff88;">AL</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#00ff88;">Alice</span>
-            <span class="msg-lv2" style="border-color:rgba(0,255,136,.3);color:#00ff88;">LV24</span>
-            <span class="msg-ts">09:23</span>
-          </div>
-          <div class="msg-txt">Kita Discord aja, gue bikin room sekarang!</div>
-          <div class="msg-card c-study">
-            <div class="msg-card-ttl">📚 STUDY GROUP SESSION</div>
-            <div class="msg-card-body">
-              <strong style="color:#00e5ff;">Data Structures</strong> · Jam 14:00 · 3/8 joined
-            </div>
-            <div class="msg-card-btns">
-              <button class="mcb yes">+ Join</button>
-              <button class="mcb view">📋 Details</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ME -->
-      <div class="msg me">
-        <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
-        <div class="msg-body">
-          <div class="msg-meta">
-            <span class="msg-nm" style="color:#00e5ff;">You</span>
-            <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
-            <span class="msg-ts">09:24</span>
-          </div>
-          <div class="msg-txt">Wah gue ikut study group dong! Data Structures gue lemah banget 😭</div>
-          <div class="msg-reacts">
-            <div class="react on"><em>😭</em> 3</div>
-          </div>
-        </div>
+      <div class="msg sys">
+        <div class="msg-sys-txt">🌐 Welcome to Global Channel — chat, trade items &amp; connect with BINUSVERSE explorers!</div>
       </div>
 
     </div><!-- end chat-messages -->
@@ -363,81 +201,6 @@
 
   </div><!-- end chat-center -->
 
-  <!-- ════ RIGHT PANEL — clean & minimal ════ -->
-  <div class="chat-right">
-
-    <!-- ACTIVE EVENTS — most important, first -->
-    <div class="rp-sec">
-      <div class="rp-ttl">🔥 ACTIVE EVENTS</div>
-      <div class="ev">
-        <div class="ev-dot" style="background:#ff4d4d;"></div>
-        <div class="ev-body">
-          <strong style="color:#ff4d4d;">Battle Royale</strong> — Top 3 get Legendary items
-          <span class="ev-t">Ends in 2h 14m</span>
-        </div>
-      </div>
-      <div class="ev">
-        <div class="ev-dot" style="background:#fee783;"></div>
-        <div class="ev-body">
-          <strong style="color:#fee783;">XP Weekend</strong> — 2× XP on all answers
-          <span class="ev-t">Until Sunday</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- FRIEND REQUESTS -->
-    <div class="rp-sec">
-      <div class="rp-ttl">✦ FRIEND REQUESTS</div>
-      <div class="fr">
-        <div class="fr-av" style="background:rgba(255,149,0,.15);color:#ff9500;">BN</div>
-        <div class="fr-info">
-          <div class="fr-nm">Benny</div>
-          <div class="fr-mt">LV11 · 2 mutual</div>
-        </div>
-        <div class="fr-btns">
-          <button class="fr-b add">+</button>
-          <button class="fr-b skip">✗</button>
-        </div>
-      </div>
-      <div class="fr">
-        <div class="fr-av" style="background:rgba(192,132,252,.15);color:#c084fc;">DV</div>
-        <div class="fr-info">
-          <div class="fr-nm">Diva</div>
-          <div class="fr-mt">LV7 · 1 mutual</div>
-        </div>
-        <div class="fr-btns">
-          <button class="fr-b add">+</button>
-          <button class="fr-b skip">✗</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- LEADERBOARD — top 3 simple -->
-    <div class="rp-sec">
-      <div class="rp-ttl">🏆 TOP THIS WEEK</div>
-      <div style="display:flex;flex-direction:column;gap:7px;">
-        <div class="ldb-row" style="display:flex;align-items:center;gap:7px;">
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:#fee783;width:14px;">1</span>
-          <div class="fr-av" style="background:rgba(254,231,131,.15);color:#fee783;width:24px;height:24px;font-size:.2rem;">SY</div>
-          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.76rem;flex:1;">Sya</span>
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:#fee783;">4,820</span>
-        </div>
-        <div class="ldb-row" style="display:flex;align-items:center;gap:7px;">
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:rgba(255,255,255,.4);width:14px;">2</span>
-          <div class="fr-av" style="background:rgba(0,255,136,.15);color:#00ff88;width:24px;height:24px;font-size:.2rem;">AL</div>
-          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.76rem;flex:1;">Alice</span>
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:rgba(255,255,255,.4);">3,210</span>
-        </div>
-        <div class="ldb-row" style="display:flex;align-items:center;gap:7px;">
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:rgba(255,255,255,.28);width:14px;">3</span>
-          <div class="fr-av" style="background:rgba(255,77,77,.15);color:#ff4d4d;width:24px;height:24px;font-size:.2rem;">AN</div>
-          <span style="font-family:'Pixelify Sans',sans-serif;font-size:.76rem;flex:1;">Andre</span>
-          <span style="font-family:'Press Start 2P',monospace;font-size:.2rem;color:rgba(255,255,255,.28);">2,890</span>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- end chat-right -->
 
 </div><!-- end chat-layout -->
 
@@ -449,16 +212,20 @@ function sendMessage() {
   const ta = document.getElementById('chatInput');
   const text = ta.value.trim();
   if (!text) return;
+  const u = (typeof BVUser !== 'undefined') ? BVUser.load() : null;
+  const nm = u ? (u.name || 'You') : 'You';
+  const lv = u ? (u.level || 1) : 1;
+  const av = nm.slice(0,2).toUpperCase();
   const now = new Date();
   const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
   const row = document.createElement('div');
   row.className = 'msg me';
   row.innerHTML = `
-    <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">ME</div>
+    <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">${escapeHtml(av)}</div>
     <div class="msg-body">
       <div class="msg-meta">
-        <span class="msg-nm" style="color:#00e5ff;">You</span>
-        <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV18</span>
+        <span class="msg-nm" style="color:#00e5ff;">${escapeHtml(nm)}</span>
+        <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV${lv}</span>
         <span class="msg-ts">${time}</span>
       </div>
       <div class="msg-txt">${escapeHtml(text)}</div>
@@ -497,6 +264,20 @@ document.addEventListener('click', e => {
   if (e.target.closest('.react')) e.target.closest('.react').classList.toggle('on');
 });
 </script>
+<script src="user-data.js"></script>
+<script>
+  if (typeof BVUser !== 'undefined') {
+    var _u = BVUser.load();
+    var _av = (_u.name || 'You').slice(0,2).toUpperCase();
+    var _nm = _u.name || 'You';
+    var _lv = 'LV' + (_u.level || 1);
+    var _el = document.getElementById('sidebar-me-av'); if (_el) _el.textContent = _av;
+    _el = document.getElementById('sidebar-me-nm'); if (_el) _el.textContent = _nm;
+    _el = document.getElementById('sidebar-me-lv'); if (_el) _el.textContent = _lv;
+  }
+</script>
+<script>var BV_FORUM_ROOM = 'global';</script>
+<script src="forum-chat.js"></script>
 <script src="pixel-bg.js"></script>
 </body>
 </html>

@@ -49,6 +49,9 @@
       ' data-color="' + color + '"' +
       ' style="--item-color:' + color + ';--item-glow:' + color + '33">' +
       '<div class="item-rarity-tag">' + def.rarity.toUpperCase() + '</div>' +
+      '<div class="item-type-badge ' + (def.itemType === 'battle' ? 'badge-usable' : 'badge-relic') + '">' +
+        (def.itemType === 'battle' ? 'USABLE' : 'RELIC') +
+      '</div>' +
       '<div class="item-card-icon">' + buildSVG(def.svgContent) + '</div>' +
       '<div class="item-card-body">' +
         '<div class="item-card-name">' + def.name + '</div>' +
@@ -90,6 +93,28 @@
 
     initTooltips();
     initFilter();
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        document.querySelectorAll('.item-card').forEach(function(card) {
+          var key = card.dataset.key;
+          var def = ITEMS_REGISTRY[key];
+          if (!def) return;
+          var show = true;
+          if (filter === 'battle') show = def.itemType === 'battle';
+          else if (filter === 'relic') show = def.itemType === 'relic';
+          else if (filter === 'owned') {
+            var u = typeof BVUser !== 'undefined' ? BVUser.load() : { items: {} };
+            show = (u.items[key] || 0) > 0;
+          }
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
   }
 
   /* ── Tooltip ── */
@@ -125,13 +150,15 @@
     });
 
     function positionTip(e) {
-      var tw = tip.offsetWidth  || 210;
-      var th = tip.offsetHeight || 150;
-      var x  = e.clientX - tw / 2;
-      var y  = e.clientY - th - 18;
+      var tw  = tip.offsetWidth  || 210;
+      var th  = tip.offsetHeight || 150;
+      var off = 14;
+      var x   = e.clientX + off;
+      var y   = e.clientY + off;
+      if (x + tw > window.innerWidth  - 8) x = e.clientX - tw - off;
+      if (y + th > window.innerHeight - 8) y = e.clientY - th - off;
       if (x < 8) x = 8;
-      if (x + tw > window.innerWidth - 8) x = window.innerWidth - tw - 8;
-      if (y < 8) y = e.clientY + 18;
+      if (y < 8) y = 8;
       tip.style.left = x + 'px';
       tip.style.top  = y + 'px';
     }
@@ -168,6 +195,12 @@
       hb.addEventListener('click', function () { nl.classList.toggle('active'); });
     }
   }
+
+  var _st = document.createElement('style');
+  _st.textContent = '.item-type-badge{font-family:"Press Start 2P",monospace;font-size:.2rem;padding:2px 5px;margin-bottom:3px;letter-spacing:.5px;display:inline-block;}' +
+    '.badge-usable{color:#00ff88;border:1px solid #00ff8844;background:rgba(0,255,136,.08);}' +
+    '.badge-relic{color:#ff9500;border:1px solid #ff950044;background:rgba(255,149,0,.08);}';
+  document.head.appendChild(_st);
 
   document.addEventListener('DOMContentLoaded', function () {
     renderGrid();
