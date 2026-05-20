@@ -93,7 +93,7 @@ function injectRankPlate(rank, totalXP) {
 
   var plateHTML =
     '<div id="bv-rank-plate"' +
-    ' class="' + (cfg.pulse ? 'rp-pulse' : '') + (cfg.glow ? ' rp-glow' : '') + '"' +
+    ' class="' + [cfg.pulse ? 'rp-pulse' : '', cfg.glow ? 'rp-glow' : ''].filter(Boolean).join(' ') + '"' +
     ' style="' +
       '--rp-color:' + cfg.color + ';' +
       '--rp-bg:'    + cfg.bg    + ';' +
@@ -109,11 +109,10 @@ function injectRankPlate(rank, totalXP) {
 
   /* idempotent — replace if exists */
   var existing = document.getElementById('bv-rank-plate');
-  if (existing) {
-    existing.outerHTML = plateHTML;
-  } else {
-    statsCard.insertAdjacentHTML('beforeend', plateHTML);
+  if (existing && existing.parentNode) {
+    existing.parentNode.removeChild(existing);
   }
+  statsCard.insertAdjacentHTML('beforeend', plateHTML);
 }
 
 // =============================================
