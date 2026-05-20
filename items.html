@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Collection — BINUSVERSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="items.css" />
+  </head>
+  <body>
+
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar">
+      <div class="logo-left">
+        <a href="index.html"><img src="assets/images/SaturBum.png" alt="Logo" /></a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="grimoire.html">Grimoire</a></li>
+        <li><a href="battle.html">Battle</a></li>
+        <li><a href="the_commons.html">The Commons</a></li>
+      </ul>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <div class="items-hero">
+      <h1 class="items-hero-title">⚔ ITEM COLLECTION</h1>
+      <p class="items-hero-sub">Collect items. Use them in battle. Dominate.</p>
+      <div class="items-counter" id="items-counter">0 / 28 DISCOVERED</div>
+    </div>
+
+    <!-- ── FILTER TABS ── -->
+    <div class="items-filter-bar" id="items-filter-bar">
+      <button class="items-filter-btn active" data-rarity="all">ALL</button>
+      <button class="items-filter-btn" data-rarity="legendary">◆ LEGENDARY</button>
+      <button class="items-filter-btn" data-rarity="epic">★ EPIC</button>
+      <button class="items-filter-btn" data-rarity="rare">▲ RARE</button>
+      <button class="items-filter-btn" data-rarity="uncommon">● UNCOMMON</button>
+      <button class="items-filter-btn" data-rarity="common">· COMMON</button>
+    </div>
+
+    <!-- ── ITEM GRID ── -->
+    <div class="items-grid" id="items-grid">
+      <!-- populated by items.js -->
+    </div>
+
+    <!-- ── GLOBAL TOOLTIP ── -->
+    <div id="items-global-tooltip" class="items-tooltip-global" style="display:none;"></div>
+
+    <!-- ── SCRIPTS ── -->
+    <script src="items-data.js"></script>
+    <script src="user-data.js"></script>
+    <script src="notifications.js"></script>
+    <script src="pixel-bg.js"></script>
+    <script src="items.js"></script>
+
+    <link rel="stylesheet" href="index.css" /><!-- reuse navbar styles -->
+  </body>
+</html>
