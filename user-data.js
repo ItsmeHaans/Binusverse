@@ -17,7 +17,7 @@
     [Infinity, 'Legend'],
   ];
 
-  /* ── All 8 battle items ── */
+  /* ── All 28 battle items ── */
   var ALL_ITEMS = [
     'eraser','freeze','retry','xp','shield','gem','warp','focus',
     'mirror','storm','oracle','vortex','prism','nova','echo',
