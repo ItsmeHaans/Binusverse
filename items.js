@@ -30,7 +30,7 @@
     var isLocked  = !discovered && !isOwned;
 
     var rarityClass = 'r-' + def.rarity;
-    var lockClass   = isLocked ? ' locked' : '';
+    var lockClass   = isLocked ? ' locked' : (isOwned ? ' item-owned' : ' item-dimmed');
     var stockPct    = Math.min(100, (stock / MAX_STOCK) * 100);
 
     var stockBarHTML = isLocked
@@ -51,9 +51,9 @@
       '<div class="item-rarity-tag">' + def.rarity.toUpperCase() + '</div>' +
       '<div class="item-card-icon">' + buildSVG(def.svgContent) + '</div>' +
       '<div class="item-card-body">' +
-        '<div class="item-card-name">' + (isLocked ? '???' : def.name) + '</div>' +
-        '<div class="item-card-type">' + (isLocked ? '????' : def.type) + '</div>' +
-        '<div class="item-card-ability">' + (isLocked ? '' : def.ability) + '</div>' +
+        '<div class="item-card-name">' + def.name + '</div>' +
+        '<div class="item-card-type">' + def.type + '</div>' +
+        '<div class="item-card-ability">' + def.ability + '</div>' +
         stockBarHTML +
       '</div>' +
     '</div>';

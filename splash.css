@@ -1,32 +1,36 @@
-body.splash-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+/* =====================================================
+   splash.css — BINUSVERSE Landing Page
+===================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body.splash-body {
+  width: 100%; height: 100%;
   overflow: hidden;
-  background-color: black;
-  font-family: "Pixelify Sans", sans-serif;
+  background: #000;
 }
 
+/* ── CONTAINER ───────────────────────────────────── */
 .splash-container {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url("assets/images/Tamanboy.png") center/cover no-repeat;
+  width: 100%; height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  background: #000;
 }
 
-#black-overlay {
+/* ── VIDEO BACKGROUND ────────────────────────────── */
+#splash-video {
   position: absolute;
   inset: 0;
-  background: black;
-  z-index: 10;
-  animation: pixelDissolve 1s steps(18) 0.9s forwards;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
+/* ── MAIN CONTENT ────────────────────────────────── */
 #splash-content {
   display: flex;
   flex-direction: column;
@@ -34,203 +38,142 @@ html {
   justify-content: center;
   width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 5;
 }
+.hidden { opacity: 0; pointer-events: none; }
 
-.hidden {
-  opacity: 0;
-}
-
+/* ── WELCOME TEXT ────────────────────────────────── */
 .welcome-text {
-  font-family: "Pixelify Sans", sans-serif;
-  font-size: 2rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.8rem, 2.2vw, 1.3rem);
   color: #fee783;
-  text-shadow: 3px 3px 0px #000;
-  margin-bottom: 5px;
+  text-shadow:
+    3px 3px 0 #000,
+    0 0 24px rgba(254, 231, 131, 0.6);
+  margin-bottom: 32px;
   display: inline-block;
   white-space: nowrap;
+  opacity: 0;
+  animation:
+    bvTextReveal 0.7s ease-out 1.3s forwards,
+    floatLoop    3.5s ease-in-out 2.1s infinite;
 }
 
-.welcome-text::after {
-  content: "";
-  animation: typingWelcomeContent 1.5s steps(1) 2.5s forwards;
-}
-
+/* ── BINUSVERSE LOGO ─────────────────────────────── */
 .binusverse-logo-css {
-  font-size: clamp(3rem, 12vw, 6rem);
-  color: #ffffff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(2.5rem, 9vw, 5.5rem);
+  color: #fff;
   text-transform: uppercase;
-  min-height: 1.2em;
   position: relative;
   display: inline-block;
   z-index: 20;
-
   text-shadow:
     -4px -4px 0 #1e90ff,
-    4px -4px 0 #1e90ff,
-    -4px 4px 0 #1e90ff,
-    4px 4px 0 #1e90ff,
-    0px 8px 0 #125699;
+     4px -4px 0 #1e90ff,
+    -4px  4px 0 #1e90ff,
+     4px  4px 0 #1e90ff,
+     0px  8px 0 #125699,
+     0    0  30px rgba(30, 144, 255, 0.5);
+  opacity: 0;
+  animation:
+    bvLogoReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.0s forwards,
+    floatLoop    3.5s ease-in-out 2.9s infinite;
 }
 
-.binusverse-logo-css::after {
-  content: "";
-  visibility: visible;
-  animation: typoLogic 4s steps(1) 4.0s forwards;
-}
-
+/* ── START BUTTON ────────────────────────────────── */
 #start-btn {
   display: block;
-  margin-top: 30px;
-  padding: 12px 40px;
-
+  margin-top: 40px;
+  padding: 14px 52px;
   background-color: #fee783;
   color: #1a1a2e;
   border: 4px solid #1a1a2e;
-  box-shadow: 0px 0px 0px #1a1a2e;
-
-  font-family: "Pixelify Sans", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
+  box-shadow: 0 0 0 #1a1a2e;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1rem;
   text-transform: uppercase;
   cursor: pointer;
-
-  transition:
-    transform 0.15s steps(3),
-    box-shadow 0.15s steps(3),
-    background-color 0.15s steps(3);
-
   opacity: 0;
-  transform: scale(0.5);
-  visibility: hidden;
-
-  animation: btnAppear 0.6s steps(11) 8.7s forwards;
+  animation: bvBtnAppear 0.5s ease-out 3.0s forwards;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+#start-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+#start-btn:hover:not(:disabled) {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #1a1a2e;
+}
+#start-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 #1a1a2e;
 }
 
-#start-btn:hover {
-  transform: translate(-2px, -2px) scale(1);
-  box-shadow: 7.5px 7.5px 0px #1a1a2e;
+/* ── GRASS DIVIDER ───────────────────────────────── */
+.grass-divider {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  z-index: 6;
+  pointer-events: none;
+  line-height: 0;
+  transform: translateY(10%);
+}
+.grass-svg { width: 100%; height: auto; display: block; }
+
+/* ── KEYFRAMES ───────────────────────────────────── */
+@keyframes bvTextReveal {
+  0%   { opacity: 0; transform: translateY(18px); filter: blur(4px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-#start-btn:active {
-  transform: translate(2px, 2px) scale(1);
-  box-shadow: 0px 0px 0px #1a1a2e;
+@keyframes bvLogoReveal {
+  0%   { opacity: 0; transform: scale(0.65) translateY(12px); filter: blur(12px); }
+  50%  { filter: blur(2px); }
+  80%  { transform: scale(1.04) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 }
 
-@keyframes pixelDissolve {
-  0% {
-    clip-path: inset(0 0 0 0);
-  }
-  100% {
-    clip-path: inset(50% 50% 50% 50%);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
+@keyframes bvBtnAppear {
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes typingWelcomeContent {
-  0% {
-    content: "";
-  }
-  10% {
-    content: "W";
-  }
-  20% {
-    content: "We";
-  }
-  30% {
-    content: "Wel";
-  }
-  40% {
-    content: "Welc";
-  }
-  50% {
-    content: "Welco";
-  }
-  60% {
-    content: "Welcom";
-  }
-  70% {
-    content: "Welcome";
-  }
-  80% {
-    content: "Welcome ";
-  }
-  90% {
-    content: "Welcome t";
-  }
-  100% {
-    content: "Welcome to";
-  }
+@keyframes floatLoop {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
-@keyframes typoLogic {
-  0% {
-    content: "";
-  }
-  5% {
-    content: "M";
-  }
-  10% {
-    content: "ME";
-  }
-  15% {
-    content: "MET";
-  }
-  20% {
-    content: "META";
-  }
-  40% {
-    content: "META";
-  }
-  45% {
-    content: "MET";
-  }
-  50% {
-    content: "ME";
-  }
-  55% {
-    content: "M";
-  }
-  60% {
-    content: "";
-  }
-  65% {
-    content: "B";
-  }
-  70% {
-    content: "BI";
-  }
-  75% {
-    content: "BIN";
-  }
-  80% {
-    content: "BINU";
-  }
-  85% {
-    content: "BINUS";
-  }
-  90% {
-    content: "BINUSV";
-  }
-  92.5% {
-    content: "BINUSVE";
-  }
-  95% {
-    content: "BINUSVER";
-  }
-  97.5% {
-    content: "BINUSVERS";
-  }
-  100% {
-    content: "BINUSVERSE";
-  }
+/* ══════════════════════════════════════════════════
+   VR PORTAL LAUNCH — smooth, no steps()
+══════════════════════════════════════════════════ */
+.splash-container.bv-zoom-launch {
+  animation: bvVRZoom 1.1s cubic-bezier(0.4, 0, 0.9, 1) forwards !important;
+  transform-origin: center center;
+}
+@keyframes bvVRZoom {
+  0%   { transform: scale(1);    filter: brightness(1)    blur(0px);  }
+  15%  { transform: scale(1.2);  filter: brightness(1.1)  blur(0.5px); }
+  40%  { transform: scale(2.2);  filter: brightness(1.8)  blur(4px);  }
+  70%  { transform: scale(5);    filter: brightness(4)    blur(12px); }
+  100% { transform: scale(18);   filter: brightness(14)   blur(35px); }
 }
 
-@keyframes btnAppear {
-  to {
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
-  }
+#bv-launch-veil {
+  position: fixed; inset: 0;
+  background: #fff;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  animation: bvVeilFlash 1.1s ease-in forwards;
 }
+@keyframes bvVeilFlash {
+  0%, 35%  { opacity: 0; }
+  60%      { opacity: 0.15; }
+  80%      { opacity: 0.6; }
+  100%     { opacity: 1; }
+}
+
+/* ── PIXEL BG LAYER z-index fix ──────────────────── */
+.bv-pixel-bg-layer { z-index: 2 !important; }

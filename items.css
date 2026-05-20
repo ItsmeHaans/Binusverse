@@ -105,9 +105,35 @@ body {
 .item-card.r-uncommon  { --item-color:#00ff88; --item-glow:rgba(0,255,136,0.15); }
 .item-card.r-common    { --item-color:#94a3b8; --item-glow:rgba(148,163,184,0.12); }
 
+/* owned — full glow pulse */
+.item-card.item-owned {
+  border-color: var(--item-color, #444);
+  box-shadow: 0 0 6px var(--item-glow, transparent), inset 0 0 8px rgba(0,0,0,0.4);
+  animation: item-owned-pulse 2.8s ease-in-out infinite;
+}
+.item-card.item-owned:hover {
+  box-shadow: 0 0 20px var(--item-glow, transparent), inset 0 0 8px rgba(0,0,0,0.4);
+}
+@keyframes item-owned-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--item-glow, transparent), inset 0 0 8px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 0 18px var(--item-glow, transparent), inset 0 0 8px rgba(0,0,0,0.4); }
+}
+
+/* dimmed — discovered but stock = 0 */
+.item-card.item-dimmed {
+  opacity: 0.45;
+  filter: grayscale(0.65) brightness(0.6);
+  transition: opacity 0.2s, filter 0.2s;
+}
+.item-card.item-dimmed:hover {
+  opacity: 0.8;
+  filter: grayscale(0.2) brightness(0.85);
+  border-color: var(--item-color, #444);
+}
+
 /* locked state */
-.item-card.locked { opacity: 0.35; filter: grayscale(0.8); }
-.item-card.locked:hover { border-color: #444; box-shadow: none; }
+.item-card.locked { opacity: 0.25; filter: grayscale(0.9) brightness(0.4); }
+.item-card.locked:hover { border-color: #444; box-shadow: none; opacity: 0.35; }
 
 /* hidden by filter */
 .item-card.filter-hidden { display: none; }

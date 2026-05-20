@@ -295,6 +295,89 @@
       </div>
     </div>
 
+    <!-- ── PIXEL MASCOT ── -->
+    <div class="mascot-wrap" id="mascot-wrap" title="Pixel Companion">
+      <div class="mascot-bubble hidden" id="mascot-bubble"></div>
+      <svg class="mascot-svg" viewBox="0 0 32 48" width="70" height="105"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <rect x="10" y="0"  width="12" height="2"  fill="#6d28d9"/>
+        <rect x="8"  y="2"  width="16" height="2"  fill="#7c3aed"/>
+        <rect x="9"  y="4"  width="14" height="6"  fill="#6d28d9"/>
+        <rect x="10" y="5"  width="2"  height="2"  fill="#fee783"/>
+        <rect x="11" y="6"  width="1"  height="1"  fill="#fff"/>
+        <rect x="5"  y="10" width="22" height="3"  fill="#4c1d95"/>
+        <rect x="9"  y="13" width="14" height="10" fill="#fde68a"/>
+        <rect x="11" y="16" width="3"  height="3"  fill="#1e1b4b"/>
+        <rect x="18" y="16" width="3"  height="3"  fill="#1e1b4b"/>
+        <rect x="12" y="16" width="1"  height="1"  fill="#fff"/>
+        <rect x="19" y="16" width="1"  height="1"  fill="#fff"/>
+        <rect x="13" y="20" width="6"  height="2"  fill="#c2410c"/>
+        <rect x="14" y="21" width="4"  height="1"  fill="#fca5a5"/>
+        <rect x="10" y="23" width="12" height="2"  fill="#fde68a"/>
+        <rect x="11" y="25" width="10" height="1"  fill="#fde68a"/>
+        <rect x="7"  y="26" width="18" height="14" fill="#5b21b6"/>
+        <rect x="6"  y="27" width="2"  height="12" fill="#4c1d95"/>
+        <rect x="24" y="27" width="2"  height="12" fill="#4c1d95"/>
+        <rect x="7"  y="26" width="18" height="2"  fill="#7c3aed"/>
+        <rect x="13" y="28" width="6"  height="12" fill="#6d28d9"/>
+        <rect x="15" y="29" width="2"  height="2"  fill="#fee783"/>
+        <rect x="14" y="30" width="4"  height="1"  fill="#fee783"/>
+        <rect x="15" y="31" width="2"  height="2"  fill="#fee783"/>
+        <rect x="2"  y="27" width="4"  height="3"  fill="#fde68a"/>
+        <rect x="1"  y="28" width="2"  height="10" fill="#92400e"/>
+        <rect x="0"  y="27" width="3"  height="2"  fill="#b45309"/>
+        <rect x="0"  y="22" width="3"  height="3"  fill="#fee783"/>
+        <rect x="1"  y="21" width="1"  height="1"  fill="#fff"/>
+        <rect x="26" y="27" width="4"  height="3"  fill="#fde68a"/>
+        <rect x="27" y="30" width="3"  height="2"  fill="#fde68a"/>
+        <rect x="9"  y="40" width="5"  height="3"  fill="#1e1b4b"/>
+        <rect x="18" y="40" width="5"  height="3"  fill="#1e1b4b"/>
+        <rect x="8"  y="42" width="6"  height="2"  fill="#4c1d95"/>
+        <rect x="18" y="42" width="6"  height="2"  fill="#4c1d95"/>
+        <rect x="7"  y="38" width="18" height="3"  fill="#4c1d95"/>
+        <rect class="mascot-spark s1" x="28" y="14" width="2" height="2" fill="#fee783"/>
+        <rect class="mascot-spark s2" x="2"  y="18" width="2" height="2" fill="#c084fc"/>
+        <rect class="mascot-spark s3" x="30" y="30" width="2" height="2" fill="#00e5ff"/>
+        <rect class="mascot-spark s4" x="1"  y="10" width="2" height="2" fill="#fee783"/>
+      </svg>
+    </div>
+
+    <script src="pixel-bg.js"></script>
+    <script src="user-data.js"></script>
+    <script src="notifications.js"></script>
     <script src="battle-play.js"></script>
+    <script>
+    /* Mascot for battle-play page */
+    (function(){
+      var TIPS = [
+        'Items reset each\nbattle session!',
+        'XP Magnet adds\n×1.5 XP!',
+        'Eraser removes\n2 wrong answers!',
+        'Freeze adds\n+10 seconds!',
+        'Retry = no\npenalty!',
+        'Answer fast for\nspeed bonus XP!',
+        'Streak×3 = fire!',
+        'S Rank = all\ncorrect answers!',
+      ];
+      var t = null;
+      document.addEventListener('DOMContentLoaded', function(){
+        var wrap = document.getElementById('mascot-wrap');
+        var bbl  = document.getElementById('mascot-bubble');
+        if (!wrap || !bbl) return;
+        wrap.addEventListener('click', function(){
+          clearTimeout(t);
+          bbl.innerHTML = TIPS[0|Math.random()*TIPS.length].replace(/\n/g,'<br>');
+          bbl.classList.remove('hidden');
+          t = setTimeout(function(){ bbl.classList.add('hidden'); }, 2800);
+        });
+        setTimeout(function(){
+          if (!bbl.classList.contains('hidden')) return;
+          bbl.innerHTML = 'Good luck!';
+          bbl.classList.remove('hidden');
+          t = setTimeout(function(){ bbl.classList.add('hidden'); }, 2000);
+        }, 3000);
+      });
+    })();
+    </script>
   </body>
 </html>

@@ -1,17 +1,32 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const splashContent = document.getElementById('splash-content');
-    const startBtn = document.getElementById('start-btn');
+document.addEventListener("DOMContentLoaded", function () {
+  var splashContent = document.getElementById('splash-content');
+  var startBtn      = document.getElementById('start-btn');
+  var wrap          = document.querySelector('.splash-container');
 
-    setTimeout(() => {
-        splashContent.classList.remove('hidden');
-    }, 500);
+  // ── Reveal content immediately (no overlay) ──
+  setTimeout(function () {
+    splashContent.classList.remove('hidden');
+  }, 100);
 
-    startBtn.addEventListener('click', () => {
-        document.body.style.transition = "opacity 0.8s steps(8)";
-        document.body.style.opacity = "0";
-        
-        setTimeout(() => {
-            window.location.href = "home.html";
-        }, 850);
-    });
+  // ── Start button → VR portal transition → index.html ──
+  startBtn.addEventListener('click', function () {
+    startBtn.disabled = true;
+
+    // White veil flash
+    var veil = document.createElement('div');
+    veil.id = 'bv-launch-veil';
+    document.body.appendChild(veil);
+
+    // Scale-zoom container (VR portal effect)
+    wrap.classList.add('bv-zoom-launch');
+
+    // Signal index.html to play entrance animation
+    sessionStorage.setItem('bv_entering', '1');
+    sessionStorage.setItem('bv_started',  '1');
+
+    // Navigate after animation completes
+    setTimeout(function () {
+      window.location.href = 'index.html';
+    }, 900);
+  });
 });

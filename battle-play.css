@@ -1022,6 +1022,102 @@ body {
   70% {opacity:1;transform:scale(1)}  100%{opacity:0}
 }
 
+/* ─── ITEM VISUAL EFFECTS ─── */
+
+/* Eraser: pixel shatter on eliminated button */
+@keyframes eraser-shatter {
+  0%   { opacity:1; transform:scale(1); filter:brightness(2) saturate(4); }
+  25%  { opacity:.7; transform:scale(1.04) skewX(2deg); }
+  60%  { opacity:.3; transform:scale(0.93) skewX(-2deg); }
+  100% { opacity:.16; transform:scale(0.9); filter:brightness(0.4); }
+}
+.bc-ans.eraser-eliminated {
+  animation:eraser-shatter .35s steps(5) forwards !important;
+  pointer-events:none !important;
+  border-color:rgba(255,149,0,.3) !important;
+}
+/* tiny pixel dust on eraser */
+.eraser-dust {
+  position:absolute; width:4px; height:4px;
+  pointer-events:none; image-rendering:pixelated;
+  animation:eraser-dust-fly 0.5s steps(6) forwards;
+}
+@keyframes eraser-dust-fly {
+  0%   { opacity:1; transform:translate(0,0); }
+  100% { opacity:0; transform:translate(var(--dx),var(--dy)); }
+}
+
+/* Freeze: ice crystal overlay on timer ring */
+.freeze-ring-overlay {
+  position:absolute; inset:-6px;
+  border:3px solid #c084fc;
+  pointer-events:none; z-index:10;
+  animation:freeze-crystal-pulse .4s steps(2) infinite;
+  clip-path:polygon(
+    0% 6px,6px 0%,calc(100% - 6px) 0%,100% 6px,
+    100% calc(100% - 6px),calc(100% - 6px) 100%,
+    6px 100%,0% calc(100% - 6px)
+  );
+}
+@keyframes freeze-crystal-pulse {
+  0%,100% { box-shadow:0 0 0 0 rgba(192,132,252,.6); border-color:#c084fc; }
+  50%      { box-shadow:0 0 10px 4px rgba(192,132,252,.25); border-color:#e4d0ff; }
+}
+/* frozen text above ring */
+.freeze-label {
+  position:absolute;
+  bottom:-22px; left:50%; transform:translateX(-50%);
+  font-family:'Press Start 2P',monospace; font-size:.24rem;
+  color:#c084fc; white-space:nowrap;
+  animation:bvnFlicker .5s steps(2) infinite;
+  pointer-events:none;
+}
+
+/* Retry: full-screen flash */
+.retry-flash-el {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(1rem,3vw,1.6rem);
+  color:#00e5ff;
+  text-shadow:0 0 20px rgba(0,229,255,.85), 4px 4px 0 #003c50;
+  pointer-events:none; z-index:60;
+  animation:retry-pop .9s steps(6) forwards;
+}
+@keyframes retry-pop {
+  0%   { opacity:0; transform:translate(-50%,-50%) scale(.5) rotate(-4deg); }
+  30%  { opacity:1; transform:translate(-50%,-50%) scale(1.2) rotate(2deg); }
+  65%  { opacity:1; transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+  100% { opacity:0; transform:translate(-50%,-62%) scale(.9); }
+}
+
+/* XP Magnet: gold aura on battle card */
+.xp-magnet-active {
+  border-color:#fee783 !important;
+  animation:xp-card-glow .6s steps(3) infinite !important;
+}
+@keyframes xp-card-glow {
+  0%,100% { box-shadow:0 0 40px rgba(0,195,255,.12),6px 6px 0 rgba(0,75,100,.8); }
+  50%      { box-shadow:0 0 60px rgba(254,231,131,.35),6px 6px 0 rgba(120,90,0,.9),0 0 30px rgba(254,231,131,.2); }
+}
+/* floating ×1.5 XP text */
+.xp-float-text {
+  position:absolute;
+  font-family:'Press Start 2P',monospace; font-size:.75rem;
+  color:#fee783;
+  text-shadow:2px 2px 0 #604010, 0 0 14px rgba(254,231,131,.65);
+  pointer-events:none; z-index:20;
+  animation:xp-float-up 2.2s steps(10) forwards;
+  top:16px; right:56px;
+}
+@keyframes xp-float-up {
+  0%   { opacity:0; transform:translateY(0) scale(.8); }
+  18%  { opacity:1; transform:translateY(-8px) scale(1.15); }
+  75%  { opacity:1; transform:translateY(-28px) scale(1); }
+  100% { opacity:0; transform:translateY(-44px) scale(.85); }
+}
+
 /* ─── RESULT CARD extras ─── */
 .result-stars {
   position:absolute; inset:0; pointer-events:none; overflow:hidden;
@@ -1041,3 +1137,46 @@ body {
 .result-rank-badge.b  { border-color:#00ff88; color:#00ff88; }
 .result-rank-badge.c  { border-color:#ff9500; color:#ff9500; }
 .result-rank-badge.d  { border-color:#ff4d4d; color:#ff4d4d; }
+
+/* ═══════════════════════════════════════════
+   PIXEL MASCOT COMPANION (shared)
+═══════════════════════════════════════════ */
+.mascot-wrap {
+  position:fixed; bottom:24px; right:24px; z-index:9000;
+  cursor:pointer; display:flex; flex-direction:column;
+  align-items:center; gap:6px; user-select:none;
+}
+.mascot-svg {
+  image-rendering:pixelated; display:block;
+  animation:mascotBob 1.4s steps(4) infinite;
+  filter:drop-shadow(0 0 8px rgba(124,58,237,.5)) drop-shadow(4px 6px 0 rgba(0,0,0,.5));
+}
+.mascot-wrap:hover .mascot-svg {
+  filter:drop-shadow(0 0 16px rgba(192,132,252,.8)) drop-shadow(4px 6px 0 rgba(0,0,0,.5));
+  animation:mascotWave .6s steps(6) infinite;
+}
+@keyframes mascotBob {
+  0%,100%{transform:translateY(0)} 25%{transform:translateY(-4px)} 50%{transform:translateY(-6px)} 75%{transform:translateY(-3px)}
+}
+@keyframes mascotWave {
+  0%,100%{transform:translateY(-2px) rotate(-3deg)} 50%{transform:translateY(-8px) rotate(3deg)}
+}
+.mascot-spark{animation:mascotSparkle 1.2s steps(2) infinite;}
+.mascot-spark.s1{animation-delay:0s}.mascot-spark.s2{animation-delay:.3s}
+.mascot-spark.s3{animation-delay:.6s}.mascot-spark.s4{animation-delay:.9s}
+@keyframes mascotSparkle{0%,100%{opacity:1}50%{opacity:0}}
+
+.mascot-bubble {
+  font-family:'Press Start 2P',monospace; font-size:.34rem; line-height:1.7;
+  color:#e0f7ff; background:#0d0f20; border:2px solid #7c3aed;
+  padding:8px 11px; max-width:180px; text-align:center;
+  box-shadow:3px 3px 0 #2d0060;
+  clip-path:polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px));
+  animation:bubblePop .2s steps(3) forwards; position:relative;
+}
+.mascot-bubble::after{
+  content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  border:6px solid transparent; border-top-color:#7c3aed;
+}
+.mascot-bubble.hidden{display:none;}
+@keyframes bubblePop{from{opacity:0;transform:scale(.8) translateY(4px)}to{opacity:1;transform:scale(1) translateY(0)}}

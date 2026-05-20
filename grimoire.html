@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <title>Grimoire - BINUSVERSE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="grimoire.css" />
   </head>
   <body>
@@ -40,7 +37,7 @@
 
     <!-- CONTENT -->
     <section class="grimoire-content">
-      <h2 class="welcome">Welcome back, Andrew</h2>
+      <h2 class="welcome" id="grim-welcome">Welcome back, Explorer</h2>
 
       <!-- ── PROFILE ROW ── -->
 <div class="prf-row">
@@ -79,11 +76,11 @@
       <!-- Level bar -->
       <div class="prf-level-wrap">
         <div class="prf-level-top">
-          <span class="prf-level-lbl">LV.18</span>
-          <span class="prf-level-xp">2840 / 4000 XP</span>
+          <span class="prf-level-lbl" id="grim-level-lbl">LV.1</span>
+          <span class="prf-level-xp" id="grim-level-xp">0 / 100 XP</span>
         </div>
         <div class="prf-level-track">
-          <div class="prf-level-fill" style="width:71%"></div>
+          <div class="prf-level-fill" id="grim-xp-fill" style="width:0%"></div>
         </div>
       </div>
 
@@ -122,11 +119,11 @@
           <polygon points="40,10 70,27 70,65 40,82 10,65 10,27"
             fill="rgba(254,231,131,0.04)" stroke="rgba(254,231,131,0.3)" stroke-width="1"/>
         </svg>
-        <img src="assets/images/apimembahana.png" alt="Rank" class="prf-mini-img mc-rank-img" />
+        <svg id="mc-rank-icon-svg" class="prf-mini-img mc-rank-img" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;width:56px;height:56px;"></svg>
       </div>
       <span class="mc-stat-label">Rank</span>
       <div class="mc-rank-badge-row">
-        <span class="mc-rank-badge-txt">🥉 Bronze III</span>
+        <span class="mc-rank-badge-txt" id="grim-rank-txt">— Unranked</span>
       </div>
     </div>
 
@@ -135,8 +132,8 @@
       <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
       <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
       <div class="mc-level-wrap">
-        <div class="mc-level-badge" id="level-display">18</div>
-        <div class="mc-level-xp-label">2,840 <span style="color:rgba(30,144,255,.4);font-size:.5em;">/ 4,000 XP</span></div>
+        <div class="mc-level-badge" id="level-display">1</div>
+        <div class="mc-level-xp-label" id="grim-mini-xp">0 <span style="color:rgba(30,144,255,.4);font-size:.5em;">/ 100 XP</span></div>
       </div>
       <span class="mc-stat-label">Level</span>
       <!-- pixel block bar — 10 blocks, 7 filled -->
@@ -159,7 +156,7 @@
       <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
       <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
       <canvas id="mcFlameCanvas" width="40" height="48" style="image-rendering:pixelated;"></canvas>
-      <span class="mc-stat-val" style="color:#ff9500;">7×</span>
+      <span class="mc-stat-val" id="grim-streak-val" style="color:#ff9500;">0×</span>
       <span class="mc-stat-label">Streak</span>
       <span class="mc-stat-sub" style="color:rgba(255,149,0,.5);">+1.5× XP</span>
     </div>
@@ -194,7 +191,7 @@
       <rect x="2" y="3" width="1" height="3" fill="#fee783"/>
     </svg>
     <span class="bst-label">Total Battles</span>
-    <span class="bst-value bst-counter" data-target="38" style="color:#fee783;">0</span>
+    <span class="bst-value bst-counter" id="grim-battles" data-target="0" style="color:#fee783;">0</span>
     <span class="bst-sub">All time</span>
     <!-- mini bar showing progress vs goal -->
     <div class="bst-mini-bar-wrap">
@@ -211,12 +208,12 @@
     <span class="bst-label">Battle Record</span>
     <div class="bst-record-wrap">
       <div class="bst-record-block win">
-        <div class="bst-record-num bst-counter" data-target="28">0</div>
+        <div class="bst-record-num bst-counter" id="grim-wins" data-target="0">0</div>
         <div class="bst-record-tag">WIN</div>
       </div>
       <div class="bst-record-vs">:</div>
       <div class="bst-record-block lose">
-        <div class="bst-record-num bst-counter" data-target="10">0</div>
+        <div class="bst-record-num bst-counter" id="grim-losses" data-target="0">0</div>
         <div class="bst-record-tag">LOSE</div>
       </div>
     </div>
@@ -226,8 +223,8 @@
       <div class="bst-split-l"></div>
     </div>
     <div class="bst-split-labels">
-      <span style="color:rgba(0,255,136,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">73.7%</span>
-      <span style="color:rgba(255,77,77,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">26.3%</span>
+      <span id="grim-win-pct" style="color:rgba(0,255,136,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">0%</span>
+      <span id="grim-loss-pct" style="color:rgba(255,77,77,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">0%</span>
     </div>
   </div>
 
@@ -247,12 +244,12 @@
       <rect x="2" y="2" width="4" height="1" fill="#fff" opacity=".3"/>
     </svg>
     <span class="bst-label">Strongest</span>
-    <span class="bst-topic-name" style="color:#00ff88;">Algorithms</span>
+    <span class="bst-topic-name" id="grim-strong-name" style="color:#00ff88;">—</span>
     <div class="bst-topic-bar-wrap">
       <div class="bst-topic-track">
-        <div class="bst-topic-fill" style="--tc:#00ff88;--tw:92%;width:0;"></div>
+        <div class="bst-topic-fill" id="grim-strong-fill" style="--tc:#00ff88;width:0;"></div>
       </div>
-      <span class="bst-topic-pct" style="color:rgba(0,255,136,.55);">92%</span>
+      <span class="bst-topic-pct" id="grim-strong-pct" style="color:rgba(0,255,136,.55);">0%</span>
     </div>
     <span class="bst-sub" style="color:rgba(0,255,136,.3);">mastery</span>
   </div>
@@ -272,12 +269,12 @@
       <rect x="3" y="6" width="2" height="1" fill="#06081a"/>
     </svg>
     <span class="bst-label">Weakest</span>
-    <span class="bst-topic-name" style="color:#ff4d4d;">Data Structures</span>
+    <span class="bst-topic-name" id="grim-weak-name" style="color:#ff4d4d;">—</span>
     <div class="bst-topic-bar-wrap">
       <div class="bst-topic-track">
-        <div class="bst-topic-fill" style="--tc:#ff4d4d;--tw:38%;width:0;"></div>
+        <div class="bst-topic-fill" id="grim-weak-fill" style="--tc:#ff4d4d;width:0;"></div>
       </div>
-      <span class="bst-topic-pct" style="color:rgba(255,77,77,.55);">38%</span>
+      <span class="bst-topic-pct" id="grim-weak-pct" style="color:rgba(255,77,77,.55);">0%</span>
     </div>
     <span class="bst-sub" style="color:rgba(255,77,77,.3);">needs work</span>
   </div>
@@ -341,10 +338,10 @@
 <div class="mastery-bar-wrap">
   <div class="mastery-top">
     <span class="mastery-label">OVERALL MASTERY</span>
-    <span class="mastery-score">74 / 100</span>
+    <span class="mastery-score" id="grim-mastery-score">0 / 100</span>
   </div>
   <div class="mastery-track">
-    <div class="mastery-fill"></div>
+    <div class="mastery-fill" id="grim-mastery-fill"></div>
   </div>
   <div class="mastery-ticks">
     <span class="mastery-tick">0</span>
@@ -487,20 +484,20 @@
 <!-- Bottom stat row -->
 <div class="sum-stats-row">
   <div class="sum-stat-box">
-    <div class="sum-stat-val">74%</div>
+    <div class="sum-stat-val" id="grim-sum-winrate">0%</div>
     <div class="sum-stat-lbl">WIN RATE</div>
   </div>
   <div class="sum-stat-box">
-    <div class="sum-stat-val">7x</div>
+    <div class="sum-stat-val" id="grim-sum-streak">0x</div>
     <div class="sum-stat-lbl">STREAK</div>
   </div>
   <div class="sum-stat-box">
-    <div class="sum-stat-val">38</div>
+    <div class="sum-stat-val" id="grim-sum-battles">0</div>
     <div class="sum-stat-lbl">BATTLES</div>
   </div>
   <div class="sum-stat-box">
-    <div class="sum-stat-val positive">+14%</div>
-    <div class="sum-stat-lbl">GROWTH</div>
+    <div class="sum-stat-val positive" id="grim-sum-mastery">0%</div>
+    <div class="sum-stat-lbl">MASTERY</div>
   </div>
 </div>
 
@@ -558,10 +555,10 @@
       <div class="gs-xp-wrap">
         <div class="gs-xp-top">
           <span class="gs-xp-lbl">MASTERY</span>
-          <span class="gs-xp-lbl">38%</span>
+          <span class="gs-xp-lbl" id="gs-dp-pct">0%</span>
         </div>
         <div class="gs-xp-track">
-          <div class="gs-xp-fill" style="width:38%"></div>
+          <div class="gs-xp-fill" id="gs-dp-fill" style="width:0%"></div>
         </div>
       </div>
       <button class="gs-btn">&#9654; START LEARNING</button>
@@ -618,10 +615,10 @@
       <div class="gs-xp-wrap">
         <div class="gs-xp-top">
           <span class="gs-xp-lbl">MASTERY</span>
-          <span class="gs-xp-lbl">45%</span>
+          <span class="gs-xp-lbl" id="gs-graph-pct">0%</span>
         </div>
         <div class="gs-xp-track">
-          <div class="gs-xp-fill" style="width:45%;animation-delay:.15s"></div>
+          <div class="gs-xp-fill" id="gs-graph-fill" style="width:0%;animation-delay:.15s"></div>
         </div>
       </div>
       <button class="gs-btn">&#9654; START LEARNING</button>
@@ -676,10 +673,10 @@
       <div class="gs-xp-wrap">
         <div class="gs-xp-top">
           <span class="gs-xp-lbl">MASTERY</span>
-          <span class="gs-xp-lbl">41%</span>
+          <span class="gs-xp-lbl" id="gs-rec-pct">0%</span>
         </div>
         <div class="gs-xp-track">
-          <div class="gs-xp-fill" style="width:41%;animation-delay:.3s"></div>
+          <div class="gs-xp-fill" id="gs-rec-fill" style="width:0%;animation-delay:.3s"></div>
         </div>
       </div>
       <button class="gs-btn">&#9654; START LEARNING</button>
@@ -1012,7 +1009,7 @@
       if (!cvs) return;
       const ctx = cvs.getContext('2d');
       const W = 90, H = 82, PX = 6;
-      const WIN_RATE = 0.74;
+      const WIN_RATE = (typeof window._BV_WIN_RATE !== 'undefined') ? window._BV_WIN_RATE : 0;
 
       // heart shape: pixel grid 13×11
       // 1 = heart pixel, 0 = empty
@@ -1071,11 +1068,13 @@
       ctx.font = '500 10px "Press Start 2P", monospace';
       ctx.fillStyle = '#ff4d6d';
       ctx.textAlign = 'center';
-      ctx.fillText('74%', W / 2, offY + ROWS * PX + 14);
+      ctx.fillText(Math.round(WIN_RATE*100) + '%', W / 2, offY + ROWS * PX + 14);
 
       ctx.font = '500 6px "Press Start 2P", monospace';
       ctx.fillStyle = 'rgba(255,77,109,.4)';
-      ctx.fillText('28W / 10L', W / 2, offY + ROWS * PX + 24);
+      var _w = (typeof window._BV_WINS !== 'undefined') ? window._BV_WINS : 0;
+      var _l = (typeof window._BV_LOSSES !== 'undefined') ? window._BV_LOSSES : 0;
+      ctx.fillText(_w + 'W / ' + _l + 'L', W / 2, offY + ROWS * PX + 24);
     })();
 
     /* ── COUNT-UP ── */
@@ -1092,16 +1091,134 @@
     })();
     </script>
 
+    <script src="pixel-bg.js"></script>
+    <script src="user-data.js"></script>
     <script src="assets/js/rank.js"></script>
     <script>
+      // ── Populate grimoire from localStorage ──
+      (function() {
+        if (typeof BVUser === 'undefined') return;
+        var u = BVUser.load();
+        var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+        var setW = function(id, w) { var el = document.getElementById(id); if (el) el.style.width = w + '%'; };
+
+        // Profile header
+        set('grim-welcome',    'Welcome back, ' + u.name);
+        set('grim-level-lbl', 'LV.' + u.level);
+        set('grim-level-xp',  u.xpProgress + ' / 100 XP');
+        setW('grim-xp-fill', u.xpProgress);
+
+        // Mini stat cards
+        set('grim-rank-txt',   u.rank);
+        var rankIconSvg = document.getElementById('mc-rank-icon-svg');
+        if (rankIconSvg && typeof RANK_ICONS !== 'undefined') {
+          var ri = RANK_ICONS[u.rank] || RANK_ICONS['Unranked'];
+          rankIconSvg.innerHTML = ri.svg;
+          var hexPolys = document.querySelectorAll('.mc-rank-hex-svg polygon');
+          if (hexPolys[0]) { hexPolys[0].setAttribute('stroke', ri.color); hexPolys[0].setAttribute('fill', 'transparent'); }
+          if (hexPolys[1]) hexPolys[1].setAttribute('stroke', ri.color);
+        }
+        set('level-display',   u.level);
+        var miniXp = document.getElementById('grim-mini-xp');
+        if (miniXp) miniXp.innerHTML = u.xpProgress + ' <span style="color:rgba(30,144,255,.4);font-size:.5em;">/ 100 XP</span>';
+        set('grim-streak-val', u.streak + '×');
+
+        // XP pixel blocks (10 blocks representing 0-100%)
+        var blocks = document.querySelectorAll('.mc-pixel-blocks .mc-pb');
+        var filled = Math.round(u.xpProgress / 10);
+        blocks.forEach(function(b, i) {
+          b.className = 'mc-pb' + (i < filled ? ' mc-pb-on' : '');
+        });
+
+        // Battle stats — update data-target for count-up animation
+        var setBst = function(id, val) { var el = document.getElementById(id); if (el) el.dataset.target = val; };
+        setBst('grim-battles', u.totalBattles);
+        setBst('grim-wins',    u.totalWins);
+        setBst('grim-losses',  u.totalLosses);
+
+        // Win/loss percentages
+        var wp = u.totalBattles > 0 ? ((u.totalWins / u.totalBattles) * 100).toFixed(1) : '0.0';
+        var lp = u.totalBattles > 0 ? ((u.totalLosses / u.totalBattles) * 100).toFixed(1) : '0.0';
+        set('grim-win-pct',  wp + '%');
+        set('grim-loss-pct', lp + '%');
+
+        // Split bar
+        var sw = document.querySelector('.bst-split-w');
+        var sl = document.querySelector('.bst-split-l');
+        if (sw) sw.style.width = wp + '%';
+        if (sl) sl.style.width = lp + '%';
+
+        // Strongest / Weakest topic
+        var strong = BVUser.getStrongestTopic(u);
+        var weak   = BVUser.getWeakestTopic(u);
+        if (strong) {
+          set('grim-strong-name', strong.name);
+          set('grim-strong-pct',  strong.value + '%');
+          setW('grim-strong-fill', strong.value);
+        }
+        if (weak) {
+          set('grim-weak-name', weak.name);
+          set('grim-weak-pct',  weak.value + '%');
+          setW('grim-weak-fill', weak.value);
+        }
+
+        // Total Battles bar (goal: 50)
+        var battlePct = Math.min(100, Math.round(u.totalBattles / 50 * 100));
+        var bstBar = document.querySelector('.bst-mini-bar');
+        if (bstBar) bstBar.style.setProperty('--bw', battlePct + '%');
+        var bstGoal = document.querySelector('.bst-sub[style*="fee783"]');
+        // (keep "Goal: 50" text as-is)
+
+        // Overall mastery
+        var mastery = BVUser.getOverallMastery(u);
+        set('grim-mastery-score', mastery + ' / 100');
+        setW('grim-mastery-fill', mastery);
+
+        // Summary stats row
+        set('grim-sum-winrate',  u.winRate + '%');
+        set('grim-sum-streak',   u.streak + 'x');
+        set('grim-sum-battles',  u.totalBattles);
+        set('grim-sum-mastery',  mastery + '%');
+
+        // Suggested skills — DP, Graph, Recursion mastery from topics
+        var dp    = u.topics.dynamicProgramming || 0;
+        var graph = u.topics.graphTheory        || 0;
+        var rec   = u.topics.recursion          || 0;
+        set('gs-dp-pct',    dp    + '%'); setW('gs-dp-fill',    dp);
+        set('gs-graph-pct', graph + '%'); setW('gs-graph-fill', graph);
+        set('gs-rec-pct',   rec   + '%'); setW('gs-rec-fill',   rec);
+
+        // Bottom card: items display — update btm-items-count
+        var totalItems = Object.keys(u.items).reduce(function(s, k){ return s + (u.items[k]||0); }, 0);
+        var itemCountEl = document.querySelector('.btm-items-num');
+        if (itemCountEl) itemCountEl.textContent = totalItems + ' items';
+
+        // Bottom card: topics mastered (>= 50 = mastered)
+        var masteredTopics = Object.keys(u.topics).filter(function(k){ return u.topics[k] >= 50; });
+        var topicCountEl = document.querySelector('.btm-section-sub');
+        if (topicCountEl && topicCountEl.textContent.includes('unlocked')) {
+          topicCountEl.textContent = masteredTopics.length + ' topics unlocked';
+        }
+        // Update mastery rate bar
+        var masteryRateEl = document.querySelector('.btm-mastery-val');
+        if (masteryRateEl) masteryRateEl.textContent = masteredTopics.length + ' / 6';
+        var masteryFillEl = document.querySelector('.btm-mastery-fill');
+        if (masteryFillEl) masteryFillEl.style.width = Math.round(masteredTopics.length / 6 * 100) + '%';
+
+        // Store win rate globally for heart canvas
+        window._BV_WIN_RATE = u.winRate / 100;
+        window._BV_WINS     = u.totalWins;
+        window._BV_LOSSES   = u.totalLosses;
+      })();
+
       // Hamburger
       document.getElementById("hamburger").addEventListener("click", () => {
         document.getElementById("navLinks").classList.toggle("active");
       });
 
       // Rank badge
-      const rankPoints = 120;
-      const rank = getRankStyle(rankPoints);
+      var _bvXP = (typeof BVUser !== 'undefined') ? BVUser.load().totalXP : 0;
+      const rank = getRankStyle(_bvXP);
       const badge = document.getElementById("rank-badge");
       badge.textContent = rank.label;
       badge.classList.add(rank.cls);
