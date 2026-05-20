@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <!-- Redirect to splash if user hasn't gone through it this session -->
+    <script>
+      if (!sessionStorage.getItem('bv_started')) {
+        window.location.replace('splash.html');
+      }
+    </script>
 
     <!-- ======================== NAVBAR (always on top) ======================== -->
     <nav class="navbar">
@@ -26,33 +32,6 @@
         <li><a href="the_commons.html">The Commons</a></li>
       </ul>
     </nav>
-
-    <!-- ======================== SPLASH SCREEN ======================== -->
-    <section id="splash">
-      <!-- Background video -->
-      <video autoplay muted loop playsinline id="splash-video">
-        <source src="assets/videos/Tamanboy.mp4" type="video/mp4" />
-      </video>
-
-      <div id="splash-content" class="hidden">
-        <div class="welcome-wrapper">
-          <h2 class="welcome-text">Welcome to</h2>
-        </div>
-        <div class="logo-wrapper">
-          <h1 class="binusverse-logo-css">BINUSVERSE</h1>
-        </div>
-        <button id="start-btn">Start</button>
-      </div>
-      <!-- ── GRASS TRANSITION ── -->
-<div class="grass-divider" aria-hidden="true">
-  <!-- TEMPEL SVG RUMPUT KAMU DI SINI -->
-  <img src="assets/images/Group 10.svg" 
-       alt="" class="grass-svg"/>
-  <!-- atau langsung inline SVG:       -->
-  <!-- <svg ...>...</svg>              -->
-</div>
-
-    </section>
 
     <!-- ======================== HOME PAGE ======================== -->
     <div id="home">
@@ -116,11 +95,11 @@
             <img src="assets/images/profile.jpg" alt="Profile" />
           </div>
           <div class="stats-card">
-            <div><span>RANK</span><b>Bronze</b></div>
-            <div><span>LEVEL</span><b>18</b></div>
-            <div><span>STREAK</span><b>7x</b></div>
-            <div><span>WIN RATE</span><b>74x</b></div>
-            <div><span>TOTAL BATTLES</span><b>38</b></div>
+            <div><span>RANK</span><b id="stat-rank">—</b></div>
+            <div><span>LEVEL</span><b id="stat-level">1</b></div>
+            <div><span>STREAK</span><b id="stat-streak">0x</b></div>
+            <div><span>WIN RATE</span><b id="stat-winrate">0%</b></div>
+            <div><span>TOTAL BATTLES</span><b id="stat-battles">0</b></div>
           </div>
           <div class="badge-column">
             <div class="badge-box"><div class="badge-box-inner"><img src="assets/images/apimembahana.png" class="badge-icon" /></div></div>
@@ -143,7 +122,8 @@
               </div>
             </div>
           </a>
-          <a href="battle.html#daily-mission" class="challenge-card" style="text-decoration:none;color:inherit;">
+          <a href="battle.html#daily-mission" class="challenge-card" id="daily-challenge-card" style="text-decoration:none;color:inherit;position:relative;">
+            <div class="daily-done-badge hidden" id="daily-done-badge">✓ DONE TODAY</div>
             <div class="challenge-card-inner">
               <div class="card-image"><img src="assets/images/DailyQuiz.png" /></div>
               <div class="card-body">
@@ -185,12 +165,12 @@
   <div class="armory-grid">
 
     <!-- ① Phantom Eraser — LEGENDARY -->
-    <div class="armory-box r-legendary"
+    <div class="armory-box r-legendary" id="item-eraser"
       data-tip-name="PHANTOM ERASER"
       data-tip-type="⚡ Battle Item · Instant"
       data-tip-s1="❌ Removes" data-tip-v1="2 wrong"
       data-tip-s2="🎯 Accuracy" data-tip-v2="+60%"
-      data-tip-s3="📦 Stock" data-tip-v3="1×"
+      data-tip-s3="📦 Stock" data-tip-v3="0×"
       data-tip-ability="Instantly wipes 2 wrong answer choices off the screen — only correct ones remain."
       data-tip-rarity="r-legendary">
       <div class="armory-rarity-tag">LEGENDARY</div>
@@ -216,12 +196,12 @@
     </div>
 
     <!-- ② Time Freeze Orb — EPIC -->
-    <div class="armory-box r-epic"
+    <div class="armory-box r-epic" id="item-freeze"
       data-tip-name="TIME FREEZE ORB"
       data-tip-type="⏱ Battle Item · Instant"
       data-tip-s1="⏸ Pause Timer" data-tip-v1="10 sec"
       data-tip-s2="🧊 Effect" data-tip-v2="Freeze"
-      data-tip-s3="📦 Stock" data-tip-v3="1×"
+      data-tip-s3="📦 Stock" data-tip-v3="0×"
       data-tip-ability="Freezes the question timer for 10 seconds — think calmly while time stands still for you only."
       data-tip-rarity="r-epic">
       <div class="armory-rarity-tag">EPIC</div>
@@ -247,12 +227,12 @@
     </div>
 
     <!-- ③ 2nd Chance Scroll — RARE -->
-    <div class="armory-box r-rare"
+    <div class="armory-box r-rare" id="item-retry"
       data-tip-name="2ND CHANCE SCROLL"
       data-tip-type="🔄 Battle Item · Instant"
       data-tip-s1="🔁 Retries" data-tip-v1="+1"
       data-tip-s2="📉 Penalty" data-tip-v2="None"
-      data-tip-s3="📦 Stock" data-tip-v3="2×"
+      data-tip-s3="📦 Stock" data-tip-v3="0×"
       data-tip-ability="Got it wrong? Retry the same question once more with no score penalty. Fresh attempt, same timer."
       data-tip-rarity="r-rare">
       <div class="armory-rarity-tag">RARE</div>
@@ -278,12 +258,12 @@
     </div>
 
     <!-- ④ XP Magnet — UNCOMMON -->
-    <div class="armory-box r-uncommon"
+    <div class="armory-box r-uncommon" id="item-xp"
       data-tip-name="XP MAGNET"
       data-tip-type="⭐ Battle Item · Passive"
       data-tip-s1="⭐ XP Multiplier" data-tip-v1="×1.5"
       data-tip-s2="⏱ Duration" data-tip-v2="1 round"
-      data-tip-s3="📦 Stock" data-tip-v3="5×"
+      data-tip-s3="📦 Stock" data-tip-v3="0×"
       data-tip-ability="Boosts XP from every correct answer by 1.5× for this round. Stack with streaks for max gain."
       data-tip-rarity="r-uncommon">
       <div class="armory-rarity-tag">UNCOMMON</div>
@@ -306,12 +286,129 @@
       </div>
     </div>
 
+    <!-- ⑤ Aegis Shield — RARE -->
+    <div class="armory-box r-rare" id="item-shield"
+      data-tip-name="AEGIS SHIELD"
+      data-tip-type="🛡 Battle Item · Passive"
+      data-tip-s1="🔰 Effect"    data-tip-v1="Absorb 1 Wrong"
+      data-tip-s2="📉 Penalty"   data-tip-v2="None"
+      data-tip-s3="📦 Stock"     data-tip-v3="0×"
+      data-tip-ability="Activates a protective shield. Your next wrong answer is absorbed — no score penalty."
+      data-tip-rarity="r-rare">
+      <div class="armory-rarity-tag">RARE</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="3" y="0"  width="10" height="2"  fill="#00cc66"/>
+          <rect x="1" y="2"  width="14" height="2"  fill="#00ff88"/>
+          <rect x="0" y="4"  width="16" height="6"  fill="#00cc66"/>
+          <rect x="1" y="10" width="14" height="2"  fill="#00cc66"/>
+          <rect x="2" y="12" width="12" height="2"  fill="#00ff88"/>
+          <rect x="4" y="14" width="8"  height="1"  fill="#00cc66"/>
+          <rect x="6" y="15" width="4"  height="1"  fill="#009944"/>
+          <rect x="2" y="4"  width="12" height="6"  fill="#00ff88" opacity="0.2"/>
+          <rect x="7" y="2"  width="2"  height="12" fill="#00ff88" opacity="0.5"/>
+          <rect x="3" y="6"  width="10" height="2"  fill="#00ff88" opacity="0.4"/>
+          <rect x="1" y="2"  width="2"  height="2"  fill="#fff"    opacity="0.3"/>
+        </svg>
+        <div class="armory-item-label">AEGIS SHIELD</div>
+      </div>
+    </div>
+
+    <!-- ⑥ Soul Gem — EPIC -->
+    <div class="armory-box r-epic" id="item-gem"
+      data-tip-name="SOUL GEM"
+      data-tip-type="💎 Battle Item · Instant"
+      data-tip-s1="👁 Reveals"    data-tip-v1="Correct Ans"
+      data-tip-s2="⏱ Duration"   data-tip-v2="2 seconds"
+      data-tip-s3="📦 Stock"     data-tip-v3="0×"
+      data-tip-ability="The gem pulses with forbidden knowledge — reveals the correct answer for 2 full seconds."
+      data-tip-rarity="r-epic">
+      <div class="armory-rarity-tag">EPIC</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="5" y="0"  width="6"  height="2"  fill="#ff3bff"/>
+          <rect x="3" y="2"  width="10" height="2"  fill="#cc00cc"/>
+          <rect x="1" y="4"  width="14" height="7"  fill="#ff3bff"/>
+          <rect x="2" y="5"  width="12" height="5"  fill="#ff00ff"/>
+          <rect x="4" y="6"  width="8"  height="3"  fill="#ffaaff"/>
+          <rect x="6" y="7"  width="4"  height="1"  fill="#fff"/>
+          <rect x="1" y="11" width="14" height="2"  fill="#cc00cc"/>
+          <rect x="3" y="13" width="10" height="1"  fill="#ff3bff"/>
+          <rect x="5" y="14" width="6"  height="1"  fill="#cc00cc"/>
+          <rect x="7" y="15" width="2"  height="1"  fill="#ff3bff"/>
+          <rect x="2" y="5"  width="3"  height="2"  fill="#fff"    opacity="0.4"/>
+        </svg>
+        <div class="armory-item-label">SOUL GEM</div>
+      </div>
+    </div>
+
+    <!-- ⑦ Time Warp — LEGENDARY -->
+    <div class="armory-box r-legendary" id="item-warp"
+      data-tip-name="TIME WARP"
+      data-tip-type="⌖ Battle Item · Instant"
+      data-tip-s1="⏭ Skip"        data-tip-v1="→ Correct"
+      data-tip-s2="⭐ XP"         data-tip-v2="50% only"
+      data-tip-s3="📦 Stock"      data-tip-v3="0×"
+      data-tip-ability="Rips a hole in time — skips the current question and marks it correct. XP reward is halved."
+      data-tip-rarity="r-legendary">
+      <div class="armory-rarity-tag">LEGENDARY</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="7" y="0"  width="2"  height="2"  fill="#fee783"/>
+          <rect x="5" y="1"  width="6"  height="2"  fill="#fee783"/>
+          <rect x="3" y="3"  width="10" height="2"  fill="#fee783"/>
+          <rect x="1" y="5"  width="14" height="2"  fill="#ffb700"/>
+          <rect x="0" y="7"  width="16" height="2"  fill="#fee783"/>
+          <rect x="1" y="9"  width="14" height="2"  fill="#ffb700"/>
+          <rect x="3" y="11" width="10" height="2"  fill="#fee783"/>
+          <rect x="5" y="13" width="6"  height="2"  fill="#ffb700"/>
+          <rect x="7" y="14" width="2"  height="2"  fill="#fee783"/>
+          <rect x="6" y="6"  width="4"  height="4"  fill="#fff"    opacity="0.6"/>
+          <rect x="7" y="7"  width="2"  height="2"  fill="#fee783"/>
+          <rect x="1" y="5"  width="2"  height="2"  fill="#fff"    opacity="0.3"/>
+        </svg>
+        <div class="armory-item-label">TIME WARP</div>
+      </div>
+    </div>
+
+    <!-- ⑧ Focus Potion — UNCOMMON -->
+    <div class="armory-box r-uncommon" id="item-focus"
+      data-tip-name="FOCUS POTION"
+      data-tip-type="🧪 Battle Item · Passive"
+      data-tip-s1="⏸ Timer"      data-tip-v1="Paused"
+      data-tip-s2="🧠 Focus"     data-tip-v2="Unlimited"
+      data-tip-s3="📦 Stock"     data-tip-v3="0×"
+      data-tip-ability="Drink and enter a flow state. The battle timer freezes completely until you submit your answer."
+      data-tip-rarity="r-uncommon">
+      <div class="armory-rarity-tag">UNCOMMON</div>
+      <div class="armory-box-inner">
+        <svg class="armory-item-svg" width="72" height="72" viewBox="0 0 16 16"
+             xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <rect x="6" y="0"  width="4"  height="2"  fill="#94a3b8"/>
+          <rect x="5" y="2"  width="6"  height="1"  fill="#64748b"/>
+          <rect x="4" y="3"  width="8"  height="1"  fill="#00e5ff"/>
+          <rect x="3" y="4"  width="10" height="8"  fill="#0d2233"/>
+          <rect x="4" y="5"  width="8"  height="6"  fill="#00e5ff" opacity="0.25"/>
+          <rect x="5" y="6"  width="6"  height="4"  fill="#00e5ff" opacity="0.5"/>
+          <rect x="6" y="7"  width="4"  height="2"  fill="#fff"    opacity="0.65"/>
+          <rect x="7" y="8"  width="2"  height="1"  fill="#00e5ff"/>
+          <rect x="2" y="12" width="12" height="2"  fill="#1a3a4a"/>
+          <rect x="3" y="14" width="10" height="1"  fill="#0d2233"/>
+          <rect x="4" y="5"  width="2"  height="2"  fill="#fff"    opacity="0.4"/>
+        </svg>
+        <div class="armory-item-label">FOCUS POTION</div>
+      </div>
+    </div>
+
   </div><!-- end .armory-grid -->
 
   <!-- SINGLE GLOBAL TOOLTIP — di luar armory-grid, bebas dari clip-path -->
   <div id="armory-global-tooltip" class="armory-tooltip-global" style="display:none;"></div>
 
-  <a class="wide-btn" href="battle.html">Expand All</a>
+  <a class="wide-btn" href="items.html">Expand All</a>
 </section>
 
 <section class="home-section skill-section">
@@ -361,8 +458,8 @@
         <h3>AI &amp; MACHINE<br>LEARNING</h3>
         <p>Boost problem-solving ability through intelligent systems.</p>
         <div class="skill-xp-wrap">
-          <div class="skill-xp-label"><span>XP PROGRESS</span><span>72%</span></div>
-          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:72%"></div></div>
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span id="skill-ai-pct">0%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" id="skill-ai-fill" style="width:0%"></div></div>
         </div>
         <div class="skill-rarity">◆ EPIC SKILL</div>
       </div>
@@ -412,8 +509,8 @@
         <h3>CYBER<br>SECURITY</h3>
         <p>Enhance your digital defense and system protection skills.</p>
         <div class="skill-xp-wrap">
-          <div class="skill-xp-label"><span>XP PROGRESS</span><span>55%</span></div>
-          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:55%"></div></div>
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span id="skill-cyber-pct">0%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" id="skill-cyber-fill" style="width:0%"></div></div>
         </div>
         <div class="skill-rarity">★ RARE SKILL</div>
       </div>
@@ -462,8 +559,8 @@
         <h3>DATA<br>SCIENCE</h3>
         <p>Master analytics and turn raw data into insights.</p>
         <div class="skill-xp-wrap">
-          <div class="skill-xp-label"><span>XP PROGRESS</span><span>88%</span></div>
-          <div class="skill-xp-track"><div class="skill-xp-fill" style="width:88%"></div></div>
+          <div class="skill-xp-label"><span>XP PROGRESS</span><span id="skill-data-pct">0%</span></div>
+          <div class="skill-xp-track"><div class="skill-xp-fill" id="skill-data-fill" style="width:0%"></div></div>
         </div>
         <div class="skill-rarity">▲ LEGENDARY</div>
       </div>
@@ -570,6 +667,72 @@
 
     </div><!-- end #home -->
 
+    <!-- ── PIXEL MASCOT COMPANION ── -->
+    <div class="mascot-wrap" id="mascot-wrap" title="Pixel Companion">
+      <div class="mascot-bubble hidden" id="mascot-bubble"></div>
+      <svg class="mascot-svg" viewBox="0 0 32 48" width="80" height="120"
+           xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+        <!-- HAT -->
+        <rect x="10" y="0"  width="12" height="2"  fill="#6d28d9"/>
+        <rect x="8"  y="2"  width="16" height="2"  fill="#7c3aed"/>
+        <rect x="9"  y="4"  width="14" height="6"  fill="#6d28d9"/>
+        <rect x="10" y="5"  width="2"  height="2"  fill="#fee783"/>
+        <rect x="11" y="6"  width="1"  height="1"  fill="#fff"/>
+        <!-- BRIM -->
+        <rect x="5"  y="10" width="22" height="3"  fill="#4c1d95"/>
+        <!-- FACE -->
+        <rect x="9"  y="13" width="14" height="10" fill="#fde68a"/>
+        <!-- EYES -->
+        <rect x="11" y="16" width="3"  height="3"  fill="#1e1b4b"/>
+        <rect x="18" y="16" width="3"  height="3"  fill="#1e1b4b"/>
+        <rect x="12" y="16" width="1"  height="1"  fill="#fff"/>
+        <rect x="19" y="16" width="1"  height="1"  fill="#fff"/>
+        <!-- MOUTH -->
+        <rect x="13" y="20" width="6"  height="2"  fill="#c2410c"/>
+        <rect x="14" y="21" width="4"  height="1"  fill="#fca5a5"/>
+        <!-- BEARD/CHIN -->
+        <rect x="10" y="23" width="12" height="2"  fill="#fde68a"/>
+        <rect x="11" y="25" width="10" height="1"  fill="#fde68a"/>
+        <!-- ROBES — body -->
+        <rect x="7"  y="26" width="18" height="14" fill="#5b21b6"/>
+        <rect x="6"  y="27" width="2"  height="12" fill="#4c1d95"/>
+        <rect x="24" y="27" width="2"  height="12" fill="#4c1d95"/>
+        <!-- ROBE TRIM -->
+        <rect x="7"  y="26" width="18" height="2"  fill="#7c3aed"/>
+        <rect x="13" y="28" width="6"  height="12" fill="#6d28d9"/>
+        <!-- STAR EMBLEM -->
+        <rect x="15" y="29" width="2"  height="2"  fill="#fee783"/>
+        <rect x="14" y="30" width="4"  height="1"  fill="#fee783"/>
+        <rect x="15" y="31" width="2"  height="2"  fill="#fee783"/>
+        <!-- LEFT ARM (holding staff) -->
+        <rect x="2"  y="27" width="4"  height="3"  fill="#fde68a"/>
+        <rect x="1"  y="28" width="2"  height="10" fill="#92400e"/>
+        <rect x="0"  y="27" width="3"  height="2"  fill="#b45309"/>
+        <!-- STAFF TOP STAR -->
+        <rect x="0"  y="22" width="3"  height="3"  fill="#fee783"/>
+        <rect x="1"  y="21" width="1"  height="1"  fill="#fff"/>
+        <rect x="0"  y="25" width="1"  height="2"  fill="#fee783"/>
+        <rect x="2"  y="25" width="1"  height="2"  fill="#fee783"/>
+        <!-- RIGHT ARM -->
+        <rect x="26" y="27" width="4"  height="3"  fill="#fde68a"/>
+        <rect x="27" y="30" width="3"  height="2"  fill="#fde68a"/>
+        <!-- FEET -->
+        <rect x="9"  y="40" width="5"  height="3"  fill="#1e1b4b"/>
+        <rect x="18" y="40" width="5"  height="3"  fill="#1e1b4b"/>
+        <rect x="8"  y="42" width="6"  height="2"  fill="#4c1d95"/>
+        <rect x="18" y="42" width="6"  height="2"  fill="#4c1d95"/>
+        <!-- ROBE BOTTOM -->
+        <rect x="7"  y="38" width="18" height="3"  fill="#4c1d95"/>
+        <!-- SPARKLE PARTICLES (static, animation in CSS) -->
+        <rect class="mascot-spark s1" x="28" y="14" width="2" height="2" fill="#fee783"/>
+        <rect class="mascot-spark s2" x="2"  y="18" width="2" height="2" fill="#c084fc"/>
+        <rect class="mascot-spark s3" x="30" y="30" width="2" height="2" fill="#00e5ff"/>
+        <rect class="mascot-spark s4" x="1"  y="10" width="2" height="2" fill="#fee783"/>
+      </svg>
+    </div>
+
+    <script src="user-data.js"></script>
+    <script src="notifications.js"></script>
     <script src="index.js"></script>
 
     <script>
