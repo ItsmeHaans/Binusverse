@@ -24,6 +24,7 @@
 
   /* ── Build one card HTML ── */
   function buildCard(key, def, stock, discovered) {
+    if (!def) return '';
     var color     = RARITY_COLORS[def.rarity] || '#666';
     var isOwned   = stock > 0;
     var isLocked  = !discovered && !isOwned;
@@ -69,6 +70,7 @@
     var grid   = document.getElementById('items-grid');
     var counter = document.getElementById('items-counter');
     if (!grid) return;
+    if (typeof ITEMS_REGISTRY === 'undefined') return;
 
     var html          = '';
     var discoveredCount = 0;
