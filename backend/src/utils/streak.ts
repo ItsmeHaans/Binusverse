@@ -1,25 +1,17 @@
-/** Returns the new streak value based on when the user was last active. */
-export const calculateNewStreak = (currentStreak: number, lastActiveAt: Date | null): number => {
+export function calcNewStreak(currentStreak: number, lastActiveAt: Date | null): number {
   if (!lastActiveAt) return 1;
 
   const now = new Date();
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const lastStart = new Date(
-    lastActiveAt.getFullYear(),
-    lastActiveAt.getMonth(),
-    lastActiveAt.getDate()
-  );
+  const last = new Date(lastActiveAt);
 
-  const diffDays = Math.round(
-    (todayStart.getTime() - lastStart.getTime()) / (1000 * 60 * 60 * 24)
-  );
+  const todayStr = now.toISOString().split('T')[0];
+  const lastStr = last.toISOString().split('T')[0];
 
-  if (diffDays === 0) return currentStreak; // already active today
-  if (diffDays === 1) return currentStreak + 1; // consecutive day
-  return 1; // missed at least one day, reset
-};
+  if (todayStr === lastStr) return currentStreak;
 
-/** Returns today's date as YYYY-MM-DD string (UTC). */
-export const todayDateString = (): string => {
-  return new Date().toISOString().slice(0, 10);
-};
+  const diffMs = now.setHours(0, 0, 0, 0) - last.setHours(0, 0, 0, 0);
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+  if (diffDays === 1) return currentStreak + 1;
+  return 1;
+}

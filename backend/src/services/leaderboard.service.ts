@@ -1,41 +1,43 @@
-import prisma from '../prismaClient';
-import { todayDateString } from '../utils/streak';
+import prisma from '../prisma';
 
-export async function getLeaderboard(mode: string, limit: number) {
-  if (mode === 'pvp') {
+export const leaderboardService = {
+  async getPvpLeaderboard(limit: number = 50) {
     const users = await prisma.user.findMany({
       orderBy: [{ eloPoints: 'desc' }, { level: 'desc' }],
       take: limit,
       select: {
-        id: true, name: true, avatar: true, faculty: true,
-        level: true, eloPoints: true, division: true, rank: true,
+        id: true,
+        name: true,
+        avatar: true,
+        level: true,
+        eloPoints: true,
+        division: true,
+        faculty: true,
       },
     });
-    return { entries: users.map((u, i) => ({ ...u, position: i + 1 })), mode: 'pvp' };
-  }
 
-  const today = todayDateString();
-  const submissions = await prisma.dailyQuizSubmission.findMany({
-    where: { quizDate: today },
-    orderBy: [{ correct: 'desc' }, { avgTime: 'asc' }],
-    take: limit,
-    include: {
-      user: { select: { id: true, name: true, avatar: true, faculty: true, level: true, division: true } },
-    },
-  });
+    return users.map((u, i) => ({ rank: i + 1, ...u }));
+  },
 
-  const entries = submissions.map((s, i) => ({
-    position: i + 1,
-    userId: s.userId,
-    name: s.user.name,
-    avatar: s.user.avatar,
-    faculty: s.user.faculty,
-    level: s.user.level,
-    division: s.user.division,
-    correct: s.correct,
-    wrong: s.wrong,
-    avgTime: Math.round(s.avgTime * 100) / 100,
-  }));
+  async getDailyLeaderboard(limit: number = 50) {
+    const today = new Date().toISOString().split('T')[0]!;
 
-  return { entries, mode: 'daily', date: today };
-}
+    const submissions = await prisma.dailyQuizSubmission.findMany({
+      where: { quiz: { quizDate: today } },
+      orderBy: [{ correct: 'desc' }, { avgTime: 'asc' }],
+      take: limit,
+      include: {
+        user: { select: { id: true, name: true, avatar: true, level: true } },
+      },
+    });
+
+    return submissions.map((s, i) => ({
+      rank: i + 1,
+      user: s.user,
+      correct: s.correct,
+      wrong: s.wrong,
+      avgTime: s.avgTime,
+      xpGained: s.xpGained,
+    }));
+  },
+};

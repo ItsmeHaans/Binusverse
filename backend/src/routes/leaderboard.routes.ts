@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import { authenticate } from '../middleware/auth';
-import * as leaderboardController from '../controllers/leaderboard.controller';
+import { leaderboardController } from '../controllers/leaderboard.controller';
+import { authenticate } from '../middlewares/authenticate';
 
 const router = Router();
 
-router.use(authenticate);
-
-router.get('/', leaderboardController.getLeaderboard);
+router.get('/', authenticate, leaderboardController.get);
 
 export default router;

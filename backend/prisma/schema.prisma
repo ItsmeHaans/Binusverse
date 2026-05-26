@@ -18,10 +18,29 @@ enum BattleMode {
   RAID
 }
 
+enum Difficulty {
+  EASY
+  NORMAL
+  HARD
+}
+
 enum PvpStatus {
   WAITING
   ACTIVE
   FINISHED
+}
+
+enum ItemRarity {
+  COMMON
+  UNCOMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+enum MissionStatus {
+  ONGOING
+  DONE
 }
 
 model User {
@@ -29,38 +48,40 @@ model User {
   name         String
   email        String    @unique
   passwordHash String
-  faculty      String
-  batch        String
+  role         Role      @default(USER)
   avatar       String?
   bio          String?
-  level        Int       @default(1)
+  faculty      String?
+  batch        String?
+
   xp           Int       @default(0)
+  level        Int       @default(1)
   streak       Int       @default(0)
   lastActiveAt DateTime?
-  gpa          Float     @default(0.0)
-  attendance   Int       @default(0)
-  division     String?
-  rank         Int?
   eloPoints    Int       @default(1000)
-  role         Role      @default(USER)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  division     String    @default("Bronze")
 
-  refreshTokens      RefreshToken[]
-  battleResults      BattleResult[]
-  classes            Class[]
-  gpaHistory         GpaHistory[]
-  missions           Mission[]
-  forumPosts         ForumPost[]
-  forumComments      ForumComment[]
-  postLikes          ForumPostLike[]
-  commentLikes       ForumCommentLike[]
-  skillUpgrades      SkillUpgrade[]
-  quizSubmissions    DailyQuizSubmission[]
-  pvpAsChallenger    PvpSession[]          @relation("Challenger")
-  pvpAsOpponent      PvpSession[]          @relation("Opponent")
-  pvpAnswers         PvpAnswer[]
-  learnAnalysis      LearnAnalysis?
+  gpa        Float?
+  attendance Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  refreshTokens   RefreshToken[]
+  battleResults   BattleResult[]
+  pvpChallenger   PvpSession[]          @relation("Challenger")
+  pvpOpponent     PvpSession[]          @relation("Opponent")
+  pvpAnswers      PvpAnswer[]
+  quizSubmissions DailyQuizSubmission[]
+  forumPosts      ForumPost[]
+  forumComments   ForumComment[]
+  postLikes       ForumPostLike[]
+  commentLikes    ForumCommentLike[]
+  classes         Class[]
+  gpaHistory      GpaHistory[]
+  missions        Mission[]
+  userItems       UserItem[]
+  authoredNews    News[]
 }
 
 model RefreshToken {
@@ -72,112 +93,217 @@ model RefreshToken {
   createdAt DateTime @default(now())
 }
 
-model BattleResult {
-  id          String     @id @default(uuid())
+model Question {
+  id            String     @id @default(uuid())
+  text          String
+  optionA       String
+  optionB       String
+  optionC       String
+  optionD       String
+  correctOption String
+  topic         String
+  difficulty    Difficulty @default(NORMAL)
+  createdAt     DateTime   @default(now())
+
+  dailyQuizQuestions DailyQuizQuestion[]
+  pvpAnswers         PvpAnswer[]
+}
+
+model DailyQuiz {
+  id        String   @id @default(uuid())
+  quizDate  String   @unique
+  createdAt DateTime @default(now())
+
+  questions   DailyQuizQuestion[]
+  submissions DailyQuizSubmission[]
+}
+
+model DailyQuizQuestion {
+  quizId     String
+  questionId String
+  order      Int
+
+  quiz     DailyQuiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question Question  @relation(fields: [questionId], references: [id])
+
+  @@id([quizId, questionId])
+}
+
+model DailyQuizSubmission {
+  id          String   @id @default(uuid())
   userId      String
-  user        User       @relation(fields: [userId], references: [id])
-  mode        BattleMode
+  quizId      String
   correct     Int
   wrong       Int
-  timeElapsed Int
-  opponentId  String?
-  difficulty  String?
-  xpGained    Int        @default(0)
-  createdAt   DateTime   @default(now())
+  avgTime     Float
+  xpGained    Int
+  submittedAt DateTime @default(now())
 
-  @@index([userId])
+  user User      @relation(fields: [userId], references: [id])
+  quiz DailyQuiz @relation(fields: [quizId], references: [id])
+
+  @@unique([userId, quizId])
 }
 
-model Class {
-  id        String  @id @default(uuid())
-  userId    String
-  user      User    @relation(fields: [userId], references: [id])
-  className String
-  classCode String?
-  semester  String
-  passed    Boolean @default(false)
-
-  @@index([userId])
-}
-
-model GpaHistory {
-  id            String   @id @default(uuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id])
-  semester      String
-  ipValue       Float
-  classesPassed Int
-  totalClasses  Int
-  createdAt     DateTime @default(now())
-
-  @@index([userId])
-}
-
-model Mission {
-  id          String    @id @default(uuid())
+model BattleResult {
+  id          String      @id @default(uuid())
   userId      String
-  user        User      @relation(fields: [userId], references: [id])
-  title       String
-  description String?
-  dueDate     DateTime?
-  source      String    @default("manual")
-  status      String    @default("ongoing")
-  imageUrl    String?
-  createdAt   DateTime  @default(now())
+  mode        BattleMode
+  difficulty  Difficulty?
+  correct     Int
+  wrong       Int
+  timeElapsed Float
+  xpGained    Int
+  eloChange   Int         @default(0)
+  opponentId  String?
+  createdAt   DateTime    @default(now())
+
+  user User @relation(fields: [userId], references: [id])
 
   @@index([userId])
+}
+
+model PvpSession {
+  id           String    @id @default(uuid())
+  challengerId String
+  opponentId   String
+  status       PvpStatus @default(WAITING)
+  winnerId     String?
+  createdAt    DateTime  @default(now())
+  endedAt      DateTime?
+
+  challenger User       @relation("Challenger", fields: [challengerId], references: [id])
+  opponent   User       @relation("Opponent", fields: [opponentId], references: [id])
+  answers    PvpAnswer[]
+}
+
+model PvpAnswer {
+  id         String  @id @default(uuid())
+  sessionId  String
+  userId     String
+  questionId String
+  answer     String
+  timeTaken  Float
+  correct    Boolean
+
+  session  PvpSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [userId], references: [id])
+  question Question   @relation(fields: [questionId], references: [id])
+
+  @@index([sessionId])
+}
+
+model Item {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String
+  ability     String
+  rarity      ItemRarity
+  imageKey    String?
+
+  userItems UserItem[]
+}
+
+model UserItem {
+  id       String @id @default(uuid())
+  userId   String
+  itemId   String
+  quantity Int    @default(1)
+
+  user User @relation(fields: [userId], references: [id])
+  item Item @relation(fields: [itemId], references: [id])
+
+  @@unique([userId, itemId])
 }
 
 model ForumPost {
   id        String    @id @default(uuid())
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
-  forumType String
+  channel   String
   content   String
-  deletedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
+  user     User             @relation(fields: [userId], references: [id])
   comments ForumComment[]
   likes    ForumPostLike[]
 
-  @@index([forumType])
-  @@index([userId])
+  @@index([channel])
 }
 
 model ForumComment {
   id        String    @id @default(uuid())
   postId    String
-  post      ForumPost @relation(fields: [postId], references: [id])
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
   content   String
-  deletedAt DateTime?
   createdAt DateTime  @default(now())
+  deletedAt DateTime?
 
+  post  ForumPost         @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user  User              @relation(fields: [userId], references: [id])
   likes ForumCommentLike[]
 }
 
 model ForumPostLike {
-  id        String    @id @default(uuid())
-  postId    String
-  post      ForumPost @relation(fields: [postId], references: [id])
-  userId    String
-  user      User      @relation(fields: [userId], references: [id])
-  createdAt DateTime  @default(now())
+  postId String
+  userId String
 
-  @@unique([postId, userId])
+  post ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User      @relation(fields: [userId], references: [id])
+
+  @@id([postId, userId])
 }
 
 model ForumCommentLike {
-  id        String       @id @default(uuid())
   commentId String
-  comment   ForumComment @relation(fields: [commentId], references: [id])
   userId    String
-  user      User         @relation(fields: [userId], references: [id])
-  createdAt DateTime     @default(now())
 
-  @@unique([commentId, userId])
+  comment ForumComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user    User         @relation(fields: [userId], references: [id])
+
+  @@id([commentId, userId])
+}
+
+model Class {
+  id       String  @id @default(uuid())
+  userId   String
+  name     String
+  code     String
+  semester String
+  passed   Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model GpaHistory {
+  id            String @id @default(uuid())
+  userId        String
+  semester      String
+  ipValue       Float
+  classesPassed Int
+  totalClasses  Int
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Mission {
+  id          String        @id @default(uuid())
+  userId      String
+  title       String
+  description String?
+  dueDate     DateTime?
+  status      MissionStatus @default(ONGOING)
+  imageUrl    String?
+  createdAt   DateTime      @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model News {
@@ -185,94 +311,9 @@ model News {
   title     String
   content   String
   imageUrl  String?
-  createdBy String
+  authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
 
-model DailyQuiz {
-  id            String   @id @default(uuid())
-  question      String
-  optionA       String
-  optionB       String
-  optionC       String
-  optionD       String
-  correctOption String
-  aiGenerated   Boolean  @default(true)
-  topic         String?
-  difficulty    String   @default("normal")
-  quizDate      String
-  createdAt     DateTime @default(now())
-
-  pvpAnswers PvpAnswer[]
-
-  @@index([quizDate])
-  @@index([difficulty])
-}
-
-model DailyQuizSubmission {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  quizDate  String
-  correct   Int
-  wrong     Int
-  avgTime   Float
-  xpGained  Int      @default(0)
-  createdAt DateTime @default(now())
-
-  @@unique([userId, quizDate])
-  @@index([userId])
-}
-
-model PvpSession {
-  id           String    @id @default(uuid())
-  challengerId String
-  challenger   User      @relation("Challenger", fields: [challengerId], references: [id])
-  opponentId   String
-  opponent     User      @relation("Opponent", fields: [opponentId], references: [id])
-  status       PvpStatus @default(WAITING)
-  winnerId     String?
-  createdAt    DateTime  @default(now())
-  endedAt      DateTime?
-
-  answers PvpAnswer[]
-}
-
-model PvpAnswer {
-  id         String     @id @default(uuid())
-  sessionId  String
-  session    PvpSession @relation(fields: [sessionId], references: [id])
-  userId     String
-  user       User       @relation(fields: [userId], references: [id])
-  questionId String
-  question   DailyQuiz  @relation(fields: [questionId], references: [id])
-  answer     String
-  timeTaken  Float
-  correct    Boolean
-  createdAt  DateTime   @default(now())
-
-  @@index([sessionId])
-  @@index([userId])
-}
-
-model SkillUpgrade {
-  id             String   @id @default(uuid())
-  title          String
-  youtubeUrl     String
-  topicTag       String?
-  aiSuggestedFor String?
-  user           User?    @relation(fields: [aiSuggestedFor], references: [id])
-  createdAt      DateTime @default(now())
-
-  @@index([aiSuggestedFor])
-}
-
-model LearnAnalysis {
-  id        String   @id @default(uuid())
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  strength  String[]
-  weakness  String[]
-  updatedAt DateTime @default(now())
+  author User @relation(fields: [authorId], references: [id])
 }

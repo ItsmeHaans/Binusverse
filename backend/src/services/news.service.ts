@@ -1,43 +1,30 @@
-import prisma from '../prismaClient';
+import { newsRepository } from '../repositories/news.repository';
 import { AppError } from '../utils/AppError';
 
-export async function getNews(page: number, limit: number, order: string) {
-  const skip = (page - 1) * limit;
-  const [news, total] = await Promise.all([
-    prisma.news.findMany({
-      skip,
-      take: limit,
-      orderBy: { createdAt: order === 'oldest' ? 'asc' : 'desc' },
-    }),
-    prisma.news.count(),
-  ]);
-  return { news, total, totalPages: Math.ceil(total / limit) };
-}
+export const newsService = {
+  getAll(page: number = 1) {
+    return newsRepository.getAll(page, 10);
+  },
 
-export async function getNewsById(id: string) {
-  const news = await prisma.news.findUnique({ where: { id } });
-  if (!news) throw new AppError('News not found', 404);
-  return news;
-}
+  async getById(id: string) {
+    const news = await newsRepository.findById(id);
+    if (!news) throw new AppError('News not found', 404);
+    return news;
+  },
 
-export async function createNews(
-  adminId: string,
-  data: { title: string; content: string; imageUrl?: string }
-) {
-  return prisma.news.create({ data: { ...data, createdBy: adminId } });
-}
+  create(authorId: string, data: { title: string; content: string; imageUrl?: string }) {
+    return newsRepository.create({ ...data, authorId });
+  },
 
-export async function updateNews(
-  id: string,
-  data: { title?: string; content?: string; imageUrl?: string | null }
-) {
-  const exists = await prisma.news.findUnique({ where: { id } });
-  if (!exists) throw new AppError('News not found', 404);
-  return prisma.news.update({ where: { id }, data });
-}
+  async update(id: string, data: { title?: string; content?: string; imageUrl?: string }) {
+    const news = await newsRepository.findById(id);
+    if (!news) throw new AppError('News not found', 404);
+    return newsRepository.update(id, data);
+  },
 
-export async function deleteNews(id: string) {
-  const exists = await prisma.news.findUnique({ where: { id } });
-  if (!exists) throw new AppError('News not found', 404);
-  await prisma.news.delete({ where: { id } });
-}
+  async delete(id: string) {
+    const news = await newsRepository.findById(id);
+    if (!news) throw new AppError('News not found', 404);
+    return newsRepository.delete(id);
+  },
+};

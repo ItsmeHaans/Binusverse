@@ -1,17 +1,16 @@
 import { Router } from 'express';
-import { authenticate } from '../middleware/auth';
-import { requireAdmin } from '../middleware/admin';
-import * as newsController from '../controllers/news.controller';
+import { newsController } from '../controllers/news.controller';
+import { authenticate } from '../middlewares/authenticate';
+import { requireAdmin } from '../middlewares/requireAdmin';
 
 const router = Router();
 
-// Public
-router.get('/',    newsController.getNews);
-router.get('/:id', newsController.getNewsById);
+router.use(authenticate);
 
-// Admin only
-router.post('/',    authenticate, requireAdmin, newsController.createNews);
-router.patch('/:id',  authenticate, requireAdmin, newsController.updateNews);
-router.delete('/:id', authenticate, requireAdmin, newsController.deleteNews);
+router.get('/', newsController.getAll);
+router.get('/:id', newsController.getById);
+router.post('/', requireAdmin, newsController.create);
+router.patch('/:id', requireAdmin, newsController.update);
+router.delete('/:id', requireAdmin, newsController.delete);
 
 export default router;

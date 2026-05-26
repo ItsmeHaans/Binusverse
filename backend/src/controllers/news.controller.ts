@@ -1,64 +1,40 @@
-import { Request, Response } from 'express';
-import { z } from 'zod';
-import * as newsService from '../services/news.service';
-import { handleError } from '../utils/handleError';
+import { Request, Response, NextFunction } from 'express';
+import { newsService } from '../services/news.service';
 
-export async function getNews(req: Request, res: Response): Promise<void> {
-  const { page = '1', limit = '10', order = 'latest' } = req.query as {
-    page?: string; limit?: string; order?: string;
-  };
-  const pageNum = Math.max(1, parseInt(page, 10));
-  const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10)));
-  try {
-    const { news, total, totalPages } = await newsService.getNews(pageNum, limitNum, order);
-    res.json({ success: true, data: news, meta: { total, page: pageNum, limit: limitNum, totalPages } });
-  } catch (err) { handleError(err, res); }
-}
+export const newsController = {
+  async getAll(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt((req.query['page'] as string) ?? '1', 10);
+      const data = await newsService.getAll(page);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function getNewsById(req: Request, res: Response): Promise<void> {
-  try {
-    const data = await newsService.getNewsById(req.params.id);
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async getById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await newsService.getById(req.params['id']!);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function createNews(req: Request, res: Response): Promise<void> {
-  const schema = z.object({
-    title: z.string().min(1).max(255),
-    content: z.string().min(1),
-    imageUrl: z.string().url().optional(),
-  });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
-    return;
-  }
-  try {
-    const data = await newsService.createNews(req.user!.id, parsed.data);
-    res.status(201).json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await newsService.create(req.user!.userId, req.body);
+      res.status(201).json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function updateNews(req: Request, res: Response): Promise<void> {
-  const schema = z.object({
-    title: z.string().min(1).max(255).optional(),
-    content: z.string().min(1).optional(),
-    imageUrl: z.string().url().nullable().optional(),
-  });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
-    return;
-  }
-  try {
-    const data = await newsService.updateNews(req.params.id, parsed.data);
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await newsService.update(req.params['id']!, req.body);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function deleteNews(req: Request, res: Response): Promise<void> {
-  try {
-    await newsService.deleteNews(req.params.id);
-    res.json({ success: true, message: 'News deleted' });
-  } catch (err) { handleError(err, res); }
-}
+  async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      await newsService.delete(req.params['id']!);
+      res.json({ success: true, message: 'Deleted' });
+    } catch (err) { next(err); }
+  },
+};

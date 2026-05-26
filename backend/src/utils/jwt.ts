@@ -1,24 +1,22 @@
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env';
-import { Role } from '@prisma/client';
 
-export interface TokenPayload {
-  id: string;
-  role: Role;
+export function signAccessToken(userId: string, role: string): string {
+  return jwt.sign({ userId, role }, env.JWT_ACCESS_SECRET, {
+    expiresIn: env.JWT_ACCESS_EXPIRES as jwt.SignOptions['expiresIn'],
+  });
 }
 
-export const signAccessToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_ACCESS_SECRET, { expiresIn: '15m' });
-};
+export function signRefreshToken(userId: string): string {
+  return jwt.sign({ userId }, env.JWT_REFRESH_SECRET, {
+    expiresIn: env.JWT_REFRESH_EXPIRES as jwt.SignOptions['expiresIn'],
+  });
+}
 
-export const signRefreshToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
-};
+export function verifyAccessToken(token: string): { userId: string; role: string } {
+  return jwt.verify(token, env.JWT_ACCESS_SECRET) as { userId: string; role: string };
+}
 
-export const verifyAccessToken = (token: string): TokenPayload => {
-  return jwt.verify(token, env.JWT_ACCESS_SECRET) as TokenPayload;
-};
-
-export const verifyRefreshToken = (token: string): TokenPayload => {
-  return jwt.verify(token, env.JWT_REFRESH_SECRET) as TokenPayload;
-};
+export function verifyRefreshToken(token: string): { userId: string } {
+  return jwt.verify(token, env.JWT_REFRESH_SECRET) as { userId: string };
+}

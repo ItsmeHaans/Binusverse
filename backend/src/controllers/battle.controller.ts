@@ -1,83 +1,72 @@
-import { Request, Response } from 'express';
-import { z } from 'zod';
-import * as battleService from '../services/battle.service';
-import { handleError } from '../utils/handleError';
+import { Request, Response, NextFunction } from 'express';
+import { battleService } from '../services/battle.service';
+import { Difficulty } from '@prisma/client';
 
-export async function createPvpChallenge(req: Request, res: Response): Promise<void> {
-  const schema = z.object({ opponentId: z.string().uuid() });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
-    return;
-  }
-  try {
-    const data = await battleService.createPvpChallenge(req.user!.id, parsed.data.opponentId);
-    res.status(201).json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+export const battleController = {
+  async getRaidQuestions(req: Request, res: Response, next: NextFunction) {
+    try {
+      const difficulty = ((req.query['difficulty'] as string) ?? 'NORMAL').toUpperCase() as Difficulty;
+      const data = await battleService.getRaidQuestions(difficulty);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function getPvpQuestions(req: Request, res: Response): Promise<void> {
-  try {
-    const data = await battleService.getPvpQuestions(req.params.id, req.user!.id);
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async submitRaid(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { difficulty, answers, totalTimeMs } = req.body as {
+        difficulty: Difficulty;
+        answers: { questionId: string; answer: string; timeTaken: number }[];
+        totalTimeMs: number;
+      };
+      const data = await battleService.submitRaid(req.user!.userId, difficulty, answers, totalTimeMs);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function submitPvpAnswer(req: Request, res: Response): Promise<void> {
-  const schema = z.object({
-    questionId: z.string().uuid(),
-    answer: z.enum(['A', 'B', 'C', 'D']),
-    timeTaken: z.number().positive(),
-  });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
-    return;
-  }
-  try {
-    const data = await battleService.submitPvpAnswer(
-      req.params.id, req.user!.id,
-      parsed.data.questionId, parsed.data.answer, parsed.data.timeTaken
-    );
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async createPvpSession(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { opponentId } = req.body as { opponentId: string };
+      const data = await battleService.createPvpSession(req.user!.userId, opponentId);
+      res.status(201).json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function getPvpResult(req: Request, res: Response): Promise<void> {
-  try {
-    const data = await battleService.getPvpResult(req.params.id);
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async getPvpQuestions(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await battleService.getPvpQuestions(req.params['id']!, req.user!.userId);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function getRaidQuestions(req: Request, res: Response): Promise<void> {
-  const { difficulty } = req.query as { difficulty?: string };
-  if (!difficulty || !['easy', 'normal', 'hard'].includes(difficulty)) {
-    res.status(400).json({ success: false, message: 'difficulty must be easy, normal, or hard' });
-    return;
-  }
-  try {
-    const data = await battleService.getRaidQuestions(difficulty as 'easy' | 'normal' | 'hard');
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async submitPvpAnswer(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { questionId, answer, timeTaken } = req.body as {
+        questionId: string;
+        answer: string;
+        timeTaken: number;
+      };
+      const data = await battleService.submitPvpAnswer(
+        req.params['id']!,
+        req.user!.userId,
+        questionId,
+        answer,
+        timeTaken,
+      );
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
 
-export async function submitRaid(req: Request, res: Response): Promise<void> {
-  const schema = z.object({
-    difficulty: z.enum(['easy', 'normal', 'hard']),
-    answers: z.array(z.object({
-      questionId: z.string().uuid(),
-      answer: z.enum(['A', 'B', 'C', 'D']),
-      timeTaken: z.number().positive(),
-    })),
-  });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
-    return;
-  }
-  try {
-    const data = await battleService.submitRaid(req.user!.id, parsed.data.difficulty, parsed.data.answers);
-    res.json({ success: true, data });
-  } catch (err) { handleError(err, res); }
-}
+  async getPvpResult(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await battleService.getPvpResult(req.params['id']!, req.user!.userId);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
+
+  async getHistory(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await battleService.getUserHistory(req.user!.userId);
+      res.json({ success: true, data });
+    } catch (err) { next(err); }
+  },
+};

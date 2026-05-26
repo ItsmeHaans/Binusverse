@@ -1,70 +1,84 @@
 import bcrypt from 'bcryptjs';
-import prisma from '../prismaClient';
+import { userRepository } from '../repositories/user.repository';
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../utils/jwt';
 import { AppError } from '../utils/AppError';
+import { RegisterInput, LoginInput } from '../validators/auth.validator';
 
-export async function register(
-  name: string,
-  email: string,
-  password: string,
-  batch: string,
-  faculty: string
-) {
-  const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) throw new AppError('Email already registered', 409);
+const REFRESH_EXPIRES_MS = 7 * 24 * 60 * 60 * 1000;
 
-  const passwordHash = await bcrypt.hash(password, 12);
-  const user = await prisma.user.create({
-    data: { name, email, passwordHash, batch, faculty, level: 1, xp: 0, streak: 0, gpa: 0.0, eloPoints: 1000 },
-    select: { id: true, name: true, email: true, faculty: true, batch: true, role: true },
-  });
+export const authService = {
+  async register(input: RegisterInput) {
+    const existing = await userRepository.findByEmail(input.email);
+    if (existing) throw new AppError('Email already registered', 409);
 
-  const tokens = await _issueTokens(user.id, user.role);
-  return { user, ...tokens };
-}
+    const passwordHash = await bcrypt.hash(input.password, 12);
+    const user = await userRepository.create({
+      name: input.name,
+      email: input.email,
+      passwordHash,
+      faculty: input.faculty,
+      batch: input.batch,
+    });
 
-export async function login(email: string, password: string) {
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) throw new AppError('Invalid email or password', 401);
+    const accessToken = signAccessToken(user.id, user.role);
+    const refreshToken = signRefreshToken(user.id);
+    await userRepository.saveRefreshToken(
+      refreshToken,
+      user.id,
+      new Date(Date.now() + REFRESH_EXPIRES_MS),
+    );
 
-  const valid = await bcrypt.compare(password, user.passwordHash);
-  if (!valid) throw new AppError('Invalid email or password', 401);
+    return {
+      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      accessToken,
+      refreshToken,
+    };
+  },
 
-  const tokens = await _issueTokens(user.id, user.role);
-  const { passwordHash: _, ...safeUser } = user;
-  return { user: safeUser, ...tokens };
-}
+  async login(input: LoginInput) {
+    const user = await userRepository.findByEmail(input.email);
+    if (!user) throw new AppError('Invalid credentials', 401);
 
-export async function refresh(token: string) {
-  let payload;
-  try {
-    payload = verifyRefreshToken(token);
-  } catch {
-    throw new AppError('Invalid refresh token', 401);
-  }
+    const valid = await bcrypt.compare(input.password, user.passwordHash);
+    if (!valid) throw new AppError('Invalid credentials', 401);
 
-  const stored = await prisma.refreshToken.findUnique({ where: { token } });
-  if (!stored || stored.expiresAt < new Date()) {
-    throw new AppError('Invalid or expired refresh token', 401);
-  }
+    const accessToken = signAccessToken(user.id, user.role);
+    const refreshToken = signRefreshToken(user.id);
+    await userRepository.saveRefreshToken(
+      refreshToken,
+      user.id,
+      new Date(Date.now() + REFRESH_EXPIRES_MS),
+    );
 
-  const accessToken = signAccessToken({ id: payload.id, role: payload.role });
-  return { accessToken };
-}
+    return {
+      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      accessToken,
+      refreshToken,
+    };
+  },
 
-export async function logout(refreshToken?: string) {
-  if (refreshToken) {
-    await prisma.refreshToken.deleteMany({ where: { token: refreshToken } });
-  }
-}
+  async refresh(token: string) {
+    const record = await userRepository.findRefreshToken(token);
+    if (!record || record.expiresAt < new Date()) {
+      throw new AppError('Invalid or expired refresh token', 401);
+    }
 
-async function _issueTokens(userId: string, role: string) {
-  const accessToken = signAccessToken({ id: userId, role: role as never });
-  const refreshToken = signRefreshToken({ id: userId, role: role as never });
+    verifyRefreshToken(token);
 
-  const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 7);
-  await prisma.refreshToken.create({ data: { token: refreshToken, userId, expiresAt } });
+    await userRepository.deleteRefreshToken(token);
 
-  return { accessToken, refreshToken };
-}
+    const newRefreshToken = signRefreshToken(record.userId);
+    await userRepository.saveRefreshToken(
+      newRefreshToken,
+      record.userId,
+      new Date(Date.now() + REFRESH_EXPIRES_MS),
+    );
+
+    const accessToken = signAccessToken(record.userId, record.user.role);
+    return { accessToken, refreshToken: newRefreshToken };
+  },
+
+  async logout(token: string) {
+    await userRepository.deleteRefreshToken(token);
+  },
+};

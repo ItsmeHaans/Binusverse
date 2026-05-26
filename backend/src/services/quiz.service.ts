@@ -1,88 +1,107 @@
-import prisma from '../prismaClient';
+import { quizRepository } from '../repositories/quiz.repository';
+import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
-import { getLevelFromXp, XP_REWARDS } from '../utils/xp';
-import { calculateNewStreak, todayDateString } from '../utils/streak';
-import { generateAndSaveDailyQuiz } from './cron';
+import { XP_REWARDS, xpToLevel } from '../utils/xp';
+import { calcNewStreak } from '../utils/streak';
+import { eloToDivision } from '../utils/rank';
+import { Difficulty } from '@prisma/client';
 
-export async function getDailyQuiz(userId: string) {
-  const today = todayDateString();
+const DAILY_Q_COUNT = 10;
 
-  const questions = await prisma.dailyQuiz.findMany({
-    where: { quizDate: today },
-    select: {
-      id: true, question: true, optionA: true, optionB: true,
-      optionC: true, optionD: true, topic: true, difficulty: true,
-    },
-  });
+export const quizService = {
+  async getDaily(userId: string) {
+    const today = new Date().toISOString().split('T')[0]!;
+    let quiz = await quizRepository.findTodayQuiz(today);
 
-  const submission = await prisma.dailyQuizSubmission.findUnique({
-    where: { userId_quizDate: { userId, quizDate: today } },
-  });
+    if (!quiz) {
+      const qs = await quizRepository.getQuestionsByDifficulty(Difficulty.NORMAL, DAILY_Q_COUNT);
+      if (qs.length < DAILY_Q_COUNT) throw new AppError('Not enough questions in bank', 503);
+      await quizRepository.createDailyQuiz(today, qs.map((q) => q.id));
+      quiz = await quizRepository.findTodayQuiz(today);
+    }
 
-  return { questions, alreadySubmitted: !!submission, submission: submission ?? null };
-}
+    if (!quiz) throw new AppError('Could not load daily quiz', 500);
 
-export async function submitDailyQuiz(
-  userId: string,
-  answers: { questionId: string; answer: string; timeTaken: number }[]
-) {
-  const today = todayDateString();
+    const submitted = await quizRepository.findSubmission(userId, quiz.id);
 
-  const existing = await prisma.dailyQuizSubmission.findUnique({
-    where: { userId_quizDate: { userId, quizDate: today } },
-  });
-  if (existing) throw new AppError('Daily quiz already submitted today', 409);
+    return {
+      quizId: quiz.id,
+      quizDate: quiz.quizDate,
+      alreadySubmitted: !!submitted,
+      questions: quiz.questions.map(({ question }) => ({
+        id: question.id,
+        text: question.text,
+        optionA: question.optionA,
+        optionB: question.optionB,
+        optionC: question.optionC,
+        optionD: question.optionD,
+        topic: question.topic,
+      })),
+    };
+  },
 
-  const questionIds = answers.map((a) => a.questionId);
-  const questions = await prisma.dailyQuiz.findMany({
-    where: { id: { in: questionIds }, quizDate: today },
-  });
-  const questionMap = new Map(questions.map((q) => [q.id, q]));
+  async submitDaily(
+    userId: string,
+    quizId: string,
+    answers: { questionId: string; answer: string; timeTaken: number }[],
+  ) {
+    const quiz = await quizRepository.findTodayQuiz(new Date().toISOString().split('T')[0]!);
+    if (!quiz || quiz.id !== quizId) throw new AppError('Invalid quiz', 400);
 
-  let correct = 0;
-  let wrong = 0;
-  let totalTime = 0;
+    const existing = await quizRepository.findSubmission(userId, quizId);
+    if (existing) throw new AppError('Already submitted today', 409);
 
-  for (const ans of answers) {
-    const q = questionMap.get(ans.questionId);
-    if (!q) continue;
-    if (q.correctOption === ans.answer) correct++;
-    else wrong++;
-    totalTime += ans.timeTaken;
-  }
+    const questionMap = new Map(quiz.questions.map(({ question }) => [question.id, question]));
 
-  const answered = correct + wrong;
-  const avgTime = answered > 0 ? totalTime / answered : 0;
-  const xpGained = XP_REWARDS.DAILY_QUIZ;
+    let correct = 0;
+    let wrong = 0;
+    let totalTime = 0;
 
-  await prisma.dailyQuizSubmission.create({
-    data: { userId, quizDate: today, correct, wrong, avgTime, xpGained },
-  });
+    for (const ans of answers) {
+      const q = questionMap.get(ans.questionId);
+      if (!q) continue;
+      totalTime += ans.timeTaken;
+      if (ans.answer === q.correctOption) correct++;
+      else wrong++;
+    }
 
-  await prisma.battleResult.create({
-    data: { userId, mode: 'DAILY', correct, wrong, timeElapsed: Math.round(totalTime), xpGained },
-  });
+    const avgTime = answers.length > 0 ? totalTime / answers.length : 0;
+    const isPerfect = wrong === 0 && correct === DAILY_Q_COUNT;
 
-  const user = await prisma.user.findUnique({ where: { id: userId } });
-  if (user) {
+    let xpGained = XP_REWARDS.dailyBase + correct * XP_REWARDS.perCorrect;
+    if (isPerfect) xpGained += XP_REWARDS.perfect;
+
+    await quizRepository.createSubmission({ userId, quizId, correct, wrong, avgTime, xpGained });
+
+    const user = await userRepository.findById(userId);
+    if (!user) throw new AppError('User not found', 404);
+
+    const newStreak = calcNewStreak(user.streak, user.lastActiveAt);
     const newXp = user.xp + xpGained;
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        xp: newXp,
-        level: getLevelFromXp(newXp),
-        streak: calculateNewStreak(user.streak, user.lastActiveAt),
-        lastActiveAt: new Date(),
-      },
+    const newLevel = xpToLevel(newXp);
+    const newElo = user.eloPoints;
+
+    await userRepository.update(userId, {
+      xp: newXp,
+      level: newLevel,
+      streak: newStreak,
+      division: eloToDivision(newElo),
+      lastActiveAt: new Date(),
     });
-  }
 
-  return { correct, wrong, avgTime: Math.round(avgTime * 100) / 100, xpGained };
-}
+    return { correct, wrong, avgTime, xpGained, streak: newStreak };
+  },
 
-export async function generateQuiz() {
-  await generateAndSaveDailyQuiz();
-  const today = todayDateString();
-  const count = await prisma.dailyQuiz.count({ where: { quizDate: today } });
-  return { count, date: today };
-}
+  async addQuestion(data: {
+    text: string;
+    optionA: string;
+    optionB: string;
+    optionC: string;
+    optionD: string;
+    correctOption: string;
+    topic: string;
+    difficulty: Difficulty;
+  }) {
+    return quizRepository.createQuestion(data);
+  },
+};

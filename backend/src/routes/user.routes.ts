@@ -1,30 +1,38 @@
 import { Router } from 'express';
-import { authenticate } from '../middleware/auth';
-import * as userController from '../controllers/user.controller';
+import { userController } from '../controllers/user.controller';
+import { authenticate } from '../middlewares/authenticate';
+import { validate } from '../middlewares/validate';
+import {
+  updateProfileSchema,
+  updateBioSchema,
+  updateAcademicSchema,
+  addGpaHistorySchema,
+  addClassSchema,
+  createMissionSchema,
+  updateMissionSchema,
+} from '../validators/user.validator';
 
 const router = Router();
 
 router.use(authenticate);
 
-// Profile
-router.get('/profile',          userController.getProfile);
-router.patch('/profile',        userController.updateProfile);
-router.patch('/bio',            userController.updateBio);
+router.get('/profile', userController.getProfile);
+router.patch('/profile', validate(updateProfileSchema), userController.updateProfile);
+router.patch('/bio', validate(updateBioSchema), userController.updateBio);
 
-// Academic
-router.get('/academic-status',  userController.getAcademicStatus);
-router.patch('/academic-status',userController.updateAcademicStatus);
-router.get('/gpa-history',      userController.getGpaHistory);
-router.post('/gpa-history',     userController.addGpaHistory);
-router.get('/classes',          userController.getClasses);
-router.post('/classes',         userController.addClass);
+router.get('/academic', userController.getAcademic);
+router.patch('/academic', validate(updateAcademicSchema), userController.updateAcademic);
 
-// Missions
-router.get('/missions',         userController.getMissions);
-router.post('/missions',        userController.createMission);
-router.patch('/missions/:id',   userController.updateMission);
+router.get('/gpa-history', userController.getGpaHistory);
+router.post('/gpa-history', validate(addGpaHistorySchema), userController.addGpaHistory);
 
-// Search (mounted at /api/users/search)
-router.get('/search',           userController.searchUsers);
+router.get('/classes', userController.getClasses);
+router.post('/classes', validate(addClassSchema), userController.addClass);
+
+router.get('/missions', userController.getMissions);
+router.post('/missions', validate(createMissionSchema), userController.createMission);
+router.patch('/missions/:id', validate(updateMissionSchema), userController.updateMission);
+
+router.get('/search', userController.searchUsers);
 
 export default router;
