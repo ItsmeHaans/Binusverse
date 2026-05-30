@@ -623,15 +623,8 @@ body {
   color: white;
   font-size: 1.5rem;
   margin-bottom: 40px;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
   font-weight: 400;
-}
-.mission-section .section-sub {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  line-height: 2;
-  color: rgba(255, 255, 255, 0.75);
 }
 
 /* =============================================

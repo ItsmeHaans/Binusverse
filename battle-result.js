@@ -6,7 +6,7 @@
 
   var ITEM_LABELS = {
     eraser:'Phantom Eraser', freeze:'Time Freeze Orb', retry:'2nd Chance Scroll',
-    xp:'XP Magnet', shield:'Aegis Shield', gem:'Soul Gem', warp:'Time Warp', focus:'Focus Crystal',
+    xp:'XP Magnet', shield:'Aegis Shield', gem:'Soul Gem', warp:'Time Warp', focus:'Focus Potion',
     mirror:'Mirror Relic', storm:'Storm Relic', oracle:'Oracle Relic', vortex:'Vortex Relic',
     prism:'Prism Relic', nova:'Nova Relic', echo:'Echo Relic', compass:'Compass Relic',
     anchor:'Anchor Relic', lantern:'Lantern Relic', tome:'Tome Relic', cipher:'Cipher Relic',

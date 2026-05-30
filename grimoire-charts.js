@@ -234,7 +234,7 @@
       if (hit) {
         const tWeek = tip.querySelector('.tt-week');
         const tVal  = tip.querySelector('.tt-val');
-        if (tWeek) tWeek.textContent = hit.name;
+        if (tWeek) tWeek.textContent = hit.label || hit.name;
         if (tVal)  tVal.textContent  = unit === ' XP' ? hit.val + ' XP' : hit.val + '%';
 
         let tx = px(hit.rx) - 48;
@@ -254,6 +254,21 @@
 
   /* ══ main ══ */
   function init() {
+    /* Inject real weekly data from BVUser (exposed by grimoire.html inline script) */
+    var weekXP = window._BV_WEEKLY_XP || [0, 0, 0, 0, 0, 0];
+    var weekWR = window._BV_WEEKLY_WR || [0, 0, 0, 0, 0, 0];
+
+    /* Map first 6 ORION stars (left→right = WK1→WK6) to real XP */
+    for (var i = 0; i < 6 && i < ORION_PTS.length; i++) {
+      ORION_PTS[i].val   = weekXP[i];
+      ORION_PTS[i].label = 'WK' + (i + 1);
+    }
+    /* Map first 6 SCORPIUS stars to real win-rate (0–100) */
+    for (var j = 0; j < 6 && j < SCORPIUS_PTS.length; j++) {
+      SCORPIUS_PTS[j].val   = weekWR[j];
+      SCORPIUS_PTS[j].label = 'WK' + (j + 1);
+    }
+
     drawChart('cvs-xp', ORION_PTS,    ORION_EDGES,    '#fee783', 'box-xp', 'tip-xp', ' XP', 42);
     drawChart('cvs-bp', SCORPIUS_PTS, SCORPIUS_EDGES, '#ff3bff', 'box-bp', 'tip-bp', '%',   99);
   }

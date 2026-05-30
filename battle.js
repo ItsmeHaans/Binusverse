@@ -41,9 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── PvP (Coming Soon) ──
+  // ── PvP (Coming Soon) — button removed from HTML, guard prevents crash ──
   const searchBtn = document.getElementById("searchBtn");
-  searchBtn.disabled = true;
-  searchBtn.textContent = "Coming Soon...";
-  searchBtn.title = "PvP mode is under development";
+  if (searchBtn) {
+    searchBtn.disabled = true;
+    searchBtn.textContent = "Coming Soon...";
+    searchBtn.title = "PvP mode is under development";
+  }
 });
