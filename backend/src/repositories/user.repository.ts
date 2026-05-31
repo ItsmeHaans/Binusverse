@@ -20,13 +20,8 @@ export const userRepository = {
 
   search(query: string) {
     return prisma.user.findMany({
-      where: {
-        OR: [
-          { name: { contains: query, mode: 'insensitive' } },
-          { email: { contains: query, mode: 'insensitive' } },
-        ],
-      },
-      select: { id: true, name: true, email: true, avatar: true, level: true, division: true },
+      where: { name: { contains: query, mode: 'insensitive' } },
+      select: { id: true, name: true, avatar: true, level: true, division: true },
       take: 20,
     });
   },

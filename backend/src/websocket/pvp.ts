@@ -2,6 +2,8 @@ import { Server, Socket } from 'socket.io';
 import { verifyAccessToken } from '../utils/jwt';
 import { battleService } from '../services/battle.service';
 
+const PVP_Q_COUNT = 10;
+
 interface AuthSocket extends Socket {
   userId?: string;
 }
@@ -50,17 +52,17 @@ export function registerPvpNamespace(io: Server) {
 
         const room = pvp.adapter.rooms.get(data.sessionId);
         if (room && room.size >= 2) {
-          const session = await (await import('../prisma')).default.pvpSession.findUnique({
+          const prisma = (await import('../prisma')).default;
+          const session = await prisma.pvpSession.findUnique({
             where: { id: data.sessionId },
             include: { answers: true },
           });
 
-          if (session) {
+          if (session && session.status !== 'FINISHED') {
             const challengerAnswers = session.answers.filter((a) => a.userId === session.challengerId);
-            const opponentAnswers = session.answers.filter((a) => a.userId === session.opponentId);
+            const opponentAnswers   = session.answers.filter((a) => a.userId === session.opponentId);
 
-            const totalQ = 10;
-            if (challengerAnswers.length >= totalQ && opponentAnswers.length >= totalQ) {
+            if (challengerAnswers.length >= PVP_Q_COUNT && opponentAnswers.length >= PVP_Q_COUNT) {
               await battleService.finalizePvpSession(data.sessionId);
               pvp.to(data.sessionId).emit('session_finished', { sessionId: data.sessionId });
             }

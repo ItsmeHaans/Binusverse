@@ -3,7 +3,8 @@ import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
 import { XP_REWARDS, xpToLevel } from '../utils/xp';
 import { ELO, eloToDivision } from '../utils/rank';
-import { BattleMode, Difficulty } from '@prisma/client';
+import { BattleMode, Difficulty, PvpStatus } from '@prisma/client';
+import prisma from '../prisma';
 
 const RAID_CONFIG = {
   EASY:   { count: 8,  passMark: 5 },
@@ -48,6 +49,9 @@ export const battleService = {
       if (ans.answer === q.correctOption) correct++;
       else wrong++;
     }
+
+    // Unanswered questions count as wrong (prevents "answer only safe questions" exploit)
+    wrong += Math.max(0, config.count - (correct + wrong));
 
     const cleared = correct >= config.passMark;
     const isPerfect = wrong === 0;
@@ -122,11 +126,15 @@ export const battleService = {
   ) {
     const session = await battleRepository.findPvpSession(sessionId);
     if (!session) throw new AppError('Session not found', 404);
-    if (session.status === 'FINISHED') throw new AppError('Session already finished', 400);
+    if (session.status === PvpStatus.FINISHED) throw new AppError('Session already finished', 400);
 
-    const question = await (await import('../prisma')).default.question.findUnique({
-      where: { id: questionId },
+    // Prevent duplicate answers for the same question
+    const existing = await prisma.pvpAnswer.findFirst({
+      where: { sessionId, userId, questionId },
     });
+    if (existing) throw new AppError('Question already answered', 409);
+
+    const question = await prisma.question.findUnique({ where: { id: questionId } });
     if (!question) throw new AppError('Question not found', 404);
 
     const correct = answer === question.correctOption;
@@ -183,23 +191,25 @@ export const battleService = {
     else if (cTime < oTime) winnerId = session.challengerId;
     else if (oTime < cTime) winnerId = session.opponentId;
 
-    await battleRepository.updatePvpSession(sessionId, {
-      status: 'FINISHED',
-      winnerId,
-      endedAt: new Date(),
+    // Atomic flip: prevents double-finalization race condition
+    const flipped = await prisma.pvpSession.updateMany({
+      where: { id: sessionId, status: { not: PvpStatus.FINISHED } },
+      data: { status: PvpStatus.FINISHED, winnerId, endedAt: new Date() },
     });
+    if (flipped.count === 0) return;
 
     const challenger = await userRepository.findById(session.challengerId);
     const opponent = await userRepository.findById(session.opponentId);
     if (!challenger || !opponent) return;
 
+    const isDraw = winnerId === null;
     const cWon = winnerId === session.challengerId;
     const oWon = winnerId === session.opponentId;
 
-    const cEloChange = cWon ? ELO.win : ELO.loss;
-    const oEloChange = oWon ? ELO.win : ELO.loss;
-    const cXp = cWon ? XP_REWARDS.pvpWin : XP_REWARDS.pvpLoss;
-    const oXp = oWon ? XP_REWARDS.pvpWin : XP_REWARDS.pvpLoss;
+    const cEloChange = cWon ? ELO.win : isDraw ? 0 : ELO.loss;
+    const oEloChange = oWon ? ELO.win : isDraw ? 0 : ELO.loss;
+    const cXp = cWon ? XP_REWARDS.pvpWin : isDraw ? XP_REWARDS.pvpDraw : XP_REWARDS.pvpLoss;
+    const oXp = oWon ? XP_REWARDS.pvpWin : isDraw ? XP_REWARDS.pvpDraw : XP_REWARDS.pvpLoss;
 
     const cNewElo = Math.max(0, challenger.eloPoints + cEloChange);
     const oNewElo = Math.max(0, opponent.eloPoints + oEloChange);

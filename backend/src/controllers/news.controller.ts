@@ -4,7 +4,8 @@ import { newsService } from '../services/news.service';
 export const newsController = {
   async getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      const page = parseInt((req.query['page'] as string) ?? '1', 10);
+      const rawPage = parseInt((req.query['page'] as string) ?? '1', 10);
+      const page = Math.max(1, isNaN(rawPage) ? 1 : rawPage);
       const data = await newsService.getAll(page);
       res.json({ success: true, data });
     } catch (err) { next(err); }

@@ -2,7 +2,9 @@ import { z } from 'zod';
 
 export const updateProfileSchema = z.object({
   name: z.string().min(2).optional(),
-  avatar: z.string().url().optional(),
+  avatar: z.string().url().refine((u) => u.startsWith('https://'), {
+    message: 'Avatar URL must use https://',
+  }).optional(),
 });
 
 export const updateBioSchema = z.object({

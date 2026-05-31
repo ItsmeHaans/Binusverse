@@ -12,7 +12,11 @@ export function authenticate(req: Request, _res: Response, next: NextFunction): 
   const token = header.slice(7);
   try {
     const payload = verifyAccessToken(token);
-    req.user = { userId: payload.userId, role: payload.role as Role };
+    const role = payload.role as Role;
+    if (!Object.values(Role).includes(role)) {
+      return next(new AppError('Invalid token', 401));
+    }
+    req.user = { userId: payload.userId, role };
     next();
   } catch {
     next(new AppError('Invalid or expired token', 401));

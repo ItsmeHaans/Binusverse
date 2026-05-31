@@ -100,6 +100,8 @@
         document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         var filter = btn.dataset.filter;
+        // Load user once per click, not once per card
+        var bvU = (filter === 'owned' && typeof BVUser !== 'undefined') ? BVUser.load() : null;
         document.querySelectorAll('.item-card').forEach(function(card) {
           var key = card.dataset.key;
           var def = ITEMS_REGISTRY[key];
@@ -107,10 +109,7 @@
           var show = true;
           if (filter === 'battle') show = def.itemType === 'battle';
           else if (filter === 'relic') show = def.itemType === 'relic';
-          else if (filter === 'owned') {
-            var u = typeof BVUser !== 'undefined' ? BVUser.load() : { items: {} };
-            show = (u.items[key] || 0) > 0;
-          }
+          else if (filter === 'owned') show = bvU ? (bvU.items[key] || 0) > 0 : false;
           card.style.display = show ? '' : 'none';
         });
       });

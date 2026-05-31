@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function submitName() {
     var val = nameInput ? nameInput.value.trim() : '';
-    if (!val) { if (nameInput) nameInput.style.borderColor = '#ff6b6b'; return; }
+    if (!val || val.length > 30) { if (nameInput) nameInput.style.borderColor = '#ff6b6b'; return; }
     if (typeof BVUser !== 'undefined') {
       var u = BVUser.load();
       u.name = val;

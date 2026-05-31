@@ -603,7 +603,12 @@
    */
   function itemEarned(key) {
     var def = ITEM_DEFS[key];
-    if (!def) return;
+    if (!def) {
+      // Relic item — no full SVG definition, show a simple toast instead
+      var relicName = key.charAt(0).toUpperCase() + key.slice(1) + ' Relic';
+      toast('Acquired: ' + relicName, 'item', '🏺');
+      return;
+    }
 
     var overlay = document.createElement('div');
     overlay.id = 'bvn-item-popup';

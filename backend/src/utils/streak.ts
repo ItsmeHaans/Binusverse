@@ -4,14 +4,12 @@ export function calcNewStreak(currentStreak: number, lastActiveAt: Date | null):
   const now = new Date();
   const last = new Date(lastActiveAt);
 
-  const todayStr = now.toISOString().split('T')[0];
-  const lastStr = last.toISOString().split('T')[0];
+  const nowMidnight  = Date.UTC(now.getUTCFullYear(),  now.getUTCMonth(),  now.getUTCDate());
+  const lastMidnight = Date.UTC(last.getUTCFullYear(), last.getUTCMonth(), last.getUTCDate());
 
-  if (todayStr === lastStr) return currentStreak;
+  const diffDays = (nowMidnight - lastMidnight) / 86400000;
 
-  const diffMs = now.setHours(0, 0, 0, 0) - last.setHours(0, 0, 0, 0);
-  const diffDays = diffMs / (1000 * 60 * 60 * 24);
-
+  if (diffDays === 0) return currentStreak;
   if (diffDays === 1) return currentStreak + 1;
   return 1;
 }

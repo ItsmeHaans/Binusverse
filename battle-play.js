@@ -56,6 +56,7 @@ const state = {
   passives:{ aiTimeBonus:0, aiHints:0, cyberXP:1, cyberShield:false, cyberShieldUsed:false, cyberTimeoutRetry:false, cyberTimeoutRetryUsed:false, dataStreakMult:1, dataItemDouble:false, dataSRankBonus:0 },
   // item state
   shieldActive:false, focusActive:false, warpUsed:false,
+  warpPenalty:0,
   // question log for XP tagging
   questionLog:[],
 };
@@ -130,6 +131,13 @@ function init() {
     state.questions = shuffle([...pool]).slice(0, state.cfg.totalQ);
   }
   state.questionLog = [];
+  state.warpPenalty = 0;
+
+  if (state.questions.length === 0) {
+    const card = $('battle-card');
+    if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#ff4d4d;font-family:\'Press Start 2P\',monospace;font-size:.6rem;line-height:2.2">FAILED TO LOAD<br>QUESTIONS<br><br>Please refresh.</div>';
+    return;
+  }
 
   $('battle-screen').classList.remove('hidden');
   ['pvp-section','daily-section','raid-section'].forEach(id => { const e=$(id); if(e) e.style.display='none'; });
@@ -363,8 +371,8 @@ function useItem(k) {
     wf.textContent = '⌖ TIME WARP!'; document.body.appendChild(wf);
     wf.addEventListener('animationend', () => wf.remove());
     if (typeof BVNotify !== 'undefined') BVNotify.toast('Skipped — counted correct! (50% XP)', 'xp', '⌖');
-    // Apply 50% XP modifier for this question's contribution
-    state.xpMultiplier = Math.min(state.xpMultiplier, 0.5);
+    // 50% XP penalty for this one skipped question (tracked separately, not session-wide)
+    state.warpPenalty += Math.floor(XP.perCorrect / 2);
     setTimeout(advance, 900);
 
   } else if (k === 'focus') {
@@ -555,6 +563,7 @@ function handleAnswer(chosen) {
       if (b.dataset.key === chosen && !ok) b.classList.add('wrong');
     });
 
+    let absorbed = false;
     if (ok) {
       state.correct++; state.streak++;
       $('hud-correct').textContent = state.correct;
@@ -565,6 +574,7 @@ function handleAnswer(chosen) {
       // Check shield (item) or Cyber passive shield
       const shieldAbsorb = state.shieldActive || (state.passives.cyberShield && !state.passives.cyberShieldUsed);
       if (shieldAbsorb) {
+        absorbed = true;
         if (state.shieldActive) { state.shieldActive = false; }
         else { state.passives.cyberShieldUsed = true; }
         removeShieldOverlay();
@@ -584,7 +594,7 @@ function handleAnswer(chosen) {
       }
     }
     updateStreak();
-    dotResult(state.current, ok || state.shieldActive);
+    dotResult(state.current, ok || absorbed);
     setTimeout(advance, 1100);
   }, 300);
 }
@@ -657,6 +667,9 @@ function showResult() {
 
     // Streak bonus for Data passive
     if (state.streak >= 3) xp = Math.round(xp * state.passives.dataStreakMult);
+
+    // Deduct Time Warp penalty: each warp skips a question at 50% XP
+    xp = Math.max(0, xp - state.warpPenalty);
   }
 
   let title='COMPLETED!', titleClass='';

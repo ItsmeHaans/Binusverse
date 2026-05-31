@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ── Daily Quiz ──
-  document.getElementById("dailyBtn").addEventListener("click", () => {
+  const _dailyClickBtn = document.getElementById("dailyBtn");
+  if (_dailyClickBtn) _dailyClickBtn.addEventListener("click", () => {
     window.location.href = "battle-play.html?mode=daily";
   });
 

@@ -13,5 +13,8 @@ const io = new SocketServer(server, {
 registerPvpNamespace(io);
 
 server.listen(env.PORT, () => {
-  console.log(`Binusverse backend running on port ${env.PORT}`);
+  const mode = process.env.NODE_ENV || 'development';
+  if (mode !== 'test') {
+    console.log(`[Binusverse] Server running on port ${env.PORT} (${mode})`);
+  }
 });

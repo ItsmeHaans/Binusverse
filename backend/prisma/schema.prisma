@@ -161,6 +161,8 @@ model BattleResult {
   user User @relation(fields: [userId], references: [id])
 
   @@index([userId])
+  @@index([userId, mode])
+  @@index([createdAt])
 }
 
 model PvpSession {
@@ -170,6 +172,7 @@ model PvpSession {
   status       PvpStatus @default(WAITING)
   winnerId     String?
   createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   endedAt      DateTime?
 
   challenger User       @relation("Challenger", fields: [challengerId], references: [id])
@@ -230,6 +233,7 @@ model ForumPost {
   likes    ForumPostLike[]
 
   @@index([channel])
+  @@index([userId])
 }
 
 model ForumComment {
@@ -243,6 +247,9 @@ model ForumComment {
   post  ForumPost         @relation(fields: [postId], references: [id], onDelete: Cascade)
   user  User              @relation(fields: [userId], references: [id])
   likes ForumCommentLike[]
+
+  @@index([postId])
+  @@index([userId])
 }
 
 model ForumPostLike {
@@ -307,13 +314,14 @@ model Mission {
 }
 
 model News {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   title     String
   content   String
   imageUrl  String?
   authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
   author User @relation(fields: [authorId], references: [id])
 }

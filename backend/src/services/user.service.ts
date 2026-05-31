@@ -2,6 +2,7 @@ import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
 import { xpToLevel } from '../utils/xp';
 import { eloToDivision } from '../utils/rank';
+import { stripHtml } from '../utils/sanitize';
 
 export const userService = {
   async getProfile(userId: string) {
@@ -27,11 +28,14 @@ export const userService = {
   },
 
   async updateProfile(userId: string, data: { name?: string; avatar?: string }) {
-    return userRepository.update(userId, data);
+    return userRepository.update(userId, {
+      name: data.name !== undefined ? stripHtml(data.name) : undefined,
+      avatar: data.avatar,
+    });
   },
 
   async updateBio(userId: string, bio: string) {
-    return userRepository.update(userId, { bio });
+    return userRepository.update(userId, { bio: stripHtml(bio) });
   },
 
   async getAcademic(userId: string) {
@@ -52,7 +56,10 @@ export const userService = {
     userId: string,
     data: { semester: string; ipValue: number; classesPassed: number; totalClasses: number },
   ) {
-    return userRepository.addGpaHistory({ user: { connect: { id: userId } }, ...data });
+    const entry = await userRepository.addGpaHistory({ user: { connect: { id: userId } }, ...data });
+    // Keep User.gpa in sync with the latest entry added
+    await userRepository.update(userId, { gpa: data.ipValue });
+    return entry;
   },
 
   getClasses(userId: string, semester?: string) {

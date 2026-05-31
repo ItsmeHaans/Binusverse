@@ -71,8 +71,8 @@
     var titleEl = $('result-title');
     var rankLetter = (r.rank || 'D').toUpperCase();
     if (r.mode === 'daily') {
-      titleEl.textContent = 'DAILY CLEARED!';
-      titleEl.classList.add('cleared');
+      titleEl.textContent = r.won ? 'DAILY CLEARED!' : 'MISSION FAILED';
+      titleEl.classList.add(r.won ? 'cleared' : 'lose');
     } else if (r.won) {
       titleEl.textContent = 'RAID CLEARED!';
       titleEl.classList.add('cleared');

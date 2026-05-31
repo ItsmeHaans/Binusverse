@@ -1,11 +1,13 @@
 import { forumRepository } from '../repositories/forum.repository';
 import { AppError } from '../utils/AppError';
+import { stripHtml } from '../utils/sanitize';
 
 const CHANNELS = [
   { id: 'global', name: 'Global Channel', description: 'Open to all BINUS students' },
   { id: 'cs-guild', name: 'CS Guild', description: 'Computer Science guild' },
   { id: 'engineering', name: 'Engineering', description: 'Engineering guild' },
 ];
+const VALID_CHANNEL_IDS = new Set(CHANNELS.map((c) => c.id));
 
 export const forumService = {
   getChannels() {
@@ -17,7 +19,8 @@ export const forumService = {
   },
 
   createPost(userId: string, channel: string, content: string) {
-    return forumRepository.createPost(userId, channel, content);
+    if (!VALID_CHANNEL_IDS.has(channel)) throw new AppError('Invalid channel', 400);
+    return forumRepository.createPost(userId, channel, stripHtml(content));
   },
 
   async togglePostLike(postId: string, userId: string) {
@@ -37,7 +40,7 @@ export const forumService = {
   async createComment(postId: string, userId: string, content: string) {
     const post = await forumRepository.findPost(postId);
     if (!post || post.deletedAt) throw new AppError('Post not found', 404);
-    return forumRepository.createComment(postId, userId, content);
+    return forumRepository.createComment(postId, userId, stripHtml(content));
   },
 
   async toggleCommentLike(commentId: string, userId: string) {

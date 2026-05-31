@@ -53,6 +53,16 @@
 
     ctx.clearRect(0, 0, W, H);
 
+    /* ── no-data fallback ── */
+    if (data.every(function(v) { return v === 0; })) {
+      ctx.fillStyle = 'rgba(255,255,255,0.18)';
+      ctx.font = '8px "Press Start 2P", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('NO DATA YET', W / 2, H / 2);
+      return;
+    }
+
     /* ── background pixel stars ── */
     const rng = rand32(seed);
     for (let i = 0; i < 80; i++) {

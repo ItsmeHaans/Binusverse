@@ -10,5 +10,6 @@ export const XP_REWARDS = {
   raidHard: 50,
   perfect: 50,
   pvpWin: 50,
+  pvpDraw: 20,
   pvpLoss: 10,
 };

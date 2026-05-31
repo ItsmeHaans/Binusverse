@@ -16,7 +16,11 @@ export const quizService = {
     if (!quiz) {
       const qs = await quizRepository.getQuestionsByDifficulty(Difficulty.NORMAL, DAILY_Q_COUNT);
       if (qs.length < DAILY_Q_COUNT) throw new AppError('Not enough questions in bank', 503);
-      await quizRepository.createDailyQuiz(today, qs.map((q) => q.id));
+      try {
+        await quizRepository.createDailyQuiz(today, qs.map((q) => q.id));
+      } catch {
+        // Concurrent request already created it — proceed
+      }
       quiz = await quizRepository.findTodayQuiz(today);
     }
 

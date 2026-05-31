@@ -1,11 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { battleService } from '../services/battle.service';
 import { Difficulty } from '@prisma/client';
+import { AppError } from '../utils/AppError';
+
+const VALID_DIFFICULTIES = new Set<string>(['EASY', 'NORMAL', 'HARD']);
 
 export const battleController = {
   async getRaidQuestions(req: Request, res: Response, next: NextFunction) {
     try {
-      const difficulty = ((req.query['difficulty'] as string) ?? 'NORMAL').toUpperCase() as Difficulty;
+      const raw = ((req.query['difficulty'] as string) ?? 'NORMAL').toUpperCase();
+      if (!VALID_DIFFICULTIES.has(raw)) return next(new AppError('Invalid difficulty', 400));
+      const difficulty = raw as Difficulty;
       const data = await battleService.getRaidQuestions(difficulty);
       res.json({ success: true, data });
     } catch (err) { next(err); }
@@ -13,11 +18,15 @@ export const battleController = {
 
   async submitRaid(req: Request, res: Response, next: NextFunction) {
     try {
-      const { difficulty, answers, totalTimeMs } = req.body as {
-        difficulty: Difficulty;
+      const { difficulty: rawDiff, answers, totalTimeMs } = req.body as {
+        difficulty: string;
         answers: { questionId: string; answer: string; timeTaken: number }[];
         totalTimeMs: number;
       };
+      const diffUpper = (rawDiff ?? '').toUpperCase();
+      if (!VALID_DIFFICULTIES.has(diffUpper)) return next(new AppError('Invalid difficulty', 400));
+      if (!Array.isArray(answers) || answers.length === 0) return next(new AppError('Answers required', 400));
+      const difficulty = diffUpper as Difficulty;
       const data = await battleService.submitRaid(req.user!.userId, difficulty, answers, totalTimeMs);
       res.json({ success: true, data });
     } catch (err) { next(err); }
