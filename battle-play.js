@@ -22,146 +22,27 @@ const CONFIG = {
 };
 const XP = { perCorrect:10, speedBonus:5, completion:20, raidClear:40, perfect:50 };
 
-/* ── All 8 battle items ── */
-const ITEMS = {
-  eraser: {
-    name:"Phantom Eraser",  color:"#ff9500", rarity:"LEGENDARY",
-    desc:"Eliminates 2 wrong choices",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="1" y="5" width="14" height="7" fill="#ff9500"/>
-      <rect x="1" y="5" width="14" height="3" fill="#ffb700"/>
-      <rect x="1" y="8" width="14" height="1" fill="#cc7700"/>
-      <rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>
-      <rect x="3" y="2" width="1" height="1" fill="#ff4444"/>
-      <rect x="4" y="3" width="1" height="1" fill="#ff4444"/>
-      <rect x="5" y="2" width="1" height="1" fill="#ff4444"/>
-      <rect x="9" y="2" width="1" height="1" fill="#ff4444"/>
-      <rect x="10" y="3" width="1" height="1" fill="#ff4444"/>
-      <rect x="11" y="2" width="1" height="1" fill="#ff4444"/>
-    </svg>`,
-  },
-  freeze: {
-    name:"Time Freeze Orb",  color:"#c084fc", rarity:"EPIC",
-    desc:"+10 seconds to timer",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="3" y="1" width="10" height="2" fill="#7c3aed"/>
-      <rect x="2" y="2" width="12" height="10" fill="#6d28d9"/>
-      <rect x="1" y="4" width="14" height="6" fill="#7c3aed"/>
-      <rect x="3" y="12" width="10" height="2" fill="#6d28d9"/>
-      <rect x="5" y="4" width="6" height="6" fill="#1a0a2e"/>
-      <rect x="6" y="3" width="4" height="1" fill="#c084fc"/>
-      <rect x="4" y="5" width="1" height="4" fill="#c084fc"/>
-      <rect x="11" y="5" width="1" height="4" fill="#c084fc"/>
-      <rect x="6" y="10" width="4" height="1" fill="#c084fc"/>
-      <rect x="7" y="5" width="1" height="3" fill="#fff"/>
-      <rect x="7" y="7" width="3" height="1" fill="#fff"/>
-      <rect x="7" y="7" width="1" height="1" fill="#fee783"/>
-    </svg>`,
-  },
-  retry: {
-    name:"2nd Chance Scroll", color:"#00e5ff", rarity:"RARE",
-    desc:"Retry wrong answer, no penalty",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="2" y="0" width="12" height="2" fill="#b87333"/>
-      <rect x="1" y="1" width="14" height="2" fill="#d4a96a"/>
-      <rect x="2" y="2" width="12" height="1" fill="#b87333"/>
-      <rect x="1" y="3" width="14" height="9" fill="#fdf3dc"/>
-      <rect x="3" y="4" width="10" height="1" fill="#a0a8d0"/>
-      <rect x="3" y="6" width="8" height="1" fill="#a0a8d0"/>
-      <rect x="5" y="5" width="6" height="1" fill="#00e5ff"/>
-      <rect x="10" y="5" width="1" height="3" fill="#00e5ff"/>
-      <rect x="9" y="7" width="2" height="1" fill="#00e5ff"/>
-      <rect x="5" y="4" width="3" height="1" fill="#00e5ff"/>
-      <rect x="2" y="12" width="12" height="1" fill="#b87333"/>
-      <rect x="1" y="13" width="14" height="2" fill="#d4a96a"/>
-    </svg>`,
-  },
-  xp: {
-    name:"XP Magnet",  color:"#fee783", rarity:"UNCOMMON",
-    desc:"×1.5 XP for this question",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="2" y="2" width="4" height="10" fill="#94a3b8"/>
-      <rect x="10" y="2" width="4" height="10" fill="#94a3b8"/>
-      <rect x="2" y="2" width="12" height="3" fill="#64748b"/>
-      <rect x="3" y="5" width="2" height="7" fill="#0d0f20"/>
-      <rect x="11" y="5" width="2" height="7" fill="#0d0f20"/>
-      <rect x="2" y="12" width="4" height="3" fill="#ef4444"/>
-      <rect x="10" y="12" width="4" height="3" fill="#3b82f6"/>
-      <rect x="6" y="5" width="1" height="1" fill="#fee783"/>
-      <rect x="7" y="4" width="2" height="1" fill="#fee783"/>
-      <rect x="9" y="5" width="1" height="1" fill="#fee783"/>
-    </svg>`,
-  },
-  shield: {
-    name:"Aegis Shield",  color:"#00ff88", rarity:"RARE",
-    desc:"Absorb 1 wrong answer — no penalty",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="3" y="0" width="10" height="2" fill="#00cc66"/>
-      <rect x="1" y="2" width="14" height="2" fill="#00ff88"/>
-      <rect x="0" y="4" width="16" height="6" fill="#00cc66"/>
-      <rect x="1" y="10" width="14" height="2" fill="#00cc66"/>
-      <rect x="2" y="12" width="12" height="2" fill="#00ff88"/>
-      <rect x="4" y="14" width="8" height="1" fill="#00cc66"/>
-      <rect x="6" y="15" width="4" height="1" fill="#009944"/>
-      <rect x="2" y="4" width="12" height="6" fill="#00ff88" opacity="0.3"/>
-      <rect x="7" y="2" width="2" height="12" fill="#00ff88" opacity="0.6"/>
-      <rect x="3" y="6" width="10" height="2" fill="#00ff88" opacity="0.5"/>
-      <rect x="1" y="2" width="2" height="2" fill="#fff" opacity="0.3"/>
-    </svg>`,
-  },
-  gem: {
-    name:"Soul Gem",  color:"#ff3bff", rarity:"EPIC",
-    desc:"Peek correct answer for 2 seconds",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="5" y="0" width="6" height="2" fill="#ff3bff"/>
-      <rect x="3" y="2" width="10" height="2" fill="#cc00cc"/>
-      <rect x="1" y="4" width="14" height="7" fill="#ff3bff"/>
-      <rect x="2" y="5" width="12" height="5" fill="#ff00ff"/>
-      <rect x="4" y="6" width="8" height="3" fill="#ffaaff"/>
-      <rect x="6" y="7" width="4" height="1" fill="#fff"/>
-      <rect x="1" y="11" width="14" height="2" fill="#cc00cc"/>
-      <rect x="3" y="13" width="10" height="1" fill="#ff3bff"/>
-      <rect x="5" y="14" width="6" height="1" fill="#cc00cc"/>
-      <rect x="7" y="15" width="2" height="1" fill="#ff3bff"/>
-      <rect x="2" y="5" width="3" height="2" fill="#fff" opacity="0.4"/>
-    </svg>`,
-  },
-  warp: {
-    name:"Time Warp",  color:"#fee783", rarity:"LEGENDARY",
-    desc:"Skip question — counts correct, 50% XP",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="7" y="0" width="2" height="2" fill="#fee783"/>
-      <rect x="5" y="1" width="6" height="2" fill="#fee783"/>
-      <rect x="3" y="3" width="10" height="2" fill="#fee783"/>
-      <rect x="1" y="5" width="14" height="2" fill="#ffb700"/>
-      <rect x="0" y="7" width="16" height="2" fill="#fee783"/>
-      <rect x="1" y="9" width="14" height="2" fill="#ffb700"/>
-      <rect x="3" y="11" width="10" height="2" fill="#fee783"/>
-      <rect x="5" y="13" width="6" height="2" fill="#ffb700"/>
-      <rect x="7" y="14" width="2" height="2" fill="#fee783"/>
-      <rect x="6" y="6" width="4" height="4" fill="#fff" opacity="0.7"/>
-      <rect x="7" y="7" width="2" height="2" fill="#fee783"/>
-      <rect x="1" y="5" width="2" height="2" fill="#fff" opacity="0.3"/>
-    </svg>`,
-  },
-  focus: {
-    name:"Focus Potion",  color:"#00e5ff", rarity:"UNCOMMON",
-    desc:"Pause timer until you answer",
-    svg:`<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-      <rect x="6" y="0" width="4" height="2" fill="#94a3b8"/>
-      <rect x="5" y="2" width="6" height="1" fill="#64748b"/>
-      <rect x="4" y="3" width="8" height="1" fill="#00e5ff"/>
-      <rect x="3" y="4" width="10" height="8" fill="#0d2233"/>
-      <rect x="4" y="5" width="8" height="6" fill="#00e5ff" opacity="0.3"/>
-      <rect x="5" y="6" width="6" height="4" fill="#00e5ff" opacity="0.5"/>
-      <rect x="6" y="7" width="4" height="2" fill="#fff" opacity="0.7"/>
-      <rect x="7" y="8" width="2" height="1" fill="#00e5ff"/>
-      <rect x="2" y="12" width="12" height="2" fill="#1a3a4a"/>
-      <rect x="3" y="14" width="10" height="1" fill="#0d2233"/>
-      <rect x="4" y="5" width="2" height="2" fill="#fff" opacity="0.4"/>
-    </svg>`,
-  },
-};
+/* ── Battle items — derived from ITEMS_REGISTRY (items-data.js) ── */
+const ITEMS = (function() {
+  var out = {};
+  var SVG_WRAP = function(inner) {
+    return '<svg width="28" height="28" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">' + inner + '</svg>';
+  };
+  if (typeof ITEMS_REGISTRY !== 'undefined') {
+    Object.keys(ITEMS_REGISTRY).forEach(function(k) {
+      var r = ITEMS_REGISTRY[k];
+      if (r.itemType !== 'battle') return;
+      out[k] = {
+        name:   r.name,
+        color:  r.color   || '#888',
+        rarity: (r.rarity || 'common').toUpperCase(),
+        desc:   r.desc    || r.ability || '',
+        svg:    SVG_WRAP(r.svgContent || ''),
+      };
+    });
+  }
+  return out;
+})();
 
 const state = {
   mode:"daily", difficulty:"easy", cfg:null,
@@ -169,7 +50,7 @@ const state = {
   totalMs:0, qStart:0, answered:false,
   timerInt:null, timeLeft:15, streak:0,
   exitTarget:"battle.html",
-  items:{ eraser:0, freeze:0, retry:0, xp:0, shield:0, gem:0, warp:0, focus:0 },
+  items: Object.keys(ITEMS).reduce(function(acc, k){ acc[k]=0; return acc; }, {}),
   xpMultiplier:1, retryPending:false,
   // skill passive state
   passives:{ aiTimeBonus:0, aiHints:0, cyberXP:1, cyberShield:false, cyberShieldUsed:false, cyberTimeoutRetry:false, cyberTimeoutRetryUsed:false, dataStreakMult:1, dataItemDouble:false, dataSRankBonus:0 },
@@ -256,11 +137,11 @@ function init() {
   // Mode badge
   const badge = $('hud-mode-badge');
   if (state.mode === 'daily') {
-    badge.textContent = '📅 DAILY MISSION';
+    badge.textContent = 'DAILY MISSION';
     badge.style.cssText += ';border-color:rgba(0,229,255,.3);color:#00e5ff;';
   } else {
     const rs = RAID_STYLE[state.difficulty];
-    badge.textContent = '⚔ RAID — ' + rs.label;
+    badge.textContent = 'RAID - ' + rs.label;
     badge.style.cssText += `;border-color:${rs.border}55;color:${rs.border};`;
     $('battle-card').style.borderColor = rs.border;
     $('battle-card').style.boxShadow = `0 0 40px ${rs.border}18,6px 6px 0 ${rs.shadow}`;
@@ -280,15 +161,6 @@ function init() {
     // Apply skill passives
     applySkillPassives(saved);
 
-    // Toast active passives
-    if (typeof BVNotify !== 'undefined') {
-      const lines = [];
-      if (state.passives.aiTimeBonus > 0) lines.push(`AI Lv${BVUser.getSkillLevel(saved.skills.ai)}: +${state.passives.aiTimeBonus}s/question`);
-      if (state.passives.cyberXP > 1) lines.push(`Cyber Lv${BVUser.getSkillLevel(saved.skills.cyber)}: +${Math.round((state.passives.cyberXP-1)*100)}% XP`);
-      if (state.passives.cyberShield) lines.push('Cyber: first wrong absorbed');
-      if (state.passives.dataStreakMult > 1) lines.push(`Data Lv${BVUser.getSkillLevel(saved.skills.data)}: streak ×${state.passives.dataStreakMult}`);
-      if (lines.length > 0) setTimeout(() => BVNotify.toast('Passives active: ' + lines[0], 'success', '✦'), 800);
-    }
   }
 
   buildDots();
@@ -334,8 +206,9 @@ function renderItemsBar() {
   Object.keys(ITEMS).forEach(k => {
     const def = ITEMS[k];
     const count = state.items[k] || 0;
+    if (count <= 0) return; // only show items the player actually owns
     const slot = document.createElement('div');
-    slot.className = 'item-slot' + (count <= 0 ? ' used' : '');
+    slot.className = 'item-slot';
     slot.id = `item-${k}`;
     slot.dataset.item = k;
     slot.title = def.name;
@@ -401,7 +274,10 @@ function useItem(k) {
     document.querySelectorAll('.bc-ans').forEach(b => {
       if (b.dataset.key !== q.correct && n < 2) {
         b.classList.add('eraser-eliminated');
+        b.disabled = true;
+        b.style.pointerEvents = 'none';
         spawnEraserDust(b);
+        setTimeout(() => { b.style.visibility = 'hidden'; }, 360);
         n++;
       }
     });
@@ -576,7 +452,7 @@ function loadQ() {
   ['A','B','C','D'].forEach(k => {
     const b = document.querySelector(`.bc-ans[data-key="${k}"]`);
     if (!b) return;
-    b.className='bc-ans'; b.disabled=false; b.style.opacity=''; b.style.pointerEvents='';
+    b.className='bc-ans'; b.disabled=false; b.style.opacity=''; b.style.pointerEvents=''; b.style.visibility='';
     $(`ans-${k}`).textContent = q.opts[k];
   });
   hideFB();
@@ -584,7 +460,6 @@ function loadQ() {
   // AI time bonus applied here
   state.timeLeft = (state.cfg.timePerQ || 15) + state.passives.aiTimeBonus;
   startTimer(true);
-  applyAIHint();
   // Card bounce-in
   const crd = $('battle-card');
   crd.style.animation='none';
@@ -602,13 +477,18 @@ function showSkillTag(skill) {
   const SKILL_COLORS = { ai:'#00e5ff', cyber:'#ff3bff', data:'#00ff88' };
   const SKILL_LABELS = { ai:'AI & ML', cyber:'CYBER', data:'DATA' };
   badge.style.color = SKILL_COLORS[skill] || '#fff';
-  badge.textContent = '◆ ' + (SKILL_LABELS[skill] || skill.toUpperCase());
+  badge.textContent = SKILL_LABELS[skill] || skill.toUpperCase();
   arena.appendChild(badge);
 }
 
 // ─── BIND ANSWERS ───
 function bindAnswers() {
-  document.querySelectorAll('.bc-ans').forEach(b => b.addEventListener('click', () => handleAnswer(b.dataset.key)));
+  document.querySelectorAll('.bc-ans').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.classList.contains('eraser-eliminated')) return;
+      handleAnswer(b.dataset.key);
+    });
+  });
 }
 
 // ─── TIMER ───
@@ -647,6 +527,8 @@ function clearTimer() { clearInterval(state.timerInt); state.timerInt=null; }
 // ─── HANDLE ANSWER ───
 function handleAnswer(chosen) {
   if (state.answered) return;
+  const chosenBtn = document.querySelector(`.bc-ans[data-key="${chosen}"]`);
+  if (chosenBtn && chosenBtn.classList.contains('eraser-eliminated')) return;
   state.answered = true;
   // Clear focus potion
   if (state.focusActive) {
@@ -752,32 +634,48 @@ function advance() {
 function showResult() {
   clearTimer();
   const avgMs = state.totalMs / Math.max(1, state.cfg.totalQ);
-  let xp = state.correct * XP.perCorrect;
-  if (avgMs < 5000) xp += XP.speedBonus;
-  if (state.mode==='daily') xp += XP.completion;
-  if (state.mode==='raid' && state.correct>=state.cfg.passMark) xp += XP.raidClear;
-  if (state.correct===state.cfg.totalQ) xp += XP.perfect;
+  const ratio  = state.correct / state.cfg.totalQ;
+  let xp = 0;
 
-  // Apply Cyber XP passive
-  xp = Math.round(xp * state.xpMultiplier * state.passives.cyberXP);
+  if (state.correct > 0) {
+    xp = state.correct * XP.perCorrect;
 
-  // Streak bonus for Data passive
-  if (state.streak >= 3) xp = Math.round(xp * state.passives.dataStreakMult);
+    // Speed bonus only if answered something correctly AND was fast
+    if (avgMs < 5000) xp += XP.speedBonus;
+
+    // Daily completion bonus only if passed at least half
+    if (state.mode === 'daily' && ratio >= 0.5) xp += XP.completion;
+
+    // Raid clear bonus (already gated by passMark)
+    if (state.mode === 'raid' && state.correct >= state.cfg.passMark) xp += XP.raidClear;
+
+    // Perfect bonus
+    if (state.correct === state.cfg.totalQ) xp += XP.perfect;
+
+    // Apply Cyber XP passive and item multiplier
+    xp = Math.round(xp * state.xpMultiplier * state.passives.cyberXP);
+
+    // Streak bonus for Data passive
+    if (state.streak >= 3) xp = Math.round(xp * state.passives.dataStreakMult);
+  }
 
   let title='COMPLETED!', titleClass='';
-  if (state.mode==='raid') {
+  if (state.mode==='daily') {
+    if (ratio >= 0.5) { title='DAILY CLEARED!'; titleClass='cleared'; }
+    else              { title='MISSION FAILED';  titleClass='lose'; }
+  } else if (state.mode==='raid') {
     const pass = state.correct>=state.cfg.passMark;
     title=pass?'RAID CLEARED!':'RAID FAILED'; titleClass=pass?'cleared':'lose';
   }
-  const ratio = state.correct/state.cfg.totalQ;
   const [rank,rankCls] = ratio===1?['★ S RANK','s']:ratio>=.85?['★ A RANK','a']:ratio>=.7?['★ B RANK','b']:ratio>=.5?['★ C RANK','c']:['★ D RANK','d'];
 
-  // S-Rank Data bonus
+  // S-Rank Data bonus (only if actually S rank)
   if (ratio===1 && state.passives.dataSRankBonus > 0) xp += state.passives.dataSRankBonus;
 
   // ── Save to localStorage ──
   const rankLetter = ratio===1?'S':ratio>=.85?'A':ratio>=.7?'B':ratio>=.5?'C':'D';
-  const won = state.mode==='daily' ? true : (state.correct >= state.cfg.passMark);
+  // Daily: "won" only if passed at least half; Raid: requires passMark
+  const won = state.mode==='daily' ? (ratio >= 0.5) : (state.correct >= state.cfg.passMark);
   if (typeof BVUser !== 'undefined') {
     BVUser.recordBattle({
       correct:     state.correct,
@@ -810,7 +708,7 @@ function lockToMode() {
   document.body.style.overflow='hidden';
   history.pushState(null,null,window.location.href);
   window.addEventListener('popstate',()=>{ showExitModal(); history.pushState(null,null,window.location.href); });
-  document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click',e=>{ e.preventDefault(); state.exitTarget=l.href; showExitModal(); }));
+  document.querySelectorAll('.nav-links a, .logo-left a').forEach(l => l.addEventListener('click',e=>{ e.preventDefault(); state.exitTarget=l.href; showExitModal(); }));
 }
 function showExitModal() { $('exit-modal').classList.remove('hidden'); }
 function hideExitModal() { $('exit-modal').classList.add('hidden'); }
@@ -897,12 +795,17 @@ _sty.textContent=`
 
 /* Skill tag badge */
 .skill-tag-badge {
-  position:absolute; top:12px; left:50%; transform:translateX(-50%);
-  font-family:'Press Start 2P',monospace; font-size:.26rem;
-  letter-spacing:.3px; padding:2px 8px;
-  background:rgba(0,0,0,.4); border:1px solid currentColor;
-  z-index:3; pointer-events:none;
-  animation:ans-enter .3s ease both;
+  position:absolute; top:14px; left:50%; transform:translateX(-50%);
+  font-family:'Press Start 2P',monospace; font-size:clamp(.5rem,1.2vw,.7rem);
+  letter-spacing:1.5px; padding:5px 16px;
+  background:rgba(0,0,0,.55); border:1px solid currentColor;
+  box-shadow:0 0 12px currentColor;
+  z-index:3; pointer-events:none; white-space:nowrap;
+  animation:skillTagPop .35s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes skillTagPop {
+  from { opacity:0; transform:translateX(-50%) scale(.7); }
+  to   { opacity:1; transform:translateX(-50%) scale(1); }
 }
 
 /* Battle item rarity label */

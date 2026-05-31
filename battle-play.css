@@ -770,20 +770,27 @@ body {
 .hud-score-wrap { display:flex; gap:14px; }
 .hud-score-item { display:flex; align-items:center; gap:5px; }
 .hud-score-val {
-  font-family:'Press Start 2P',monospace; font-size:.7rem;
+  font-family:'Press Start 2P',monospace; font-size:1.15rem;
+  text-shadow: 0 0 10px currentColor;
 }
 .correct-val { color:#00ff88; }
 .wrong-val   { color:#ff4d4d; }
-.hud-score-lbl { font-family:'Press Start 2P',monospace; font-size:.4rem; color:rgba(255,255,255,.3); }
+.hud-score-lbl { font-family:'Press Start 2P',monospace; font-size:.55rem; color:rgba(255,255,255,.4); }
 
 .hud-streak-badge {
-  font-family:'Press Start 2P',monospace; font-size:.32rem;
-  padding:3px 9px; border:1px solid rgba(255,149,0,.3);
-  background:rgba(255,149,0,.1); color:#ff9500; display:flex; align-items:center; gap:4px;
+  font-family:'Press Start 2P',monospace; font-size:.55rem;
+  padding:5px 12px; border:2px solid rgba(255,149,0,.4);
+  background:rgba(255,149,0,.12); color:#ff9500;
+  display:flex; align-items:center; gap:6px;
+  clip-path:polygon(0 3px,3px 0,calc(100% - 3px) 0,100% 3px,100% calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,0 calc(100% - 3px));
 }
-.hud-streak-badge.active { animation:streak-glow .5s ease-in-out infinite alternate; }
-@keyframes streak-glow { from{border-color:rgba(255,149,0,.3)} to{border-color:rgba(255,149,0,.8);box-shadow:0 0 10px rgba(255,149,0,.3)} }
-.streak-fire { font-size:14px; }
+.hud-streak-badge.active {
+  border-color:rgba(255,149,0,.8);
+  box-shadow:0 0 12px rgba(255,149,0,.4);
+  animation:streak-glow .5s ease-in-out infinite alternate;
+}
+@keyframes streak-glow { from{box-shadow:0 0 6px rgba(255,149,0,.3)} to{box-shadow:0 0 18px rgba(255,149,0,.7)} }
+.streak-fire { font-size:18px; }
 
 /* ─── TIMER BAR ─── */
 .battle-timer-bar {

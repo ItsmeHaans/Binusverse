@@ -24,6 +24,13 @@ body {
   display:flex; flex-direction:column;
 }
 
+/* keep chat UI above floating pixel-bg particles */
+.chat-breadcrumb, .chat-layout,
+.chat-sidebar, .chat-center, .chat-right {
+  position: relative;
+  z-index: 1;
+}
+
 /* ─────────── NAVBAR ─────────── */
 .navbar {
   position:relative; z-index:200;

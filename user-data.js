@@ -280,12 +280,22 @@
       u.dailyCompletedDate = new Date().toDateString();
     }
 
-    /* item reward on win — Data Lv4+ doubles chance */
+    /* item reward — scaled by accuracy, zero on poor performance */
     var earnedItem = null;
-    var dataLv = getSkillLevel(u.skills.data);
-    var itemChance = (won) ? (dataLv >= 4 ? 0.85 : 0.6) : 0.15;
-    if (Math.random() < itemChance) {
-      var itemPool = ALL_ITEMS;
+    var acc        = correct / Math.max(1, total);
+    var dataLv     = getSkillLevel(u.skills.data);
+    var dataBonus  = (dataLv >= 4) ? 0.15 : 0;   // Data Lv4+ adds 15% chance
+    var itemChance = 0;
+    if      (acc >= 1.0)  itemChance = 0.70 + dataBonus; // S: 70% (85% w/ Data)
+    else if (acc >= 0.85) itemChance = 0.45 + dataBonus; // A: 45%
+    else if (acc >= 0.70) itemChance = 0.25 + dataBonus; // B: 25%
+    else if (acc >= 0.50) itemChance = 0.10;              // C: 10%
+    else                  itemChance = 0;                 // D and below: 0%
+
+    // Only battle items are usable in battle; relics stay as collectibles
+    var battleItemKeys = ALL_ITEMS.slice(0, 8); // first 8 are battle items
+    if (itemChance > 0 && Math.random() < itemChance) {
+      var itemPool = acc >= 0.7 ? ALL_ITEMS : battleItemKeys;
       earnedItem = itemPool[Math.floor(Math.random() * itemPool.length)];
       u.items[earnedItem] = (u.items[earnedItem] || 0) + 1;
       /* track discovery */

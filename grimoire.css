@@ -335,13 +335,14 @@ body {
 .mini-rank:hover    { border-color: rgba(254,231,131,.35); }
 .mini-level:hover   { border-color: rgba(30,144,255,.35); }
 .mini-streak:hover  { border-color: rgba(255,149,0,.35); }
-.mini-winrate:hover { border-color: rgba(0,255,136,.35); }
+.mini-winrate         { border-color: rgba(255,77,109,.25); }
+.mini-winrate:hover   { border-color: rgba(255,77,109,.5); }
 
 /* subtle top accent line */
 .mini-rank::before    { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#fee783,rgba(254,231,131,0)); }
 .mini-level::before   { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#1e90ff,rgba(30,144,255,0)); }
 .mini-streak::before  { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#ff9500,rgba(255,149,0,0)); }
-.mini-winrate::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#00ff88,rgba(0,255,136,0)); }
+.mini-winrate::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#ff4d6d,rgba(255,77,109,0)); }
 
 /* pixel corner deco — kecil, subtle */
 .prf-mini-corner { position:absolute; width:8px; height:8px; pointer-events:none; z-index:4; }
@@ -352,7 +353,7 @@ body {
 .mini-rank    .prf-mini-corner { border-color:rgba(254,231,131,.4); }
 .mini-level   .prf-mini-corner { border-color:rgba(30,144,255,.4); }
 .mini-streak  .prf-mini-corner { border-color:rgba(255,149,0,.4); }
-.mini-winrate .prf-mini-corner { border-color:rgba(0,255,136,.4); }
+.mini-winrate .prf-mini-corner { border-color:rgba(255,77,109,.45); }
 
 /* rank img - stays idle (kucing boleh goyang) */
 .prf-mini-img {
@@ -677,6 +678,28 @@ body {
 /* =============================================
    CHARTS — shared by XP Track and Battle Performance
 ============================================= */
+.section-title {
+  margin-bottom: 20px;
+}
+
+/* Section header wrapper — stacks title + subtitle vertically */
+.grim-section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+  margin-top: 20px;
+}
+
+.pixel-title {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 32.5px;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .constellation-box {
   position: relative;
   overflow: hidden;
@@ -793,11 +816,11 @@ body {
 
 .summary-sub {
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.38);
-  margin-top: -20px;
-  margin-bottom: 16px;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0 0 15px;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
+  letter-spacing: 0.3px;
 }
 
 /* AI badge */
@@ -820,6 +843,28 @@ body {
     3px 100%, 0 calc(100% - 3px)
   );
 }
+
+/* AI Summary Panel */
+.ai-summary-panel {
+  width: 100%;
+  max-width: 800px;
+  margin: -16px auto 32px;
+  padding: 18px 24px;
+  background: rgba(30, 144, 255, 0.05);
+  border: 1px solid rgba(30, 144, 255, 0.18);
+  clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+}
+.ai-summary-text {
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 0.88rem;
+  color: rgba(200, 220, 255, 0.75);
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ai-line { display: block; }
+.ai-line strong { color: #00e5ff; }
 
 /* Overall mastery bar */
 .mastery-bar-wrap {
@@ -1032,7 +1077,7 @@ body {
   gap: 16px;
   width: 100%;
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0 auto 44px;
 }
 .sum-stat-box {
   padding: 14px 12px;
@@ -1741,3 +1786,19 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* ── COMING SOON POPUP ───────────────────────────── */
+.cs-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;}
+.cs-overlay.cs-visible{display:flex;animation:csFadeIn .15s ease-out;}
+@keyframes csFadeIn{from{opacity:0}to{opacity:1}}
+.cs-modal{position:relative;background:#0d0f2a;border:3px solid #fee783;padding:40px 48px;text-align:center;min-width:280px;max-width:380px;animation:csPopIn .2s cubic-bezier(.22,1,.36,1);}
+@keyframes csPopIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.cs-corner{position:absolute;width:8px;height:8px;background:#fee783;}
+.cs-corner.tl{top:-3px;left:-3px}.cs-corner.tr{top:-3px;right:-3px}.cs-corner.bl{bottom:-3px;left:-3px}.cs-corner.br{bottom:-3px;right:-3px}
+.cs-icon{font-size:2rem;margin-bottom:12px;animation:csSpin 3s linear infinite;display:inline-block;}
+@keyframes csSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.cs-title{font-family:'Press Start 2P',monospace;font-size:1rem;color:#fee783;margin-bottom:10px;text-shadow:2px 2px 0 #000;}
+.cs-name{font-family:'Press Start 2P',monospace;font-size:.55rem;color:#00e5ff;margin-bottom:14px;letter-spacing:.05em;}
+.cs-sub{font-family:'Pixelify Sans',sans-serif;font-size:.9rem;color:#a0a8c0;line-height:1.6;margin-bottom:24px;}
+.cs-close-btn{font-family:'Press Start 2P',monospace;font-size:.65rem;background:#fee783;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;transition:transform .1s steps(1),box-shadow .1s steps(1);box-shadow:4px 4px 0 #b8a020;}
+.cs-close-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #b8a020;}
+.cs-close-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #b8a020;}

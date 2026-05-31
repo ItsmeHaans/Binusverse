@@ -1336,6 +1336,9 @@ body {
 
 /* === CARD BASE === */
 .skill-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   width: 240px;
   background: #0d0f2a;
   border: 3px solid #fee783;
@@ -2052,3 +2055,103 @@ body {
 /* pulse class applied by JS */
 #bv-rank-plate.rp-pulse .rp-icon { animation: bvRankPulse var(--rp-speed, 2s) ease-in-out infinite; }
 #bv-rank-plate.rp-glow { box-shadow: 0 0 14px var(--rp-glow, transparent); }
+
+/* ── COMING SOON POPUP ───────────────────────────── */
+.cs-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.cs-overlay.cs-visible {
+  display: flex;
+  animation: csFadeIn 0.15s ease-out;
+}
+@keyframes csFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.cs-modal {
+  position: relative;
+  background: #0d0f2a;
+  border: 3px solid #fee783;
+  padding: 40px 48px;
+  text-align: center;
+  min-width: 280px;
+  max-width: 380px;
+  animation: csPopIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes csPopIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* pixel corners */
+.cs-corner {
+  position: absolute;
+  width: 8px; height: 8px;
+  background: #fee783;
+}
+.cs-corner.tl { top: -3px;  left: -3px; }
+.cs-corner.tr { top: -3px;  right: -3px; }
+.cs-corner.bl { bottom: -3px; left: -3px; }
+.cs-corner.br { bottom: -3px; right: -3px; }
+
+.cs-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  animation: csSpin 3s linear infinite;
+  display: inline-block;
+}
+@keyframes csSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.cs-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: #fee783;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.cs-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #00e5ff;
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+
+.cs-sub {
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 0.9rem;
+  color: #a0a8c0;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.cs-close-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  background: #fee783;
+  color: #0d0f2a;
+  border: none;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: transform 0.1s steps(1), box-shadow 0.1s steps(1);
+  box-shadow: 4px 4px 0 #b8a020;
+}
+.cs-close-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #b8a020;
+}
+.cs-close-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #b8a020;
+}

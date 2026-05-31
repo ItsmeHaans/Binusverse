@@ -177,3 +177,27 @@ html, body.splash-body {
 
 /* ── PIXEL BG LAYER z-index fix ──────────────────── */
 .bv-pixel-bg-layer { z-index: 2 !important; }
+
+/* ── GRASS WIND ANIMATION ────────────────────────── */
+@keyframes grassWind {
+  0%   { transform: skewX(0deg)   translateX(0px); }
+  20%  { transform: skewX(-4deg)  translateX(-3px); }
+  50%  { transform: skewX(3deg)   translateX(2px); }
+  75%  { transform: skewX(-2deg)  translateX(-1px); }
+  100% { transform: skewX(0deg)   translateX(0px); }
+}
+
+/* Each grass group swaying from its bottom-center */
+#grass-g0  { transform-origin: 116px  155px; animation: grassWind 3.8s ease-in-out 0.00s infinite; }
+#grass-g1  { transform-origin: 304px  155px; animation: grassWind 3.8s ease-in-out 0.09s infinite; }
+#grass-g2  { transform-origin: 470px  155px; animation: grassWind 3.8s ease-in-out 0.18s infinite; }
+#grass-g3  { transform-origin: 633px  155px; animation: grassWind 3.8s ease-in-out 0.27s infinite; }
+#grass-g4  { transform-origin: 835px  155px; animation: grassWind 3.8s ease-in-out 0.36s infinite; }
+#grass-g5  { transform-origin: 1001px 155px; animation: grassWind 3.8s ease-in-out 0.45s infinite; }
+#grass-g6  { transform-origin: 1206px 155px; animation: grassWind 3.8s ease-in-out 0.54s infinite; }
+#grass-g7  { transform-origin: 1408px 155px; animation: grassWind 3.8s ease-in-out 0.63s infinite; }
+#grass-g8  { transform-origin: 1574px 155px; animation: grassWind 3.8s ease-in-out 0.72s infinite; }
+#grass-g9  { transform-origin: 1709px 155px; animation: grassWind 3.8s ease-in-out 0.81s infinite; }
+#grass-g10 { transform-origin: 1875px 155px; animation: grassWind 3.8s ease-in-out 0.90s infinite; }
+#grass-g11 { transform-origin: 93px   163px; animation: grassWind 3.8s ease-in-out 0.99s infinite; }
+#grass-g12 { transform-origin: 94px   163px; animation: grassWind 3.8s ease-in-out 1.05s infinite; }

@@ -11,7 +11,7 @@
 
     /* ── ORIGINAL 8 ── */
     eraser: {
-      name: 'PHANTOM ERASER', rarity: 'legendary', itemType: 'battle',
+      name: 'PHANTOM ERASER', rarity: 'legendary', itemType: 'battle', color: '#ff9500', desc: 'Eliminates 2 wrong choices',
       type: '⚡ Battle Item · Instant',
       ability: 'Instantly wipes 2 wrong answer choices off the screen — only correct ones remain.',
       s1:'❌ Removes', v1:'2 wrong', s2:'🎯 Accuracy', v2:'+60%',
@@ -32,7 +32,7 @@
     },
 
     freeze: {
-      name: 'TIME FREEZE ORB', rarity: 'epic', itemType: 'battle',
+      name: 'TIME FREEZE ORB', rarity: 'epic', itemType: 'battle', color: '#c084fc', desc: '+10 seconds to timer',
       type: '⏱ Battle Item · Instant',
       ability: 'Freezes the question timer for 10 seconds — think calmly while time stands still.',
       s1:'⏸ Pause Timer', v1:'10 sec', s2:'🧊 Effect', v2:'Freeze',
@@ -53,7 +53,7 @@
     },
 
     retry: {
-      name: '2ND CHANCE SCROLL', rarity: 'rare', itemType: 'battle',
+      name: '2ND CHANCE SCROLL', rarity: 'rare', itemType: 'battle', color: '#00e5ff', desc: 'Retry wrong answer, no penalty',
       type: '🔄 Battle Item · Instant',
       ability: 'Got it wrong? Retry the same question once more with no score penalty.',
       s1:'🔁 Retries', v1:'+1', s2:'📉 Penalty', v2:'None',
@@ -74,7 +74,7 @@
     },
 
     xp: {
-      name: 'XP MAGNET', rarity: 'uncommon', itemType: 'battle',
+      name: 'XP MAGNET', rarity: 'uncommon', itemType: 'battle', color: '#fee783', desc: '×1.5 XP for this question',
       type: '⭐ Battle Item · Passive',
       ability: 'Boosts XP from every correct answer by 1.5× for this round.',
       s1:'⭐ XP Multiplier', v1:'×1.5', s2:'⏱ Duration', v2:'1 round',
@@ -93,7 +93,7 @@
     },
 
     shield: {
-      name: 'AEGIS SHIELD', rarity: 'rare', itemType: 'battle',
+      name: 'AEGIS SHIELD', rarity: 'rare', itemType: 'battle', color: '#00ff88', desc: 'Absorb 1 wrong answer — no penalty',
       type: '🛡 Battle Item · Passive',
       ability: 'Activates a protective shield. Your next wrong answer is absorbed — no score penalty.',
       s1:'🔰 Effect', v1:'Absorb 1 Wrong', s2:'📉 Penalty', v2:'None',
@@ -112,7 +112,7 @@
     },
 
     gem: {
-      name: 'SOUL GEM', rarity: 'epic', itemType: 'battle',
+      name: 'SOUL GEM', rarity: 'epic', itemType: 'battle', color: '#ff3bff', desc: 'Reveals correct answer for 2s',
       type: '💎 Battle Item · Instant',
       ability: 'The gem pulses with forbidden knowledge — reveals the correct answer for 2 full seconds.',
       s1:'👁 Reveals', v1:'Correct Ans', s2:'⏱ Duration', v2:'2 seconds',
@@ -131,7 +131,7 @@
     },
 
     warp: {
-      name: 'TIME WARP', rarity: 'legendary', itemType: 'battle',
+      name: 'TIME WARP', rarity: 'legendary', itemType: 'battle', color: '#fee783', desc: 'Skip question, marked correct',
       type: '⌖ Battle Item · Instant',
       ability: 'Rips a hole in time — skips the current question and marks it correct. XP reward is halved.',
       s1:'⏭ Skip', v1:'→ Correct', s2:'⭐ XP', v2:'50% only',
@@ -151,7 +151,7 @@
     },
 
     focus: {
-      name: 'FOCUS POTION', rarity: 'uncommon', itemType: 'battle',
+      name: 'FOCUS POTION', rarity: 'uncommon', itemType: 'battle', color: '#00e5ff', desc: 'Timer paused until you answer',
       type: '🧪 Battle Item · Passive',
       ability: 'Drink and enter a flow state. The battle timer freezes completely until you submit your answer.',
       s1:'⏸ Timer', v1:'Paused', s2:'🧠 Focus', v2:'Unlimited',

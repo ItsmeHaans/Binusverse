@@ -58,10 +58,10 @@
     /* mode label */
     var modeEl = $('mode-label');
     if (r.mode === 'daily') {
-      modeEl.textContent = '📅 DAILY MISSION';
+      modeEl.textContent = 'DAILY MISSION';
     } else {
       var diff = (r.difficulty || 'easy').toUpperCase();
-      modeEl.textContent = '⚔ RAID — ' + diff;
+      modeEl.textContent = 'RAID - ' + diff;
       var diffColors = { EASY:'#00ff88', NORMAL:'#ffd000', HARD:'#ff4d4d' };
       modeEl.style.color = diffColors[diff] || '#00e5ff';
       modeEl.style.borderColor = (diffColors[diff] || '#00e5ff') + '44';
@@ -83,8 +83,8 @@
 
     /* rank badge */
     var badgeEl = $('rank-badge');
-    var rankMap = { S:'★ S RANK', A:'★ A RANK', B:'★ B RANK', C:'★ C RANK', D:'★ D RANK' };
-    badgeEl.textContent = rankMap[rankLetter] || '★ D RANK';
+    var rankMap = { S:'S RANK', A:'A RANK', B:'B RANK', C:'C RANK', D:'D RANK' };
+    badgeEl.textContent = rankMap[rankLetter] || 'D RANK';
     badgeEl.className = 'rank-badge ' + rankLetter.toLowerCase();
 
     /* stats */

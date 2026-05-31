@@ -2,85 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="assets/images/SaturBum.png"/>
   <title>Global Channel — BINUSVERSE</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="forum-chat.css"/>
-  <style>
-    /* ─── CLEAN OVERRIDES ─── */
-
-    /* Sidebar lebih ramping */
-    .chat-sidebar { width: 210px; }
-
-    /* Guild header lebih compact */
-    .sidebar-guild { padding: 14px 14px 10px; }
-    .sg-name { font-size: .46rem; }
-    .sg-tag  { font-size: .22rem; margin-bottom: 8px; }
-    .sg-stats { gap: 12px; }
-    .sg-stat-v { font-size: .36rem; }
-    .sg-stat-l { font-size: .19rem; }
-
-    /* Channel items lebih bersih */
-    .ch-item { padding: 5px 8px; font-size: .78rem; gap: 5px; }
-    .ch-label { font-size: .2rem; padding: 6px 6px 2px; }
-    .ch-hash { font-size: .26rem; width: 12px; }
-
-    /* Online list */
-    .mem-nm  { font-size: .72rem; }
-    .mem-lv  { font-size: .19rem; }
-    .online-lbl { font-size: .19rem; padding: 2px 5px 4px; }
-    .mem-av  { width: 24px; height: 24px; font-size: .22rem; }
-
-    /* Right panel lebih clean */
-    .chat-right { width: 220px; }
-    .rp-ttl  { font-size: .26rem; margin-bottom: 7px; }
-    .feat    { padding: 7px 9px; margin-bottom: 5px; }
-    .feat-nm { font-size: .26rem; }
-    .feat-dsc{ font-size: .68rem; }
-
-    /* Event items */
-    .ev-body { font-size: .7rem; }
-    .ev-t    { font-size: .18rem; }
-
-    /* Friend requests */
-    .fr-nm { font-size: .74rem; }
-    .fr-mt { font-size: .18rem; }
-    .fr-b  { font-size: .18rem; padding: 2px 5px; }
-
-    /* Topbar lebih bersih */
-    .chat-topbar { height: 42px; padding: 0 16px; }
-    .ctb-name { font-size: .42rem; }
-    .ctb-desc { font-size: .74rem; }
-    .ctb-btn  { font-size: .2rem; padding: 3px 7px; }
-
-    /* Message font lebih bersih */
-    .msg-txt  { font-size: .85rem; padding: 5px 9px; }
-    .msg-nm   { font-size: .27rem; }
-    .msg-ts   { font-size: .2rem; }
-    .msg-lv2  { font-size: .18rem; padding: 1px 3px; }
-    .msg-av2  { width: 30px; height: 30px; font-size: .28rem; }
-
-    /* Special cards lebih compact */
-    .msg-card { padding: 8px 10px; max-width: 270px; }
-    .msg-card-ttl  { font-size: .26rem; margin-bottom: 4px; }
-    .msg-card-body { font-size: .76rem; margin-bottom: 6px; }
-    .mcb { font-size: .21rem; padding: 3px 8px; }
-
-    /* Quick action chips lebih sederhana */
-    .chat-quick { gap: 5px; margin-bottom: 7px; }
-    .cq-btn { font-size: .2rem; padding: 3px 9px; }
-
-    /* Input area */
-    .chat-textarea { font-size: .84rem; padding: 8px 12px; }
-    .chat-send     { font-size: .28rem; padding: 0 16px; height: 40px; }
-    .cex-btn       { width: 32px; height: 32px; font-size: 14px; }
-
-    /* Reactions */
-    .react { font-size: .22rem; padding: 2px 5px; }
-
-    /* Leaderboard tighter */
-    .ldb-row { font-size: .72rem; }
-  </style>
 </head>
 <body>
 
@@ -103,24 +29,27 @@
 <div class="chat-breadcrumb">
   <a href="the_commons.html" class="bc-link">The Commons</a>
   <span class="bc-sep">›</span>
-  <span class="bc-cur">🌐 Global Channel</span>
-  <div class="bc-online"><div class="bc-dot"></div><span>Global Channel</span></div>
+  <span class="bc-cur" style="color:#fee783;">🌐 #general</span>
+  <div class="bc-online">
+    <div class="bc-dot"></div>
+    <span>Global Channel</span>
+  </div>
 </div>
 
 <!-- 3-COL LAYOUT -->
 <div class="chat-layout">
 
-  <!-- ════ LEFT SIDEBAR ════ -->
+  <!-- ════════ LEFT SIDEBAR ════════ -->
   <div class="chat-sidebar">
     <div class="sidebar-guild">
-      <div class="sg-name">THE COMMONS</div>
+      <div class="sg-name" style="color:#fee783;">THE COMMONS</div>
       <div class="sg-tag" style="color:#fee783;">🌐 GLOBAL GUILD</div>
     </div>
 
     <div class="sidebar-channels">
-      <div class="ch-label">CHANNELS</div>
-      <div class="ch-item active">
-        <span class="ch-hash">#</span>general
+      <div class="ch-label">TEXT CHANNELS</div>
+      <div class="ch-item active" style="border-color:#fee783;">
+        <span class="ch-hash" style="color:#fee783;">#</span>general
       </div>
       <div class="ch-item">
         <span class="ch-hash">#</span>item-trading
@@ -128,41 +57,61 @@
       </div>
       <div class="ch-item">
         <span class="ch-hash">#</span>battle-lobby
+        <span class="ch-bdg">3</span>
       </div>
       <div class="ch-item">
         <span class="ch-hash">#</span>study-groups
         <span class="ch-bdg">2</span>
       </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>announcements
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">#</span>introductions
+      </div>
 
-      <div class="ch-label" style="margin-top:8px;">GUILD HALLS</div>
+      <div class="ch-label" style="margin-top:6px;">GUILD HALLS</div>
       <div class="ch-item">
         <span class="ch-hash" style="color:#00e5ff;">💻</span>cs-guild
       </div>
       <div class="ch-item">
         <span class="ch-hash" style="color:#ff9500;">⚙</span>engineering
       </div>
+      <div class="ch-item">
+        <span class="ch-hash" style="color:#00ff88;">📊</span>data-guild
+      </div>
+
+      <div class="ch-label" style="margin-top:6px;">VOICE / GROUP</div>
+      <div class="ch-item">
+        <span class="ch-hash">🔊</span>Open Lounge
+      </div>
+      <div class="ch-item">
+        <span class="ch-hash">🔊</span>Battle Prep
+        <span class="ch-bdg" style="background:#fee783;color:#1a1200;">2</span>
+      </div>
     </div>
 
     <div class="sidebar-online">
-      <div class="online-lbl">— ONLINE —</div>
+      <div class="online-lbl">— ONLINE NOW —</div>
       <div class="mem-row" id="sidebar-me-row">
-        <div class="mem-av" style="background:rgba(0,229,255,.15);color:#00e5ff;" id="sidebar-me-av">ME</div>
+        <div class="mem-av" style="background:rgba(254,231,131,.15);color:#fee783;" id="sidebar-me-av">ME</div>
         <div class="mem-nm" id="sidebar-me-nm">You</div>
         <div class="mem-lv" id="sidebar-me-lv">LV1</div>
       </div>
     </div>
   </div>
 
-  <!-- ════ CENTER CHAT ════ -->
+  <!-- ════════ CENTER CHAT ════════ -->
   <div class="chat-center">
     <div class="chat-topbar">
-      <span class="ctb-hash">#</span>
+      <span class="ctb-hash" style="color:#fee783;">#</span>
       <span class="ctb-name">general</span>
       <div class="ctb-div"></div>
-      <span class="ctb-desc">Global student lounge</span>
+      <span class="ctb-desc">Global student lounge — chat, trade items &amp; connect 🌐</span>
       <div class="ctb-btns">
-        <button class="ctb-btn">🔍 Search</button>
-        <button class="ctb-btn">📌 Pinned</button>
+        <button class="ctb-btn" style="border-color:rgba(254,231,131,.2);color:rgba(254,231,131,.5);">🔔 Notif</button>
+        <button class="ctb-btn" style="border-color:rgba(254,231,131,.2);color:rgba(254,231,131,.5);">🔍 Search</button>
+        <button class="ctb-btn" style="border-color:rgba(254,231,131,.2);color:rgba(254,231,131,.5);">📌 Pinned</button>
       </div>
     </div>
 
@@ -176,7 +125,6 @@
 
     <!-- INPUT AREA -->
     <div class="chat-input-area">
-      <!-- 3 quick actions aja yang paling relevan -->
       <div class="chat-quick">
         <button class="cq-btn" onclick="insertQuickAction('trade')">
           <span class="cq-ic">⚔</span> Trade Item
@@ -187,20 +135,34 @@
         <button class="cq-btn" onclick="insertQuickAction('study')">
           <span class="cq-ic">📚</span> Study Group
         </button>
+        <button class="cq-btn" onclick="insertQuickAction('skill')">
+          <span class="cq-ic">⚡</span> Group Grind
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('resource')">
+          <span class="cq-ic">📎</span> Share Resource
+        </button>
+        <button class="cq-btn" onclick="insertQuickAction('friend')">
+          <span class="cq-ic">✦</span> Add Friend
+        </button>
       </div>
       <div class="chat-input-row">
         <div class="chat-extras">
+          <button class="cex-btn" title="Attach file">📎</button>
           <button class="cex-btn" title="Emoji">😊</button>
         </div>
-        <textarea class="chat-textarea" id="chatInput"
+        <textarea
+          class="chat-textarea"
+          id="chatInput"
           placeholder="Type a message in #general..."
-          rows="1" onkeydown="handleKey(event)"></textarea>
+          rows="1"
+          onkeydown="handleKey(event)"
+          style="border-color:rgba(254,231,131,.18);"
+        ></textarea>
         <button class="chat-send" onclick="sendMessage()">▶ SEND</button>
       </div>
     </div>
 
   </div><!-- end chat-center -->
-
 
 </div><!-- end chat-layout -->
 
@@ -221,11 +183,11 @@ function sendMessage() {
   const row = document.createElement('div');
   row.className = 'msg me';
   row.innerHTML = `
-    <div class="msg-av2" style="background:rgba(0,229,255,.15);color:#00e5ff;">${escapeHtml(av)}</div>
+    <div class="msg-av2" style="background:rgba(254,231,131,.15);color:#fee783;">${escapeHtml(av)}</div>
     <div class="msg-body">
       <div class="msg-meta">
-        <span class="msg-nm" style="color:#00e5ff;">${escapeHtml(nm)}</span>
-        <span class="msg-lv2" style="border-color:rgba(0,229,255,.3);color:#00e5ff;">LV${lv}</span>
+        <span class="msg-nm" style="color:#fee783;">${escapeHtml(nm)}</span>
+        <span class="msg-lv2" style="border-color:rgba(254,231,131,.35);color:#fee783;">LV${lv}</span>
         <span class="msg-ts">${time}</span>
       </div>
       <div class="msg-txt">${escapeHtml(text)}</div>
@@ -246,9 +208,12 @@ function handleKey(e) {
 function insertQuickAction(type) {
   const ta = document.getElementById('chatInput');
   const t = {
-    trade:  '[Trade] Mau tukar [item A] ×[n] dengan [item B] ×[n]',
-    battle: '[Battle] Tantang 1v1! Topic: [topik] · Taruhan: [XP] XP',
-    study:  '[Study] Yuk join study [topik] jam [waktu]! Max [n] orang.',
+    trade:    '[Trade Request] Mau tukar [nama item] ×[n] dengan [nama item] ×[n]',
+    battle:   '[Battle Challenge] Gue tantang 1v1! Topic: [topik] · Taruhan: [XP] XP',
+    study:    '[Study Group] Join study [topik] jam [waktu]? Max [n] orang.',
+    skill:    '[Group Grind] Yuk grind [topik] bareng! Bonus XP +20% per member.',
+    resource: '[Resource Share] Nih resource bagus buat [topik]: [link/deskripsi]',
+    friend:   '[Friend Request] Halo! Boleh add friend? LV[n] · Global Guild.'
   };
   ta.value = t[type] || '';
   ta.focus();
@@ -265,6 +230,7 @@ document.addEventListener('click', e => {
 });
 </script>
 <script src="user-data.js"></script>
+<script src="daily-gate.js"></script>
 <script>
   if (typeof BVUser !== 'undefined') {
     var _u = BVUser.load();

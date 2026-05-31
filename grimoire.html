@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/SaturBum.png"/>
     <title>Grimoire - BINUSVERSE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="grimoire.css" />
   </head>
   <body>
@@ -31,7 +32,7 @@
       <img src="assets/images/JourneyBg.jpg" class="header-bg" alt="" />
       <div class="header-content">
         <h1>Mission Control</h1>
-        <p>Monitor your academic expedition.</p>
+        <p>Monitor your overall performance.</p>
       </div>
     </section>
 
@@ -64,7 +65,7 @@
     <!-- Left: info -->
     <div class="prf-info-col">
       <!-- Rank badge -->
-      <span class="prf-rank-badge" id="rank-badge"></span>
+      <span class="prf-rank-badge rank-badge" id="rank-badge"></span>
 
       <!-- Name with pixel underline -->
       <h2 class="prf-name" id="prf-name">Explorer</h2>
@@ -85,7 +86,7 @@
 
       <!-- Status tags -->
       <div class="prf-status-tags" id="prf-status-tags">
-        <div class="prf-status-tag tag-green">🟢 ONLINE</div>
+        <div class="prf-status-tag tag-green">ONLINE</div>
       </div>
     </div>
 
@@ -162,7 +163,7 @@
     <div class="prf-mini-card mini-winrate">
       <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
       <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
-      <canvas id="mcHeartCanvas" width="90" height="82" style="image-rendering:pixelated;"></canvas>
+      <canvas id="mcHeartCanvas" width="90" height="102" style="image-rendering:pixelated;"></canvas>
       <span class="mc-stat-label">Win Rate</span>
     </div>
 
@@ -220,8 +221,8 @@
       <div class="bst-split-l"></div>
     </div>
     <div class="bst-split-labels">
-      <span id="grim-win-pct" style="color:rgba(0,255,136,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">0%</span>
-      <span id="grim-loss-pct" style="color:rgba(255,77,77,.5);font-family:'Press Start 2P',monospace;font-size:.22rem;">0%</span>
+      <span id="grim-win-pct" style="color:rgba(0,255,136,.7);font-family:'Press Start 2P',monospace;font-size:.45rem;">0%</span>
+      <span id="grim-loss-pct" style="color:rgba(255,77,77,.7);font-family:'Press Start 2P',monospace;font-size:.45rem;">0%</span>
     </div>
   </div>
 
@@ -288,7 +289,7 @@
   <div class="nebula" style="width:320px;height:220px;top:-80px;left:-60px;background:rgba(254,231,131,0.08);"></div>
   <div class="nebula" style="width:160px;height:130px;bottom:-20px;right:30px;background:rgba(0,229,255,0.06);"></div>
   <div class="chart-label-px">XP gained per week</div>
-  <div class="const-badge" style="background:#fee783;color:#1a1200;">✦ ORION</div>
+  <div class="const-badge" style="background:#fee783;color:#1a1200;">ORION</div>
   <canvas id="cvs-xp"></canvas>
   <div class="week-labels-px">
     <span>WK1</span><span>WK2</span><span>WK3</span>
@@ -308,7 +309,7 @@
   <div class="nebula" style="width:280px;height:200px;top:-50px;right:-40px;background:rgba(255,59,255,0.08);"></div>
   <div class="nebula" style="width:180px;height:140px;bottom:-30px;left:50px;background:rgba(0,255,136,0.05);"></div>
   <div class="chart-label-px">Win rate per week (%)</div>
-  <div class="const-badge" style="background:#ff3bff;color:#1a001a;">✦ SCORPIUS</div>
+  <div class="const-badge" style="background:#ff3bff;color:#1a001a;">SCORPIUS</div>
   <canvas id="cvs-bp"></canvas>
   <div class="week-labels-px">
     <span>WK1</span><span>WK2</span><span>WK3</span>
@@ -323,12 +324,19 @@
 
 
 <!-- ── SUMMARY ── -->
-<h2 class="pixel-title">Summary</h2>
-<p class="summary-sub">Based on your battle results — analyzed by AI</p>
+<div class="grim-section-header">
+  <h3 class="pixel-title">Summary</h3>
+  <p class="summary-sub">Based on your battle results - analyzed by AI</p>
+</div>
 
 <!-- AI Badge -->
 <div class="ai-analysis-badge">
-  <div class="ai-badge-pill">✦ AI ANALYSIS COMPLETE · ACCURACY 94%</div>
+  <div class="ai-badge-pill">AI ANALYSIS COMPLETE · ACCURACY 94%</div>
+</div>
+
+<!-- AI Generated Summary Text -->
+<div class="ai-summary-panel" id="ai-summary-panel">
+  <div class="ai-summary-text" id="ai-summary-text">Analyzing your battle data...</div>
 </div>
 
 <!-- Overall Mastery Bar -->
@@ -437,8 +445,10 @@
 </div>
 
 <!-- ── SUGGESTED SKILL UPGRADES ── -->
-<h2 class="pixel-title">Suggested Skill Upgrades</h2>
-<p class="summary-sub">Recommended based on your weaknesses</p>
+<div class="grim-section-header">
+  <h3 class="pixel-title">Suggested Skill Upgrades</h3>
+  <p class="summary-sub">Recommended based on your weaknesses</p>
+</div>
 
 <div id="suggested-skills" class="gs-skill-grid">
 
@@ -449,7 +459,7 @@
     <div class="gs-corner bl"></div><div class="gs-corner br"></div>
 
     <div class="gs-pixel-area">
-      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-weakness-tag">WEAK ZONE</div>
       <div class="gs-diff diff-hard">HARD</div>
 
       <!-- Wizard DP pixel character -->
@@ -507,7 +517,7 @@
     <div class="gs-corner bl"></div><div class="gs-corner br"></div>
 
     <div class="gs-pixel-area">
-      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-weakness-tag">WEAK ZONE</div>
       <div class="gs-diff diff-hard">HARD</div>
 
       <!-- Explorer Graph pixel character -->
@@ -567,7 +577,7 @@
     <div class="gs-corner bl"></div><div class="gs-corner br"></div>
 
     <div class="gs-pixel-area">
-      <div class="gs-weakness-tag">✕ WEAK ZONE</div>
+      <div class="gs-weakness-tag">WEAK ZONE</div>
       <div class="gs-diff diff-med">MEDIUM</div>
 
       <!-- Robot Recursion pixel character -->
@@ -714,7 +724,7 @@
           <div class="footer-logo-txt">BINUSVERSE</div>
           <p class="footer-tagline">Train. Battle. Ascend.</p>
           <div class="footer-social-row">
-            <a class="footer-social-btn" href="#" title="Discord">
+            <a class="footer-social-btn" href="#" title="Discord" data-coming-soon="Discord">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <rect x="3" y="5" width="18" height="14" rx="3" fill="currentColor" opacity=".15"/>
                 <path d="M9 12C9 13.1 8.4 14 7.5 14S6 13.1 6 12 6.6 10 7.5 10 9 10.9 9 12ZM18 12C18 13.1 17.4 14 16.5 14S15 13.1 15 12 15.6 10 16.5 10 18 10.9 18 12Z" fill="currentColor"/>
@@ -722,14 +732,14 @@
                 <path d="M9 17C9 17 9.5 17.5 12 17.5S15 17 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </a>
-            <a class="footer-social-btn" href="#" title="Instagram">
+            <a class="footer-social-btn" href="#" title="Instagram" data-coming-soon="Instagram">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
                 <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/>
                 <circle cx="17" cy="7" r="1" fill="currentColor"/>
               </svg>
             </a>
-            <a class="footer-social-btn" href="#" title="Twitter/X">
+            <a class="footer-social-btn" href="#" title="Twitter/X" data-coming-soon="Twitter / X">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M4 4L10.5 12.5M4 4H7.5L20 20H16.5M4 4L20 20M20 20L13.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
@@ -752,9 +762,9 @@
           </div>
           <div class="footer-links-col">
             <div class="footer-links-title">INFO</div>
-            <a href="#" class="footer-link">About Binus</a>
-            <a href="#" class="footer-link">Help Center</a>
-            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="https://binus.ac.id/history/" class="footer-link">About Binus</a>
+            <a href="#" class="footer-link" data-coming-soon="Help Center">Help Center</a>
+            <a href="#" class="footer-link" data-coming-soon="Privacy Policy">Privacy Policy</a>
           </div>
         </div>
 
@@ -776,12 +786,6 @@
       </div>
       <div class="footer-bottom-bar">
         <span>© 2026 Binusverse · BINUS University · All rights reserved.</span>
-        <div class="footer-bottom-dots">
-          <span class="fbd fbd-on"></span>
-          <span class="fbd fbd-on"></span>
-          <span class="fbd"></span>
-          <span class="fbd fbd-on"></span>
-        </div>
       </div>
     </footer>
 
@@ -814,7 +818,7 @@
       const cvs = document.getElementById('mcHeartCanvas');
       if (!cvs) return;
       const ctx = cvs.getContext('2d');
-      const W = 90, H = 82, PX = 6;
+      const W = 90, H = 102, PX = 6;
       const WIN_RATE = winRate || 0;
       const HEART = [
         [0,0,1,1,0,0,0,1,1,0,0,0,0],
@@ -848,13 +852,20 @@
         ctx.fillRect(x, y, PX - 1, PX - 1);
       });
       ctx.shadowBlur = 0;
-      ctx.font = '500 10px "Press Start 2P", monospace';
-      ctx.fillStyle = '#ff4d6d';
+      // Win rate % — larger, brighter, with subtle glow
+      ctx.save();
+      ctx.shadowColor = '#ff4d6d';
+      ctx.shadowBlur  = 8;
+      ctx.font = 'bold 13px "Press Start 2P", monospace';
+      ctx.fillStyle = '#ff6b85';
       ctx.textAlign = 'center';
-      ctx.fillText(Math.round(WIN_RATE * 100) + '%', W / 2, offY + ROWS * PX + 14);
-      ctx.font = '500 6px "Press Start 2P", monospace';
-      ctx.fillStyle = 'rgba(255,77,109,.4)';
-      ctx.fillText((wins || 0) + 'W / ' + (losses || 0) + 'L', W / 2, offY + ROWS * PX + 24);
+      ctx.fillText(Math.round(WIN_RATE * 100) + '%', W / 2, offY + ROWS * PX + 16);
+      ctx.restore();
+      // W / L record — clearer color
+      ctx.font = '500 7px "Press Start 2P", monospace';
+      ctx.fillStyle = 'rgba(255,107,133,.65)';
+      ctx.textAlign = 'center';
+      ctx.fillText((wins || 0) + 'W / ' + (losses || 0) + 'L', W / 2, offY + ROWS * PX + 30);
     };
     window._drawGrimHeart(0, 0, 0); // placeholder until BVUser loads
 
@@ -863,6 +874,8 @@
 
     <script src="pixel-bg.js"></script>
     <script src="user-data.js"></script>
+    <script src="daily-gate.js"></script>
+    <script src="items-data.js"></script>
     <script src="assets/js/rank.js"></script>
     <script>
       // ── Populate grimoire from localStorage ──
@@ -880,7 +893,9 @@
     'Unranked':'#888','Bronze':'#cd7f32','Silver':'#a8a9ad',
     'Gold':'#ffd700','Platinum':'#e5e4e2','Diamond':'#b9f2ff','Legend':'#fee783'
   };
-  var BATTLE_ITEMS = ['eraser','freeze','retry','xp','shield','gem','warp','focus'];
+  var BATTLE_ITEMS = (typeof ITEMS_REGISTRY !== 'undefined')
+    ? Object.keys(ITEMS_REGISTRY).filter(function(k){ return ITEMS_REGISTRY[k].itemType === 'battle'; })
+    : ['eraser','freeze','retry','xp','shield','gem','warp','focus'];
 
   // Welcome header
   set('grim-welcome', 'Welcome back, ' + (u.name || 'Explorer'));
@@ -895,22 +910,19 @@
   // Status tags
   var tagsEl = document.getElementById('prf-status-tags');
   if (tagsEl) {
-    tagsEl.innerHTML = '<div class="prf-status-tag tag-green">🟢 ONLINE</div>';
-    if (u.streak > 0) tagsEl.innerHTML += '<div class="prf-status-tag tag-yellow">⚡ ' + u.streak + 'x STREAK</div>';
-    if (u.rank !== 'Unranked') {
-      var rc = RANK_COLORS[u.rank] || '#888';
-      tagsEl.innerHTML += '<div class="prf-status-tag tag-blue" style="border-color:' + rc + '44;color:' + rc + ';">✦ ' + u.rank.toUpperCase() + '</div>';
-    }
+    tagsEl.innerHTML = '<div class="prf-status-tag tag-green">ONLINE</div>';
+    if (u.streak > 0) tagsEl.innerHTML += '<div class="prf-status-tag tag-yellow">' + u.streak + 'x STREAK</div>';
   }
 
-  // Rank badge (use BVUser rank directly)
+  // Rank badge
   var badge = document.getElementById('rank-badge');
   if (badge) {
-    badge.textContent = u.rank;
+    badge.textContent = u.rank.toUpperCase();
     var rc2 = RANK_COLORS[u.rank] || '#888';
     badge.style.color = rc2;
     badge.style.borderColor = rc2 + '66';
-    badge.style.background = rc2 + '18';
+    badge.style.background = rc2 + '22';
+    badge.style.boxShadow = '0 0 8px ' + rc2 + '33';
   }
 
   // Rank icon svg
@@ -1005,6 +1017,47 @@
   if (wkRows) wkRows.innerHTML = bottom3.map(function(t, i) { return buildTopicRow(t.name, t.value, i * 0.15); }).join('');
   set('weakness-card-count', bottom3.filter(function(t){return t.value < 50;}).length + ' NEED WORK');
 
+  // AI Summary — static analysis based on BVUser data
+  (function generateAISummary() {
+    var panel = document.getElementById('ai-summary-text');
+    if (!panel) return;
+    var rank = u.rank || 'Unranked';
+    var wr   = u.winRate || 0;
+    var battles = u.totalBattles || 0;
+    var streak  = u.streak || 0;
+    var masteryVal = mastery;
+    var strongTopic = top3[0] ? top3[0].name : null;
+    var weakTopic   = bottom3[0] ? bottom3[0].name : null;
+
+    var lines = [];
+
+    if (battles === 0) {
+      lines.push("No battles recorded yet. Hit the Battle Arena to start building your combat history.");
+    } else {
+      // Opening
+      if (wr >= 70) lines.push("Outstanding performance, " + (u.name || 'Explorer') + ". Your " + wr + "% win rate puts you among the top challengers.");
+      else if (wr >= 50) lines.push("Solid track record, " + (u.name || 'Explorer') + ". With a " + wr + "% win rate across " + battles + " battles, you are holding your ground.");
+      else lines.push("You have fought hard across " + battles + " battles with a " + wr + "% win rate. There is clear room to grow.");
+
+      // Strength
+      if (strongTopic) lines.push("Your strongest domain is <strong>" + strongTopic + "</strong> — lean into this advantage in ranked battles.");
+
+      // Weakness
+      if (weakTopic && (bottom3[0].value < 50)) lines.push("Your biggest gap is <strong>" + weakTopic + "</strong> at " + bottom3[0].value + "% mastery. Prioritize this area for the fastest XP gains.");
+
+      // Streak
+      if (streak >= 5) lines.push("Current streak of " + streak + "× is exceptional — keep the momentum and chain XP multipliers.");
+      else if (streak > 0) lines.push(streak + "× active streak. Push it further for bonus XP multipliers.");
+
+      // Mastery
+      if (masteryVal >= 80) lines.push("Overall mastery is elite at " + masteryVal + "/100. You are approaching Legend-tier readiness.");
+      else if (masteryVal >= 50) lines.push("Overall mastery stands at " + masteryVal + "/100. Strengthen your weak zones to break into higher ranks.");
+      else lines.push("Overall mastery is " + masteryVal + "/100. Focus on consistent daily battles to accelerate your progression.");
+    }
+
+    panel.innerHTML = lines.map(function(l) { return '<span class="ai-line">' + l + '</span>'; }).join('');
+  })();
+
   // Suggested skills mastery bars
   var dp    = u.topics.dynamicProgramming || 0;
   var graph = u.topics.graphTheory        || 0;
@@ -1037,24 +1090,22 @@
   // Bottom: items row — show owned battle items
   var itemsRow = document.getElementById('btm-items-row');
   if (itemsRow) {
-    var ITEM_COLORS = {eraser:'#ff9500',freeze:'#c084fc',retry:'#00e5ff',xp:'#fee783',shield:'#00ff88',gem:'#ff3bff',warp:'#fee783',focus:'#00e5ff'};
-    var ITEM_SVGS = {
-      eraser:'<rect x="1" y="5" width="14" height="7" fill="#ff9500"/><rect x="1" y="5" width="14" height="3" fill="#ffb700"/><rect x="1" y="8" width="14" height="1" fill="#cc7700"/><rect x="1" y="9" width="14" height="3" fill="#f0d0a0"/>',
-      freeze:'<rect x="3" y="1" width="10" height="2" fill="#7c3aed"/><rect x="2" y="2" width="12" height="10" fill="#6d28d9"/><rect x="1" y="4" width="14" height="6" fill="#7c3aed"/><rect x="5" y="4" width="6" height="6" fill="#1a0a2e"/>',
-      retry:'<rect x="2" y="0" width="12" height="2" fill="#b87333"/><rect x="1" y="1" width="14" height="2" fill="#d4a96a"/><rect x="1" y="3" width="14" height="9" fill="#fdf3dc"/>',
-      xp:'<rect x="2" y="2" width="4" height="10" fill="#94a3b8"/><rect x="10" y="2" width="4" height="10" fill="#94a3b8"/><rect x="2" y="2" width="12" height="3" fill="#64748b"/><rect x="6" y="5" width="1" height="1" fill="#fee783"/><rect x="7" y="4" width="2" height="1" fill="#fee783"/>',
-      shield:'<rect x="3" y="0" width="10" height="2" fill="#00cc66"/><rect x="1" y="2" width="14" height="2" fill="#00ff88"/><rect x="0" y="4" width="16" height="6" fill="#00cc66"/><rect x="1" y="10" width="14" height="2" fill="#00cc66"/>',
-      gem:'<rect x="5" y="0" width="6" height="2" fill="#ff3bff"/><rect x="3" y="2" width="10" height="2" fill="#cc00cc"/><rect x="1" y="4" width="14" height="7" fill="#ff3bff"/><rect x="4" y="6" width="8" height="3" fill="#ffaaff"/>',
-      warp:'<rect x="7" y="0" width="2" height="2" fill="#fee783"/><rect x="5" y="1" width="6" height="2" fill="#fee783"/><rect x="3" y="3" width="10" height="2" fill="#fee783"/><rect x="0" y="7" width="16" height="2" fill="#fee783"/>',
-      focus:'<rect x="6" y="0" width="4" height="2" fill="#94a3b8"/><rect x="3" y="4" width="10" height="8" fill="#0d2233"/><rect x="5" y="6" width="6" height="4" fill="#00e5ff" opacity="0.5"/><rect x="6" y="7" width="4" height="2" fill="#fff" opacity="0.65"/>',
-    };
+    // Derive colors and SVGs from ITEMS_REGISTRY (single source of truth)
+    var ITEM_COLORS = {}, ITEM_SVGS = {};
+    if (typeof ITEMS_REGISTRY !== 'undefined') {
+      Object.keys(ITEMS_REGISTRY).forEach(function(k) {
+        ITEM_COLORS[k] = ITEMS_REGISTRY[k].color || '#888';
+        ITEM_SVGS[k]   = ITEMS_REGISTRY[k].svgContent || '';
+      });
+    }
     var ownedItems = BATTLE_ITEMS.filter(function(k){ return (u.items[k] || 0) > 0; });
     var html = '';
     for (var si = 0; si < 4; si++) {
       var k = ownedItems[si];
       if (k) {
         var c = ITEM_COLORS[k] || '#888';
-        var rarityClass = (k === 'eraser' || k === 'warp') ? 'r-legendary' : (k === 'freeze' || k === 'gem') ? 'r-epic' : (k === 'retry' || k === 'shield') ? 'r-rare' : 'r-uncommon';
+        var rar = (typeof ITEMS_REGISTRY !== 'undefined' && ITEMS_REGISTRY[k]) ? ITEMS_REGISTRY[k].rarity : 'uncommon';
+        var rarityClass = 'r-' + rar;
         html += '<div class="btm-item-slot ' + rarityClass + '">' +
           '<div class="btm-item-inner">' +
             '<svg width="38" height="38" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">' +
@@ -1071,10 +1122,9 @@
     itemsRow.innerHTML = html;
   }
 
-  // Items count
-  var totalItems = Object.keys(u.items).reduce(function(s, k){ return s + (u.items[k]||0); }, 0);
+  // Items count — show number of unique item types, not total qty
   var itemCountEl = document.querySelector('.btm-items-num');
-  if (itemCountEl) itemCountEl.textContent = totalItems + ' items';
+  if (itemCountEl) itemCountEl.textContent = ownedItems.length + ' / 8 items';
 
   // Win rate + weekly data for charts — draw heart immediately with real data
   window._BV_WIN_RATE    = u.winRate / 100;
@@ -1120,5 +1170,25 @@
       })();
     })();
     </script>
+  <!-- ── COMING SOON POPUP ─────────────────────────── -->
+  <div id="coming-soon-overlay" class="cs-overlay" aria-hidden="true">
+    <div class="cs-modal">
+      <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
+      <div class="cs-corner bl"></div><div class="cs-corner br"></div>
+      <div class="cs-icon">⚙</div>
+      <h2 class="cs-title">COMING SOON</h2>
+      <p class="cs-name" id="cs-feature-name"></p>
+      <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
+      <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var ov=document.getElementById('coming-soon-overlay'),fn=document.getElementById('cs-feature-name'),cb=document.getElementById('cs-close-btn');
+      document.querySelectorAll('[data-coming-soon]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();fn.textContent=el.dataset.comingSoon;ov.classList.add('cs-visible');ov.setAttribute('aria-hidden','false');});});
+      function close(){ov.classList.remove('cs-visible');ov.setAttribute('aria-hidden','true');}
+      cb.addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    })();
+  </script>
   </body>
 </html>

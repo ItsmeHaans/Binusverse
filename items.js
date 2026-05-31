@@ -131,14 +131,19 @@
         var u     = (typeof BVUser !== 'undefined') ? BVUser.load() : { items: {} };
         var stock = (u.items && u.items[key]) || 0;
 
+        var isBattle = def.itemType === 'battle';
+        var statsSection = isBattle
+          ? '<div class="tip-stat"><span class="tip-stat-name">' + def.s1 + '</span><span class="tip-stat-val" style="color:' + color + '">' + def.v1 + '</span></div>' +
+            '<div class="tip-stat"><span class="tip-stat-name">' + def.s2 + '</span><span class="tip-stat-val" style="color:' + color + '">' + def.v2 + '</span></div>'
+          : '<div class="tip-relic-notice">✦ COLLECTIBLE ONLY<br>Cannot be used in battle.</div>';
+
         tip.innerHTML =
           '<div class="tip-name">'  + def.name  + '</div>' +
           '<div class="tip-type">'  + def.type  + '</div>' +
           '<div class="tip-divider"></div>' +
-          '<div class="tip-stat"><span class="tip-stat-name">' + def.s1 + '</span><span class="tip-stat-val" style="color:' + color + '">' + def.v1 + '</span></div>' +
-          '<div class="tip-stat"><span class="tip-stat-name">' + def.s2 + '</span><span class="tip-stat-val" style="color:' + color + '">' + def.v2 + '</span></div>' +
+          statsSection +
           '<div class="tip-stat"><span class="tip-stat-name">📦 Stock</span><span class="tip-stat-val" style="color:' + color + '">×' + stock + '</span></div>' +
-          '<div class="tip-ability"><b>✦ ABILITY</b>' + def.ability + '</div>';
+          '<div class="tip-ability"><b>' + (isBattle ? '✦ ABILITY' : '✦ LORE') + '</b>' + def.ability + '</div>';
 
         tip.style.outline = '2px solid ' + color;
         tip.style.display = 'block';

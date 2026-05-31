@@ -2,13 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/SaturBum.png"/>
     <title>Battle - BINUSVERSE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="battle.css" />
     <script src="user-data.js"></script>
+    <script src="daily-gate.js"></script>
     <style>
-      .pvp-coming { display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+      .pvp-coming { display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:80px; }
       .pvp-lock-card {
         flex:1; min-width:200px;
         background:rgba(255,255,255,.03);
@@ -106,7 +108,7 @@
             <div class="footer-logo-txt">BINUSVERSE</div>
             <p class="footer-tagline">Train. Battle. Ascend.</p>
             <div class="footer-social-row">
-              <a class="footer-social-btn" href="#" title="Discord">
+              <a class="footer-social-btn" href="#" title="Discord" data-coming-soon="Discord">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
                   <rect x="3" y="5" width="18" height="14" rx="3" fill="currentColor" opacity=".15"/>
                   <path d="M9 12C9 13.1 8.4 14 7.5 14S6 13.1 6 12 6.6 10 7.5 10 9 10.9 9 12ZM18 12C18 13.1 17.4 14 16.5 14S15 13.1 15 12 15.6 10 16.5 10 18 10.9 18 12Z" fill="currentColor"/>
@@ -114,14 +116,14 @@
                   <path d="M9 17C9 17 9.5 17.5 12 17.5S15 17 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
               </a>
-              <a class="footer-social-btn" href="#" title="Instagram">
+              <a class="footer-social-btn" href="#" title="Instagram" data-coming-soon="Instagram">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
                   <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/>
                   <circle cx="17" cy="7" r="1" fill="currentColor"/>
                 </svg>
               </a>
-              <a class="footer-social-btn" href="#" title="Twitter/X">
+              <a class="footer-social-btn" href="#" title="Twitter/X" data-coming-soon="Twitter / X">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 4L10.5 12.5M4 4H7.5L20 20H16.5M4 4L20 20M20 20L13.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
@@ -145,9 +147,9 @@
             </div>
             <div class="footer-links-col">
               <div class="footer-links-title">INFO</div>
-              <a href="#" class="footer-link">About Binus</a>
-              <a href="#" class="footer-link">Help Center</a>
-              <a href="#" class="footer-link">Privacy Policy</a>
+              <a href="https://binus.ac.id/history/" class="footer-link">About Binus</a>
+              <a href="#" class="footer-link" data-coming-soon="Help Center">Help Center</a>
+              <a href="#" class="footer-link" data-coming-soon="Privacy Policy">Privacy Policy</a>
             </div>
           </div>
 
@@ -220,5 +222,25 @@
       draw();
     })();
     </script>
+  <!-- ── COMING SOON POPUP ─────────────────────────── -->
+  <div id="coming-soon-overlay" class="cs-overlay" aria-hidden="true">
+    <div class="cs-modal">
+      <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
+      <div class="cs-corner bl"></div><div class="cs-corner br"></div>
+      <div class="cs-icon">⚙</div>
+      <h2 class="cs-title">COMING SOON</h2>
+      <p class="cs-name" id="cs-feature-name"></p>
+      <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
+      <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var ov=document.getElementById('coming-soon-overlay'),fn=document.getElementById('cs-feature-name'),cb=document.getElementById('cs-close-btn');
+      document.querySelectorAll('[data-coming-soon]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();fn.textContent=el.dataset.comingSoon;ov.classList.add('cs-visible');ov.setAttribute('aria-hidden','false');});});
+      function close(){ov.classList.remove('cs-visible');ov.setAttribute('aria-hidden','true');}
+      cb.addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    })();
+  </script>
   </body>
 </html>

@@ -9,9 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
     var nameEl  = document.getElementById('player-name');
     var rankEl  = document.getElementById('player-rank');
     var levelEl = document.getElementById('player-level');
-    if (nameEl)  nameEl.textContent  = u.name  || 'Explorer';
-    if (rankEl)  { rankEl.textContent = u.rank || 'Unranked'; rankEl.style.color = RANK_COLORS[u.rank] || '#888'; }
-    if (levelEl) levelEl.textContent = u.level || 1;
+    if (nameEl) nameEl.textContent = u.name || 'Explorer';
+    if (rankEl) {
+      var rc = RANK_COLORS[u.rank] || '#888';
+      rankEl.textContent    = (u.rank || 'Unranked').toUpperCase();
+      rankEl.style.color       = rc;
+      rankEl.style.borderColor = rc;
+      rankEl.style.background  = rc + '22';
+      rankEl.style.boxShadow   = '0 0 10px ' + rc + '55';
+    }
+    if (levelEl) {
+      levelEl.innerHTML = '<span class="level-num">' + (u.level || 1) + '</span>';
+    }
 
     // ── Daily Quiz gate ──
     var today      = new Date().toDateString();
