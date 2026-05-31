@@ -6,13 +6,17 @@
   <title>Battle Result - BINUSVERSE</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="battle-result.css"/>
+  <link rel="stylesheet" href="mascot.css"/>
 </head>
 <body>
   <nav class="navbar">
     <div class="logo-left">
       <a href="index.html"><img src="assets/images/SaturBum.png" alt="Binusverse"/></a>
     </div>
-    <ul class="nav-links">
+    <div class="hamburger" id="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
       <li><a href="grimoire.html">Grimoire</a></li>
       <li><a href="battle.html">Battle</a></li>
       <li><a href="the_commons.html">The Commons</a></li>
@@ -160,7 +164,10 @@
       document.querySelectorAll('[data-coming-soon]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();fn.textContent=el.dataset.comingSoon;ov.classList.add('cs-visible');ov.setAttribute('aria-hidden','false');});});
       function close(){ov.classList.remove('cs-visible');ov.setAttribute('aria-hidden','true');}
       cb.addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+      // Hamburger
+      var hb=document.getElementById('hamburger'); if(hb) hb.addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('active');});
     })();
   </script>
+  <script src="mascot.js"></script>
 </body>
 </html>

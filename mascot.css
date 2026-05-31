@@ -1,0 +1,78 @@
+/* ═══════════════════════════════════════════
+   PIXEL MASCOT COMPANION — shared stylesheet
+═══════════════════════════════════════════ */
+.mascot-wrap {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.mascot-svg {
+  image-rendering: pixelated;
+  display: block;
+  animation: mascotBob 1.4s steps(4) infinite;
+  filter: drop-shadow(0 0 8px rgba(124,58,237,0.5)) drop-shadow(4px 6px 0 rgba(0,0,0,0.5));
+  transition: filter 0.15s;
+}
+.mascot-wrap:hover .mascot-svg {
+  filter: drop-shadow(0 0 16px rgba(192,132,252,0.8)) drop-shadow(4px 6px 0 rgba(0,0,0,0.5));
+  animation: mascotWave 0.6s steps(6) infinite;
+}
+
+@keyframes mascotBob {
+  0%,100% { transform: translateY(0); }
+  25%      { transform: translateY(-4px); }
+  50%      { transform: translateY(-6px); }
+  75%      { transform: translateY(-3px); }
+}
+@keyframes mascotWave {
+  0%,100% { transform: translateY(-2px) rotate(-3deg); }
+  50%      { transform: translateY(-8px) rotate(3deg); }
+}
+
+.mascot-spark { animation: mascotSparkle 1.2s steps(2) infinite; }
+.mascot-spark.s1 { animation-delay: 0s; }
+.mascot-spark.s2 { animation-delay: 0.3s; }
+.mascot-spark.s3 { animation-delay: 0.6s; }
+.mascot-spark.s4 { animation-delay: 0.9s; }
+@keyframes mascotSparkle {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.mascot-bubble {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.34rem;
+  line-height: 1.7;
+  color: #e0f7ff;
+  background: #0d0f20;
+  border: 2px solid #7c3aed;
+  padding: 8px 11px;
+  max-width: 180px;
+  text-align: center;
+  box-shadow: 3px 3px 0 #2d0060;
+  clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px));
+  animation: bubblePop 0.2s steps(3) forwards;
+  position: relative;
+}
+.mascot-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #7c3aed;
+}
+.mascot-bubble.hidden { display: none; }
+@keyframes bubblePop {
+  from { opacity: 0; transform: scale(0.8) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}

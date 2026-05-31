@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="grimoire.css" />
+    <link rel="stylesheet" href="mascot.css" />
   </head>
   <body>
     <!-- NAVBAR -->
@@ -159,11 +160,12 @@
       <span class="mc-stat-sub" style="color:rgba(255,149,0,.5);">+1.5× XP</span>
     </div>
 
-    <!-- WIN RATE — pixel heart 74% filled -->
+    <!-- WIN RATE — pixel heart filled -->
     <div class="prf-mini-card mini-winrate">
       <div class="prf-mini-corner tl"></div><div class="prf-mini-corner tr"></div>
       <div class="prf-mini-corner bl"></div><div class="prf-mini-corner br"></div>
-      <canvas id="mcHeartCanvas" width="90" height="102" style="image-rendering:pixelated;"></canvas>
+      <canvas id="mcHeartCanvas" width="90" height="88" style="image-rendering:pixelated;"></canvas>
+      <span class="mc-stat-val" id="grim-winrate-val" style="color:#ff4d6d;">0%</span>
       <span class="mc-stat-label">Win Rate</span>
     </div>
 
@@ -506,7 +508,7 @@
           <div class="gs-xp-fill" id="gs-dp-fill" style="width:0%"></div>
         </div>
       </div>
-      <button class="gs-btn">&#9654; START LEARNING</button>
+      <a class="gs-btn" href="https://www.geeksforgeeks.org/dynamic-programming/" target="_blank" rel="noopener noreferrer">START LEARNING</a>
     </div>
   </div>
 
@@ -566,7 +568,7 @@
           <div class="gs-xp-fill" id="gs-graph-fill" style="width:0%;animation-delay:.15s"></div>
         </div>
       </div>
-      <button class="gs-btn">&#9654; START LEARNING</button>
+      <a class="gs-btn" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/" target="_blank" rel="noopener noreferrer">START LEARNING</a>
     </div>
   </div>
 
@@ -624,7 +626,7 @@
           <div class="gs-xp-fill" id="gs-rec-fill" style="width:0%;animation-delay:.3s"></div>
         </div>
       </div>
-      <button class="gs-btn">&#9654; START LEARNING</button>
+      <a class="gs-btn" href="https://www.geeksforgeeks.org/introduction-to-backtracking-2/" target="_blank" rel="noopener noreferrer">START LEARNING</a>
     </div>
   </div>
 
@@ -818,7 +820,7 @@
       const cvs = document.getElementById('mcHeartCanvas');
       if (!cvs) return;
       const ctx = cvs.getContext('2d');
-      const W = 90, H = 102, PX = 6;
+      const W = 90, H = 88, PX = 6;
       const WIN_RATE = winRate || 0;
       const HEART = [
         [0,0,1,1,0,0,0,1,1,0,0,0,0],
@@ -840,7 +842,7 @@
         for (let c = 0; c < COLS; c++)
           if (HEART[r][c]) pixels.push([r, c]);
       const offX = Math.floor((W - COLS * PX) / 2);
-      const offY = Math.floor((H - ROWS * PX - 14) / 2);
+      const offY = Math.floor((H - ROWS * PX) / 2);
       ctx.clearRect(0, 0, W, H);
       const filled = new Set(pixels.slice(0, fillCount).map(([r,c]) => `${r},${c}`));
       pixels.forEach(([r, c]) => {
@@ -852,20 +854,9 @@
         ctx.fillRect(x, y, PX - 1, PX - 1);
       });
       ctx.shadowBlur = 0;
-      // Win rate % — larger, brighter, with subtle glow
-      ctx.save();
-      ctx.shadowColor = '#ff4d6d';
-      ctx.shadowBlur  = 8;
-      ctx.font = 'bold 13px "Press Start 2P", monospace';
-      ctx.fillStyle = '#ff6b85';
-      ctx.textAlign = 'center';
-      ctx.fillText(Math.round(WIN_RATE * 100) + '%', W / 2, offY + ROWS * PX + 16);
-      ctx.restore();
-      // W / L record — clearer color
-      ctx.font = '500 7px "Press Start 2P", monospace';
-      ctx.fillStyle = 'rgba(255,107,133,.65)';
-      ctx.textAlign = 'center';
-      ctx.fillText((wins || 0) + 'W / ' + (losses || 0) + 'L', W / 2, offY + ROWS * PX + 30);
+      // Update plain text span instead of drawing on canvas
+      var valEl = document.getElementById('grim-winrate-val');
+      if (valEl) valEl.textContent = Math.round(WIN_RATE * 100) + '%';
     };
     window._drawGrimHeart(0, 0, 0); // placeholder until BVUser loads
 
@@ -1190,5 +1181,6 @@
       cb.addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
     })();
   </script>
+  <script src="mascot.js"></script>
   </body>
 </html>

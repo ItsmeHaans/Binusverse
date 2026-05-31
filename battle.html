@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="battle.css" />
+    <link rel="stylesheet" href="mascot.css" />
     <script src="user-data.js"></script>
     <script src="daily-gate.js"></script>
     <style>
@@ -33,7 +34,10 @@
       <div class="logo-left">
         <a href="index.html"><img src="assets/images/SaturBum.png" /></a>
       </div>
-      <ul class="nav-links">
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
         <li><a href="grimoire.html">Grimoire</a></li>
         <li><a href="battle.html" class="active">Battle</a></li>
         <li><a href="the_commons.html">The Commons</a></li>
@@ -174,12 +178,6 @@
         <!-- bottom copyright bar -->
         <div class="footer-bottom-bar">
           <span>© 2026 Binusverse · BINUS University · All rights reserved.</span>
-          <div class="footer-bottom-dots">
-            <span class="fbd fbd-on"></span>
-            <span class="fbd fbd-on"></span>
-            <span class="fbd"></span>
-            <span class="fbd fbd-on"></span>
-          </div>
         </div>
 
       </footer>
@@ -221,6 +219,10 @@
       }
       draw();
     })();
+    // Hamburger
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
     </script>
   <!-- ── COMING SOON POPUP ─────────────────────────── -->
   <div id="coming-soon-overlay" class="cs-overlay" aria-hidden="true">
@@ -242,5 +244,6 @@
       cb.addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
     })();
   </script>
+  <script src="mascot.js"></script>
   </body>
 </html>

@@ -557,6 +557,7 @@ body {
 
 /* hover border */
 .bst-battles:hover { border-color:rgba(254,231,131,.3); }
+.bst-record { justify-content: center; }
 .bst-record:hover  { border-color:rgba(0,255,136,.25); }
 .bst-strong:hover  { border-color:rgba(0,255,136,.3); }
 .bst-weak:hover    { border-color:rgba(255,77,77,.3); }
@@ -1294,8 +1295,9 @@ body {
   letter-spacing: 0.3px;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
   transition: background 0.1s;
+  text-decoration: none; text-align: center;
 }
-.gs-btn:hover { background: #0d0f2a; }
+.gs-btn:hover { background: #0d0f2a; color: #fee783; }
  
 /* Responsive */
 @media (max-width: 768px) {

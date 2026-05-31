@@ -32,6 +32,19 @@ body {
   transition: background .2s;
 }
 .nav-links a:hover { background:rgba(255,255,255,.1); }
+.nav-links a.active { background:rgba(255,255,255,.12); border-bottom:3px solid #fee783; }
+.hamburger { display:none; cursor:pointer; flex-direction:column; gap:5px; z-index:201; }
+.bar { width:25px; height:3px; background:#fff; transition:all .3s ease-in-out; }
+@media(max-width:768px) {
+  .hamburger { display:flex; }
+  .nav-links {
+    position:absolute; top:100%; left:-100%; width:100%;
+    background:rgba(15,11,37,.97); flex-direction:column;
+    gap:1.5rem; padding:2rem 0; transition:left .3s ease;
+    border-bottom:3px solid #1e90ff;
+  }
+  .nav-links.active { left:0; }
+}
 
 /* ── MAIN ── */
 .result-page {

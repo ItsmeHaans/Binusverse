@@ -880,7 +880,7 @@ body {
   background:rgba(10,25,70,.8);
   border:2px solid rgba(0,195,255,.35);
   cursor:pointer; transition:all .15s ease;
-  font-family:'Inter',sans-serif;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
   box-shadow:0 3px 0 rgba(0,195,255,.2);
   animation:ans-enter .25s ease both;
 }
@@ -909,6 +909,7 @@ body {
 }
 .bc-ans-txt {
   font-size:.88rem; color:rgba(255,255,255,.88); line-height:1.4;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
 }
 
 /* answer states */
