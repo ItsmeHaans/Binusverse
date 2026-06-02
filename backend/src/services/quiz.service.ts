@@ -3,7 +3,6 @@ import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
 import { XP_REWARDS, xpToLevel } from '../utils/xp';
 import { calcNewStreak } from '../utils/streak';
-import { eloToDivision } from '../utils/rank';
 import { Difficulty } from '@prisma/client';
 
 const DAILY_Q_COUNT = 10;
@@ -79,13 +78,11 @@ export const quizService = {
     const newStreak = calcNewStreak(user.streak, user.lastActiveAt);
     const newXp = user.xp + xpGained;
     const newLevel = xpToLevel(newXp);
-    const newElo = user.eloPoints;
 
     await userRepository.update(userId, {
       xp: newXp,
       level: newLevel,
       streak: newStreak,
-      division: eloToDivision(newElo),
       lastActiveAt: new Date(),
     });
 

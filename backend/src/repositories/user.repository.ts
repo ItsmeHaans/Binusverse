@@ -26,42 +26,9 @@ export const userRepository = {
           { email: { contains: query, mode: 'insensitive' } },
         ],
       },
-      select: { id: true, name: true, email: true, avatar: true, level: true, division: true },
+      select: { id: true, name: true, email: true, avatar: true, level: true },
       take: 20,
     });
-  },
-
-  getClasses(userId: string, semester?: string) {
-    return prisma.class.findMany({
-      where: { userId, ...(semester && { semester }) },
-    });
-  },
-
-  addClass(data: Prisma.ClassCreateInput) {
-    return prisma.class.create({ data });
-  },
-
-  getGpaHistory(userId: string) {
-    return prisma.gpaHistory.findMany({ where: { userId }, orderBy: { semester: 'asc' } });
-  },
-
-  addGpaHistory(data: Prisma.GpaHistoryCreateInput) {
-    return prisma.gpaHistory.create({ data });
-  },
-
-  getMissions(userId: string, status?: string) {
-    return prisma.mission.findMany({
-      where: { userId, ...(status && { status: status as 'ONGOING' | 'DONE' }) },
-      orderBy: { createdAt: 'desc' },
-    });
-  },
-
-  createMission(data: Prisma.MissionCreateInput) {
-    return prisma.mission.create({ data });
-  },
-
-  updateMission(id: string, userId: string, data: Prisma.MissionUpdateInput) {
-    return prisma.mission.updateMany({ where: { id, userId }, data });
   },
 
   saveRefreshToken(token: string, userId: string, expiresAt: Date) {

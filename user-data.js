@@ -328,7 +328,29 @@
     };
 
     save(u);
+    persist();              // push authoritative state to backend (no-op if offline)
     return u;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     Server sync — localStorage is a cache; backend is the
+     source of truth across devices/sessions. Needs api.js (BV).
+  ───────────────────────────────────────────────────── */
+  function syncFromServer() {
+    if (!global.BV || !BV.isLoggedIn()) return Promise.resolve(load());
+    return BV.api.getState().then(function (state) {
+      if (state && typeof state === 'object' && Object.keys(state).length) {
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+      }
+      var u = load();
+      try { window.dispatchEvent(new Event('bv:userready')); } catch (e) {}
+      return u;
+    }).catch(function () { return load(); });
+  }
+
+  function persist() {
+    if (!global.BV || !BV.isLoggedIn()) return Promise.resolve();
+    return BV.api.putState(load()).catch(function () {});
   }
 
   /* ── Export ── */
@@ -337,6 +359,8 @@
     save:             save,
     reset:            reset,
     recordBattle:     recordBattle,
+    syncFromServer:   syncFromServer,
+    persist:          persist,
     computeRank:      computeRank,
     getSkillLevel:    getSkillLevel,
     getSkillPassive:  getSkillPassive,
@@ -345,5 +369,10 @@
     getOverallMastery:getOverallMastery,
     ALL_ITEMS:        ALL_ITEMS,
   };
+
+  /* Auto-hydrate from backend once per page load when authenticated. */
+  if (global.BV && BV.isLoggedIn()) {
+    syncFromServer();
+  }
 
 })(window);

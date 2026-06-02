@@ -212,4 +212,7 @@
     initHamburger();
   });
 
+  // Re-render once backend state has hydrated the local cache.
+  window.addEventListener('bv:userready', renderGrid);
+
 })();

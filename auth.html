@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BINUSVERSE — Enter the Realm</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <canvas id="auth-bg"></canvas>
+
+  <div class="auth-shell">
+    <div class="auth-card">
+      <div class="auth-logo">BINUSVERSE</div>
+      <div class="auth-sub" id="auth-sub">⟢ SIGN IN TO CONTINUE ⟣</div>
+
+      <!-- tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">LOGIN</button>
+        <button class="auth-tab" data-tab="register">REGISTER</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="login-form" class="auth-form">
+        <label class="auth-field">
+          <span>EMAIL</span>
+          <input type="email" id="login-email" placeholder="you@binus.ac.id" autocomplete="email" required />
+        </label>
+        <label class="auth-field">
+          <span>PASSWORD</span>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="auth-btn" id="login-btn">▶ ENTER</button>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="register-form" class="auth-form hidden">
+        <label class="auth-field">
+          <span>EXPLORER NAME</span>
+          <input type="text" id="reg-name" placeholder="Your name" autocomplete="name" required />
+        </label>
+        <label class="auth-field">
+          <span>BINUS EMAIL</span>
+          <input type="email" id="reg-email" placeholder="you@binus.ac.id" autocomplete="email" required />
+        </label>
+        <label class="auth-field">
+          <span>PASSWORD <small>(min 8)</small></span>
+          <input type="password" id="reg-password" placeholder="••••••••" autocomplete="new-password" required />
+        </label>
+        <div class="auth-row">
+          <label class="auth-field">
+            <span>FACULTY <small>(opt)</small></span>
+            <input type="text" id="reg-faculty" placeholder="SoCS" />
+          </label>
+          <label class="auth-field">
+            <span>BATCH <small>(opt)</small></span>
+            <input type="text" id="reg-batch" placeholder="2024" />
+          </label>
+        </div>
+        <button type="submit" class="auth-btn" id="register-btn">✦ CREATE HERO</button>
+      </form>
+
+      <div class="auth-msg hidden" id="auth-msg"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

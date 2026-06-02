@@ -242,6 +242,9 @@ function initMascot() {
   }, 4000);
 }
 
+// Re-render profile once backend state has hydrated the local cache.
+window.addEventListener('bv:userready', populateProfile);
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Load profile data first

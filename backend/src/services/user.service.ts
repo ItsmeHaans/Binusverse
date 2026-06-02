@@ -1,7 +1,7 @@
 import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
 import { xpToLevel } from '../utils/xp';
-import { eloToDivision } from '../utils/rank';
+import { xpToRank } from '../utils/rank';
 
 export const userService = {
   async getProfile(userId: string) {
@@ -19,8 +19,7 @@ export const userService = {
       level: xpToLevel(user.xp),
       xp: user.xp,
       streak: user.streak,
-      eloPoints: user.eloPoints,
-      division: eloToDivision(user.eloPoints),
+      rank: xpToRank(user.xp),
       role: user.role,
       createdAt: user.createdAt,
     };
@@ -34,61 +33,25 @@ export const userService = {
     return userRepository.update(userId, { bio });
   },
 
-  async getAcademic(userId: string) {
+  // Full frontend progression blob (BVUser shape). Stored verbatim in user.gameState.
+  async getState(userId: string) {
     const user = await userRepository.findById(userId);
     if (!user) throw new AppError('User not found', 404);
-    return { gpa: user.gpa, attendance: user.attendance };
+    return user.gameState ?? {};
   },
 
-  async updateAcademic(userId: string, data: { gpa?: number; attendance?: number }) {
-    return userRepository.update(userId, data);
-  },
+  async saveState(userId: string, state: Record<string, unknown>) {
+    // Mirror the headline numbers onto first-class columns so other features
+    // (auth/battle/leaderboards) stay consistent with the FE-authoritative blob.
+    const totalXP = typeof state['totalXP'] === 'number' ? (state['totalXP'] as number) : undefined;
+    const streak = typeof state['streak'] === 'number' ? (state['streak'] as number) : undefined;
 
-  getGpaHistory(userId: string) {
-    return userRepository.getGpaHistory(userId);
-  },
-
-  async addGpaHistory(
-    userId: string,
-    data: { semester: string; ipValue: number; classesPassed: number; totalClasses: number },
-  ) {
-    return userRepository.addGpaHistory({ user: { connect: { id: userId } }, ...data });
-  },
-
-  getClasses(userId: string, semester?: string) {
-    return userRepository.getClasses(userId, semester);
-  },
-
-  addClass(userId: string, data: { name: string; code: string; semester: string; passed?: boolean }) {
-    return userRepository.addClass({ user: { connect: { id: userId } }, ...data });
-  },
-
-  getMissions(userId: string, status?: string) {
-    return userRepository.getMissions(userId, status);
-  },
-
-  createMission(
-    userId: string,
-    data: { title: string; description?: string; dueDate?: string; imageUrl?: string },
-  ) {
-    return userRepository.createMission({
-      user: { connect: { id: userId } },
-      title: data.title,
-      description: data.description,
-      dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
-      imageUrl: data.imageUrl,
+    await userRepository.update(userId, {
+      gameState: state as any,
+      ...(totalXP !== undefined && { xp: totalXP, level: xpToLevel(totalXP) }),
+      ...(streak !== undefined && { streak }),
     });
-  },
-
-  updateMission(
-    id: string,
-    userId: string,
-    data: { title?: string; description?: string; status?: 'ONGOING' | 'DONE'; dueDate?: string },
-  ) {
-    return userRepository.updateMission(id, userId, {
-      ...data,
-      dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
-    });
+    return state;
   },
 
   searchUsers(query: string) {

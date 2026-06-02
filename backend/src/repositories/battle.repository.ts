@@ -18,7 +18,6 @@ export const battleRepository = {
     wrong: number;
     timeElapsed: number;
     xpGained: number;
-    eloChange?: number;
     opponentId?: string;
   }) {
     return prisma.battleResult.create({ data });

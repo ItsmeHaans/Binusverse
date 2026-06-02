@@ -2,7 +2,6 @@ import { battleRepository } from '../repositories/battle.repository';
 import { userRepository } from '../repositories/user.repository';
 import { AppError } from '../utils/AppError';
 import { XP_REWARDS, xpToLevel } from '../utils/xp';
-import { ELO, eloToDivision } from '../utils/rank';
 import { BattleMode, Difficulty } from '@prisma/client';
 
 const RAID_CONFIG = {
@@ -196,26 +195,17 @@ export const battleService = {
     const cWon = winnerId === session.challengerId;
     const oWon = winnerId === session.opponentId;
 
-    const cEloChange = cWon ? ELO.win : ELO.loss;
-    const oEloChange = oWon ? ELO.win : ELO.loss;
     const cXp = cWon ? XP_REWARDS.pvpWin : XP_REWARDS.pvpLoss;
     const oXp = oWon ? XP_REWARDS.pvpWin : XP_REWARDS.pvpLoss;
-
-    const cNewElo = Math.max(0, challenger.eloPoints + cEloChange);
-    const oNewElo = Math.max(0, opponent.eloPoints + oEloChange);
 
     await Promise.all([
       userRepository.update(session.challengerId, {
         xp: challenger.xp + cXp,
         level: xpToLevel(challenger.xp + cXp),
-        eloPoints: cNewElo,
-        division: eloToDivision(cNewElo),
       }),
       userRepository.update(session.opponentId, {
         xp: opponent.xp + oXp,
         level: xpToLevel(opponent.xp + oXp),
-        eloPoints: oNewElo,
-        division: eloToDivision(oNewElo),
       }),
       battleRepository.createBattleResult({
         userId: session.challengerId,
@@ -224,7 +214,6 @@ export const battleService = {
         wrong: challengerAnswers.filter((a) => !a.correct).length,
         timeElapsed: cTime,
         xpGained: cXp,
-        eloChange: cEloChange,
         opponentId: session.opponentId,
       }),
       battleRepository.createBattleResult({
@@ -234,7 +223,6 @@ export const battleService = {
         wrong: opponentAnswers.filter((a) => !a.correct).length,
         timeElapsed: oTime,
         xpGained: oXp,
-        eloChange: oEloChange,
         opponentId: session.challengerId,
       }),
     ]);

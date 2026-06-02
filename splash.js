@@ -11,17 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 100);
 
   startBtn.addEventListener('click', function () {
-    if (typeof BVUser === 'undefined') {
-      goToIndex();
-      return;
-    }
-    var u = BVUser.load();
-    if (u.name && u.name !== 'Explorer') {
+    // Logged in → straight into the realm. Otherwise go authenticate.
+    if (window.BV && BV.isLoggedIn()) {
       goToIndex();
     } else {
-      startBtn.style.display = 'none';
-      nameForm.style.display = 'block';
-      setTimeout(function () { if (nameInput) nameInput.focus(); }, 100);
+      sessionStorage.setItem('bv_entering', '1');
+      window.location.href = 'auth.html';
     }
   });
 

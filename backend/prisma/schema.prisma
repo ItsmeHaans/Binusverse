@@ -38,11 +38,6 @@ enum ItemRarity {
   LEGENDARY
 }
 
-enum MissionStatus {
-  ONGOING
-  DONE
-}
-
 model User {
   id           String    @id @default(uuid())
   name         String
@@ -58,11 +53,10 @@ model User {
   level        Int       @default(1)
   streak       Int       @default(0)
   lastActiveAt DateTime?
-  eloPoints    Int       @default(1000)
-  division     String    @default("Bronze")
 
-  gpa        Float?
-  attendance Float?
+  // Full frontend progression blob (mirrors BVUser shape in user-data.js):
+  // skills, topics, 28-item inventory, weekly stats, win record, lastResult, etc.
+  gameState Json @default("{}")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -77,11 +71,7 @@ model User {
   forumComments   ForumComment[]
   postLikes       ForumPostLike[]
   commentLikes    ForumCommentLike[]
-  classes         Class[]
-  gpaHistory      GpaHistory[]
-  missions        Mission[]
   userItems       UserItem[]
-  authoredNews    News[]
 }
 
 model RefreshToken {
@@ -154,7 +144,6 @@ model BattleResult {
   wrong       Int
   timeElapsed Float
   xpGained    Int
-  eloChange   Int         @default(0)
   opponentId  String?
   createdAt   DateTime    @default(now())
 
@@ -265,55 +254,3 @@ model ForumCommentLike {
   @@id([commentId, userId])
 }
 
-model Class {
-  id       String  @id @default(uuid())
-  userId   String
-  name     String
-  code     String
-  semester String
-  passed   Boolean @default(false)
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model GpaHistory {
-  id            String @id @default(uuid())
-  userId        String
-  semester      String
-  ipValue       Float
-  classesPassed Int
-  totalClasses  Int
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model Mission {
-  id          String        @id @default(uuid())
-  userId      String
-  title       String
-  description String?
-  dueDate     DateTime?
-  status      MissionStatus @default(ONGOING)
-  imageUrl    String?
-  createdAt   DateTime      @default(now())
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model News {
-  id        String   @id @default(uuid())
-  title     String
-  content   String
-  imageUrl  String?
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  author User @relation(fields: [authorId], references: [id])
-}

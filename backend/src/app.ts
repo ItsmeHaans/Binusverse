@@ -9,8 +9,6 @@ import quizRoutes from './routes/quiz.routes';
 import battleRoutes from './routes/battle.routes';
 import itemRoutes from './routes/item.routes';
 import forumRoutes from './routes/forum.routes';
-import leaderboardRoutes from './routes/leaderboard.routes';
-import newsRoutes from './routes/news.routes';
 
 const app = express();
 
@@ -27,8 +25,6 @@ app.use('/api/quiz', quizRoutes);
 app.use('/api/battle', battleRoutes);
 app.use('/api/items', itemRoutes);
 app.use('/api/forum', forumRoutes);
-app.use('/api/leaderboard', leaderboardRoutes);
-app.use('/api/news', newsRoutes);
 
 app.use(errorHandler);
 

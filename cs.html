@@ -233,6 +233,8 @@ document.addEventListener('click', e => {
   if (e.target.closest('.react')) e.target.closest('.react').classList.toggle('on');
 });
 </script>
+<script src="assets/js/api.js"></script>
+<script>if(window.BV)BV.requireAuth();</script>
 <script src="user-data.js"></script>
 <script>
   if (typeof BVUser !== 'undefined') {
