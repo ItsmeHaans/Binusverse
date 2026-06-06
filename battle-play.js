@@ -3,7 +3,7 @@
    Mode: ?mode=daily | ?mode=raid&difficulty=easy|normal|hard
 ══════════════════════════════════════════ */
 
-// ─── QUESTION BANK — loaded async from questions.json ───
+// ─── QUESTION BANK — loaded from backend ───
 let ALL_QUESTIONS = [];
 
 const RAID_STYLE = {
@@ -52,13 +52,14 @@ const state = {
   exitTarget:"battle.html",
   items: Object.keys(ITEMS).reduce(function(acc, k){ acc[k]=0; return acc; }, {}),
   xpMultiplier:1, retryPending:false,
-  // skill passive state
   passives:{ aiTimeBonus:0, aiHints:0, cyberXP:1, cyberShield:false, cyberShieldUsed:false, cyberTimeoutRetry:false, cyberTimeoutRetryUsed:false, dataStreakMult:1, dataItemDouble:false, dataSRankBonus:0 },
-  // item state
   shieldActive:false, focusActive:false, warpUsed:false,
   warpPenalty:0,
-  // question log for XP tagging
   questionLog:[],
+  // For backend submission: track per-question answers with IDs
+  answerLog:[],       // [{questionId, answer, timeTaken}]
+  dailyQuizId: null,  // quizId from backend for daily submission
+  battleStartMs: 0,   // for totalTimeMs on raid submit
 };
 
 const $ = id => document.getElementById(id);
@@ -125,12 +126,14 @@ function init() {
   else return;
 
   if (state.mode === 'daily') {
-    state.questions = dailyQuestions(state.cfg.totalQ);
+    // Questions already loaded from backend in loadAndInit
+    state.questions = ALL_QUESTIONS.slice(0, state.cfg.totalQ);
   } else {
-    const pool = ALL_QUESTIONS.filter(q => q.difficulty === state.difficulty);
-    state.questions = shuffle([...pool]).slice(0, state.cfg.totalQ);
+    // Raid: questions already filtered by difficulty from backend
+    state.questions = shuffle([...ALL_QUESTIONS]).slice(0, state.cfg.totalQ);
   }
   state.questionLog = [];
+  state.answerLog = [];
   state.warpPenalty = 0;
 
   if (state.questions.length === 0) {
@@ -268,11 +271,14 @@ function useItem(k) {
   refreshItem(k);
   flashItem(ITEMS[k].name);
 
-  // Save to localStorage immediately
+  // Save to localStorage + backend
   if (typeof BVUser !== 'undefined') {
     const u = BVUser.load();
     u.items[k] = Math.max(0, (u.items[k] || 0) - 1);
     BVUser.save(u);
+  }
+  if (typeof BVAPI !== 'undefined') {
+    BVAPI.useItemOnServer(ITEMS[k].name).catch(() => {/* ignore — local already updated */});
   }
 
   // ── Item effects ──
@@ -552,8 +558,10 @@ function handleAnswer(chosen) {
   const ok = chosen === q.correct;
   state.totalMs += elapsed;
 
-  // Log question for skill XP
+  // Log for skill XP (local)
   state.questionLog.push({ skill: q.skill, topic: q.topic, correct: ok });
+  // Log for backend submission
+  if (q.id) state.answerLog.push({ questionId: q.id, answer: chosen, timeTaken: elapsed });
 
   document.querySelectorAll('.bc-ans').forEach(b => b.disabled=true);
 
@@ -618,6 +626,7 @@ function handleTimeout() {
   showFB('⏱ TIME UP!','timeout-fb');
   dotResult(state.current, false);
   state.questionLog.push({ skill: q.skill, topic: q.topic, correct: false });
+  if (q.id) state.answerLog.push({ questionId: q.id, answer: '', timeTaken: (state.cfg.timePerQ + state.passives.aiTimeBonus) * 1000 });
   setTimeout(advance, 1300);
 }
 
@@ -685,25 +694,42 @@ function showResult() {
   // S-Rank Data bonus (only if actually S rank)
   if (ratio===1 && state.passives.dataSRankBonus > 0) xp += state.passives.dataSRankBonus;
 
-  // ── Save to localStorage ──
   const rankLetter = ratio===1?'S':ratio>=.85?'A':ratio>=.7?'B':ratio>=.5?'C':'D';
-  // Daily: "won" only if passed at least half; Raid: requires passMark
   const won = state.mode==='daily' ? (ratio >= 0.5) : (state.correct >= state.cfg.passMark);
-  if (typeof BVUser !== 'undefined') {
-    BVUser.recordBattle({
-      correct:     state.correct,
-      total:       state.cfg.totalQ,
-      won:         won,
-      earnedXP:    xp,
-      mode:        state.mode,
-      difficulty:  state.difficulty,
-      rank:        rankLetter,
-      questionLog: state.questionLog,
-    });
+
+  // ── Submit to backend, then save & redirect ──
+  function finalize(serverXP, earnedItem) {
+    const finalXP = serverXP !== null ? serverXP : xp;
+    const earnedItemKey = earnedItem && typeof BVAPI !== 'undefined'
+      ? BVAPI.itemNameToKey(earnedItem) : null;
+
+    if (typeof BVUser !== 'undefined') {
+      BVUser.recordBattle({
+        correct:     state.correct,
+        total:       state.cfg.totalQ,
+        won:         won,
+        earnedXP:    finalXP,
+        mode:        state.mode,
+        difficulty:  state.difficulty,
+        rank:        rankLetter,
+        questionLog: state.questionLog,
+        earnedItem:  earnedItemKey,
+      });
+    }
+    setTimeout(() => { window.location.href = 'battle-result.html'; }, 400);
   }
 
-  // ── Redirect to result page ──
-  setTimeout(() => { window.location.href = 'battle-result.html'; }, 400);
+  if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+    const submitPromise = state.mode === 'daily'
+      ? BVAPI.submitDailyQuiz(state.dailyQuizId, state.answerLog)
+      : BVAPI.submitRaid(state.difficulty, state.answerLog, state.totalMs);
+
+    submitPromise
+      .then(function(res) { finalize(res.xpGained, res.earnedItem || null); })
+      .catch(function()   { finalize(null, null); });
+  } else {
+    finalize(null, null);
+  }
 }
 
 function spawnStars() {
@@ -827,12 +853,47 @@ _sty.textContent=`
 document.head.appendChild(_sty);
 
 async function loadAndInit() {
+  const p = new URLSearchParams(window.location.search);
+  const mode = p.get('mode') || 'daily';
+  const difficulty = p.get('difficulty') || 'easy';
+
   try {
-    const res = await fetch('questions.json');
-    ALL_QUESTIONS = await res.json();
+    if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+      if (mode === 'daily') {
+        const quiz = await BVAPI.getDailyQuiz();
+        if (quiz.alreadySubmitted) {
+          const card = $('battle-card');
+          if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#00ff88;font-family:\'Press Start 2P\',monospace;font-size:.55rem;line-height:2.2">ALREADY<br>COMPLETED<br>TODAY<br><br><a href="battle.html" style="color:#fee783;text-decoration:none;font-size:.5rem">[ BACK ]</a></div>';
+          $('battle-screen').classList.remove('hidden');
+          return;
+        }
+        state.dailyQuizId = quiz.quizId;
+        ALL_QUESTIONS = quiz.questions;
+      } else {
+        ALL_QUESTIONS = await BVAPI.getRaidQuestions(difficulty);
+      }
+    } else {
+      // Fallback to local questions.json
+      const res = await fetch('questions.json');
+      ALL_QUESTIONS = await res.json();
+    }
   } catch(e) {
     ALL_QUESTIONS = [];
   }
+
+  // Sync inventory from backend before init
+  if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+    try {
+      const inv = await BVAPI.getInventory();
+      if (typeof BVUser !== 'undefined') {
+        const u = BVUser.load();
+        u.items = Object.assign(u.items || {}, BVAPI.inventoryToLocal(inv));
+        BVUser.save(u);
+      }
+    } catch(e) { /* use local */ }
+  }
+
+  state.battleStartMs = Date.now();
   init();
 }
 document.addEventListener('DOMContentLoaded', loadAndInit);

@@ -132,7 +132,7 @@ body {
 
 /* locked state */
 .item-card.locked { opacity: 0.25; filter: grayscale(0.9) brightness(0.4); }
-.item-card.locked:hover { border-color: #444; box-shadow: none; opacity: 0.35; }
+.item-card.locked:hover { border-color: #666; box-shadow: none; opacity: 0.6; cursor: help; }
 
 /* hidden by filter */
 .item-card.filter-hidden { display: none; }

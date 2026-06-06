@@ -33,35 +33,86 @@ body {
 
 /* ─────────── NAVBAR ─────────── */
 .navbar {
-  position:relative; z-index:200;
-  flex-shrink:0; height:72px;
-  padding:0 3rem;
-  display:flex; justify-content:center; align-items:center;
-  background:#11111d;
-  border-bottom:2px solid rgba(255,255,255,0.15);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #11111d;
+  z-index: 10;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
 }
-.logo-left {
-  position:absolute; left:30px; top:50%; transform:translateY(-50%);
-  display:flex; align-items:center;
-}
-.logo-left img { height:50px; image-rendering:pixelated; }
-.logo-left a   { height:auto; }
+
+.logo-left,
 .logo-right {
-  position:absolute; right:30px; top:50%; transform:translateY(-50%);
-  display:flex; align-items:center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
 }
-.logo-right img { height:46px; image-rendering:pixelated; }
-.nav-links { display:flex; gap:3rem; list-style:none; }
+
+.logo-left {
+  left: 30px;
+}
+
+.logo-right {
+  right: 30px;
+}
+
+.logo-left img,
+.logo-left a {
+  height: 60px;
+  image-rendering: pixelated;
+}
+
+.logo-right img {
+  height: 55px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4rem;
+  list-style: none;
+}
+
 .nav-links a {
-  height:auto !important;
-  text-decoration:none; color:#fff; font-weight:700;
-  font-size:1.2rem; letter-spacing:1px; padding:6px 10px;
-  transition:background .2s;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
-.nav-links a:hover  { background:rgba(255,255,255,.1); }
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.nav-links {
+  display: flex;
+  gap: 4rem;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 .nav-links a.active {
-  background:rgba(255,255,255,.12);
-  border-bottom:3px solid #fee783;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-bottom: 3px solid #fee783;
 }
 .hamburger { display:none; cursor:pointer; flex-direction:column; gap:5px; z-index:201; }
 .bar { width:25px; height:3px; background:#fff; transition:all .3s ease-in-out; }

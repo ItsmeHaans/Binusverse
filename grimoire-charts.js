@@ -192,13 +192,52 @@
     box.onmouseleave = function() { tip.style.opacity = '0'; };
   }
 
+  /* ── compute 6-week chart data from raw battle records ── */
+  function computeWeeklyData(battles) {
+    var now = Date.now();
+    var weekXP = [0, 0, 0, 0, 0, 0];
+    var weekCorrect = [0, 0, 0, 0, 0, 0];
+    var weekTotal   = [0, 0, 0, 0, 0, 0];
+
+    battles.forEach(function(b) {
+      var ms = new Date(b.createdAt).getTime();
+      var weeksAgo = Math.floor((now - ms) / (7 * 24 * 3600 * 1000));
+      if (weeksAgo >= 0 && weeksAgo < 6) {
+        var idx = 5 - weeksAgo;
+        weekXP[idx] += (b.xpGained || 0);
+        weekCorrect[idx] += (b.correct || 0);
+        weekTotal[idx]   += (b.correct || 0) + (b.wrong || 0);
+      }
+    });
+
+    var weekWR = weekTotal.map(function(t, i) {
+      return t > 0 ? Math.round((weekCorrect[i] / t) * 100) : 0;
+    });
+
+    return { weekXP: weekXP, weekWR: weekWR };
+  }
+
   /* ══ main ══ */
+  function drawCharts(weekXP, weekWR) {
+    drawLineChart('cvs-xp', weekXP, '#fee783', 'box-xp', 'tip-xp', ' XP', 42);
+    drawLineChart('cvs-bp', weekWR, '#ff3bff', 'box-bp', 'tip-bp', '%',   99);
+  }
+
   function init() {
     var weekXP = window._BV_WEEKLY_XP || [0, 0, 0, 0, 0, 0];
     var weekWR = window._BV_WEEKLY_WR || [0, 0, 0, 0, 0, 0];
+    drawCharts(weekXP, weekWR);
 
-    drawLineChart('cvs-xp', weekXP, '#fee783', 'box-xp', 'tip-xp', ' XP', 42);
-    drawLineChart('cvs-bp', weekWR, '#ff3bff', 'box-bp', 'tip-bp', '%',   99);
+    // Enhance with backend data when available
+    if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+      BVAPI.getBattleHistory().then(function(battles) {
+        if (!battles || battles.length === 0) return;
+        var computed = computeWeeklyData(battles);
+        window._BV_WEEKLY_XP = computed.weekXP;
+        window._BV_WEEKLY_WR = computed.weekWR;
+        drawCharts(computed.weekXP, computed.weekWR);
+      }).catch(function(){});
+    }
   }
 
   if (document.readyState === 'loading')
@@ -206,6 +245,10 @@
   else
     requestAnimationFrame(init);
 
-  window.addEventListener('resize', init);
+  window.addEventListener('resize', function() {
+    var weekXP = window._BV_WEEKLY_XP || [0, 0, 0, 0, 0, 0];
+    var weekWR = window._BV_WEEKLY_WR || [0, 0, 0, 0, 0, 0];
+    drawCharts(weekXP, weekWR);
+  });
 
 })();

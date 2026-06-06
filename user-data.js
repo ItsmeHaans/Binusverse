@@ -331,6 +331,30 @@
     return u;
   }
 
+  /* ── syncFromBackend — call with API profile to update localStorage ── */
+  function syncFromBackend(profile) {
+    var u = load();
+    if (profile.name)   u.name   = profile.name;
+    if (profile.level)  u.level  = profile.level;
+    if (profile.xp !== undefined) {
+      u.totalXP    = profile.xp;
+      u.xpProgress = profile.xp % 100;
+    }
+    if (profile.streak !== undefined) u.streak = profile.streak;
+    // Map division → rank
+    var divRankMap = {
+      'Bronze': 'Bronze', 'Silver': 'Silver', 'Gold': 'Gold',
+      'Platinum': 'Platinum', 'Diamond': 'Diamond', 'Legend': 'Legend',
+    };
+    if (profile.division && divRankMap[profile.division]) {
+      u.rank = divRankMap[profile.division];
+    } else if (profile.xp !== undefined) {
+      u.rank = computeRank(profile.xp);
+    }
+    save(u);
+    return u;
+  }
+
   /* ── Export ── */
   global.BVUser = {
     load:             load,
@@ -340,10 +364,11 @@
     computeRank:      computeRank,
     getSkillLevel:    getSkillLevel,
     getSkillPassive:  getSkillPassive,
-    getStrongestTopic:getStrongestTopic,
-    getWeakestTopic:  getWeakestTopic,
-    getOverallMastery:getOverallMastery,
-    ALL_ITEMS:        ALL_ITEMS,
+    getStrongestTopic:   getStrongestTopic,
+    getWeakestTopic:     getWeakestTopic,
+    getOverallMastery:   getOverallMastery,
+    syncFromBackend:     syncFromBackend,
+    ALL_ITEMS:           ALL_ITEMS,
   };
 
 })(window);

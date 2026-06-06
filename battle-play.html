@@ -22,6 +22,7 @@
         <li><a href="grimoire.html">Grimoire</a></li>
         <li><a href="battle.html" class="active">Battle</a></li>
         <li><a href="the_commons.html">The Commons</a></li>
+        <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
       </ul>
     </nav>
 
@@ -135,7 +136,7 @@
               <div class="item-slot-count" id="eraser-count">×1</div>
               <div class="item-tooltip-box">
                 <div class="itb-name">Phantom Eraser</div>
-                <div class="itb-desc">Hapus 2 pilihan jawaban yang salah</div>
+                <div class="itb-desc">Removes 2 wrong answer choices</div>
               </div>
             </div>
 
@@ -161,7 +162,7 @@
               <div class="item-slot-count" id="freeze-count">×1</div>
               <div class="item-tooltip-box">
                 <div class="itb-name">Time Freeze Orb</div>
-                <div class="itb-desc">Tambah +10 detik ke timer</div>
+                <div class="itb-desc">Adds +10 seconds to the timer</div>
               </div>
             </div>
 
@@ -187,7 +188,7 @@
               <div class="item-slot-count" id="retry-count">×2</div>
               <div class="item-tooltip-box">
                 <div class="itb-name">2nd Chance Scroll</div>
-                <div class="itb-desc">Ulangi soal yang salah, tanpa penalty</div>
+                <div class="itb-desc">Retry a wrong question, no penalty</div>
               </div>
             </div>
 
@@ -211,7 +212,7 @@
               <div class="item-slot-count" id="xp-count">×1</div>
               <div class="item-tooltip-box">
                 <div class="itb-name">XP Magnet</div>
-                <div class="itb-desc">XP ×1.5 untuk soal ini</div>
+                <div class="itb-desc">XP ×1.5 for this question</div>
               </div>
             </div>
 
@@ -345,6 +346,11 @@
 
     <script src="pixel-bg.js"></script>
     <script src="user-data.js"></script>
+    <script src="api.js"></script>
+    <script src="logout.js"></script>
+    <script>window.BV_MUSIC_TRACK = 'battle';</script>
+    <script src="music.js"></script>
+    <script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
     <script src="items-data.js"></script>
     <script src="notifications.js"></script>
     <script src="battle-play.js"></script>

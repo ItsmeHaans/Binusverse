@@ -121,7 +121,8 @@
     var tip = document.getElementById('items-global-tooltip');
     if (!tip) return;
 
-    document.querySelectorAll('.item-card:not(.locked)').forEach(function (card) {
+    /* every card is hoverable — including locked/undiscovered ones */
+    document.querySelectorAll('.item-card').forEach(function (card) {
       card.addEventListener('mouseenter', function (e) {
         var key   = card.dataset.key;
         var def   = ITEMS_REGISTRY[key];
@@ -129,6 +130,7 @@
         var color = card.dataset.color || '#94a3b8';
         var u     = (typeof BVUser !== 'undefined') ? BVUser.load() : { items: {} };
         var stock = (u.items && u.items[key]) || 0;
+        var isLocked = card.classList.contains('locked');
 
         var isBattle = def.itemType === 'battle';
         var statsSection = isBattle
@@ -142,7 +144,8 @@
           '<div class="tip-divider"></div>' +
           statsSection +
           '<div class="tip-stat"><span class="tip-stat-name">📦 Stock</span><span class="tip-stat-val" style="color:' + color + '">×' + stock + '</span></div>' +
-          '<div class="tip-ability"><b>' + (isBattle ? '✦ ABILITY' : '✦ LORE') + '</b>' + def.ability + '</div>';
+          '<div class="tip-ability"><b>' + (isBattle ? '✦ ABILITY' : '✦ LORE') + '</b>' + def.ability + '</div>' +
+          (isLocked ? '<div class="tip-relic-notice" style="margin-top:8px;">🔒 NOT YET DISCOVERED<br>Win battles for a chance to obtain it.</div>' : '');
 
         tip.style.outline = '2px solid ' + color;
         tip.style.display = 'block';
@@ -207,8 +210,30 @@
   document.head.appendChild(_st);
 
   document.addEventListener('DOMContentLoaded', function () {
-    renderGrid();
     initHamburger();
+    // Sync inventory from backend first, then render
+    if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+      BVAPI.getInventory()
+        .then(function (inv) {
+          if (typeof BVUser !== 'undefined') {
+            var u = BVUser.load();
+            u.items = Object.assign(u.items || {}, BVAPI.inventoryToLocal(inv));
+            // Mark discovered items
+            Object.keys(u.items).forEach(function (k) {
+              if (u.items[k] > 0 && u.discoveredItems.indexOf(k) === -1) {
+                u.discoveredItems.push(k);
+              }
+            });
+            BVUser.save(u);
+          }
+          renderGrid();
+        })
+        .catch(function () {
+          renderGrid();
+        });
+    } else {
+      renderGrid();
+    }
   });
 
 })();

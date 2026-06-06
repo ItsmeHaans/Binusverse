@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ── Populate player card from BVUser ──
-  if (typeof BVUser !== 'undefined') {
+  var RANK_COLORS = {
+    'Unranked':'#888', 'Bronze':'#cd7f32', 'Silver':'#a8a9ad',
+    'Gold':'#ffd700', 'Platinum':'#e5e4e2', 'Diamond':'#b9f2ff', 'Legend':'#fee783'
+  };
+
+  function populatePlayerCard() {
+    if (typeof BVUser === 'undefined') return;
     var u = BVUser.load();
-    var RANK_COLORS = {
-      'Unranked':'#888', 'Bronze':'#cd7f32', 'Silver':'#a8a9ad',
-      'Gold':'#ffd700', 'Platinum':'#e5e4e2', 'Diamond':'#b9f2ff', 'Legend':'#fee783'
-    };
     var nameEl  = document.getElementById('player-name');
     var rankEl  = document.getElementById('player-rank');
     var levelEl = document.getElementById('player-level');
@@ -21,16 +22,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (levelEl) {
       levelEl.innerHTML = '<span class="level-num">' + (u.level || 1) + '</span>';
     }
-
     // ── Daily Quiz gate ──
-    var today      = new Date().toDateString();
-    var dailyBtn   = document.getElementById('dailyBtn');
+    var today    = new Date().toDateString();
+    var dailyBtn = document.getElementById('dailyBtn');
     if (dailyBtn && u.dailyCompletedDate === today) {
       dailyBtn.textContent = 'Completed Today ✓';
       dailyBtn.disabled    = true;
       dailyBtn.style.opacity = '0.5';
       dailyBtn.style.cursor  = 'not-allowed';
     }
+  }
+
+  // Sync from backend first, then populate
+  if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+    BVAPI.getProfile()
+      .then(function(profile) {
+        if (typeof BVUser !== 'undefined') BVUser.syncFromBackend(profile);
+        populatePlayerCard();
+      })
+      .catch(function() { populatePlayerCard(); });
+  } else {
+    populatePlayerCard();
   }
 
   // ── Daily Quiz ──

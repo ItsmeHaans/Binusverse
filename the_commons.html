@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="the_commons.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="mascot.css" />
   </head>
   <body>
@@ -23,6 +24,7 @@
         <li><a href="grimoire.html">Grimoire</a></li>
         <li><a href="battle.html">Battle</a></li>
         <li><a href="the_commons.html" class="active">The Commons</a></li>
+        <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
       </ul>
     </nav>
 
@@ -1830,6 +1832,11 @@
     </section>
     <script src="pixel-bg.js"></script>
     <script src="user-data.js"></script>
+    <script src="api.js"></script>
+    <script src="logout.js"></script>
+    <script>window.BV_MUSIC_TRACK = 'lobby';</script>
+    <script src="music.js"></script>
+    <script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
     <script src="daily-gate.js"></script>
 
     <!-- ════════ FOOTER ════════ -->
@@ -1994,14 +2001,11 @@
         <div class="cs-corner tr"></div>
         <div class="cs-corner bl"></div>
         <div class="cs-corner br"></div>
-        <div class="cs-icon">⚙</div>
+        <div class="cs-icon">⚙️</div>
         <h2 class="cs-title">COMING SOON</h2>
         <p class="cs-name" id="cs-feature-name"></p>
-        <p class="cs-sub">
-          This feature is still under construction.<br />Check back later,
-          adventurer!
-        </p>
-        <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+        <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
+        <button class="cs-close-btn" id="cs-close-btn">Ok.</button>
       </div>
     </div>
     <script>

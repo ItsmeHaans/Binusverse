@@ -22,6 +22,7 @@
     <li><a href="grimoire.html">Grimoire</a></li>
     <li><a href="battle.html">Battle</a></li>
     <li><a href="the_commons.html" class="active">The Commons</a></li>
+    <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
   </ul>
 </nav>
 
@@ -208,12 +209,12 @@ function handleKey(e) {
 function insertQuickAction(type) {
   const ta = document.getElementById('chatInput');
   const t = {
-    trade:    '[Trade Request] Mau tukar [nama item] ×[n] dengan [nama item] ×[n]',
-    battle:   '[Battle Challenge] Gue tantang 1v1! Topic: [topik] · Taruhan: [XP] XP',
-    study:    '[Study Group] Join study [topik] jam [waktu]? Max [n] orang.',
-    skill:    '[Group Grind] Yuk grind [topik] bareng! Bonus XP +20% per member.',
-    resource: '[Resource Share] Nih resource bagus buat [topik]: [link/deskripsi]',
-    friend:   '[Friend Request] Halo! Boleh add friend? LV[n] · Global Guild.'
+    trade:    '[Trade Request] Want to trade [item name] ×[n] for [item name] ×[n]',
+    battle:   '[Battle Challenge] I challenge you to a 1v1! Topic: [topic] · Wager: [XP] XP',
+    study:    '[Study Group] Join a study session on [topic] at [time]? Max [n] people.',
+    skill:    '[Group Grind] Let us grind [topic] together! Bonus XP +20% per member.',
+    resource: '[Resource Share] Great resource for [topic]: [link/description]',
+    friend:   '[Friend Request] Hi! Mind adding me as a friend? LV[n] · Global Guild.'
   };
   ta.value = t[type] || '';
   ta.focus();
@@ -230,6 +231,11 @@ document.addEventListener('click', e => {
 });
 </script>
 <script src="user-data.js"></script>
+<script src="api.js"></script>
+<script src="logout.js"></script>
+<script>window.BV_MUSIC_TRACK = 'lobby';</script>
+<script src="music.js"></script>
+<script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
 <script src="daily-gate.js"></script>
 <script>
   if (typeof BVUser !== 'undefined') {

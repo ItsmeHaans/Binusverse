@@ -6,6 +6,7 @@
   <title>Battle Result - BINUSVERSE</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="battle-result.css"/>
+  <link rel="stylesheet" href="footer.css"/>
   <link rel="stylesheet" href="mascot.css"/>
 </head>
 <body>
@@ -20,6 +21,7 @@
       <li><a href="grimoire.html">Grimoire</a></li>
       <li><a href="battle.html">Battle</a></li>
       <li><a href="the_commons.html">The Commons</a></li>
+      <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
     </ul>
   </nav>
 
@@ -140,7 +142,12 @@
   </footer>
 
   <script src="user-data.js"></script>
-    <script src="daily-gate.js"></script>
+  <script src="api.js"></script>
+  <script src="logout.js"></script>
+  <script>window.BV_MUSIC_TRACK = 'lobby';</script>
+  <script src="music.js"></script>
+  <script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
+  <script src="daily-gate.js"></script>
   <script src="pixel-bg.js"></script>
   <script src="battle-result.js"></script>
 
@@ -149,11 +156,11 @@
     <div class="cs-modal">
       <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
       <div class="cs-corner bl"></div><div class="cs-corner br"></div>
-      <div class="cs-icon">⚙</div>
+      <div class="cs-icon">⚙️</div>
       <h2 class="cs-title">COMING SOON</h2>
       <p class="cs-name" id="cs-feature-name"></p>
       <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
-      <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+      <button class="cs-close-btn" id="cs-close-btn">Ok.</button>
     </div>
   </div>
   <script>

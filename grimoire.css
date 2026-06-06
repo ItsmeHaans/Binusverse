@@ -1631,7 +1631,7 @@ body {
 }
 .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .55rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
+  font-size: .3rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
 }
 .footer-social-row { display: flex; gap: 8px; margin-top: 4px; }
 .footer-social-btn {
@@ -1645,7 +1645,7 @@ body {
 .footer-links-col { display: flex; flex-direction: column; gap: 8px; }
 .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .52rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
+  font-size: .28rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
 }
 .footer-link {
   font-family: 'Pixelify Sans', sans-serif;
@@ -1665,7 +1665,7 @@ body {
 }
 .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
+  font-size: .24rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
 }
 .footer-bottom-bar {
   position: relative; z-index: 1;

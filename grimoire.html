@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="grimoire.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="mascot.css" />
   </head>
   <body>
@@ -25,6 +26,7 @@
         <li><a href="grimoire.html" class="active">Grimoire</a></li>
         <li><a href="battle.html">Battle</a></li>
         <li><a href="the_commons.html">The Commons</a></li>
+        <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
       </ul>
     </nav>
 
@@ -714,6 +716,49 @@
 </div>
     </section>
 
+    <!-- ── RECENT BATTLES ─────────────────────────── -->
+    <section class="bv-recent-section">
+      <div class="bv-rb-card">
+        <div class="bv-rb-header">📜 RECENT BATTLES</div>
+        <div id="bv-battle-history-list"><div class="bv-rb-empty">Loading history...</div></div>
+      </div>
+    </section>
+    <style>
+      .bv-recent-section { max-width:900px; margin:0 auto 50px; padding:0 24px; }
+      .bv-rb-card {
+        background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+        border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:18px 22px;
+      }
+      .bv-rb-header {
+        font-family:'Press Start 2P',monospace; font-size:.7rem; color:#fee783;
+        letter-spacing:2px; margin-bottom:14px;
+        border-bottom:2px solid rgba(254,231,131,.2); padding-bottom:12px;
+      }
+      .bv-rb-empty { font-family:'Pixelify Sans',sans-serif; font-size:1rem; color:rgba(255,255,255,.35); text-align:center; padding:24px 0; }
+      /* one battle row — fixed, controlled vertical rhythm */
+      .bv-rb-row {
+        display:flex; align-items:center; gap:14px;
+        padding:11px 12px; border-radius:8px;
+        border:1px solid rgba(255,255,255,.06);
+        background:rgba(255,255,255,.02);
+        margin-bottom:8px;
+      }
+      .bv-rb-row:last-child { margin-bottom:0; }
+      .bv-rb-row:hover { background:rgba(255,255,255,.05); }
+      .bv-rb-mode {
+        font-family:'Press Start 2P',monospace; font-size:.5rem;
+        padding:6px 8px; border-radius:5px; min-width:62px; text-align:center;
+        border:1px solid currentColor;
+      }
+      .bv-rb-result { flex:1; font-family:'Pixelify Sans',sans-serif; font-size:1.05rem; color:#e0f7ff; }
+      .bv-rb-xp { font-family:'Press Start 2P',monospace; font-size:.55rem; color:#00ff88; }
+      .bv-rb-date { font-family:'Pixelify Sans',sans-serif; font-size:.9rem; color:rgba(255,255,255,.4); min-width:88px; text-align:right; }
+      @media (max-width:560px) {
+        .bv-rb-date { display:none; }
+        .bv-rb-result { font-size:.95rem; }
+      }
+    </style>
+
     <!-- ════════ FOOTER ════════ -->
     <footer class="site-footer">
       <canvas class="footer-stars-cvs" id="footerStars"></canvas>
@@ -863,6 +908,11 @@
 
     <script src="pixel-bg.js"></script>
     <script src="user-data.js"></script>
+    <script src="api.js"></script>
+    <script src="logout.js"></script>
+    <script>window.BV_MUSIC_TRACK = 'lobby';</script>
+    <script src="music.js"></script>
+    <script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
     <script src="daily-gate.js"></script>
     <script src="items-data.js"></script>
     <script src="assets/js/rank.js"></script>
@@ -1159,16 +1209,51 @@
       })();
     })();
     </script>
+  <!-- ── PROFILE SYNC + RECENT BATTLES ─────────────────── -->
+  <script>
+  (function() {
+    if (typeof BVAPI === 'undefined' || !BVAPI.isLoggedIn()) return;
+
+    // Sync profile from backend
+    BVAPI.getProfile().then(function(profile) {
+      if (typeof BVUser !== 'undefined') BVUser.syncFromBackend(profile);
+    }).catch(function(){});
+
+    // Load recent battle history
+    BVAPI.getBattleHistory().then(function(battles) {
+      var el = document.getElementById('bv-battle-history-list');
+      if (!el) return;
+      if (!battles || !battles.length) {
+        el.innerHTML = '<div class="bv-rb-empty">No battles yet. Go play to fill your log!</div>';
+        return;
+      }
+      var MODE_COLORS = { 'DAILY':'#00e5ff', 'RAID':'#fee783', 'PVP':'#ff3bff' };
+      var recent = battles.slice(0, 8);
+      el.innerHTML = recent.map(function(b) {
+        var modeColor = MODE_COLORS[b.mode] || '#9aa0b5';
+        var date = new Date(b.createdAt).toLocaleDateString();
+        var total = b.correct + b.wrong;
+        return '<div class="bv-rb-row">' +
+          '<span class="bv-rb-mode" style="color:' + modeColor + ';">' + b.mode + '</span>' +
+          '<span class="bv-rb-result">' + b.correct + ' / ' + total + ' correct</span>' +
+          '<span class="bv-rb-xp">+' + b.xpGained + ' XP</span>' +
+          '<span class="bv-rb-date">' + date + '</span>' +
+        '</div>';
+      }).join('');
+    }).catch(function(){});
+  })();
+  </script>
+
   <!-- ── COMING SOON POPUP ─────────────────────────── -->
   <div id="coming-soon-overlay" class="cs-overlay" aria-hidden="true">
     <div class="cs-modal">
       <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
       <div class="cs-corner bl"></div><div class="cs-corner br"></div>
-      <div class="cs-icon">⚙</div>
+      <div class="cs-icon">⚙️</div>
       <h2 class="cs-title">COMING SOON</h2>
       <p class="cs-name" id="cs-feature-name"></p>
       <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
-      <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+      <button class="cs-close-btn" id="cs-close-btn">Ok.</button>
     </div>
   </div>
   <script>

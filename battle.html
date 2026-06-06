@@ -7,8 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="battle.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="mascot.css" />
     <script src="user-data.js"></script>
+    <script src="api.js"></script>
+    <script src="logout.js"></script>
+    <script>window.BV_MUSIC_TRACK = 'lobby';</script>
+    <script src="music.js"></script>
+    <script>if (!BVAPI.isLoggedIn()) window.location.replace('splash.html');</script>
     <script src="daily-gate.js"></script>
     <style>
       .pvp-coming { display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:80px; }
@@ -41,6 +47,7 @@
         <li><a href="grimoire.html">Grimoire</a></li>
         <li><a href="battle.html" class="active">Battle</a></li>
         <li><a href="the_commons.html">The Commons</a></li>
+        <li><a href="#" id="logout-link" class="nav-logout">Logout</a></li>
       </ul>
     </nav>
 
@@ -229,11 +236,11 @@
     <div class="cs-modal">
       <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
       <div class="cs-corner bl"></div><div class="cs-corner br"></div>
-      <div class="cs-icon">⚙</div>
+      <div class="cs-icon">⚙️</div>
       <h2 class="cs-title">COMING SOON</h2>
       <p class="cs-name" id="cs-feature-name"></p>
       <p class="cs-sub">This feature is still under construction.<br>Check back later, adventurer!</p>
-      <button class="cs-close-btn" id="cs-close-btn">[ OK ]</button>
+      <button class="cs-close-btn" id="cs-close-btn">Ok.</button>
     </div>
   </div>
   <script>

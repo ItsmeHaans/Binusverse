@@ -1,0 +1,146 @@
+/* ============================================================
+   footer.css — SINGLE shared footer styling for every page.
+   Loaded on all pages AFTER their own CSS. Selectors are scoped
+   under `.site-footer` (specificity 0,2,0) so this file is the
+   single source of truth and overrides any page-specific footer
+   rules — guaranteeing an identical footer everywhere.
+   ============================================================ */
+
+.site-footer {
+  position: relative;
+  width: 100%;
+  background: #06071a;
+  overflow: hidden;
+}
+
+.site-footer .footer-stars-cvs {
+  position: absolute;
+  inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+
+.site-footer .footer-top-line {
+  width: 100%; height: 2px;
+  position: relative; z-index: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(254,231,131,.3) 0px, rgba(254,231,131,.3) 8px,
+    transparent 8px, transparent 14px
+  );
+}
+
+/* ── inner layout ── */
+.site-footer .footer-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  padding: 40px 8% 32px;
+  position: relative; z-index: 1;
+  flex-wrap: wrap;
+}
+
+/* ── brand ── */
+.site-footer .footer-brand {
+  display: flex; flex-direction: column; gap: 10px;
+  min-width: 180px;
+}
+.site-footer .footer-logo-txt {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem; color: #fff; letter-spacing: 2px;
+  line-height: 1.2; margin: 0;
+  text-shadow:
+    -2px -2px 0 #1e90ff, 2px -2px 0 #1e90ff,
+    -2px  2px 0 #1e90ff, 2px  2px 0 #1e90ff,
+     0px  4px 0 #0a3060;
+}
+.site-footer .footer-tagline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: .5rem; color: rgba(254,231,131,.55);
+  letter-spacing: .5px; line-height: 1.5; margin: 0;
+}
+.site-footer .footer-social-row { display: flex; gap: 8px; margin-top: 4px; }
+.site-footer .footer-social-btn {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.45);
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.site-footer .footer-social-btn:hover {
+  background: rgba(254,231,131,.1);
+  border-color: rgba(254,231,131,.3);
+  color: #fee783;
+}
+
+/* ── links grid ── */
+.site-footer .footer-links-grid {
+  display: flex; gap: 40px; flex: 1;
+  flex-wrap: wrap; align-items: flex-start;
+}
+.site-footer .footer-links-col {
+  display: flex; flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;   /* never distribute */
+  height: auto;                  /* never stretch     */
+}
+.site-footer .footer-links-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: .5rem; color: rgba(255,255,255,.4);
+  letter-spacing: .6px; line-height: 1.4;
+  margin: 0 0 8px;
+}
+.site-footer .footer-link {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1rem; color: rgba(255,255,255,.55);
+  text-decoration: none; transition: color .12s ease;
+  display: flex; align-items: center; gap: 6px;
+  margin: 0; padding: 0; min-height: 0; height: auto; line-height: 1.35;
+}
+/* defensive: neutralise any stray global `a { height }` rule that
+   would otherwise stretch footer links and inflate footer height */
+.site-footer a.footer-link { height: auto; }
+.site-footer .footer-social-btn { height: 34px; }
+.site-footer .footer-link::before {
+  content: '▸'; font-size: .65rem;
+  color: rgba(254,231,131,.2); transition: color .12s;
+}
+.site-footer .footer-link:hover { color: #fff; }
+.site-footer .footer-link:hover::before { color: #fee783; }
+
+/* ── stats ── */
+.site-footer .footer-stats {
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 130px;
+}
+.site-footer .footer-stat-item { display: flex; flex-direction: column; gap: 3px; }
+.site-footer .footer-stat-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: .85rem; color: #fee783; line-height: 1.2; margin: 0;
+  text-shadow: 0 0 12px rgba(254,231,131,.3);
+}
+.site-footer .footer-stat-lbl {
+  font-family: 'Press Start 2P', monospace;
+  font-size: .42rem; color: rgba(255,255,255,.4);
+  letter-spacing: .3px; line-height: 1.4; margin: 0;
+}
+
+/* ── bottom bar ── */
+.site-footer .footer-bottom-bar {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 8%;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-family: 'Press Start 2P', monospace;
+  font-size: .5rem; color: rgba(255,255,255,.32);
+  letter-spacing: .3px; line-height: 1.5;
+}
+
+/* ── responsive ── */
+@media (max-width: 768px) {
+  .site-footer .footer-inner { padding: 28px 5% 22px; gap: 28px; }
+  .site-footer .footer-links-grid { gap: 24px; }
+  .site-footer .footer-stats { flex-direction: row; flex-wrap: wrap; gap: 14px 24px; }
+  .site-footer .footer-bottom-bar { flex-direction: column; gap: 8px; text-align: center; }
+}

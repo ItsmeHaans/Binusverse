@@ -244,9 +244,21 @@ function initMascot() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Load profile data first
-  populateProfile();
-  initMascot();
+  // Fetch profile from backend, sync to localStorage, then populate UI
+  if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
+    BVAPI.getProfile()
+      .then(function (profile) {
+        if (typeof BVUser !== 'undefined') BVUser.syncFromBackend(profile);
+      })
+      .catch(function () { /* offline or error — use cached local data */ })
+      .finally(function () {
+        populateProfile();
+        initMascot();
+      });
+  } else {
+    populateProfile();
+    initMascot();
+  }
 
 
   // =============================================
