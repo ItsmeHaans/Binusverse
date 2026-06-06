@@ -94,13 +94,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function syncAndGo(user) {
-    // Initialize/reset localStorage state for this account
+    // Initialize/reset localStorage state for this account.
+    // bv_user_v1 is a single global key, so wipe it whenever the logged-in
+    // account differs from the one that last owned local data — otherwise the
+    // new account inherits the previous user's battles/rank/skills/items.
     if (typeof BVUser !== 'undefined') {
+      var prevOwner = null;
+      try { prevOwner = localStorage.getItem('bv_user_owner'); } catch (e) {}
+      if (prevOwner !== user.id) {
+        BVUser.reset();
+      }
+      try { localStorage.setItem('bv_user_owner', user.id); } catch (e) {}
       var u = BVUser.load();
       u.name = user.name || u.name;
       BVUser.save(u);
     }
-    goToIndex();
+    // Hydrate real stats (xp/level/rank/streak) from the backend before entering.
+    if (typeof BVAPI !== 'undefined') {
+      BVAPI.getProfile()
+        .then(function (profile) {
+          if (typeof BVUser !== 'undefined') BVUser.syncFromBackend(profile);
+        })
+        .catch(function () {})
+        .then(goToIndex);
+    } else {
+      goToIndex();
+    }
   }
 
   function goToIndex() {

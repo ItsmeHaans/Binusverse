@@ -211,7 +211,7 @@ body {
 /* Rank badge */
 .rank-badge {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   padding: 4px 12px;
   align-self: flex-start;
   letter-spacing: 0.4px;
@@ -250,11 +250,11 @@ body {
 .prf-level-top  { display: flex; justify-content: space-between; margin-bottom: 4px; }
 .prf-level-lbl  {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.38rem; color: #fee783;
+  font-size: 0.5rem; color: #fee783;
 }
 .prf-level-xp {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem; color: rgba(255,255,255,0.3);
+  font-size: 0.715rem; color: rgba(255,255,255,0.3);
 }
 .prf-level-track {
   height: 8px; background: rgba(255,255,255,0.06);
@@ -275,7 +275,7 @@ body {
 .prf-status-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .prf-status-tag {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; padding: 3px 8px; letter-spacing: 0.3px;
+  font-size: 0.65rem; padding: 3px 8px; letter-spacing: 0.3px;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
 }
 .tag-green  { background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); clip-path:none; border-radius:0; }
@@ -373,12 +373,12 @@ body {
 }
 .mc-stat-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem; color: rgba(255,255,255,.35);
+  font-size: 0.676rem; color: rgba(255,255,255,.35);
   letter-spacing: 0.5px;
 }
 .mc-stat-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; letter-spacing: 0.3px;
+  font-size: 0.65rem; letter-spacing: 0.3px;
 }
 .mc-stat-icon {
   font-size: 1.5rem; line-height: 1;
@@ -447,12 +447,12 @@ body {
 }
 .mc-arc-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: .62rem; color: #00ff88; line-height: 1;
+  font-size: 0.78rem; color: #00ff88; line-height: 1;
   text-shadow: 0 0 10px rgba(0,255,136,.3);
 }
 .mc-arc-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(0,255,136,.38);
+  font-size: 0.65rem; color: rgba(0,255,136,.38);
   margin-top: 3px; white-space: nowrap;
 }
 
@@ -500,12 +500,12 @@ body {
 }
 .mc-wave-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: .62rem; color: #00ff88;
+  font-size: 0.78rem; color: #00ff88;
   text-shadow: 0 0 8px rgba(0,255,136,.4);
 }
 .mc-wave-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: .2rem; color: rgba(0,255,136,.4);
+  font-size: 0.5rem; color: rgba(0,255,136,.4);
 }
 
 
@@ -578,7 +578,7 @@ body {
 
 .bst-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; color: rgba(255,255,255,.3);
+  font-size: 0.65rem; color: rgba(255,255,255,.3);
   letter-spacing: 0.4px; text-align: center;
   position: relative; z-index: 1;
 }
@@ -589,7 +589,7 @@ body {
 }
 .bst-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; color: rgba(255,255,255,.2);
+  font-size: 0.65rem; color: rgba(255,255,255,.2);
   position: relative; z-index: 1;
 }
 
@@ -610,13 +610,13 @@ body {
 .win .bst-record-num  { color: #00ff88; }
 .lose .bst-record-num { color: #ff4d4d; }
 .bst-record-tag {
-  font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0.3px;
+  font-family: 'Press Start 2P', monospace; font-size: 0.65rem; letter-spacing: 0.3px;
 }
 .win .bst-record-tag  { color: rgba(0,255,136,.5); }
 .lose .bst-record-tag { color: rgba(255,77,77,.5); }
 .bst-record-vs {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.35rem; color: rgba(255,255,255,.15);
+  font-size: 0.5rem; color: rgba(255,255,255,.15);
 }
 
 /* split bar */
@@ -652,7 +652,7 @@ body {
 }
 .bst-topic-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; text-align: right;
+  font-size: 0.65rem; text-align: right;
 }
 
 /* old classes still referenced elsewhere — keep */
@@ -727,7 +727,7 @@ body {
  
 .chart-label-px {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   color: rgba(255, 255, 255, 0.28);
   position: absolute;
   top: 13px;
@@ -743,7 +743,7 @@ body {
   right: 12px;
   z-index: 10;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   padding: 3px 9px;
   letter-spacing: 0.3px;
   pointer-events: none;
@@ -767,7 +767,7 @@ body {
  
 .week-labels-px span {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.22);
   letter-spacing: 0.3px;
 }
@@ -792,14 +792,14 @@ body {
  
 .tt-week {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: #a0a8d0;
   margin-bottom: 3px;
 }
  
 .tt-val {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.42rem;
+  font-size: 0.546rem;
 }
  
 /* =============================================
@@ -832,7 +832,7 @@ body {
 }
 .ai-badge-pill {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   padding: 5px 14px;
   background: rgba(30, 144, 255, 0.12);
   border: 1px solid rgba(30, 144, 255, 0.35);
@@ -889,13 +889,13 @@ body {
 }
 .mastery-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.35rem;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.45);
   letter-spacing: 0.5px;
 }
 .mastery-score {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: #fee783;
 }
 .mastery-track {
@@ -935,7 +935,7 @@ body {
 }
 .mastery-tick {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.2);
 }
 
@@ -1012,13 +1012,13 @@ body {
 .sum-card-icon { image-rendering: pixelated; flex-shrink: 0; }
 .sum-card-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.58rem;
+  font-size: 0.754rem;
   color: #fff;
   letter-spacing: 0.5px;
 }
 .sum-card-count {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: rgba(255, 255, 255, 0.3);
   margin-top: 5px;
   letter-spacing: 0.3px;
@@ -1065,7 +1065,7 @@ body {
 @keyframes sum-bar-grow { to { width: var(--w); } }
 .sum-item-pct {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   flex-shrink: 0;
   min-width: 28px;
   text-align: right;
@@ -1100,7 +1100,7 @@ body {
 .sum-stat-val.positive { color: #00ff88; }
 .sum-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
@@ -1222,7 +1222,7 @@ body {
   position: absolute;
   top: 8px; left: 8px; z-index: 5;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   padding: 2px 7px;
   background: #ff4d4d; color: #1a0000;
   letter-spacing: 0.2px;
@@ -1234,7 +1234,7 @@ body {
   position: absolute;
   top: 8px; right: 8px; z-index: 5;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   padding: 2px 6px;
   letter-spacing: 0.2px;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
@@ -1255,7 +1255,7 @@ body {
 }
 .gs-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.46rem; color: #1a1a2e;
+  font-size: 0.598rem; color: #1a1a2e;
   line-height: 1.8; margin-bottom: 6px; letter-spacing: 0.3px;
 }
 .gs-desc {
@@ -1267,7 +1267,7 @@ body {
 /* Mastery XP bar */
 .gs-xp-wrap { margin-bottom: 7px; }
 .gs-xp-top  { display:flex; justify-content:space-between; margin-bottom:3px; }
-.gs-xp-lbl  { font-family:'Press Start 2P',monospace; font-size:0.55rem; color:#1a1a2e; }
+.gs-xp-lbl  { font-family:'Press Start 2P',monospace; font-size:0.715rem; color:#1a1a2e; }
 .gs-xp-track {
   height: 8px; background: #b8a200; overflow: hidden;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
@@ -1289,7 +1289,7 @@ body {
 .gs-btn {
   display: block; width: 100%;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem; padding: 5px 0;
+  font-size: 0.715rem; padding: 5px 0;
   background: #1a1a2e; color: #fee783;
   border: none; cursor: pointer;
   letter-spacing: 0.3px;
@@ -1394,7 +1394,7 @@ body {
  
 .btm-section-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.62rem;
+  font-size: 0.78rem;
   color: #fff;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
@@ -1403,7 +1403,7 @@ body {
  
 .btm-section-sub {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
@@ -1424,7 +1424,7 @@ body {
   color: #1a1a2e;
   padding: 5px 12px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   letter-spacing: 0.3px;
   clip-path: polygon(
     0 3px, 3px 0, calc(100% - 3px) 0, 100% 3px,
@@ -1449,13 +1449,13 @@ body {
 }
 .btm-mastery-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
 .btm-mastery-val {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   color: #fee783;
 }
 .btm-mastery-track {
@@ -1569,13 +1569,13 @@ body {
 }
 .btm-items-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
 .btm-items-num {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   color: #fee783;
 }
  
@@ -1631,7 +1631,7 @@ body {
 }
 .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .3rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
+  font-size: 0.5rem; color: rgba(254,231,131,.45); letter-spacing: .5px;
 }
 .footer-social-row { display: flex; gap: 8px; margin-top: 4px; }
 .footer-social-btn {
@@ -1645,7 +1645,7 @@ body {
 .footer-links-col { display: flex; flex-direction: column; gap: 8px; }
 .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .28rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
+  font-size: 0.5rem; color: rgba(255,255,255,.25); letter-spacing: .6px; margin-bottom: 4px;
 }
 .footer-link {
   font-family: 'Pixelify Sans', sans-serif;
@@ -1665,7 +1665,7 @@ body {
 }
 .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .24rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
+  font-size: 0.5rem; color: rgba(255,255,255,.28); letter-spacing: .3px;
 }
 .footer-bottom-bar {
   position: relative; z-index: 1;
@@ -1673,7 +1673,7 @@ body {
   padding: 12px 8%;
   border-top: 1px solid rgba(255,255,255,.06);
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(255,255,255,.2); letter-spacing: .3px;
+  font-size: 0.65rem; color: rgba(255,255,255,.2); letter-spacing: .3px;
 }
 .footer-bottom-dots { display: flex; gap: 5px; align-items: center; }
 .fbd { width: 5px; height: 5px; background: rgba(255,255,255,.1); }
@@ -1799,8 +1799,18 @@ body {
 .cs-icon{font-size:2rem;margin-bottom:12px;animation:csSpin 3s linear infinite;display:inline-block;}
 @keyframes csSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .cs-title{font-family:'Press Start 2P',monospace;font-size:1rem;color:#fee783;margin-bottom:10px;text-shadow:2px 2px 0 #000;}
-.cs-name{font-family:'Press Start 2P',monospace;font-size:.55rem;color:#00e5ff;margin-bottom:14px;letter-spacing:.05em;}
+.cs-name{font-family:'Press Start 2P',monospace;font-size:0.715rem;color:#00e5ff;margin-bottom:14px;letter-spacing:.05em;}
 .cs-sub{font-family:'Pixelify Sans',sans-serif;font-size:.9rem;color:#a0a8c0;line-height:1.6;margin-bottom:24px;}
-.cs-close-btn{font-family:'Press Start 2P',monospace;font-size:.65rem;background:#fee783;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;transition:transform .1s steps(1),box-shadow .1s steps(1);box-shadow:4px 4px 0 #b8a020;}
+.cs-close-btn{font-family:'Press Start 2P',monospace;font-size:0.78rem;background:#fee783;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;transition:transform .1s steps(1),box-shadow .1s steps(1);box-shadow:4px 4px 0 #b8a020;}
 .cs-close-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #b8a020;}
 .cs-close-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #b8a020;}
+
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
+
+/* ── Hamburger to the right side ── */
+.hamburger { margin-left: auto; }

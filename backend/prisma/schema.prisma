@@ -52,7 +52,7 @@ model User {
   level        Int       @default(1)
   streak       Int       @default(0)
   lastActiveAt DateTime?
-  eloPoints    Int       @default(1000)
+  eloPoints    Int       @default(0)
   division     String    @default("Bronze")
 
   createdAt DateTime @default(now())

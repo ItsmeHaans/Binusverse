@@ -135,19 +135,19 @@ body {
   display:flex; align-items:center; gap:10px;
 }
 .bc-link {
-  font-family:'Press Start 2P',monospace; font-size:.42rem;
+  font-family:'Press Start 2P',monospace; font-size:0.546rem;
   color:rgba(255,255,255,.32); text-decoration:none;
   letter-spacing:.4px; height:auto !important;
 }
 .bc-link:hover { color:#fee783; }
 .bc-sep { color:rgba(255,255,255,.15); font-size:.75rem; }
 .bc-cur {
-  font-family:'Press Start 2P',monospace; font-size:.42rem;
+  font-family:'Press Start 2P',monospace; font-size:0.546rem;
   color:var(--acc); letter-spacing:.4px;
 }
 .bc-online {
   margin-left:auto; display:flex; align-items:center; gap:6px;
-  font-family:'Press Start 2P',monospace; font-size:.36rem; color:#00ff88;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem; color:#00ff88;
 }
 .bc-dot {
   width:6px; height:6px; background:#00ff88; border-radius:50%;
@@ -175,20 +175,20 @@ body {
   background:var(--bg3); border-bottom:2px solid var(--bd);
 }
 .sg-name {
-  font-family:'Press Start 2P',monospace; font-size:.62rem;
+  font-family:'Press Start 2P',monospace; font-size:0.78rem;
   color:#fff; letter-spacing:.3px; margin-bottom:5px;
 }
 .sg-tag {
-  font-family:'Press Start 2P',monospace; font-size:.34rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   letter-spacing:.3px; margin-bottom:9px;
 }
 .sg-stats { display:flex; gap:14px; }
 .sg-stat  { display:flex; flex-direction:column; gap:2px; }
 .sg-stat-v {
-  font-family:'Press Start 2P',monospace; font-size:.38rem; color:#fff;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem; color:#fff;
 }
 .sg-stat-l {
-  font-family:'Press Start 2P',monospace; font-size:.2rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.26);
 }
 
@@ -197,7 +197,7 @@ body {
 .sidebar-channels::-webkit-scrollbar-thumb { background:rgba(255,255,255,.08); }
 
 .ch-label {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.2); letter-spacing:.5px; padding:8px 6px 4px;
 }
 .ch-item {
@@ -208,12 +208,12 @@ body {
 .ch-item:hover  { background:rgba(255,255,255,.04); color:#fff; }
 .ch-item.active { background:rgba(254,231,131,.07); color:#fee783; border-left:2px solid #fee783; }
 .ch-hash {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.2); flex-shrink:0; width:16px; text-align:center;
 }
 .ch-item.active .ch-hash { color:#fee783; }
 .ch-bdg {
-  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:.3rem;
+  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:0.5rem;
   background:#ff4d4d; color:#fff; padding:2px 5px; min-width:16px; text-align:center;
 }
 
@@ -224,7 +224,7 @@ body {
 .sidebar-online::-webkit-scrollbar { width:2px; }
 .sidebar-online::-webkit-scrollbar-thumb { background:rgba(255,255,255,.08); }
 .online-lbl {
-  font-family:'Press Start 2P',monospace; font-size:.36rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.2); letter-spacing:.5px; padding:4px 5px 6px;
 }
 .mem-row { display:flex; align-items:center; gap:7px; padding:4px 5px; cursor:pointer; }
@@ -232,7 +232,7 @@ body {
 .mem-av {
   width:30px; height:30px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Press Start 2P',monospace; font-size:.32rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   position:relative;
 }
 .mem-av::after {
@@ -243,7 +243,7 @@ body {
 .mem-av.away::after    { background:var(--acc); }
 .mem-av.offline::after { background:#444; }
 .mem-nm { font-family:'Pixelify Sans',sans-serif; font-size:.9rem; color:rgba(255,255,255,.46); flex:1; }
-.mem-lv { font-family:'Press Start 2P',monospace; font-size:.3rem; color:rgba(255,255,255,.2); }
+.mem-lv { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:rgba(255,255,255,.2); }
 
 /* ═══ CENTER CHAT ═══ */
 .chat-center { flex:1; min-width:0; display:flex; flex-direction:column; overflow:hidden; }
@@ -253,13 +253,13 @@ body {
   background:var(--bg3); border-bottom:1px solid var(--bd);
   display:flex; align-items:center; gap:10px; padding:0 18px;
 }
-.ctb-hash { font-family:'Press Start 2P',monospace; font-size:.52rem; color:rgba(255,255,255,.28); }
-.ctb-name { font-family:'Press Start 2P',monospace; font-size:.58rem; color:#fff; letter-spacing:.3px; }
+.ctb-hash { font-family:'Press Start 2P',monospace; font-size:0.676rem; color:rgba(255,255,255,.28); }
+.ctb-name { font-family:'Press Start 2P',monospace; font-size:0.754rem; color:#fff; letter-spacing:.3px; }
 .ctb-div  { width:1px; height:20px; background:rgba(255,255,255,.09); }
 .ctb-desc { font-family:'Pixelify Sans',sans-serif; font-size:.92rem; color:rgba(255,255,255,.3); }
 .ctb-btns { margin-left:auto; display:flex; gap:5px; }
 .ctb-btn {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:4px 10px; background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.09); color:rgba(255,255,255,.38); cursor:pointer; transition:all .12s;
 }
@@ -276,7 +276,7 @@ body {
 .msg-date-sep { display:flex; align-items:center; gap:10px; margin:10px 0 6px; }
 .msg-date-sep-line { flex:1; height:1px; background:rgba(255,255,255,.05); }
 .msg-date-sep-txt {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.16); letter-spacing:.4px;
 }
 
@@ -288,7 +288,7 @@ body {
 .msg-av2 {
   width:38px; height:38px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Press Start 2P',monospace; font-size:.35rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   align-self:flex-start; margin-top:2px;
 }
 .msg-body { display:flex; flex-direction:column; gap:3px; max-width:64%; }
@@ -296,10 +296,10 @@ body {
 
 .msg-meta { display:flex; align-items:baseline; gap:7px; }
 .msg.me .msg-meta { flex-direction:row-reverse; }
-.msg-nm { font-family:'Press Start 2P',monospace; font-size:.42rem; letter-spacing:.2px; }
-.msg-ts { font-family:'Press Start 2P',monospace; font-size:.32rem; color:rgba(255,255,255,.2); }
+.msg-nm { font-family:'Press Start 2P',monospace; font-size:0.546rem; letter-spacing:.2px; }
+.msg-ts { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:rgba(255,255,255,.2); }
 .msg-lv2 {
-  font-family:'Press Start 2P',monospace; font-size:.28rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:1px 5px; border:1px solid; letter-spacing:.2px;
 }
 .msg-txt {
@@ -312,7 +312,7 @@ body {
   background:rgba(254,231,131,.08); border-color:rgba(254,231,131,.16);
 }
 .msg-sys-txt {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.2); padding:4px 12px;
   background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.04);
 }
@@ -327,7 +327,7 @@ body {
 .msg-card.c-study  { border-color:rgba(0,229,255,.22); }
 .msg-card.c-friend { border-color:rgba(0,255,136,.22); }
 .msg-card-ttl {
-  font-family:'Press Start 2P',monospace; font-size:.42rem; letter-spacing:.2px; margin-bottom:6px;
+  font-family:'Press Start 2P',monospace; font-size:0.546rem; letter-spacing:.2px; margin-bottom:6px;
 }
 .c-trade  .msg-card-ttl { color:#fee783; }
 .c-battle .msg-card-ttl { color:#ff4d4d; }
@@ -339,7 +339,7 @@ body {
 }
 .msg-card-btns { display:flex; gap:6px; flex-wrap:wrap; }
 .mcb {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:4px 10px; border:1px solid; cursor:pointer; background:transparent; transition:all .12s;
 }
 .mcb.yes  { border-color:#00ff88; color:#00ff88; }
@@ -352,7 +352,7 @@ body {
 /* reactions */
 .msg-reacts { display:flex; gap:4px; margin-top:4px; flex-wrap:wrap; }
 .react {
-  font-family:'Press Start 2P',monospace; font-size:.34rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:3px 8px; background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.07); cursor:pointer; transition:all .12s;
   display:flex; align-items:center; gap:4px;
@@ -370,7 +370,7 @@ body {
   display:flex; gap:7px; margin-bottom:9px; flex-wrap:wrap;
 }
 .cq-btn {
-  font-family:'Press Start 2P',monospace; font-size:.38rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:5px 11px; cursor:pointer;
   background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
   color:rgba(255,255,255,.4); transition:all .12s;
@@ -399,7 +399,7 @@ body {
 .cex-btn:hover { border-color:rgba(254,231,131,.28); color:#fee783; }
 
 .chat-send {
-  font-family:'Press Start 2P',monospace; font-size:.42rem;
+  font-family:'Press Start 2P',monospace; font-size:0.546rem;
   padding:0 18px; height:46px;
   background:#fee783; color:#1a1a2e; border:none; cursor:pointer;
   letter-spacing:.3px; box-shadow:0 4px 0 #b8a200;
@@ -420,7 +420,7 @@ body {
 
 .rp-sec { border-bottom:1px solid var(--bd); padding:12px 12px 10px; }
 .rp-ttl {
-  font-family:'Press Start 2P',monospace; font-size:.42rem;
+  font-family:'Press Start 2P',monospace; font-size:0.546rem;
   color:rgba(255,255,255,.25); letter-spacing:.5px; margin-bottom:10px;
 }
 
@@ -433,10 +433,10 @@ body {
 .feat:last-child { margin-bottom:0; }
 .feat-hd { display:flex; align-items:center; gap:6px; margin-bottom:3px; }
 .feat-ic { font-size:13px; }
-.feat-nm { font-family:'Press Start 2P',monospace; font-size:.42rem; color:#fff; }
+.feat-nm { font-family:'Press Start 2P',monospace; font-size:0.546rem; color:#fff; }
 .feat-dsc { font-family:'Pixelify Sans',sans-serif; font-size:.84rem; color:rgba(255,255,255,.36); line-height:1.4; }
 .feat-bdg {
-  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:.36rem;
+  margin-left:auto; font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:2px 6px; border:1px solid; letter-spacing:.2px;
 }
 
@@ -445,7 +445,7 @@ body {
 .ev:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
 .ev-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:4px; }
 .ev-body { font-family:'Pixelify Sans',sans-serif; font-size:.86rem; color:rgba(255,255,255,.52); line-height:1.4; }
-.ev-t { font-family:'Press Start 2P',monospace; font-size:.36rem; color:rgba(255,255,255,.2); display:block; margin-top:3px; }
+.ev-t { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:rgba(255,255,255,.2); display:block; margin-top:3px; }
 
 /* friend requests */
 .fr { display:flex; align-items:center; gap:7px; margin-bottom:7px; }
@@ -453,14 +453,14 @@ body {
 .fr-av {
   width:32px; height:32px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Press Start 2P',monospace; font-size:.32rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
 }
 .fr-info { flex:1; min-width:0; }
 .fr-nm { font-family:'Pixelify Sans',sans-serif; font-size:.92rem; color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.fr-mt { font-family:'Press Start 2P',monospace; font-size:.36rem; color:rgba(255,255,255,.26); }
+.fr-mt { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:rgba(255,255,255,.26); }
 .fr-btns { display:flex; gap:4px; flex-shrink:0; }
 .fr-b {
-  font-family:'Press Start 2P',monospace; font-size:.36rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:4px 7px; border:1px solid; cursor:pointer; background:transparent; transition:all .12s;
 }
 .fr-b.add  { border-color:#00ff88; color:#00ff88; }
@@ -468,3 +468,22 @@ body {
 .fr-b.skip { border-color:rgba(255,255,255,.1); color:rgba(255,255,255,.26); }
 
 * { scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.07) transparent; }
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
+
+/* ── Mobile chat layout: stack sidebar above messages (keeps channel switching) ── */
+@media (max-width: 768px) {
+  .chat-layout { flex-direction: column; overflow: visible; }
+  .chat-sidebar { width: 100%; flex-shrink: 0; max-height: 34vh; }
+  .sidebar-online { display: none; }
+  .chat-center { width: 100%; min-height: 60vh; }
+  .msg-body { max-width: 82%; }
+  .chat-topbar { height: auto; padding: 8px 12px; flex-wrap: wrap; }
+}
+
+/* ── Hamburger to the right side ── */
+.hamburger { margin-left: auto; }

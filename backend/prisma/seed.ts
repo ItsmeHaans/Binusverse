@@ -85,6 +85,8 @@ async function main() {
     { text: 'What is the primary difference between a process and a thread?', optionA: 'Threads are heavier weight than processes', optionB: 'Processes share memory space; threads do not', optionC: 'Threads share memory within a process; processes have independent memory', optionD: 'There is no difference', correctOption: 'C', topic: 'Operating Systems', difficulty: Difficulty.HARD },
     { text: "Which algorithm is used in Dijkstra's shortest path?", optionA: 'Depth-First Search', optionB: 'Greedy with a priority queue', optionC: 'Dynamic Programming only', optionD: 'Breadth-First Search', correctOption: 'B', topic: 'Algorithms', difficulty: Difficulty.HARD },
     { text: 'What is the time complexity of building a heap from n elements?', optionA: 'O(n log n)', optionB: 'O(n²)', optionC: 'O(n)', optionD: 'O(log n)', correctOption: 'C', topic: 'Algorithms', difficulty: Difficulty.HARD },
+    { text: 'What is the worst-case time complexity of quicksort?', optionA: 'O(n log n)', optionB: 'O(n²)', optionC: 'O(log n)', optionD: 'O(n)', correctOption: 'B', topic: 'Algorithms', difficulty: Difficulty.HARD },
+    { text: 'In machine learning, what problem does regularization primarily address?', optionA: 'Underfitting', optionB: 'Overfitting', optionC: 'Slow convergence', optionD: 'Data leakage', correctOption: 'B', topic: 'Machine Learning', difficulty: Difficulty.HARD },
   ];
 
   for (const q of questions) {

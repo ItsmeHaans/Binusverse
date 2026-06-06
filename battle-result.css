@@ -82,7 +82,7 @@ body {
 /* mode label */
 .mode-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: .55rem; letter-spacing: 2px;
+  font-size: 0.715rem; letter-spacing: 2px;
   color: rgba(0,229,255,.7);
   border: 1px solid rgba(0,229,255,.25);
   padding: 4px 12px; border-radius:2px;
@@ -146,7 +146,7 @@ body {
 .up-banner {
   width:100%; text-align:center;
   font-family:'Press Start 2P',monospace;
-  font-size:.65rem; letter-spacing:2px;
+  font-size:0.78rem; letter-spacing:2px;
   padding:10px 0;
   border: 1px solid rgba(0,229,255,.35);
   color:#00e5ff;
@@ -169,7 +169,7 @@ body {
 }
 .item-name {
   font-family:'Press Start 2P',monospace;
-  font-size:.7rem; color:#ff9500;
+  font-size:0.78rem; color:#ff9500;
   text-shadow:0 0 10px rgba(255,149,0,.5);
 }
 
@@ -177,7 +177,7 @@ body {
 .btn-row { display:flex; gap:16px; width:100%; margin-top:4px; }
 .btn-pixel {
   flex:1; font-family:'Press Start 2P',monospace;
-  font-size:.55rem; letter-spacing:1px;
+  font-size:0.715rem; letter-spacing:1px;
   padding:14px 8px; cursor:pointer;
   border:2px solid; border-radius:2px;
   transition: transform .1s, box-shadow .1s;
@@ -216,21 +216,21 @@ body {
 .footer-inner{display:flex;align-items:flex-start;gap:48px;padding:44px 8% 36px;position:relative;z-index:1;flex-wrap:wrap;}
 .footer-brand{display:flex;flex-direction:column;gap:10px;min-width:180px;}
 .footer-logo-txt{font-family:'Press Start 2P',monospace;font-size:1rem;color:#fff;letter-spacing:2px;text-shadow:-2px -2px 0 #1e90ff,2px -2px 0 #1e90ff,-2px 2px 0 #1e90ff,2px 2px 0 #1e90ff,0px 4px 0 #0a3060;}
-.footer-tagline{font-family:'Press Start 2P',monospace;font-size:.3rem;color:rgba(254,231,131,.45);letter-spacing:.5px;}
+.footer-tagline{font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(254,231,131,.45);letter-spacing:.5px;}
 .footer-social-row{display:flex;gap:8px;margin-top:4px;}
 .footer-social-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);text-decoration:none;transition:all .15s ease;}
 .footer-social-btn:hover{background:rgba(254,231,131,.1);border-color:rgba(254,231,131,.3);color:#fee783;}
 .footer-links-grid{display:flex;gap:40px;flex:1;flex-wrap:wrap;}
 .footer-links-col{display:flex;flex-direction:column;gap:8px;}
-.footer-links-title{font-family:'Press Start 2P',monospace;font-size:.28rem;color:rgba(255,255,255,.25);letter-spacing:.6px;margin-bottom:4px;}
+.footer-links-title{font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(255,255,255,.25);letter-spacing:.6px;margin-bottom:4px;}
 .footer-link{font-family:'Pixelify Sans',sans-serif;font-size:.85rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .12s ease;display:flex;align-items:center;gap:5px;}
 .footer-link::before{content:'▸';font-size:.65rem;color:rgba(254,231,131,.2);transition:color .12s;}
 .footer-link:hover{color:#fff;}.footer-link:hover::before{color:#fee783;}
 .footer-stats{display:flex;flex-direction:column;gap:16px;min-width:130px;}
 .footer-stat-item{display:flex;flex-direction:column;gap:3px;}
 .footer-stat-val{font-family:'Press Start 2P',monospace;font-size:.75rem;color:#fee783;text-shadow:0 0 12px rgba(254,231,131,.3);}
-.footer-stat-lbl{font-family:'Press Start 2P',monospace;font-size:.24rem;color:rgba(255,255,255,.28);letter-spacing:.3px;}
-.footer-bottom-bar{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:12px 8%;border-top:1px solid rgba(255,255,255,.06);font-family:'Press Start 2P',monospace;font-size:.26rem;color:rgba(255,255,255,.2);letter-spacing:.3px;}
+.footer-stat-lbl{font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(255,255,255,.28);letter-spacing:.3px;}
+.footer-bottom-bar{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:12px 8%;border-top:1px solid rgba(255,255,255,.06);font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(255,255,255,.2);letter-spacing:.3px;}
 @media(max-width:768px){.footer-inner{padding:32px 5% 24px;gap:28px;}.footer-links-grid{gap:24px;}.footer-stats{flex-direction:row;flex-wrap:wrap;gap:16px 24px;}.footer-bottom-bar{flex-direction:column;gap:8px;text-align:center;}}
 
 /* ── COMING SOON POPUP ───────────────────────────── */
@@ -244,8 +244,18 @@ body {
 .cs-icon{font-size:2rem;margin-bottom:12px;animation:csSpin 3s linear infinite;display:inline-block;}
 @keyframes csSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .cs-title{font-family:'Press Start 2P',monospace;font-size:1rem;color:#fee783;margin-bottom:10px;text-shadow:2px 2px 0 #000;}
-.cs-name{font-family:'Press Start 2P',monospace;font-size:.55rem;color:#00e5ff;margin-bottom:14px;letter-spacing:.05em;}
+.cs-name{font-family:'Press Start 2P',monospace;font-size:0.715rem;color:#00e5ff;margin-bottom:14px;letter-spacing:.05em;}
 .cs-sub{font-family:'Pixelify Sans',sans-serif;font-size:.9rem;color:#a0a8c0;line-height:1.6;margin-bottom:24px;}
-.cs-close-btn{font-family:'Press Start 2P',monospace;font-size:.65rem;background:#fee783;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;transition:transform .1s steps(1),box-shadow .1s steps(1);box-shadow:4px 4px 0 #b8a020;}
+.cs-close-btn{font-family:'Press Start 2P',monospace;font-size:0.78rem;background:#fee783;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;transition:transform .1s steps(1),box-shadow .1s steps(1);box-shadow:4px 4px 0 #b8a020;}
 .cs-close-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #b8a020;}
 .cs-close-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #b8a020;}
+
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
+
+/* ── Hamburger to the right side ── */
+.hamburger { margin-left: auto; }

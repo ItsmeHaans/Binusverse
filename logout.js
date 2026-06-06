@@ -13,7 +13,13 @@
     if (!link) return;
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      function go() { window.location.replace('splash.html'); }
+      function go() {
+        // Wipe local per-account state so the next account on this browser
+        // does not inherit this user's battles/rank/skills/items.
+        if (typeof BVUser !== 'undefined') BVUser.reset();
+        try { localStorage.removeItem('bv_user_owner'); } catch (err) {}
+        window.location.replace('splash.html');
+      }
       if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
         BVAPI.logout().then(go).catch(go);
       } else {

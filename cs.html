@@ -15,7 +15,10 @@
   <div class="logo-left">
     <a href="index.html"><img src="assets/images/SaturBum.png" alt="Logo"/></a>
   </div>
-  <ul class="nav-links">
+  <div class="hamburger" id="hamburger">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
     <li><a href="grimoire.html">Grimoire</a></li>
     <li><a href="battle.html">Battle</a></li>
     <li><a href="the_commons.html" class="active">The Commons</a></li>
@@ -253,5 +256,11 @@ document.addEventListener('click', e => {
 <script>var BV_FORUM_ROOM = 'cs-guild';</script>
 <script src="forum-chat.js"></script>
 <script src="pixel-bg.js"></script>
+<script>
+  var _hb = document.getElementById('hamburger');
+  if (_hb) _hb.addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('active');
+  });
+</script>
 </body>
 </html>

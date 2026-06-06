@@ -137,8 +137,10 @@ function init() {
   state.warpPenalty = 0;
 
   if (state.questions.length === 0) {
+    // Reveal the screen first — otherwise the error is invisible (blank page).
+    $('battle-screen').classList.remove('hidden');
     const card = $('battle-card');
-    if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#ff4d4d;font-family:\'Press Start 2P\',monospace;font-size:.6rem;line-height:2.2">FAILED TO LOAD<br>QUESTIONS<br><br>Please refresh.</div>';
+    if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#ff4d4d;font-family:\'Press Start 2P\',monospace;font-size:0.78rem;line-height:2.2">FAILED TO LOAD<br>QUESTIONS<br><br>Question bank may be<br>short for this difficulty.<br><br><a href="battle.html" style="color:#fee783;text-decoration:none;font-size:0.65rem">[ BACK ]</a></div>';
     return;
   }
 
@@ -229,7 +231,7 @@ function renderItemsBar() {
       <div class="item-slot-count" id="${k}-count">×${count}</div>
       <div class="item-tooltip-box">
         <div class="itb-name">${def.name}</div>
-        <div class="itb-rarity" style="color:${def.color};font-size:.22rem;font-family:'Press Start 2P',monospace;margin-bottom:3px;">${def.rarity}</div>
+        <div class="itb-rarity" style="color:${def.color};font-size:0.5rem;font-family:'Press Start 2P',monospace;margin-bottom:3px;">${def.rarity}</div>
         <div class="itb-desc">${def.desc}</div>
       </div>
     `;
@@ -794,7 +796,7 @@ _sty.textContent=`
 
 .gem-peek-overlay {
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  font-family:'Press Start 2P',monospace; font-size:.7rem;
+  font-family:'Press Start 2P',monospace; font-size:0.78rem;
   color:#ff3bff; text-shadow:0 0 20px rgba(255,59,255,.8),2px 2px 0 #440044;
   pointer-events:none; z-index:20;
   animation:gem-peek-txt .4s steps(3) forwards, bvnFlicker .3s steps(2) 0.4s infinite;
@@ -863,7 +865,7 @@ async function loadAndInit() {
         const quiz = await BVAPI.getDailyQuiz();
         if (quiz.alreadySubmitted) {
           const card = $('battle-card');
-          if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#00ff88;font-family:\'Press Start 2P\',monospace;font-size:.55rem;line-height:2.2">ALREADY<br>COMPLETED<br>TODAY<br><br><a href="battle.html" style="color:#fee783;text-decoration:none;font-size:.5rem">[ BACK ]</a></div>';
+          if (card) card.innerHTML = '<div style="padding:2rem;text-align:center;color:#00ff88;font-family:\'Press Start 2P\',monospace;font-size:0.78rem;line-height:2.2">ALREADY<br>COMPLETED<br>TODAY<br><br><a href="battle.html" style="color:#fee783;text-decoration:none;font-size:0.65rem">[ BACK ]</a></div>';
           $('battle-screen').classList.remove('hidden');
           return;
         }

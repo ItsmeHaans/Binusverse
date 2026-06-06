@@ -201,3 +201,10 @@ html, body.splash-body {
 #grass-g10 { transform-origin: 1875px 155px; animation: grassWind 3.8s ease-in-out 0.90s infinite; }
 #grass-g11 { transform-origin: 93px   163px; animation: grassWind 3.8s ease-in-out 0.99s infinite; }
 #grass-g12 { transform-origin: 94px   163px; animation: grassWind 3.8s ease-in-out 1.05s infinite; }
+
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}

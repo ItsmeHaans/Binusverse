@@ -843,14 +843,14 @@ body {
 }
 .stats-card span {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.48rem;
+  font-size: 0.624rem;
   letter-spacing: 0.5px;
   color: rgba(254, 231, 131, 0.75);
   user-select: none;
 }
 .stats-card b {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.58rem;
+  font-size: 0.754rem;
   letter-spacing: 0.5px;
   user-select: none;
 }
@@ -966,7 +966,7 @@ body {
   right: 14px;
   z-index: 10;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.38rem;
+  font-size: 0.5rem;
   color: #0d0f20;
   background: #00ff88;
   padding: 4px 10px;
@@ -1197,7 +1197,7 @@ body {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem;
+  font-size: 0.5rem;
   padding: 4px 3px;
   text-align: center;
   z-index: 3;
@@ -1214,7 +1214,7 @@ body {
   position: absolute;
   top: 5px; right: 5px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.24rem;
+  font-size: 0.5rem;
   padding: 2px 4px;
   z-index: 4;
   clip-path: polygon(0 2px,2px 0,calc(100% - 2px) 0,100% 2px,100% 100%,0 100%);
@@ -1239,7 +1239,7 @@ body {
 }
 .armory-tooltip-global .tip-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem; color: #fff; letter-spacing: 0.5px; line-height: 1.6; margin-bottom: 4px;
+  font-size: 0.65rem; color: #fff; letter-spacing: 0.5px; line-height: 1.6; margin-bottom: 4px;
 }
 .armory-tooltip-global .tip-type {
   font-family: 'Pixelify Sans', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,.45); margin-bottom: 2px;
@@ -1249,7 +1249,7 @@ body {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
 }
 .armory-tooltip-global .tip-stat-name { font-family: 'Pixelify Sans', sans-serif; font-size: 0.74rem; color: #cbd5e1; }
-.armory-tooltip-global .tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.52rem; }
+.armory-tooltip-global .tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.676rem; }
 .armory-tooltip-global .tip-ability {
   font-family: 'Pixelify Sans', sans-serif; font-size: 0.72rem;
   color: rgba(255,255,255,.45); line-height: 1.45; margin-top: 6px;
@@ -1286,12 +1286,12 @@ body {
 
 .tip-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.42rem; color: #fff;
+  font-size: 0.546rem; color: #fff;
   margin-bottom: 4px; line-height: 1.7;
 }
 .tip-type {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem; color: #a0a8d0; margin-bottom: 6px;
+  font-size: 0.5rem; color: #a0a8d0; margin-bottom: 6px;
 }
 .tip-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 5px 0; }
 .tip-stat {
@@ -1299,7 +1299,7 @@ body {
   margin-bottom: 4px;
 }
 .tip-stat-name { font-family: 'Pixelify Sans', sans-serif; font-size: 0.7rem; color: #cbd5e1; }
-.tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.32rem; }
+.tip-stat-val  { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; }
 .r-legendary .tip-stat-val { color: #ff9500; }
 .r-epic      .tip-stat-val { color: #c084fc; }
 .r-rare      .tip-stat-val { color: #00e5ff; }
@@ -1315,7 +1315,7 @@ body {
 }
 .tip-ability b {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.28rem; display: block;
+  font-size: 0.5rem; display: block;
   margin-bottom: 3px; color: #fee783;
   letter-spacing: 0.4px;
 }
@@ -1461,7 +1461,7 @@ body {
 
 .skill-info h3 {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   color: #1a1a2e;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -1481,7 +1481,7 @@ body {
 .skill-xp-wrap { margin-top: 6px; }
 .skill-xp-label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
+  font-size: 0.676rem;
   color: #1a1a2e;
   margin-bottom: 4px;
   display: flex;
@@ -1522,7 +1522,7 @@ body {
   display: inline-block;
   margin-top: 8px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.38rem;
+  font-size: 0.5rem;
   padding: 3px 8px;
   clip-path: polygon(
     0 2px, 2px 0, calc(100% - 2px) 0, 100% 2px,
@@ -1670,7 +1670,7 @@ body {
 }
 .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .3rem; color: rgba(254,231,131,.45);
+  font-size: 0.5rem; color: rgba(254,231,131,.45);
   letter-spacing: .5px;
 }
 .footer-social-row {
@@ -1700,7 +1700,7 @@ body {
 }
 .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .28rem; color: rgba(255,255,255,.25);
+  font-size: 0.5rem; color: rgba(255,255,255,.25);
   letter-spacing: .6px; margin-bottom: 4px;
 }
 .footer-link {
@@ -1734,7 +1734,7 @@ body {
 }
 .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .24rem; color: rgba(255,255,255,.28);
+  font-size: 0.5rem; color: rgba(255,255,255,.28);
   letter-spacing: .3px;
 }
 
@@ -1746,7 +1746,7 @@ body {
   padding: 12px 8%;
   border-top: 1px solid rgba(255,255,255,.06);
   font-family: 'Press Start 2P', monospace;
-  font-size: .26rem; color: rgba(255,255,255,.2);
+  font-size: 0.5rem; color: rgba(255,255,255,.2);
   letter-spacing: .3px;
 }
 .footer-bottom-dots { display: flex; gap: 5px; align-items: center; }
@@ -1895,7 +1895,7 @@ body {
 /* Speech bubble */
 .mascot-bubble {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.34rem;
+  font-size: 0.5rem;
   line-height: 1.7;
   color: #e0f7ff;
   background: #0d0f20;
@@ -1957,7 +1957,7 @@ body {
   bottom: 4px;
   left: 5px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.44rem;
+  font-size: 0.572rem;
   line-height: 1;
   padding: 2px 4px;
   background: rgba(10, 12, 28, 0.82);
@@ -1973,7 +1973,7 @@ body {
 .skill-lv-badge {
   display: inline-block;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.44rem;
+  font-size: 0.572rem;
   padding: 2px 5px;
   margin-left: 6px;
   vertical-align: middle;
@@ -2053,13 +2053,13 @@ body {
 }
 #bv-rank-plate .rp-xp {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: var(--rp-color, #555);
   opacity: 0.85;
 }
 #bv-rank-plate .rp-max {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   color: var(--rp-color, #fee783);
   letter-spacing: 1px;
   animation: bvRankBlink 1.2s step-end infinite;
@@ -2135,7 +2135,7 @@ body {
 
 .cs-name {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
+  font-size: 0.715rem;
   color: #00e5ff;
   margin-bottom: 14px;
   letter-spacing: 0.05em;
@@ -2151,7 +2151,7 @@ body {
 
 .cs-close-btn {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   background: #fee783;
   color: #0d0f2a;
   border: none;
@@ -2168,3 +2168,12 @@ body {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #b8a020;
 }
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
+
+/* ── Hamburger to the right side ── */
+.hamburger { margin-left: auto; }

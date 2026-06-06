@@ -21,6 +21,8 @@
 
   var VOLUME   = 0.35;
   var MUTE_KEY = 'bv_music_muted';
+  var POS_KEY  = 'bv_music_pos';   // { lobby: seconds, battle: seconds } — resume per track across pages
+  var LAST_KEY = 'bv_music_last';  // track that was playing on the previous page
 
   var trackName = window.BV_MUSIC_TRACK || 'lobby';
   var src = TRACKS[trackName] || TRACKS.lobby;
@@ -31,6 +33,56 @@
   audio.preload = 'auto';
 
   var muted = localStorage.getItem(MUTE_KEY) === '1';
+
+  /* ===== Resume position across page navigations =====
+     Full page reloads reset <audio> to 0. We save the playback position to
+     localStorage and seek back to it on the next page so the SAME track
+     continues instead of restarting. Switching tracks (lobby<->battle)
+     starts fresh — a different song shouldn't inherit the other's position. */
+  function readPos() {
+    try { return JSON.parse(localStorage.getItem(POS_KEY) || '{}') || {}; }
+    catch (e) { return {}; }
+  }
+
+  var lastTrack = null;
+  try { lastTrack = localStorage.getItem(LAST_KEY); } catch (e) { /* blocked */ }
+
+  // Resume only when the SAME track was playing on the previous page. If the
+  // track changed since the last page (lobby <-> battle), start fresh at 00:00
+  // and clear this track's stored position so re-entry always begins at 0.
+  var resumeAt = 0;
+  if (lastTrack === trackName) {
+    var _p = readPos();
+    if (typeof _p[trackName] === 'number') resumeAt = _p[trackName];
+  } else {
+    try {
+      var _cp = readPos();
+      delete _cp[trackName];
+      localStorage.setItem(POS_KEY, JSON.stringify(_cp));
+    } catch (e) { /* storage blocked */ }
+  }
+
+  // Mark this page's track as the active one for the next navigation.
+  try { localStorage.setItem(LAST_KEY, trackName); } catch (e) { /* blocked */ }
+
+  function applyResume() {
+    if (resumeAt > 0 && isFinite(audio.duration) && resumeAt < audio.duration) {
+      try { audio.currentTime = resumeAt; } catch (e) { /* not seekable yet */ }
+    }
+  }
+  audio.addEventListener('loadedmetadata', applyResume);
+  if (audio.readyState >= 1) applyResume(); // metadata already available (cached)
+
+  function savePos() {
+    try {
+      var p = readPos();
+      p[trackName] = audio.currentTime || 0;
+      localStorage.setItem(POS_KEY, JSON.stringify(p));
+    } catch (e) { /* storage full / blocked */ }
+  }
+  setInterval(savePos, 1000);
+  window.addEventListener('beforeunload', savePos);
+  window.addEventListener('pagehide', savePos);
 
   function tryPlay() {
     if (muted) return;

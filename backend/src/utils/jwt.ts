@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { randomUUID } from 'crypto';
 import { env } from '../config/env';
 
 export function signAccessToken(userId: string, role: string): string {
@@ -8,7 +9,10 @@ export function signAccessToken(userId: string, role: string): string {
 }
 
 export function signRefreshToken(userId: string): string {
-  return jwt.sign({ userId }, env.JWT_REFRESH_SECRET, {
+  // jti makes every token byte-unique. Without it, two tokens minted for the
+  // same user in the same second are identical and collide on the @unique
+  // token column (Prisma P2002 -> 500 on login/register).
+  return jwt.sign({ userId, jti: randomUUID() }, env.JWT_REFRESH_SECRET, {
     expiresIn: env.JWT_REFRESH_EXPIRES as jwt.SignOptions['expiresIn'],
   });
 }

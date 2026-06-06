@@ -98,7 +98,7 @@
         if (!posts || posts.length === 0) {
           hasMorePosts = false;
           if (page === 1) {
-            container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,.3);font-family:\'Press Start 2P\',monospace;font-size:.45rem;padding:32px 0;">No messages yet.<br>Be the first!</div>';
+            container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,.3);font-family:\'Press Start 2P\',monospace;font-size:0.761rem;padding:32px 0;">No messages yet.<br>Be the first!</div>';
           }
           return;
         }
@@ -191,7 +191,7 @@
     if (!container) return;
     var el = document.createElement('div');
     el.id = 'chat-loading';
-    el.style.cssText = 'display:none;text-align:center;color:rgba(0,229,255,.5);font-family:"Press Start 2P",monospace;font-size:.45rem;padding:16px 0;';
+    el.style.cssText = 'display:none;text-align:center;color:rgba(0,229,255,.5);font-family:"Press Start 2P",monospace;font-size:0.585rem;padding:16px 0;';
     el.textContent = 'LOADING...';
     container.parentNode.insertBefore(el, container);
   }

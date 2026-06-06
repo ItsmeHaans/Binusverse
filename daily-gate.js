@@ -40,7 +40,7 @@
       '.dg-icon{font-size:2rem;color:#00ff88;margin-bottom:10px;text-shadow:0 0 16px rgba(0,255,136,.7);}' +
       '.dg-title{font-family:"Press Start 2P",monospace;font-size:1rem;color:#00ff88;margin-bottom:12px;text-shadow:2px 2px 0 #003322;}' +
       '.dg-sub{font-family:"Pixelify Sans",sans-serif;font-size:.88rem;color:rgba(200,240,220,.7);line-height:1.7;margin-bottom:24px;}' +
-      '.dg-btn{font-family:"Press Start 2P",monospace;font-size:.65rem;background:#00ff88;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;box-shadow:4px 4px 0 #00994d;}' +
+      '.dg-btn{font-family:"Press Start 2P",monospace;font-size:0.78rem;background:#00ff88;color:#0d0f2a;border:none;padding:10px 28px;cursor:pointer;box-shadow:4px 4px 0 #00994d;}' +
       '.dg-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #00994d;}' +
       '.dg-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #00994d;}';
 

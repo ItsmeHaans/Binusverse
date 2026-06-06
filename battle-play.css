@@ -731,7 +731,7 @@ body {
 .hud-left { display:flex; align-items:center; gap:14px; flex:1; }
 .hud-mode-badge {
   font-family:'Press Start 2P',monospace;
-  font-size:.38rem; padding:5px 12px;
+  font-size:0.5rem; padding:5px 12px;
   background:rgba(254,231,131,.12); border:1px solid rgba(254,231,131,.3);
   color:#fee783; letter-spacing:.5px; white-space:nowrap;
 }
@@ -760,7 +760,7 @@ body {
 .timer-ring-fill.urgent { stroke:#ff4d4d; }
 .hud-timer-num {
   font-family:'Press Start 2P',monospace;
-  font-size:.7rem; color:#fff; position:relative; z-index:1;
+  font-size:0.78rem; color:#fff; position:relative; z-index:1;
   transition:color .3s;
 }
 .hud-timer-num.urgent { color:#ff4d4d; }
@@ -775,10 +775,10 @@ body {
 }
 .correct-val { color:#00ff88; }
 .wrong-val   { color:#ff4d4d; }
-.hud-score-lbl { font-family:'Press Start 2P',monospace; font-size:.55rem; color:rgba(255,255,255,.4); }
+.hud-score-lbl { font-family:'Press Start 2P',monospace; font-size:0.715rem; color:rgba(255,255,255,.4); }
 
 .hud-streak-badge {
-  font-family:'Press Start 2P',monospace; font-size:.55rem;
+  font-family:'Press Start 2P',monospace; font-size:0.715rem;
   padding:5px 12px; border:2px solid rgba(255,149,0,.4);
   background:rgba(255,149,0,.12); color:#ff9500;
   display:flex; align-items:center; gap:6px;
@@ -849,7 +849,7 @@ body {
 /* diff badge */
 .bc-diff-badge {
   position:absolute; top:12px; right:16px;
-  font-family:'Press Start 2P',monospace; font-size:.32rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   padding:3px 10px; letter-spacing:.4px;
 }
 .bc-diff-badge.easy   { background:rgba(0,255,136,.15); border:1px solid #00ff88; color:#00ff88; }
@@ -858,7 +858,7 @@ body {
 
 .bc-q-num {
   font-family:'Press Start 2P',monospace;
-  font-size:.4rem; color:#00c3ff; letter-spacing:.6px;
+  font-size:0.52rem; color:#00c3ff; letter-spacing:.6px;
   text-shadow:0 0 12px rgba(0,195,255,.5);
 }
 
@@ -900,7 +900,7 @@ body {
 .bc-ans:disabled { cursor:default; }
 
 .bc-ans-key {
-  font-family:'Press Start 2P',monospace; font-size:.45rem;
+  font-family:'Press Start 2P',monospace; font-size:0.585rem;
   color:#00e5ff; flex-shrink:0;
   width:26px; height:26px;
   display:flex; align-items:center; justify-content:center;
@@ -962,7 +962,7 @@ body {
   display:flex; align-items:center; gap:20px;
 }
 .items-bar-label {
-  font-family:'Press Start 2P',monospace; font-size:.28rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.25); letter-spacing:.5px; flex-shrink:0;
 }
 .items-bar-slots { display:flex; gap:12px; flex-wrap:wrap; }
@@ -991,11 +991,11 @@ body {
 .item-slot.used .item-slot-inner { border-color:rgba(255,255,255,.1); }
 
 .item-slot-name {
-  font-family:'Press Start 2P',monospace; font-size:.24rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:rgba(255,255,255,.4); letter-spacing:.2px;
 }
 .item-slot-count {
-  font-family:'Press Start 2P',monospace; font-size:.28rem; color:#fee783;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem; color:#fee783;
 }
 
 /* item tooltip */
@@ -1013,7 +1013,7 @@ body {
   border:6px solid transparent; border-top-color:rgba(254,231,131,.3);
 }
 .item-slot:hover .item-tooltip-box { opacity:1; }
-.itb-name { font-family:'Press Start 2P',monospace; font-size:.28rem; color:#fee783; margin-bottom:4px; }
+.itb-name { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:#fee783; margin-bottom:4px; }
 .itb-desc { font-family:'Pixelify Sans',sans-serif; font-size:.72rem; color:rgba(255,255,255,.5); line-height:1.4; }
 
 /* item use flash */
@@ -1075,7 +1075,7 @@ body {
 .freeze-label {
   position:absolute;
   bottom:-22px; left:50%; transform:translateX(-50%);
-  font-family:'Press Start 2P',monospace; font-size:.24rem;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem;
   color:#c084fc; white-space:nowrap;
   animation:bvnFlicker .5s steps(2) infinite;
   pointer-events:none;
@@ -1131,7 +1131,7 @@ body {
   position:absolute; inset:0; pointer-events:none; overflow:hidden;
 }
 .result-rank-badge {
-  font-family:'Press Start 2P',monospace; font-size:.65rem;
+  font-family:'Press Start 2P',monospace; font-size:0.78rem;
   padding:6px 20px; border:2px solid #fee783;
   color:#fee783; letter-spacing:.5px;
   text-shadow:0 0 10px rgba(254,231,131,.5);
@@ -1175,7 +1175,7 @@ body {
 @keyframes mascotSparkle{0%,100%{opacity:1}50%{opacity:0}}
 
 .mascot-bubble {
-  font-family:'Press Start 2P',monospace; font-size:.34rem; line-height:1.7;
+  font-family:'Press Start 2P',monospace; font-size:0.5rem; line-height:1.7;
   color:#e0f7ff; background:#0d0f20; border:2px solid #7c3aed;
   padding:8px 11px; max-width:180px; text-align:center;
   box-shadow:3px 3px 0 #2d0060;
@@ -1188,3 +1188,12 @@ body {
 }
 .mascot-bubble.hidden{display:none;}
 @keyframes bubblePop{from{opacity:0;transform:scale(.8) translateY(4px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+/* ── Responsive safety net (added): no horizontal scroll, fluid images ── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+}
+
+/* ── Hamburger to the right side ── */
+.hamburger { margin-left: auto; }

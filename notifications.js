@@ -24,7 +24,7 @@
 
 .bvn-toast {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.48rem;
+  font-size: 0.624rem;
   line-height: 1.6;
   padding: 10px 14px 10px 10px;
   border: 2px solid #00e5ff;

@@ -55,7 +55,7 @@
 }
 .site-footer .footer-tagline {
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(254,231,131,.55);
+  font-size: 0.65rem; color: rgba(254,231,131,.55);
   letter-spacing: .5px; line-height: 1.5; margin: 0;
 }
 .site-footer .footer-social-row { display: flex; gap: 8px; margin-top: 4px; }
@@ -87,7 +87,7 @@
 }
 .site-footer .footer-links-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(255,255,255,.4);
+  font-size: 0.65rem; color: rgba(255,255,255,.4);
   letter-spacing: .6px; line-height: 1.4;
   margin: 0 0 8px;
 }
@@ -122,7 +122,7 @@
 }
 .site-footer .footer-stat-lbl {
   font-family: 'Press Start 2P', monospace;
-  font-size: .42rem; color: rgba(255,255,255,.4);
+  font-size: 0.546rem; color: rgba(255,255,255,.4);
   letter-spacing: .3px; line-height: 1.4; margin: 0;
 }
 
@@ -133,7 +133,7 @@
   padding: 14px 8%;
   border-top: 1px solid rgba(255,255,255,.06);
   font-family: 'Press Start 2P', monospace;
-  font-size: .5rem; color: rgba(255,255,255,.32);
+  font-size: 0.65rem; color: rgba(255,255,255,.32);
   letter-spacing: .3px; line-height: 1.5;
 }
 

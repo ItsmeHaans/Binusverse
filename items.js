@@ -204,7 +204,7 @@
   }
 
   var _st = document.createElement('style');
-  _st.textContent = '.item-type-badge{font-family:"Press Start 2P",monospace;font-size:.2rem;padding:2px 5px;margin-bottom:3px;letter-spacing:.5px;display:inline-block;}' +
+  _st.textContent = '.item-type-badge{font-family:"Press Start 2P",monospace;font-size:0.5rem;padding:2px 5px;margin-bottom:3px;letter-spacing:.5px;display:inline-block;}' +
     '.badge-usable{color:#00ff88;border:1px solid #00ff8844;background:rgba(0,255,136,.08);}' +
     '.badge-relic{color:#ff9500;border:1px solid #ff950044;background:rgba(255,149,0,.08);}';
   document.head.appendChild(_st);
