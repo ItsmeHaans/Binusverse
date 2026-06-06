@@ -2,13 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { itemService } from '../services/item.service';
 
 export const itemController = {
-  async getCatalog(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await itemService.getCatalog();
-      res.json({ success: true, data });
-    } catch (err) { next(err); }
-  },
-
   async getInventory(req: Request, res: Response, next: NextFunction) {
     try {
       const data = await itemService.getInventory(req.user!.userId);

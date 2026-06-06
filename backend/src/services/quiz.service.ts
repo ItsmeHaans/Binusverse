@@ -1,5 +1,6 @@
 import { quizRepository } from '../repositories/quiz.repository';
 import { userRepository } from '../repositories/user.repository';
+import { itemRepository } from '../repositories/item.repository';
 import { AppError } from '../utils/AppError';
 import { XP_REWARDS, xpToLevel } from '../utils/xp';
 import { calcNewStreak } from '../utils/streak';
@@ -7,6 +8,16 @@ import { eloToDivision } from '../utils/rank';
 import { Difficulty } from '@prisma/client';
 
 const DAILY_Q_COUNT = 10;
+
+function pickRandomItem(items: { id: string; name: string }[], accuracy: number): { id: string; name: string } | null {
+  let chance = 0;
+  if (accuracy >= 1.0)  chance = 0.70;
+  else if (accuracy >= 0.85) chance = 0.45;
+  else if (accuracy >= 0.70) chance = 0.25;
+  else if (accuracy >= 0.50) chance = 0.10;
+  if (items.length === 0 || Math.random() >= chance) return null;
+  return items[Math.floor(Math.random() * items.length)]!;
+}
 
 export const quizService = {
   async getDaily(userId: string) {
@@ -19,7 +30,7 @@ export const quizService = {
       try {
         await quizRepository.createDailyQuiz(today, qs.map((q) => q.id));
       } catch {
-        // Concurrent request already created it — proceed
+        // Concurrent request already created it
       }
       quiz = await quizRepository.findTodayQuiz(today);
     }
@@ -39,6 +50,7 @@ export const quizService = {
         optionB: question.optionB,
         optionC: question.optionC,
         optionD: question.optionD,
+        correctOption: question.correctOption,
         topic: question.topic,
       })),
     };
@@ -83,17 +95,26 @@ export const quizService = {
     const newStreak = calcNewStreak(user.streak, user.lastActiveAt);
     const newXp = user.xp + xpGained;
     const newLevel = xpToLevel(newXp);
-    const newElo = user.eloPoints;
 
     await userRepository.update(userId, {
       xp: newXp,
       level: newLevel,
       streak: newStreak,
-      division: eloToDivision(newElo),
+      division: eloToDivision(user.eloPoints),
       lastActiveAt: new Date(),
     });
 
-    return { correct, wrong, avgTime, xpGained, streak: newStreak };
+    // Award random item based on accuracy
+    const accuracy = correct / DAILY_Q_COUNT;
+    const allItems = await itemRepository.getAllItems();
+    const earnedItemRecord = pickRandomItem(allItems, accuracy);
+    let earnedItem: string | null = null;
+    if (earnedItemRecord) {
+      await itemRepository.giveItemToUser(userId, earnedItemRecord.id);
+      earnedItem = earnedItemRecord.name;
+    }
+
+    return { correct, wrong, avgTime, xpGained, streak: newStreak, earnedItem };
   },
 
   async addQuestion(data: {

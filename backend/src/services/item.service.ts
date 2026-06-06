@@ -2,10 +2,6 @@ import { itemRepository } from '../repositories/item.repository';
 import { AppError } from '../utils/AppError';
 
 export const itemService = {
-  getCatalog() {
-    return itemRepository.getAllItems();
-  },
-
   getInventory(userId: string) {
     return itemRepository.getUserInventory(userId);
   },

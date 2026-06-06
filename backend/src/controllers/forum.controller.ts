@@ -2,10 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { forumService } from '../services/forum.service';
 
 export const forumController = {
-  getChannels(_req: Request, res: Response) {
-    res.json({ success: true, data: forumService.getChannels() });
-  },
-
   async getPosts(req: Request, res: Response, next: NextFunction) {
     try {
       const channel = (req.query['channel'] as string) ?? 'global';
@@ -27,31 +23,6 @@ export const forumController = {
   async togglePostLike(req: Request, res: Response, next: NextFunction) {
     try {
       const data = await forumService.togglePostLike(req.params['id']!, req.user!.userId);
-      res.json({ success: true, data });
-    } catch (err) { next(err); }
-  },
-
-  async getComments(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await forumService.getComments(req.params['id']!);
-      res.json({ success: true, data });
-    } catch (err) { next(err); }
-  },
-
-  async createComment(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await forumService.createComment(
-        req.params['id']!,
-        req.user!.userId,
-        req.body.content,
-      );
-      res.status(201).json({ success: true, data });
-    } catch (err) { next(err); }
-  },
-
-  async toggleCommentLike(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await forumService.toggleCommentLike(req.params['id']!, req.user!.userId);
       res.json({ success: true, data });
     } catch (err) { next(err); }
   },

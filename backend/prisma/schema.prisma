@@ -4,7 +4,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum Role {
@@ -38,11 +37,6 @@ enum ItemRarity {
   LEGENDARY
 }
 
-enum MissionStatus {
-  ONGOING
-  DONE
-}
-
 model User {
   id           String    @id @default(uuid())
   name         String
@@ -61,9 +55,6 @@ model User {
   eloPoints    Int       @default(1000)
   division     String    @default("Bronze")
 
-  gpa        Float?
-  attendance Float?
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -74,14 +65,8 @@ model User {
   pvpAnswers      PvpAnswer[]
   quizSubmissions DailyQuizSubmission[]
   forumPosts      ForumPost[]
-  forumComments   ForumComment[]
   postLikes       ForumPostLike[]
-  commentLikes    ForumCommentLike[]
-  classes         Class[]
-  gpaHistory      GpaHistory[]
-  missions        Mission[]
   userItems       UserItem[]
-  authoredNews    News[]
 }
 
 model RefreshToken {
@@ -228,27 +213,10 @@ model ForumPost {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  user     User             @relation(fields: [userId], references: [id])
-  comments ForumComment[]
-  likes    ForumPostLike[]
+  user  User            @relation(fields: [userId], references: [id])
+  likes ForumPostLike[]
 
   @@index([channel])
-  @@index([userId])
-}
-
-model ForumComment {
-  id        String    @id @default(uuid())
-  postId    String
-  userId    String
-  content   String
-  createdAt DateTime  @default(now())
-  deletedAt DateTime?
-
-  post  ForumPost         @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user  User              @relation(fields: [userId], references: [id])
-  likes ForumCommentLike[]
-
-  @@index([postId])
   @@index([userId])
 }
 
@@ -260,68 +228,4 @@ model ForumPostLike {
   user User      @relation(fields: [userId], references: [id])
 
   @@id([postId, userId])
-}
-
-model ForumCommentLike {
-  commentId String
-  userId    String
-
-  comment ForumComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  user    User         @relation(fields: [userId], references: [id])
-
-  @@id([commentId, userId])
-}
-
-model Class {
-  id       String  @id @default(uuid())
-  userId   String
-  name     String
-  code     String
-  semester String
-  passed   Boolean @default(false)
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model GpaHistory {
-  id            String @id @default(uuid())
-  userId        String
-  semester      String
-  ipValue       Float
-  classesPassed Int
-  totalClasses  Int
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model Mission {
-  id          String        @id @default(uuid())
-  userId      String
-  title       String
-  description String?
-  dueDate     DateTime?
-  status      MissionStatus @default(ONGOING)
-  imageUrl    String?
-  createdAt   DateTime      @default(now())
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model News {
-  id        String    @id @default(uuid())
-  title     String
-  content   String
-  imageUrl  String?
-  authorId  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  author User @relation(fields: [authorId], references: [id])
 }

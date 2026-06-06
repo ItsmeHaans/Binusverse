@@ -2,10 +2,10 @@ import { z } from 'zod';
 
 export const registerSchema = z.object({
   name: z.string().min(2),
-  email: z.string().email().endsWith('@binus.ac.id', { message: 'Must be a BINUS email (@binus.ac.id)' }),
+  email: z.string().email(),
   password: z.string().min(8),
-  faculty: z.string().optional(),
-  batch: z.string().optional(),
+  faculty: z.string().nullable().optional(),
+  batch: z.string().nullable().optional(),
 });
 
 export const loginSchema = z.object({

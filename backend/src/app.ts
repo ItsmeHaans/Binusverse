@@ -11,7 +11,6 @@ import battleRoutes from './routes/battle.routes';
 import itemRoutes from './routes/item.routes';
 import forumRoutes from './routes/forum.routes';
 import leaderboardRoutes from './routes/leaderboard.routes';
-import newsRoutes from './routes/news.routes';
 
 const app = express();
 
@@ -37,7 +36,7 @@ app.use('/api/auth', rateLimit({
 }));
 
 // Stricter limit for quiz submission (prevent XP farming)
-app.use('/api/quiz/submit', rateLimit({
+app.use('/api/quiz/daily/submit', rateLimit({
   windowMs: 60 * 1000,
   max: 5,
   standardHeaders: true,
@@ -62,7 +61,6 @@ app.use('/api/battle', battleRoutes);
 app.use('/api/items', itemRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
-app.use('/api/news', newsRoutes);
 
 app.use(errorHandler);
 

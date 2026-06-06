@@ -1,5 +1,6 @@
 import { battleRepository } from '../repositories/battle.repository';
 import { userRepository } from '../repositories/user.repository';
+import { itemRepository } from '../repositories/item.repository';
 import { AppError } from '../utils/AppError';
 import { XP_REWARDS, xpToLevel } from '../utils/xp';
 import { ELO, eloToDivision } from '../utils/rank';
@@ -11,6 +12,16 @@ const RAID_CONFIG = {
   NORMAL: { count: 10, passMark: 7 },
   HARD:   { count: 12, passMark: 9 },
 };
+
+function pickRandomItem(items: { id: string; name: string }[], accuracy: number): { id: string; name: string } | null {
+  let chance = 0;
+  if (accuracy >= 1.0)  chance = 0.70;
+  else if (accuracy >= 0.85) chance = 0.45;
+  else if (accuracy >= 0.70) chance = 0.25;
+  else if (accuracy >= 0.50) chance = 0.10;
+  if (items.length === 0 || Math.random() >= chance) return null;
+  return items[Math.floor(Math.random() * items.length)]!;
+}
 
 export const battleService = {
   async getRaidQuestions(difficulty: Difficulty) {
@@ -26,6 +37,7 @@ export const battleService = {
       optionB: q.optionB,
       optionC: q.optionC,
       optionD: q.optionD,
+      correctOption: q.correctOption,
       topic: q.topic,
     }));
   },
@@ -50,7 +62,6 @@ export const battleService = {
       else wrong++;
     }
 
-    // Unanswered questions count as wrong (prevents "answer only safe questions" exploit)
     wrong += Math.max(0, config.count - (correct + wrong));
 
     const cleared = correct >= config.passMark;
@@ -84,12 +95,23 @@ export const battleService = {
       level: xpToLevel(newXp),
     });
 
+    // Award random item based on accuracy
+    const accuracy = correct / config.count;
+    const allItems = await itemRepository.getAllItems();
+    const earnedItemRecord = pickRandomItem(allItems, accuracy);
+    let earnedItem: string | null = null;
+    if (earnedItemRecord) {
+      await itemRepository.giveItemToUser(userId, earnedItemRecord.id);
+      earnedItem = earnedItemRecord.name;
+    }
+
     return {
       correct,
       wrong,
       cleared,
       passMark: config.passMark,
       xpGained,
+      earnedItem,
     };
   },
 
@@ -128,7 +150,6 @@ export const battleService = {
     if (!session) throw new AppError('Session not found', 404);
     if (session.status === PvpStatus.FINISHED) throw new AppError('Session already finished', 400);
 
-    // Prevent duplicate answers for the same question
     const existing = await prisma.pvpAnswer.findFirst({
       where: { sessionId, userId, questionId },
     });
@@ -191,7 +212,6 @@ export const battleService = {
     else if (cTime < oTime) winnerId = session.challengerId;
     else if (oTime < cTime) winnerId = session.opponentId;
 
-    // Atomic flip: prevents double-finalization race condition
     const flipped = await prisma.pvpSession.updateMany({
       where: { id: sessionId, status: { not: PvpStatus.FINISHED } },
       data: { status: PvpStatus.FINISHED, winnerId, endedAt: new Date() },

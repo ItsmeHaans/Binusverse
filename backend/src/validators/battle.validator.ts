@@ -5,7 +5,8 @@ export const raidSubmitSchema = z.object({
   answers: z.array(
     z.object({
       questionId: z.string().uuid(),
-      answer: z.enum(['A', 'B', 'C', 'D']),
+      // '' represents a skipped/timed-out question (scored as wrong)
+      answer: z.enum(['A', 'B', 'C', 'D', '']),
       timeTaken: z.number().min(0),
     }),
   ).min(1),

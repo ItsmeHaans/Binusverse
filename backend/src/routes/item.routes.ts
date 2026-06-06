@@ -6,7 +6,6 @@ const router = Router();
 
 router.use(authenticate);
 
-router.get('/catalog', itemController.getCatalog);
 router.get('/', itemController.getInventory);
 router.post('/use', itemController.useItem);
 

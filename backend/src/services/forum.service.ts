@@ -2,18 +2,9 @@ import { forumRepository } from '../repositories/forum.repository';
 import { AppError } from '../utils/AppError';
 import { stripHtml } from '../utils/sanitize';
 
-const CHANNELS = [
-  { id: 'global', name: 'Global Channel', description: 'Open to all BINUS students' },
-  { id: 'cs-guild', name: 'CS Guild', description: 'Computer Science guild' },
-  { id: 'engineering', name: 'Engineering', description: 'Engineering guild' },
-];
-const VALID_CHANNEL_IDS = new Set(CHANNELS.map((c) => c.id));
+const VALID_CHANNEL_IDS = new Set(['global', 'cs-guild', 'engineering']);
 
 export const forumService = {
-  getChannels() {
-    return CHANNELS;
-  },
-
   getPosts(channel: string, page: number = 1, pageSize: number = 20) {
     return forumRepository.getPosts(channel, page, pageSize);
   },
@@ -30,26 +21,6 @@ export const forumService = {
       return { liked: false };
     }
     await forumRepository.createPostLike(postId, userId);
-    return { liked: true };
-  },
-
-  getComments(postId: string) {
-    return forumRepository.getComments(postId);
-  },
-
-  async createComment(postId: string, userId: string, content: string) {
-    const post = await forumRepository.findPost(postId);
-    if (!post || post.deletedAt) throw new AppError('Post not found', 404);
-    return forumRepository.createComment(postId, userId, stripHtml(content));
-  },
-
-  async toggleCommentLike(commentId: string, userId: string) {
-    const existing = await forumRepository.findCommentLike(commentId, userId);
-    if (existing) {
-      await forumRepository.deleteCommentLike(commentId, userId);
-      return { liked: false };
-    }
-    await forumRepository.createCommentLike(commentId, userId);
     return { liked: true };
   },
 };
