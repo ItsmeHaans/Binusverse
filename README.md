@@ -1,60 +1,60 @@
 # BINUSVERSE
 
-Platform belajar gamifikasi untuk mahasiswa BINUS. Ubah aktivitas akademik jadi petualangan RPG — kerjakan quiz harian, tantang sesama mahasiswa di PvP, kumpulkan item, dan naikkan rank di leaderboard.
+A gamified learning platform for BINUS University students. Turn academic activities into an RPG adventure — complete daily quizzes, challenge fellow students in real-time PvP, collect items, and climb the leaderboard.
 
 ---
 
-## Fitur
+## Features
 
-| Fitur | Deskripsi |
+| Feature | Description |
 |---|---|
-| **Daily Quiz** | Quiz harian auto-generate, dapat XP & streak bonus |
-| **Battle** | Mode PvP real-time (Socket.io), Raid, dan Solo battle |
-| **Leaderboard** | Ranking global berdasarkan XP dan ELO |
-| **The Commons** | Forum diskusi antar mahasiswa dengan like & komentar |
-| **Grimoire** | Materi & referensi belajar |
-| **Items** | Koleksi item dengan rarity (Common → Legendary) |
-| **Profile** | Statistik akademik, GPA, attendance, level, streak |
+| **Daily Quiz** | Auto-generated daily quiz with XP & streak bonuses |
+| **Battle** | Real-time PvP (Socket.io), Raid, and Solo battle modes |
+| **Leaderboard** | Global ranking based on XP and ELO points |
+| **The Commons** | Student discussion forum with likes & comments |
+| **Grimoire** | Study materials and learning references |
+| **Items** | Collectible items with rarity tiers (Common → Legendary) |
+| **Profile** | Academic stats, GPA, attendance, level, and streak |
 
 ---
 
 ## Tech Stack
 
-**Frontend:** Vanilla HTML · CSS · JavaScript (tidak butuh build tool)
+**Frontend:** Vanilla HTML · CSS · JavaScript (no build tool required)
 
 **Backend:** Node.js · Express · TypeScript · Prisma ORM · PostgreSQL · Socket.io · JWT Auth
 
 ---
 
-## Cara Menjalankan
+## Getting Started
 
-### Prasyarat
+### Prerequisites
 
 - Node.js 18+
-- PostgreSQL (running)
-- VS Code dengan ekstensi **Live Server** (untuk frontend)
+- PostgreSQL (running locally)
+- VS Code with the **Live Server** extension (for frontend)
 
 ---
 
-### 1. Clone & Setup Backend
+### 1. Clone & Install Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Salin file environment:
+Copy the environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env`:
+Edit `.env` with your values:
 
 ```env
 DATABASE_URL="postgresql://postgres:PASSWORD@localhost:5432/binusverse"
-JWT_ACCESS_SECRET="generate-random-string-di-sini"
-JWT_REFRESH_SECRET="generate-random-string-lain-di-sini"
+JWT_ACCESS_SECRET="your-access-secret-here"
+JWT_REFRESH_SECRET="your-refresh-secret-here"
 JWT_ACCESS_EXPIRES=15m
 JWT_REFRESH_EXPIRES=7d
 PORT=3000
@@ -62,7 +62,7 @@ NODE_ENV=development
 FRONTEND_URL="http://127.0.0.1:5500"
 ```
 
-Generate JWT secret (jalankan dua kali untuk dua secret berbeda):
+Generate JWT secrets (run twice for two different secrets):
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
@@ -70,16 +70,16 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 
 ---
 
-### 2. Setup Database
+### 2. Set Up the Database
 
 ```bash
-# Buat database (sekali saja)
+# Create the database (once only)
 psql -U postgres -c "CREATE DATABASE binusverse;"
 
-# Jalankan migrasi
+# Run migrations
 cd backend
 npm run prisma:migrate
-# → masukkan nama migrasi, misal: init
+# → enter a migration name, e.g.: init
 
 # Generate Prisma client
 npm run prisma:generate
@@ -87,58 +87,58 @@ npm run prisma:generate
 
 ---
 
-### 3. Jalankan Backend
+### 3. Run the Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-Server berjalan di `http://localhost:3000`
+Server runs at `http://localhost:3000`
 
-Cek health: `http://localhost:3000/health`
-
----
-
-### 4. Jalankan Frontend
-
-Buka folder root project di VS Code, lalu klik **Go Live** (Live Server) pada `splash.html` atau `index.html`.
-
-Frontend akan berjalan di `http://127.0.0.1:5500`
+Health check: `http://localhost:3000/health`
 
 ---
 
-### 5. Setup Admin & Quiz Pertama
+### 4. Run the Frontend
 
-Daftarkan akun via app, lalu jadikan admin:
+Open the project root in VS Code, then click **Go Live** (Live Server) on `splash.html` or `index.html`.
+
+Frontend runs at `http://127.0.0.1:5500`
+
+---
+
+### 5. Set Up Admin & First Daily Quiz
+
+Register an account via the app, then grant admin role:
 
 ```bash
-psql -U postgres -d binusverse -c "UPDATE \"User\" SET role = 'ADMIN' WHERE email = 'email@kamu.com';"
+psql -U postgres -d binusverse -c "UPDATE \"User\" SET role = 'ADMIN' WHERE email = 'your@email.com';"
 ```
 
-Generate daily quiz manual (atau tunggu cron job tengah malam):
+Generate the daily quiz manually (or wait for the midnight cron job):
 
 ```bash
 curl -X POST http://localhost:3000/api/quiz/generate \
-  -H "Authorization: Bearer <token-admin>"
+  -H "Authorization: Bearer <admin-token>"
 ```
 
 ---
 
-## Struktur Proyek
+## Project Structure
 
 ```
 Binusverse/
-├── index.html          # Lobby utama
+├── index.html          # Main lobby
 ├── splash.html         # Login / Register
-├── battle.html         # Pilih mode battle
-├── battle-play.html    # Sesi battle aktif
-├── battle-result.html  # Hasil battle
-├── grimoire.html       # Materi belajar
+├── battle.html         # Battle mode selection
+├── battle-play.html    # Active battle session
+├── battle-result.html  # Battle results
+├── grimoire.html       # Study materials
 ├── the_commons.html    # Forum
-├── forum-chat.html     # Thread forum
-├── items.html          # Inventori item
-├── assets/             # Gambar, video, JS utils
+├── forum-chat.html     # Forum thread view
+├── items.html          # Item inventory
+├── assets/             # Images, videos, JS utilities
 └── backend/
     ├── src/
     │   ├── controllers/    # Request handlers
@@ -159,26 +159,26 @@ Binusverse/
 
 Base URL: `http://localhost:3000/api`
 
-Semua route yang dilindungi butuh header: `Authorization: Bearer <accessToken>`
+All protected routes require: `Authorization: Bearer <accessToken>`
 
-| Method | Endpoint | Deskripsi |
+| Method | Endpoint | Description |
 |---|---|---|
-| POST | `/auth/register` | Daftar akun baru |
-| POST | `/auth/login` | Login, dapat access & refresh token |
-| POST | `/auth/refresh` | Perbarui access token |
-| GET | `/user/me` | Profil sendiri |
-| GET | `/quiz/daily` | Ambil quiz hari ini |
-| POST | `/quiz/daily/submit` | Submit jawaban quiz |
-| POST | `/battle/create` | Buat sesi PvP |
-| GET | `/leaderboard` | Ranking global |
-| GET | `/forum/posts` | Daftar post forum |
-| GET | `/items` | Semua item tersedia |
+| POST | `/auth/register` | Create a new account |
+| POST | `/auth/login` | Login, returns access & refresh tokens |
+| POST | `/auth/refresh` | Refresh access token |
+| GET | `/user/me` | Get own profile |
+| GET | `/quiz/daily` | Get today's quiz |
+| POST | `/quiz/daily/submit` | Submit quiz answers |
+| POST | `/battle/create` | Create a PvP session |
+| GET | `/leaderboard` | Global rankings |
+| GET | `/forum/posts` | List forum posts |
+| GET | `/items` | All available items |
 
 ---
 
 ## WebSocket PvP
 
-Connect ke namespace `/pvp`:
+Connect to the `/pvp` namespace:
 
 ```javascript
 const socket = io('http://localhost:3000/pvp');
@@ -197,9 +197,9 @@ socket.emit('answer', { sessionId, userId, questionId, answer: 'A', timeTaken: 3
 ## NPM Scripts (Backend)
 
 ```bash
-npm run dev           # Dev server dengan hot reload
+npm run dev           # Dev server with hot reload
 npm run build         # Compile TypeScript
-npm run start         # Jalankan hasil build
-npm run prisma:studio # GUI database Prisma
-npm run prisma:seed   # Seed data awal
+npm run start         # Run compiled build
+npm run prisma:studio # Prisma database GUI
+npm run prisma:seed   # Seed initial data
 ```
