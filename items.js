@@ -194,14 +194,7 @@
     });
   }
 
-  /* ── Hamburger ── */
-  function initHamburger() {
-    var hb = document.getElementById('hamburger');
-    var nl = document.getElementById('navLinks');
-    if (hb && nl) {
-      hb.addEventListener('click', function () { nl.classList.toggle('active'); });
-    }
-  }
+  /* Hamburger toggle handled globally in logout.js (navbar wiring). */
 
   var _st = document.createElement('style');
   _st.textContent = '.item-type-badge{font-family:"Press Start 2P",monospace;font-size:0.5rem;padding:2px 5px;margin-bottom:3px;letter-spacing:.5px;display:inline-block;}' +
@@ -210,7 +203,6 @@
   document.head.appendChild(_st);
 
   document.addEventListener('DOMContentLoaded', function () {
-    initHamburger();
     // Sync inventory from backend first, then render
     if (typeof BVAPI !== 'undefined' && BVAPI.isLoggedIn()) {
       BVAPI.getInventory()

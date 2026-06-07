@@ -291,16 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(function() { ov.remove(); entStyle.remove(); }, 1350);
   }
 
-  // =============================================
-  // HOME — Hamburger menu toggle
-  // =============================================
-  const hamburger = document.getElementById("hamburger");
-  const navLinks  = document.getElementById("navLinks");
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-  }
+  // Hamburger menu toggle handled globally in logout.js (navbar wiring).
 
   // =============================================
   // ARMORY TOOLTIP — position:fixed, bebas clip-path

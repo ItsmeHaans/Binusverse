@@ -682,8 +682,23 @@ body {
   .logo-right {
     display: none;
   }
+  .hamburger {
+    display: flex;
+  }
   .nav-links {
-    display: none;
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    background: rgba(15, 11, 37, 0.97);
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    transition: left 0.3s ease;
+    border-bottom: 3px solid #1e90ff;
+  }
+  .nav-links.active {
+    left: 0;
   }
   .battle-header {
     height: 40vh;

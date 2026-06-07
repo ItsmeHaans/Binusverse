@@ -114,9 +114,7 @@ function burstP(good) {
 
 // ═══════════════ INIT ═══════════════
 function init() {
-  const ham = $('hamburger');
-  if (ham) ham.addEventListener('click', () => $('navLinks').classList.toggle('active'));
-
+  // Hamburger toggle handled globally in logout.js (navbar wiring).
   const p = new URLSearchParams(window.location.search);
   state.mode       = p.get('mode')       || 'daily';
   state.difficulty = p.get('difficulty') || 'easy';
