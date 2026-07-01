@@ -116,11 +116,13 @@ Register an account via the app, then grant admin role:
 psql -U postgres -d binusverse -c "UPDATE \"User\" SET role = 'ADMIN' WHERE email = 'your@email.com';"
 ```
 
-Generate the daily quiz manually (or wait for the midnight cron job):
+Add quiz questions manually via the admin endpoint:
 
 ```bash
-curl -X POST http://localhost:3000/api/quiz/generate \
-  -H "Authorization: Bearer <admin-token>"
+curl -X POST http://localhost:3000/api/quiz/questions \
+  -H "Authorization: Bearer <admin-token>" \
+  -H "Content-Type: application/json" \
+  -d '{"question":"...","options":["A","B","C","D"],"answer":"A","subject":"..."}'
 ```
 
 ---
@@ -138,6 +140,7 @@ Binusverse/
 ├── the_commons.html    # Forum
 ├── forum-chat.html     # Forum thread view
 ├── items.html          # Item inventory
+├── cs.html             # Customer support / help page
 ├── assets/             # Images, videos, JS utilities
 └── backend/
     ├── src/
@@ -147,6 +150,7 @@ Binusverse/
     │   ├── routes/         # Express routes
     │   ├── middlewares/    # Auth, error handler
     │   ├── websocket/      # Socket.io PvP
+    │   ├── validators/     # Zod request schemas
     │   └── utils/          # XP, rank, streak logic
     ├── prisma/
     │   └── migrations/     # SQL migrations
@@ -166,30 +170,34 @@ All protected routes require: `Authorization: Bearer <accessToken>`
 | POST | `/auth/register` | Create a new account |
 | POST | `/auth/login` | Login, returns access & refresh tokens |
 | POST | `/auth/refresh` | Refresh access token |
-| GET | `/user/me` | Get own profile |
+| GET | `/user/profile` | Get own profile |
 | GET | `/quiz/daily` | Get today's quiz |
 | POST | `/quiz/daily/submit` | Submit quiz answers |
-| POST | `/battle/create` | Create a PvP session |
+| POST | `/battle/pvp/challenge` | Create a PvP session |
 | GET | `/leaderboard` | Global rankings |
 | GET | `/forum/posts` | List forum posts |
-| GET | `/items` | All available items |
+| GET | `/items` | Get own item inventory |
 
 ---
 
 ## WebSocket PvP
 
-Connect to the `/pvp` namespace:
+Connect to the `/pvp` namespace (JWT token required via `auth`):
 
 ```javascript
-const socket = io('http://localhost:3000/pvp');
+const socket = io('http://localhost:3000/pvp', {
+  auth: { token: '<accessToken>' }
+});
 
-socket.emit('join', { sessionId: 'uuid', userId: 'uuid' });
+// Join a session room
+socket.emit('join_session', 'session-uuid');
 
-socket.on('started', ({ questions, challenger, opponent }) => { ... });
+// Submit an answer
+socket.emit('answer', { sessionId, questionId, answer: 'A', timeTaken: 3.5 });
+
+// Events from server
 socket.on('opponent_answered', ({ questionId, correct }) => { ... });
-socket.on('result', ({ winnerId }) => { ... });
-
-socket.emit('answer', { sessionId, userId, questionId, answer: 'A', timeTaken: 3.5 });
+socket.on('session_finished', ({ sessionId }) => { ... });
 ```
 
 ---
